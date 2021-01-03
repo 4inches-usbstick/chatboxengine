@@ -39,10 +39,7 @@ $returnbool = 1;
 if ($URL == "norefer") {
 	$returnbool = "no";
 }
-if (empty($URL) or $URL == "return") {
-    //echo('UTF8');
-	$URL = "javascript://history.go(-1)";
-}
+
 
 
 $mess = $_GET["msg"];
