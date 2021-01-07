@@ -70,14 +70,16 @@ if ($_GET['explorer'] == 1) {
 $formaction = substr_count($_GET["chatnum"], '.html');
 if ($formaction > 0) {
 	$form = 'sendmsg4html.php';
+	$way = 'POST';
 } else {
-	$form = 'sendmsg.php';
+	$form = 'sendmsg_integration.php';
+	$way = 'GET';
 	echo("<style>div { white-space: pre-wrap; }</style>");
 }
 	
 echo("
 
-<form action=\"$form\" method=\"POST\" autocomplete=\"off\">
+<form action=\"$form\" method=\"$way\" autocomplete=\"off\">
 <fieldset>
 <legend>Options</legend>
 

@@ -76,7 +76,7 @@ echo("<
 
 echo("
 
-<form action=\"sendmsg.php\" method=\"POST\" autocomplete=\"off\">
+<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\">
 <fieldset draggable=\"false\">
 <legend>Say something: </legend>
 <br>

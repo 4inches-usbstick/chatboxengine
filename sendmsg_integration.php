@@ -40,6 +40,11 @@ if ($URL == "norefer") {
 	$returnbool = "no";
 }
 
+$ref = $_SERVER['HTTP_REFERER'];
+if (strpos($ref, 'inchat')) {
+$URL = $ref;
+}
+
 
 
 $mess = $_GET["msg"];

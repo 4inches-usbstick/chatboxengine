@@ -33,12 +33,7 @@ if (empty($coder) or $coder == "UTF-8") {
 	$coder = "UTF-8";
 }
 
-$URL = $_GET["rurl"];
-//set return url
-$returnbool = 1;
-if ($URL == "norefer") {
-	$returnbool = "no";
-}
+
 
 
 
@@ -74,11 +69,7 @@ echo("$coder encoder<br>");
 echo("$mess1 = message<br>");
 echo("$URL = referer<br>");
 
-if ($returnbool != "no") {
-header("Location: $URL");
-} else {
-echo ("Will not return to referer");
-}
+
 //no ts
 } else {
 $txt = "$name: $mess1";
@@ -101,12 +92,7 @@ echo("$coder encoder<br>");
 echo("$mess1 = message<br>");
 echo("$URL = referer<br>");
 
-if ($returnbool != "no") {
-//header("Location: $URL");
-echo("There was a referer, but it will not return to it");
-} else {
-echo ("Will not return to referer");
-}
+
 }
 
 //echo(file_get_contents("C:/wamp64/www/textengine/sitechats/.htabannednumbers"));
