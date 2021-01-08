@@ -19,7 +19,7 @@ HTML/Legacy: <input type="text" name="mess" size="100" height="10">(allowed valu
 Allow Media: <input type="text" name="enc" size="100" height="10" value="allowmed"> (allowed values: allowmed or forbidmed)<br>
 Referer: <input type="text" name="ref" size="100" height="10" value=""> (default: empty for return to referer)<br>
 <br>
-<input type="submit" value="Generate" style="color:Gray">
+<input type="submit" value="Generate" style="color:black">
 </fieldset>
 </form>
 

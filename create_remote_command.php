@@ -20,7 +20,7 @@ Encoder: <input type="text" name="enc" size="100" height="10" value="UTF-8"> (de
 Name: <input type="text" name="namer" size="100" height="10"><br>
 Referer: <input type="text" name="ref" size="100" height="10" value="return"> (default: return)<br>
 <br>
-<input type="submit" value="Generate" style="color:Gray">
+<input type="submit" value="Generate" style="color:black">
 </fieldset>
 </form>
 

@@ -19,7 +19,7 @@ Refresh rate: <input type="text" name="refreshrate" size="100" height="10" value
 Encoder: <input type="text" name="enc" size="100" height="10" value="UTF-8"> <br>
 Name: <input type="text" name="name" size="100" height="10"> <br>
 <br>
-<input type="submit" value="Join" style="color:Gray">
+<input type="submit" value="Join" style="color:black">
 </fieldset>
 </form>
 

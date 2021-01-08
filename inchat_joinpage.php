@@ -14,6 +14,6 @@ div<input type="radio" id="male" name="option" value="div">
 ifr<input type="radio" id="male1" name="option" value="ifr" checked='checked'>
 
 <br>
-<input type="submit" value="Join" style="color:Gray">
+<input type="submit" value="Join" style="color:black">
 </fieldset>
 </form>

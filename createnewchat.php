@@ -35,7 +35,7 @@ CBEDATA Chatbox <input type="radio" id="male1" name="option" value="d"><br><br>
 Allow Media Upload? <input type="checkbox" id="allowmed" name="allowmed" value="allowmed" checked="checked"><br><br>
 
 
-<input type="submit" value="Create" style="color:Gray">
+<input type="submit" value="Create" style="color:black">
 </fieldset>
 </form>
 

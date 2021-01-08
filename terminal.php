@@ -40,7 +40,7 @@ input[type=password]:focus{
  <input type="checkbox" name="horns" name="verbosemode" checked>
   <label for="horns">No Verbose</label><br><br>
   
-<input id="verbose0" type="submit" value="Send Command" style="color:Gray"><br>
+<input id="verbose0" type="submit" value="Send Command" style="color:black"><br>
 </form>
 
 
