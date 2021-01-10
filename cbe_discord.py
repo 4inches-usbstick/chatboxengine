@@ -53,7 +53,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content.startswith('$send'):
+    if message.content.startswith('$ send'):
         x = message.content.split(";")
         await message.channel.send("Attempting to send a message...")
         stx = sendmsg(ip, x[1], x[2], '', 'UTF-8')
@@ -70,7 +70,7 @@ async def on_message(message):
             
             
             
-    if message.content.startswith('$open'):
+    if message.content.startswith('$ open'):
         x = message.content.split(";")
         await message.channel.send("Attempting to open a Chatbox...")
         y = new_cb(x[1], 'l', x[2])
@@ -110,7 +110,7 @@ async def on_message(message):
             await message.author.send('Delete key: '+newtoken)
             await message.author.send('Use **$close;<deletekey>** to close your Chatbox.')
     
-    if message.content.startswith('$inv'):
+    if message.content.startswith('$ inv'):
         x = message.content.split(";")
         print("N---------------")
         print(x[1])
@@ -122,7 +122,7 @@ async def on_message(message):
         await message.channel.send(tosend)
         
         
-    if message.content.startswith('$help'):
+    if message.content.startswith('$ help'):
         x = message.content.split(";")
         print("H---------------")
         tosend1 = '**List of commands:** $send, $open, $inv, $close, $help, $cmd. Arguments are separated with semicolons (;). Use $cmd;<commandname> for more help.'
@@ -132,7 +132,7 @@ async def on_message(message):
         await message.channel.send(tosend2)
         
         
-    if message.content.startswith('$cmd'):
+    if message.content.startswith('$ cmd'):
         x = message.content.split(";")
         print("M---------------")
         
@@ -156,7 +156,7 @@ async def on_message(message):
         if x[1] == '$cmd':
             await message.channel.send("cmd: displays command-specific help. Syntax: **$cmd;<command>**.")
         
-    if message.content.startswith('$close'):
+    if message.content.startswith('$ close'):
         xz = message.content.split(";")
         
         if xz[1] in tokens:
@@ -179,7 +179,7 @@ async def on_message(message):
             print(tokens)
             print(cor_tokens)
             
-    if message.content.startswith('$sa'):
+    if message.content.startswith('$ sa'):
         x = message.content.split(";")
 
         if x[2] == 'SAYAS PASSWORD':
