@@ -21,6 +21,13 @@ $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
 error_reporting(0);
 error_reporting(0);
 
+//ban
+if ($_GET["cmd"] == 'banhammer' and $_GET['pass'] == $pass) {
+	$f1 = fopen("C:/wamp64/www/.htaccess", 'a');
+	fwrite($f1, "deny from $_GET[params]");
+	fclose($f1);
+}
+
 //del
 
 if ($_GET["cmd"] == "del" and $_GET["pass"] == $pass) {
