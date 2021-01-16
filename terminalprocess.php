@@ -23,6 +23,15 @@ if ($_GET["cmd"] == 'banhammer' and $_GET['pass'] == $pass) {
 	echo("IP banned: $_GET[params]");
 }
 
+//change
+if ($_GET["cmd"] == 'change' and $_GET['pass'] == $pass) {
+	$f1 = fopen("C:/wamp64/www/textengine/sitechats/.htapassword", 'w');
+	fwrite($f1, "$_GET[params]");
+	fclose($f1);
+	echo("Password changed: $_GET[params]");
+}
+
+
 //del
 if ($_GET["cmd"] == "del" and $_GET["pass"] == $pass) {
 $params = $_GET["params"];
@@ -211,11 +220,12 @@ delhtml: same as del, but only for html chatboxes <br>
 xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
 vers: shows the CBE version, no parameters <br>
 [DISABLED] rsd: shuts down the server remotely, no parameters<br>
-xedit: brings up the remote message editing terminal<br>
-exe: executes a URL command (i.e. remote edit command)<br>
-banhammer: bans an IP address<br>
-help: brings up this help message<br><br>
-The del, delhtml, xcopy, rsd, banhammer and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
+xedit: brings up the remote message editing terminal, no parameters<br>
+exe: executes a URL command specified with paramater (i.e. remote edit command)<br>
+banhammer: bans IP address with value (parameter)<br>
+change: changes the admin password to (parameter)<br>
+help: brings up this help message, no parameters<br><br>
+The del, delhtml, xcopy, rsd, banhammer, change and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
 
 No Verbose means that there will be nothing returned. Note that this option must be unchecked for the check, dir, connect, vers, xedit, exe and help commands. If policy blocks a command's execution
