@@ -215,7 +215,7 @@ xedit: brings up the remote message editing terminal<br>
 exe: executes a URL command (i.e. remote edit command)<br>
 banhammer: bans an IP address<br>
 help: brings up this help message<br><br>
-The del, delhtml, xcopy, rsd, and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
+The del, delhtml, xcopy, rsd, banhammer and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
 
 No Verbose means that there will be nothing returned. Note that this option must be unchecked for the check, dir, connect, vers, xedit, exe and help commands. If policy blocks a command's execution
