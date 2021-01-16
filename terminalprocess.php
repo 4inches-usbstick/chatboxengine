@@ -1,11 +1,5 @@
 
-<title>engine page</title>
 
-<style>
-iframe {    
- border: 0;
-}
-</style>
 <?php
 
 
@@ -19,7 +13,7 @@ $credits = "We are on Chatbox Engine version $version, revised $date, created 28
 $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
 
 error_reporting(0);
-error_reporting(0);
+
 
 //ban
 if ($_GET["cmd"] == 'banhammer' and $_GET['pass'] == $pass) {
@@ -30,7 +24,6 @@ if ($_GET["cmd"] == 'banhammer' and $_GET['pass'] == $pass) {
 }
 
 //del
-
 if ($_GET["cmd"] == "del" and $_GET["pass"] == $pass) {
 $params = $_GET["params"];
 $abspath = dirname($params);
@@ -220,6 +213,7 @@ vers: shows the CBE version, no parameters <br>
 [DISABLED] rsd: shuts down the server remotely, no parameters<br>
 xedit: brings up the remote message editing terminal<br>
 exe: executes a URL command (i.e. remote edit command)<br>
+banhammer: bans an IP address<br>
 help: brings up this help message<br><br>
 The del, delhtml, xcopy, rsd, and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
