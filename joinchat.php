@@ -24,7 +24,7 @@ echo($tolink);
 $tolink = "<a href=\"inchat-div.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\">→ Connect to the chatbox (Legacy Mode, Div Standard) ←</a><br>";
 echo($tolink);
 $tolink = "<a href=\"inchat4html.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\">→ Connect to the chatbox (HTML Mode) ←</a><br>";
-echo($tolink);
+//echo($tolink);
 $tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\">→ Connect to the chatbox (CSS'd up) ←</a><br><br>";
 //echo($tolink);
 
@@ -39,5 +39,5 @@ console.log("JS check passed.")
 
 
 
-<b>If you are joining a HTML chatbox, you must use the HTML mode. Likewise, if you are joining a Legacy Chatbox, you need to use the Legacy Mode</b>
+<b>If you are joining a HTML chatbox, you must use the Div standard. If you are joining a Legacy Chatbox, you can use either.</b>
 

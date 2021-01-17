@@ -153,6 +153,3 @@ window.onload = function(){
 };
 echo("<code>Join by URL:<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
 
-if ($explorer != '0' or $explorer != '1') {
-	echo('<b style="color:red;">warning: explorer variable not set correctly.</b>');
-}

@@ -23,11 +23,30 @@ $gethttd = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/med
 
 
 if ($gethttd === false) {
-	$mediaoptions = "<code style=\"background: black; color: white\">Media uploads have been disabled for this Chatbox.</code><br>";
+	$bruh = 'bruh';
 } else {
 	$mediaoptions = "<a href='http://71.255.240.10:8080/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]'>Upload Media, </a>
 <a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]\">Find / Post Media, </a>
 <a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]\">Close Media Finder, </a><br>";
+	$type = 'leg';
+}
+
+
+$nub = substr($_GET['chatnum'], 0, -5);
+$gethttd = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/media/$nub-med");
+
+if ($gethttd === false) {
+	$bruh = 'bruh';
+} else {
+	$mediaoptions = "<a href='http://71.255.240.10:8080/textengine/sitechats/media/uploadform4html.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]'>Upload Media, </a>
+<a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]\">Find / Post Media, </a>
+<a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]\">Close Media Finder, </a><br>";
+	$type = 'htm';
+}
+echo($type);
+
+if(empty($type)) {
+		$mediaoptions = "<code style=\"background: black; color: white\">Media uploads have been disabled for this Chatbox.</code><br>";
 }
 
 
@@ -63,9 +82,13 @@ $explorer = $_GET[explorer];
 $getter = "http://71.255.240.10:8080/textengine/sitechats/$_GET[chatnum]";
 echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'>...</p></div>");
 
-if ($_GET['explorer'] == 1) {
+if ($_GET['explorer'] == 1 and $type == 'leg') {
 	echo("<iframe id=\"iframe2\" src=\"http://71.255.240.10:8080/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\">no</iframe>");
 }
+if ($_GET['explorer'] == 1 and $type == 'htm') {
+	echo("<iframe id=\"iframe3\" src=\"http://71.255.240.10:8080/textengine/sitechats/media/$nub-med/uploaded\" width=\"610\" height=\"400\">no</iframe>");
+}
+
 
 $formaction = substr_count($_GET["chatnum"], '.html');
 if ($formaction > 0) {
