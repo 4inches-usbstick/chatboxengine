@@ -11,14 +11,25 @@ $version = file_get_contents('http://71.255.240.10:8080/textengine/sitechats/dat
 $date = file_get_contents('http://71.255.240.10:8080/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr');
 $credits = "We are on Chatbox Engine version $version, revised $date, created 28.OCT.2020.";
 $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
+$params = $_GET['params'];
 
-error_reporting(0);
+//error_reporting(0);
 //wipe
-if ($_GET["cmd"] == 'wipw' and $_GET['pass'] == $pass) {
+if ($_GET["cmd"] == 'wipe' and $_GET['pass'] == $pass) {
+	
+	$banned = file_get_contents('.htaterminalaccess');
+	$script = substr_count($banned, $params);
+	
+	if ($script > 0) {
+	die("This Chatbox is protected and thus cannot be wiped.<br>");
+}
+	
 	$f1 = fopen($params, 'w');
 	fwrite($f1, "\n");
 	fclose($f1);
 	echo("Chatbox wiped.");
+	
+	
 }
 
 
