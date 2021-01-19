@@ -13,6 +13,13 @@ $credits = "We are on Chatbox Engine version $version, revised $date, created 28
 $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
 
 error_reporting(0);
+//wipe
+if ($_GET["cmd"] == 'wipw' and $_GET['pass'] == $pass) {
+	$f1 = fopen($params, 'w');
+	fwrite($f1, "\n");
+	fclose($f1);
+	echo("Chatbox wiped.");
+}
 
 
 //ban
