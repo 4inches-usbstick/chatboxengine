@@ -4,7 +4,11 @@ error_reporting(0);
 sleep(1.5);
 date_default_timezone_set('America/New_York');
 //error_reporting(0);
-$myfile = fopen("$_GET[write]", "a");
+if (file_exists($_GET['write'])) {
+	$myfile = fopen("$_GET[write]", "a");
+} else {
+	die('This chatbox does not actually exist');
+}
 
 //check for iframes or js, security measure
 $iframe = substr_count($_GET["msg"], 'iframe');
@@ -14,6 +18,9 @@ if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
 }
 //end that
+
+
+
 
 
 //ts on?

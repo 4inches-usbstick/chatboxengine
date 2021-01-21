@@ -2,7 +2,11 @@ Diags<br>
 <?php
 date_default_timezone_set('America/New_York');
 //error_reporting(0);
-$myfile = fopen("$_POST[write]", "a");
+if (file_exists($_POST['write'])) {
+	$myfile = fopen("$_POST[write]", "a");
+} else {
+	die('This chatbox does not actually exist');
+}
 
 //check for iframes or js, security measure
 $iframe = substr_count($_POST["msg"], 'iframe');
