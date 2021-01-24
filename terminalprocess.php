@@ -25,7 +25,7 @@ if ($_GET["cmd"] == 'wipe' and $_GET['pass'] == $pass) {
 }
 	
 	$f1 = fopen($params, 'w');
-	fwrite($f1, "\n");
+	fwrite($f1, "");
 	fclose($f1);
 	echo("Chatbox wiped.");
 	
