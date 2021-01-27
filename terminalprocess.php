@@ -10,7 +10,7 @@
 $version = file_get_contents('http://71.255.240.10:8080/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-version&type=attr');
 $date = file_get_contents('http://71.255.240.10:8080/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr');
 $credits = "We are on Chatbox Engine version $version, revised $date, created 28.OCT.2020.";
-$pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
+$pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');    
 $params = $_GET['params'];
 
 //error_reporting(0);
