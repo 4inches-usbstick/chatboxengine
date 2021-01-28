@@ -1,8 +1,8 @@
-
 #REPLACE YOUR IP HERE with the IP of the desired CBE server 
 #REPLACE CORRECTADMINPASSWORD with the admin password of the desired CBE server
-#REPLACE SAYAS PASSWORD with the password you want to use for the Sayas 
+#WE NOW USE A ROLLING CODE SYSTEM FOR SAYAS
 #REPLACE TOKEN with the Discord Bot Token
+#USE '$ help' WHILE BOT IS ONLINE FOR HELP
 
 import discord
 import requests as request
@@ -50,6 +50,9 @@ client = discord.Client()
 @client.event
 async def on_ready():
     print('Ready to go...')
+    global curpp
+    curpp = random.random()
+    print(curpp)
 
 @client.event
 async def on_message(message):
@@ -125,7 +128,7 @@ async def on_message(message):
     if message.content.startswith('$ help'):
         x = message.content.split(";")
         print("H---------------")
-        tosend1 = '**List of commands:** $send, $open, $inv, $close, $help, $cmd. Arguments are separated with semicolons (;). Use $cmd;<commandname> for more help.'
+        tosend1 = '**List of commands:** $ send, $ open, $ inv, $ close, $ help, $ cmd. Arguments are separated with semicolons (;). Use $cmd;<commandname> for more help.'
         tosend2 = '**List of return values:** :no_entry_sign: means that there was a forbidden / invalid request. :ballot_box_with_check: means that all was well. If nothing is returned by the bot, it is having an internal error.'
         tosend3 = ':warning: **WARNING:** Using the Discord bot as a proxy to cirvumvent bans is forbidden.'
         await message.channel.send(tosend1)
@@ -182,14 +185,17 @@ async def on_message(message):
     if message.content.startswith('$ sa'):
         x = message.content.split(";")
 
-        if x[2] == 'SAYAS PASSWORD':
+        global curpp
+        if float(x[2]) == float(curpp):
             await message.channel.send(x[1])
-            await message.delete()
-            print("SAYAS: "+x[1])
-        elif x[2] != 'SAYAS PASSWORD':
-            await message.channel.send('You do not have permissions to send messages as me.')
-            print("SAYAS FAIL")
-        
+            curpp = random.random()
+            curpp = float(curpp)
+            print(curpp)
+        elif float(x[2]) != float(curpp):
+            await message.channel.send('You are forbidden to send messages as me.')
+            curpp = random.random()
+            curpp = float(curpp)
+            print(curpp)
         
         
         
