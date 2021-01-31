@@ -1,3 +1,4 @@
+
 #REPLACE YOUR IP HERE with the IP of the desired CBE server 
 #REPLACE CORRECTADMINPASSWORD with the admin password of the desired CBE server
 #WE NOW USE A ROLLING CODE SYSTEM FOR SAYAS
@@ -8,14 +9,14 @@ import discord
 import requests as request
 import random as random
 import time
-ip = 'YOUR IP HERE'
+ip = '71.255.240.10:8080'
 global horny_activations
 horny_activations = 0
 print('CBE')
 
 tokens = []
 cor_tokens = []
-bot_token = 'TOKEN'
+bot_token = 'Nzg4Nzg5MzMyMjYwNDIxNjMy.X9onTw.8krKbSvkwP6od-DH3o0s_ukfLk4'
 
 
 #for sending messages: ip is for the server to connect to, writeto is the Chatbox, msg is the message, name is the name to use in the Chatbox, and encoder is the encoder to use
@@ -139,24 +140,24 @@ async def on_message(message):
         x = message.content.split(";")
         print("M---------------")
         
-        if x[1] == '$send':
+        if x[1] == '$ send':
             await message.channel.send("send: sends a command to a certain Chatbox. Syntax: **$send;<chatbox>;<message>**.")
             
-        if x[1] == '$open':
+        if x[1] == '$ open':
             await message.channel.send("open: creates a new Chatbox. Syntax: **$open;<new chatbox number>;<allowmed/forbidmed>**.")
             await message.channel.send("After creating a Chatbox, you will be DM'd a delete key. This key can be shared, or not. It's a one time use integer that allows you to close your Chatbox.")
 
-        if x[1] == '$inv':
+        if x[1] == '$ inv':
             await message.channel.send("inv: sends an invitation to a certain Chatbox. Syntax: **$inv;<chatbox number>**.")
             
-        if x[1] == '$close':
+        if x[1] == '$ close':
             await message.channel.send("close: closes a Chatbox after opening it. Syntax: **$close;<delete key>**.")
             await message.channel.send("After creating a Chatbox, you will be DM'd a delete key. This key can be shared, or not. It's a one time integer that allows you to close your Chatbox.")
 
-        if x[1] == '$help':
+        if x[1] == '$ help':
             await message.channel.send("help: displays a list of commands. Syntax: **$help**.")
             
-        if x[1] == '$cmd':
+        if x[1] == '$ cmd':
             await message.channel.send("cmd: displays command-specific help. Syntax: **$cmd;<command>**.")
         
     if message.content.startswith('$ close'):
@@ -185,6 +186,7 @@ async def on_message(message):
     if message.content.startswith('$ sa'):
         x = message.content.split(";")
 
+   
         global curpp
         if float(x[2]) == float(curpp):
             await message.channel.send(x[1])
