@@ -16,7 +16,7 @@ print('CBE')
 
 tokens = []
 cor_tokens = []
-bot_token = 'Nzg4Nzg5MzMyMjYwNDIxNjMy.X9onTw.8krKbSvkwP6od-DH3o0s_ukfLk4'
+bot_token = 'your token here'
 
 
 #for sending messages: ip is for the server to connect to, writeto is the Chatbox, msg is the message, name is the name to use in the Chatbox, and encoder is the encoder to use
