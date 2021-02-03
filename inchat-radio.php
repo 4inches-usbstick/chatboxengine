@@ -9,6 +9,8 @@ input[type=text]:focus{
   outline: 2px solid Crimson;   
 }
 
+//audio { width: 1050px; height: 200px; display: block; }
+
 
 
 </style>
@@ -59,14 +61,19 @@ if (empty($_GET['encoderm'])) {
 
 
 
-echo("<title>[div] Chatbox $_GET[chatnum]</title>
+echo("<title>[radio-div] Chatbox $_GET[chatnum]</title>
 
 ");
 echo("refresh rate: ");
-echo("$_GET[refreshrate]ms"   );
+echo("$_GET[refreshrate]ms<br>"   );
+
+echo("tuned into: ");
+echo("$_GET[chatnum]<br>"   );
+
+
 echo("   ");
 //echo("<a href=\"http://71.255.240.10:8080/textengine/change.txt\">Learn more</a>, <a href=\"http://71.255.240.10:8080/textengine/map.html\">Homepage</a>");
-echo("<br>encoder: $coder<br>");
+//echo("<br>encoder: $coder<br>");
 echo("<code style=\"color:red\" draggable=\"false\">trigger warning: this site contains flashing images. </code><br><br>");
 
 
@@ -80,7 +87,7 @@ $explorer = $_GET[explorer];
 //echo("<iframe id=\"iframe1\" src='display.php?path=$_GET[chatnum]&pass=$_GET[pass]' width=\"$width\" height=\"400\"></iframe>");
 
 $getter = "http://71.255.240.10:8080/textengine/sitechats/$_GET[chatnum]";
-echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'>...</p></div>");
+echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'><p id=\"funstart\"> </p><audio controls id='bruh1'><source src='bruh.mp3' type='audio/mpeg'></audio><br><br><p id=\"fun\"> </p></p></div>");
 
 if ($_GET['explorer'] == 1 and $type == 'leg') {
 	echo("<iframe id=\"iframe2\" src=\"http://71.255.240.10:8080/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\">no</iframe>");
@@ -102,72 +109,40 @@ if ($formaction > 0) {
 	
 echo("
 
-<form action=\"$form\" method=\"$way\" autocomplete=\"off\">
-<fieldset>
-<legend>Options</legend>
 
-<!--for secutity reasons we don't allow ifrmes-->
-
-<code><b>
-br<input type=\"radio\" id=\"male934\" name=\"option\" value=\"break\">
-h1<input type=\"radio\" id=\"male\" name=\"option\" value=\"h1\">
-h2<input type=\"radio\" id=\"male1\" name=\"option\" value=\"h2\">
-h3<input type=\"radio\" id=\"male2\" name=\"option\" value=\"h3\">
-h4<input type=\"radio\" id=\"male3\" name=\"option\" value=\"h4\">
-h5<input type=\"radio\" id=\"male4\" name=\"option\" value=\"h5\">
-h6<input type=\"radio\" id=\"male5\" name=\"option\" value=\"h6\">
-a<input type=\"radio\" id=\"male6\" name=\"option\" value=\"a\">
-p<input type=\"radio\" id=\"male7\" name=\"option\" value=\"p\">
-i<input type=\"radio\" id=\"male8\" name=\"option\" value=\"i\">
-b<input type=\"radio\" id=\"male9\" name=\"option\" value=\"b\">
-u<input type=\"radio\" id=\"male86\" name=\"option\" value=\"u\">
-s<input type=\"radio\" id=\"male93\" name=\"option\" value=\"s\">
-c<input type=\"radio\" id=\"male911\" name=\"option\" value=\"c\">
-img<input type=\"radio\" id=\"male12\" name=\"option\" value=\"img\">
-vid<input type=\"radio\" id=\"male82\" name=\"option\" value=\"video\">
-aud<input type=\"radio\" id=\"male94\" name=\"option\" value=\"audio\">
-ptx<input type=\"radio\" id=\"male13\" name=\"option\" value=\"pt\"  checked=\"checked\"><br>
-
-</code></b>
-
-<i><code>
-$mediaoptions
-</code>
-</i>
-
-</fieldset>
-
-<fieldset>
-<legend>Input</legend>
-<code>
-Message: <input type=\"text\" name=\"msg\">
-<input type=\"hidden\" id=\"custid\" name=\"write\" value=\"$_GET[chatnum]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"encode\" value=\"$_GET[encoderm]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"name\" value=\"$_GET[namer]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"namer\" value=\"$_GET[namer]\"> 
-
-<input type=\"submit\" style=\"color:black\" value=\"Send\">
-</fieldset>
-</code>
-
-</form>
 
   <script>
 
 
-function httpGet(theUrl)
+function inihttpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
-			document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
+			//document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
+			
+			var str = xmlHttp.responseText
+			var things = str.split(\";;\");
+		
+
+			
+			document.getElementById(\"bruh1\").src = things[0];
+			//document.getElementById(\"bruh1\").load();
+			document.getElementById(\"bruh1\").play();
+			document.getElementById(\"funstart\").innerHTML = things[1];
+			document.getElementById(\"fun\").innerHTML = things[2];
 			document.getElementById(\"mydiv\").scrollTo(0,999999999999999);
 			var str1 = theUrl;
 			var str2 = \"?math=\";
 			var str3 = Math.random();
 			var res = str1.concat(str2);
 			var url = res.concat(str3);
-			//console.log(url);
+			console.log(url);
+			console.log(xmlHttp.responseText);
+			
+		
+			
+
 
 
     }
@@ -181,10 +156,7 @@ function scrollToBottom (id) {
    div.scrollTop = div.scrollHeight - div.clientHeight;
 }
 
-
-
-var pre = httpGet(\"$getter\");
-var cur = httpGet(\"$getter\");
+var pre = inihttpGet(\"$getter\");
 	
 
    var myIframe = document.getElementById('iframe1');
@@ -196,9 +168,28 @@ var cur = httpGet(\"$getter\");
 
 
         function reloadiframe() {
-            console.log('reloading..');
-            var currentvar = httpGet(\"$getter\");
-
+          var whatin = document.getElementById(\"bruh1\");
+		  console.log(whatin.currentTime);
+		  console.log(whatin.duration);
+		  				//document.getElementById(\"bruh1\").play();
+						//document.getElementById(\"bruh1\").muted = false;
+						//console.log('P-no reload');
+						//document.getElementById(\"src\").innerHTML = document.getElementById(\"bruh1\").src;
+			if (whatin.currentTime == whatin.duration || isNaN(whatin.duration)) {
+				//document.getElementById(\"stuff\").innerHTML = inihttpGet(\"$getter\");
+				inihttpGet(\"$getter\")
+				console.log('reloaded.');
+				//console.log(inihttpGet(\"$getter\"))
+				//document.getElementById(\"bruh1\").play()
+				//setTimeout(function() { document.getElementById(\"bruh1\").play(); }, 5000);
+				//window.location.href=window.location.href;
+			}
+		function send() {
+			          var whatin = document.getElementById(\"bruh1\");
+					  whatin.currentTime = whatin.duration;
+		}
+			
+			
 		
 			
 			
@@ -213,7 +204,6 @@ var cur = httpGet(\"$getter\");
 This will break live-updating functionality, but it will not stop you from chatting.
 <hr>
 </noscript>
-
 <!--script>
 document.getelementbyid('iframe1').contentwindow.location.reload();
 </script-->
@@ -223,16 +213,24 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 
 <fieldset>
 <legend>Actions</legend>
- <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='httpGet(\"$getter\")'>
-<input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=foobar&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
-<!--input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
+ <input type=\"button\" style=\"color:black\" value=\"HARD RELOAD\" onclick='window.location.href=window.location.href' >
+ <input type=\"button\" style=\"color:black\" value=\"SOFT RELOAD\" onclick='reloadiframe()' >
+&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type=\"button\" style=\"color:black\" value=\"REWIND\" onclick='document.getElementById(\"bruh1\").currentTime = 0' >
+  <input type=\"button\" style=\"color:black\" value=\"STOP\" onclick='document.getElementById(\"bruh1\").pause(); document.getElementById(\"bruh1\").muted = true; '>
+  <input type=\"button\" style=\"color:black\" value=\"START\" onclick='document.getElementById(\"bruh1\").play(); document.getElementById(\"bruh1\").muted = false;'>
+ <input type=\"button\" style=\"color:black\" value=\"FORWARD\" onclick='document.getElementById(\"bruh1\").currentTime = document.getElementById(\"bruh1\").duration' >
 
+
+
+<!--input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
 </fieldset>
 <br>
+
 ");
 
 
 //echo("<code>Join by URL:<br></code><code>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</code>  <br>");
-echo("<code>Join by URL:<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+//echo("<code>Join by URL:<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
 
 
