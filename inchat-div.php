@@ -80,7 +80,7 @@ $explorer = $_GET[explorer];
 //echo("<iframe id=\"iframe1\" src='display.php?path=$_GET[chatnum]&pass=$_GET[pass]' width=\"$width\" height=\"400\"></iframe>");
 
 $getter = "http://71.255.240.10:8080/textengine/sitechats/$_GET[chatnum]";
-echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'>...</p></div>");
+echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'>Chatbox <b>$_GET[chatnum]</b> has failed to load</p></div>");
 
 if ($_GET['explorer'] == 1 and $type == 'leg') {
 	echo("<iframe id=\"iframe2\" src=\"http://71.255.240.10:8080/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\">no</iframe>");
@@ -127,7 +127,6 @@ img<input type=\"radio\" id=\"male12\" name=\"option\" value=\"img\">
 vid<input type=\"radio\" id=\"male82\" name=\"option\" value=\"video\">
 aud<input type=\"radio\" id=\"male94\" name=\"option\" value=\"audio\">
 ptx<input type=\"radio\" id=\"male13\" name=\"option\" value=\"pt\"  checked=\"checked\"><br>
-
 </code></b>
 
 <i><code>
