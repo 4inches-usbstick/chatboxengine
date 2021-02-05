@@ -181,7 +181,7 @@ async def on_message(message):
     if message.content.startswith('$ ping'):
         await message.channel.send('Bot latency: {0}'.format(round(client.latency, 1)))
         try:
-            awa = requests.get('http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php', timeout=15)
+            awa = request.get('http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php', timeout=15)
             await message.channel.send('CBE server response time: '+str(awa.elapsed))
         except:
             await message.channel.send('CBE server is dead.')
