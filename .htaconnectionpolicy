@@ -1,0 +1,16 @@
+This is a policy page. 
+
+--enable/disable--
+shownewconnect:NO
+
+--directives--
+showip:NO
+showalias:NO
+showts:YES
+
+Notes:
+1. the SHOWIP directive has been removed, and the license terms state that you cannot change the software to make it work.
+2. [this is also broken don't do this] all of the directives take YES or NO, except for showts, which has a third choice called LOCAL, which allows users to choose to enable or disable Timestamps.
+3. if one or more of the directives is YES, the shownewconnect directive also has to be YES.
+
+DO NOT SET MULTIPLE VALUES FOR ONE DIRECTIVE. YOU HAVE TO SET THIS UP RIGHT OR THIS WON'T WORK.
