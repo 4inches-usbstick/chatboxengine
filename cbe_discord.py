@@ -17,6 +17,13 @@ print('CBE')
 tokens = []
 cor_tokens = []
 bot_token = 'TOKEN'
+def find_nth(haystack, needle, n):
+    start = haystack.find(needle)
+    while start >= 0 and n > 1:
+        start = haystack.find(needle, start+len(needle))
+        n -= 1
+    return start
+
 
 
 #for sending messages: ip is for the server to connect to, writeto is the Chatbox, msg is the message, name is the name to use in the Chatbox, and encoder is the encoder to use
@@ -152,6 +159,51 @@ async def on_message(message):
         tosend3 = ':warning: **WARNING:** Using the Discord bot as a proxy to cirvumvent bans is forbidden.'
         await message.channel.send(tosend1)
         await message.channel.send(tosend2)
+    if message.content.startswith('$ poll'):
+        ok = 1
+        msg = message.content
+        str(msg)
+        
+        offset = find_nth(msg, ';', 2)
+        #await message.channel.send(msg[offset:])
+        
+        if ' ' in msg[offset:len(msg) - 2]:
+            await message.channel.send('No whitespaces are allowed within the poll options')
+            ok = 0
+        
+        if ok == 1:
+            await message.channel.send('Attempting to open Chatbox... (all other commands will be suspended during this procedure)')
+            
+            try:
+                f = requests.get('http://71.255.240.10:8080/textengine/sitechats/newchat_integration.php?newname=voting-tmp&option=l&rurl=norefer', timeout=15)
+            except:
+                await message.channel.send(':no_entry_sign: Connection timed out - users will not be able to vote for the poll')
+                
+            await message.channel.send('POLL: '+z[1])
+        
+            qty = int(z[2])
+            options = []
+        
+            while qty > 0:
+                await message.channel.send(z[qty + 2] + ' - ' + 'http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=voting-tmp&msg='+z[qty+2]+'&encoderm=UTF-8&namer=vote-&rurl=norefer')
+                options.append(z[qty + 2])
+                qty = qty - 1
+            
+            time.sleep(300)
+            await message.channel.send('Polling has closed. Counting results...')
+            try:
+                f = requests.get('http://71.255.240.10:8080/textengine/sitechats/voting-tmp', timeout=15)
+                g = f.text
+            
+                for i in options:
+                    instances = g.count(i)
+                    await message.channel.send('Option **'+i+'** got **'+str(instances)+'** votes.')
+            except:
+                await message.channel.send(':no_entry_sign: Connection timed out')
+                
+                
+        f = requests.get('http://71.255.240.10:8080/textengine/sitechats/terminalprocess.php?cmd=del&params=voting-tmp&pass=lets change the password&key=CORRECtADMINKEY')
+        await message.channel.send(f.text)
         
         
     if message.content.startswith('$ cmd'):
