@@ -139,7 +139,7 @@ $mediaoptions
 <fieldset>
 <legend>Input</legend>
 <code>
-Message: <input type=\"text\" name=\"msg\">
+Message: <input type=\"text\" name=\"msg\" id=\"msg\">
 <input type=\"hidden\" id=\"custid\" name=\"write\" value=\"$_GET[chatnum]\"> 
 <input type=\"hidden\" id=\"custid\" name=\"encode\" value=\"$_GET[encoderm]\"> 
 <input type=\"hidden\" id=\"custid\" name=\"name\" value=\"$_GET[namer]\"> 
@@ -181,6 +181,13 @@ function scrollToBottom (id) {
 }
 
 
+document.addEventListener('keydown', bruhw234re);
+
+function bruhw234re() {
+if (event.isComposing || event.keyCode === 27) {
+    document.getElementById(\"msg\").focus();
+  }
+}
 
 var pre = httpGet(\"$getter\");
 var cur = httpGet(\"$getter\");
@@ -232,6 +239,6 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 
 
 //echo("<code>Join by URL:<br></code><code>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</code>  <br>");
-echo("<code>Join by URL:<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+echo("<code>Join by URL (USE THIS ONE TO LET OTHERS IN):<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
 
 

@@ -9,9 +9,30 @@ showip:NO
 showalias:YES
 showts:YES
 
+--> messages 
+::<br><i> SERVER - User <b>%name</b> has connected at %ts</i><br>
+::<br><i> SERVER - User <b>%name</b> has connected</i><br>
+::<br><i> SERVER - A user has connected at %ts</i><br><br>
+::<br><i> SERVER - A user has connected<i><br><br> <--
+
+
 Notes:
 1. the SHOWIP directive has been removed, and the license terms state that you cannot change the software to make it work.
 2. [this is also broken don't do this] all of the directives take YES or NO, except for showts, which has a third choice called LOCAL, which allows users to choose to enable or disable Timestamps.
 3. if one or more of the directives is YES, the shownewconnect directive also has to be YES.
 
+4. the text within "--> <--" are the messages that get sent when someone connects.
+5. there are four messages that have to be there: ts and name, ts only, name only, and neither. in front of each message should be a '::', followed by the message for that specific instance.
+6. at the end of each message should be a new line (within the file, not a newline character).
+7. the messages should be in a particular order like the one above: 
+
+> 1st message from the top is {YES TS, YES NAME}
+> 2nd message from the top is {NO TS, YES NAME}
+> 3rd message from the top is {YES TS, NO NAME}
+> 4th message from the top is {NO TS, NO NAME}
+
+8. where a name or timestamp should appear, put a filler in (the server will put the correct values in when it sends 'user has connected' messages). 
+9. for names, the filler is '%name'; for timestamps, the filer is '%ts'.
+
 DO NOT SET MULTIPLE VALUES FOR ONE DIRECTIVE. YOU HAVE TO SET THIS UP RIGHT OR THIS WON'T WORK.
+
