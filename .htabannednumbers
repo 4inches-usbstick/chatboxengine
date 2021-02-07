@@ -1,4 +1,4 @@
-This is a policy page. Do not change it.
+This is a policy page that bans certain numbers from being used as Chatbox numbers.
 
 0
 1
@@ -194,8 +194,11 @@ TERMINALACCESS
 .Terminalaccess
 .TERMINALACCESS
 
-.hatml
-.hatmoof
+.htaconnectionpolicy
+.Htaconnectionpolicy
+.HTACONNECTIONPOLICY
+
+.rdi
 
 0000: documentation
 0001: unassigned

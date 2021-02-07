@@ -1,11 +1,12 @@
-This is a policy page. 
+This is a policy page that dictates how the server should announce the precense of new people.
+ONLY CHANGE THIS IF YOU KNOW WHAT YOU ARE DOING
 
 --enable/disable--
-shownewconnect:NO
+shownewconnect:YES
 
 --directives--
 showip:NO
-showalias:NO
+showalias:YES
 showts:YES
 
 Notes:

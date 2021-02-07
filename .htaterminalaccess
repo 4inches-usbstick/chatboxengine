@@ -1,12 +1,14 @@
-This is a policy page. Do not change it.
+This is a policy page that protects certain files from accidental deletion.
 
 0000
 0001
 0002
 0003
 0004
-terminalaccess
-.terminalaccess
+.htaterminalaccess
+.htabannednumbers
+.htapassword
+.htaconnectionpolicy
 01dschoolags
 02dmkc
 03dadvice
@@ -15,41 +17,26 @@ terminalaccess
 MFS
 mfs
 
-
-
-
-# This protects internal files.
-createembed.php
+adminedits.php
+admineditsutil.php
+create_remote_chatbox.php
+create_remote_command.php
 createnewchat.php
-embed.php
 inchat.php
-inchatnfs.php
-inchat4html.php
+inchat_joinpage.php
+inchat_joinpage_process.php
+inchat-div.php
+index.php
 joinchat.php
 joinchatpublic.php
 newchat.php
-sendmsg.php
+newchat_integration.php
+remote_chatbox_gen.php
+sendmsg_integration.php
+sendmsg4html.php
 terminal.php
 terminalprocess.php
-admineditsutil.php
-adminedits.php
-sendmsg4html.php
-
-sendmsg_integration.php
-sendmsg_integration_nobreak.php
-inchat_joinpage.php
-inchat_joinpage_process.php
-
-remote_chatbox_gen.php
-remote_command_gen.php
-create_remote_chatbox.php
-create_remote_command.php
-
-html.txt
-ii.txt
-ntfshelp.txt
-flash.txt
-cbedata.txt
+remotedesktop.rdi
 
 credits.cbedata
 credits-schoolags.cbedata
