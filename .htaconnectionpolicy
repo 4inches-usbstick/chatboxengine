@@ -6,8 +6,8 @@ shownewconnect:YES
 
 --directives--
 showip:NO
-showalias:YES
-showts:YES
+showalias:NO
+showts:NO
 
 --> messages 
 ::<br><i> SERVER - User <b>%name</b> has connected at %ts</i><br>
