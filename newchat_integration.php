@@ -1,6 +1,10 @@
 <title>engine page</title>
 
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
 echo("This is a Chatbox Engine processing page. This page is part of the integration interface. </p></p><hr>");
 error_reporting(0);
 echo("<b>Attempting to create new chatbox</b><p></p>");

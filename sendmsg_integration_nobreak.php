@@ -1,5 +1,11 @@
 Diags (REMOTE SENDING PAGE)
 <?php
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
+
 error_reporting(0);
 sleep(1.5);
 date_default_timezone_set('America/New_York');
