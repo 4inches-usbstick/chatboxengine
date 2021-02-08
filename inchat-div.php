@@ -79,7 +79,7 @@ $explorer = $_GET[explorer];
 
 //echo("<iframe id=\"iframe1\" src='display.php?path=$_GET[chatnum]&pass=$_GET[pass]' width=\"$width\" height=\"400\"></iframe>");
 
-$getter = "http://71.255.240.10:8080/textengine/sitechats/$_GET[chatnum]";
+$getter = "http://71.255.240.10:8080/textengine/sitechats/display.php?chatbox=$_GET[chatnum]";
 echo("<div id='mydiv' style='height:400px;width:800px;overflow:auto;background-color:white;color:black;scrollbar-base-color:gold;padding:10px;border-style: solid;border-width: 1px;'><p id='stuff'>Chatbox <b>$_GET[chatnum]</b> has failed to load</p></div>");
 
 if ($_GET['explorer'] == 1 and $type == 'leg') {
