@@ -102,7 +102,7 @@ if ($formaction > 0) {
 	
 echo("
 
-<form action=\"$form\" method=\"$way\" autocomplete=\"off\">
+<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessagebitch();return false\">
 <fieldset>
 <legend>Options</legend>
 
@@ -140,10 +140,10 @@ $mediaoptions
 <legend>Input</legend>
 <code>
 Message: <input type=\"text\" name=\"msg\" id=\"msg\">
-<input type=\"hidden\" id=\"custid\" name=\"write\" value=\"$_GET[chatnum]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"encode\" value=\"$_GET[encoderm]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"name\" value=\"$_GET[namer]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"namer\" value=\"$_GET[namer]\"> 
+<input type=\"hidden\" id=\"custid1\" name=\"write\" value=\"$_GET[chatnum]\"> 
+<input type=\"hidden\" id=\"custid2\" name=\"encode\" value=\"$_GET[encoderm]\"> 
+<input type=\"hidden\" id=\"custid3\" name=\"name\" value=\"$_GET[namer]\"> 
+<input type=\"hidden\" id=\"custid4\" name=\"namer\" value=\"$_GET[namer]\"> 
 
 <input type=\"submit\" style=\"color:black\" value=\"Send\">
 </fieldset>
@@ -152,7 +152,31 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\">
 </form>
 
   <script>
+	function sendmymessagebitch() {
+	var msg = document.getElementById('msg').value;
+	var des = document.getElementById('custid1').value;
+	var enc = document.getElementById('custid2').value;
+	var nam = document.getElementById('custid3').value;
+	var nar = document.getElementById('custid4').value;
+	var opt = document.getElementsByName('option').value;
+	var meaningfulname = [\"$form?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer\"];
+	var theUrl = meaningfulname.join('');
+	var boi = theUrl.concat(' :: sending request')
+	console.log(boi);
+	var msg = document.getElementById('msg').value = '';
+	
 
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+			//console.log(xmlHttp.responseText);
+			var boi = 'boi';
+    }
+	xmlHttp.open(\"GET\", theUrl, true); // true for asynchronous 
+	xmlHttp.setRequestHeader(\"Cache-Control\", \"no-cache, no-store, max-age=0\");
+    xmlHttp.send(null);
+	}
+
+	
 
 function httpGet(theUrl)
 {
@@ -160,7 +184,7 @@ function httpGet(theUrl)
     xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
 			document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
-			document.getElementById(\"mydiv\").scrollTo(0,999999999999999);
+			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,999999999999999), 10);
 			var str1 = theUrl;
 			var str2 = \"?math=\";
 			var str3 = Math.random();
@@ -208,7 +232,7 @@ var cur = httpGet(\"$getter\");
 		
 			
 			
-			
+
 			
         }
     </script>
@@ -231,8 +255,8 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 <legend>Actions</legend>
  <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='httpGet(\"$getter\")'>
 <input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=foobar&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
+<input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/inchat-div-old.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
 <!--input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
-
 </fieldset>
 <br>
 ");
