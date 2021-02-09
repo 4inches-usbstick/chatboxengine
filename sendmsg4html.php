@@ -74,7 +74,7 @@ $mess2 = "<a href=\"$mess1\">$mess1</a><br>";
 }
 
 if ($option == "img") { 
-$mess2 = "<img src=\"$mess1\" style=\"max-height: 216px;  max-width: 384px;\"></img><br>";
+$mess2 = "<a href='$mess' target='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
 }
 
 if ($option == "video") { 
