@@ -1,9 +1,13 @@
 <title>engine page</title>
 
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
 $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
-$iframe = substr_count($_GET["rw"], 'iframe');
-$script = substr_count($_GET["rw"], 'script');
+$iframe = substr_count(strtolower($_GET["rw"]), 'iframe');
+$script = substr_count(strtolower($_GET["rw"]), 'script');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");

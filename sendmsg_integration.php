@@ -15,8 +15,8 @@ if (file_exists($_GET['write'])) {
 }
 
 //check for iframes or js, security measure
-$iframe = substr_count($_GET["msg"], 'iframe');
-$script = substr_count($_GET["msg"], 'script');
+$iframe = substr_count(strtolower($_GET["msg"]), 'iframe');
+$script = substr_count(strtolower($_GET["msg"]), 'script');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
