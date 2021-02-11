@@ -240,7 +240,7 @@ var cur = httpGet(\"$getter\");
 <noscript>
 <hr>
 <i style=\"color:red\">WARNING:</i> Your browser does not support JS (JavaScript). 
-This will break live-updating functionality, but it will not stop you from chatting.
+All features have been disabled, except for media upload (which does not use JS) and message send (which has a backup in case JS is not working). Sending messages may be substantially slower without JS.
 <hr>
 </noscript>
 
@@ -255,7 +255,6 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 <legend>Actions</legend>
  <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='httpGet(\"$getter\")'>
 <input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=foobar&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
-<input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/inchat-div-old.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
 <!--input type=\"button\" style=\"color:black\" onclick=\"location.href='http://71.255.240.10:8080/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
 </fieldset>
 <br>

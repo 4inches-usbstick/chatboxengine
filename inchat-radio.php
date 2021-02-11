@@ -201,7 +201,7 @@ var pre = inihttpGet(\"$getter\");
 <noscript>
 <hr>
 <i style=\"color:red\">WARNING:</i> Your browser does not support JS (JavaScript). 
-This will break live-updating functionality, but it will not stop you from chatting.
+All features have been disabled.
 <hr>
 </noscript>
 <!--script>
