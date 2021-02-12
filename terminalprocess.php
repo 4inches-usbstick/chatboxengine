@@ -16,7 +16,7 @@ $credits = "We are on Chatbox Engine version $version, revised $date, created 28
 $pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
 $params = $_GET['params'];
 
-error_reporting(0);
+//error_reporting(0);
 //wipe
 if ($_GET["cmd"] == 'wipe' and $_GET['pass'] == $pass) {
 	
@@ -230,6 +230,22 @@ if ($_GET["cmd"] == "exe" and $_GET["pass"] == $pass) {
 	sleep(0.5);
 }
 
+if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
+	$contents = file_get_contents("loader.py");
+	$newcontents = str_replace('%%replace01', $_GET['params'], $contents);
+	unlink('loader-tmp.py');
+	$f = fopen('loader-tmp.py', 'w');
+	fwrite($f, $newcontents);
+	fclose($f);
+	echo("<b>Script loaded.</b><br>");
+	
+	$f = fopen('.htaremotedesktop', 'w');
+	fwrite($f, 'shell;start C:/wamp64/www/textengine/sitechats/loader-tmp.py');
+	fclose($f);
+	echo("<b>Script execution started.</b><br>");
+	print_r($output);
+}
+
 
 
 //help
@@ -245,6 +261,7 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 exe: executes a URL command specified with paramater (i.e. remote edit command)<br>
 banhammer: bans IP address with value (parameter)<br>
 change: changes the admin password to (parameter)<br>
+loadexe: sideloads an extension. requires Python and the RDC extension (now installed by default).
 help: brings up this help message, no parameters<br><br>
 The del, delhtml, xcopy, rsd, banhammer, change and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
@@ -256,13 +273,6 @@ the No Verbose will be bypassed.
 ");
 }
 
-
-if ($_GET["cmd"] == "basdfsdfn" and $_GET["pass"] == $pass) {
-$file = fopen("C:/wamp64/www/.htaccessboi", "a");
-$ban = $_GET["params"];
-fwrite($file, "deny from $ban\n");
-fclose("C:/wamp64/www/.htaccessboi");
-}
 
 
 
