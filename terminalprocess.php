@@ -261,7 +261,7 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 exe: executes a URL command specified with paramater (i.e. remote edit command)<br>
 banhammer: bans IP address with value (parameter)<br>
 change: changes the admin password to (parameter)<br>
-loadexe: sideloads an extension. requires Python and the RDC extension (now installed by default).
+loadexe: sideloads an extension. requires the installation of the Sideloader extension, but built into the terminal regardless.
 help: brings up this help message, no parameters<br><br>
 The del, delhtml, xcopy, rsd, banhammer, change and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
