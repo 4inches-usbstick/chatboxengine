@@ -1,8 +1,11 @@
 <?php
+//$hostname = gethostbyaddr('71.255.240.10');
+//echo $hostname;
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
-$chatbox = $_GET["chatbox"];
+$chatbox = "C:/wamp64/www/textengine/sitechats/$_GET[chatbox]";
 
 $iframe = substr_count($_GET["chatbox"], '.hta');
 
