@@ -240,10 +240,15 @@ if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) {
 	echo("<b>Script loaded.</b><br>");
 	
 	$f = fopen('.htaremotedesktop', 'w');
+	fwrite($f, 'shell;cd C:/wamp64/www/textengine/sitechats/');
+	fclose($f);
+	echo("<b>CD command sent.</b><br>");
+	sleep(7);
+	$f = fopen('.htaremotedesktop', 'w');
 	fwrite($f, 'shell;start C:/wamp64/www/textengine/sitechats/loader-tmp.py');
 	fclose($f);
-	echo("<b>Script execution started.</b><br>");
-	print_r($output);
+	echo("<b>START command sent.</b><br>");
+	//print_r($output);
 }
 
 
@@ -261,7 +266,7 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 exe: executes a URL command specified with paramater (i.e. remote edit command)<br>
 banhammer: bans IP address with value (parameter)<br>
 change: changes the admin password to (parameter)<br>
-loadexe: sideloads an extension. requires the installation of the Sideloader extension, but built into the terminal regardless.
+loadexe: sideloads an extension. requires Python and the RDC extension (now installed by default).
 help: brings up this help message, no parameters<br><br>
 The del, delhtml, xcopy, rsd, banhammer, change and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
