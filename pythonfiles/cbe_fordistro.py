@@ -3,6 +3,7 @@ ip = "71.255.240.10:8080" #(change this if you always connect to a certain serve
 print("Chatbox Engine Python")
 print("Close this window specifically to instantly close the program")
 print("-----------------------------------------")
+currentcode = 0
 
 def setcbn(take):
     global cbn
@@ -104,10 +105,12 @@ while(True):
         x = requests.get("http://"+ip+"/textengine/sitechats/" + cbn)
         cbtxt = x.text
         cbrsc = x.status_code
+        global currentcode
+        currentcode = cbrsc
         return(cbtxt)
         
     
-    
+    window = tk.Tk()
     cbtex = pullfromtheserver()   
     #checktheserver()
     
@@ -130,10 +133,12 @@ while(True):
     print("-----------------------------------------")    
 
         
-    window = tk.Tk()
-    #window.attributes("-fullscreen", True)
     
+    
+    #window.attributes("-fullscreen", True)
+    #ar = "Status: Connecting"
     greeting = tk.Label(text="Chatbox Engine Python")
+    
     greeting.pack()
     window.title("CBE Python Client")
     
@@ -159,7 +164,7 @@ while(True):
     #label.pack()
     
     textb = tk.Text(window, height=30, width=125)
-    textb.pack()
+    textb.pack(expand=True, fill='both')
     textb.insert(tk.END, cbtex)
     
     textb.tag_configure("center", justify='left')
@@ -167,23 +172,51 @@ while(True):
     
     
     text_box = tk.Text(
-    width=50,
+    width=100,
     height=2
     )
     text_box.pack()
+    statt = tk.Label(text="Status: ...")
+    statt.pack()
+
+    if cbrs == 200:
+        statt.config(text='Status: Ready')
+    else:
+        statt.config(text='Status: HTTP Failure on loading Chatbox ('+str(cbrs)+')')
+
     
     
     
     
     #nice line comment
-    def deletefun():
+    def deletefun(arg=1):
+        global statt
+        #print('ddddddd')
         inputt = text_box.get("1.0", tk.END)
-        send = requests.get(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + name + "&encode=")
+        inputt1 = text_box.get("1.0", tk.END)
+        inputt1 = inputt1.replace('\n', '')
+        inputt1 = inputt1.replace('\r', '')
+        inputt1 = inputt1.replace('\\', '')
+        inputt1 = inputt1.replace(' ', '')
+        if not inputt1:
+            statt.config(text='Status: Cannot send an empty message')
+            text_box.delete("1.0", tk.END)
+            return None
+        else:
+            pass
+        inputt = inputt.replace('\n', '')
+        inputt = inputt + '\n'
         text_box.delete("1.0", tk.END)
+        send = requests.get(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + name + "&encode=")
         print("Debug:")
         print(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer")
         print(send.status_code)
+        if int(send.status_code) == 200:
+            statt.config(text='Status: Message sent')
+        else:
+            statt.config(text='Status: HTTP Failure on sending message ('+str(send.status_code)+')')
         #print(send.text)
+        return None
     def endsession():
         window.destroy()
         
@@ -204,6 +237,14 @@ while(True):
         fg="white",
         command = endsession,
     )
+
+
+
+
+    #statt.insert('1.0', 'here is my\ntext to insert')
+    #var.set("Status: Ready")
+    
+    window.bind('<Return>',deletefun)
     button.pack()
     delbutton.pack()
     
@@ -223,12 +264,17 @@ while(True):
         textb.delete('1.0', tk.END)
         textb.insert(tk.END, newtext)
         textb.see(tk.END)
-        window.after(rera, my_mainloop)     
+        window.after(rera, my_mainloop)
+
+        if int(currentcode) == 200:
+            statt.config(text='Status: Ready')
+        else:
+            statt.config(text='Status: HTTP Failure on loading Chatbox ('+str(cbrs)+')')
     
     window.after(1000, my_mainloop)
     window.resizable(height = 1000, width = 1000)
        
-    
+
     
     window.mainloop()
     
