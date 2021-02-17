@@ -1,4 +1,5 @@
 import requests as request
+#NOTICE: these functions all return the status code of the HTTP request UNLESS it times out. in that case the number '2' will be returned.
 def sendmsg(ip, writeto, msg, name, encoder):
     try:
         base_send_get = "http://" +ip+ "/textengine/sitechats/sendmsg_integration.php?"
