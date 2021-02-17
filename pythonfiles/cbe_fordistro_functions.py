@@ -1,19 +1,41 @@
-#you need to make an HTTP request to do this, so make sure to get the requests package. if you've already imported it earlier in the script, then comment this line so it doesn't reimport.
 import requests as request
-
-#for sending messages: ip is for the server to connect to, writeto is the Chatbox, msg is the message, name is the name to use in the Chatbox, and encoder is the encoder to use
 def sendmsg(ip, writeto, msg, name, encoder):
-    base_send_get = "http://" +ip+ "/textengine/sitechats/sendmsg_integration.php?"
-    send = request.get(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
-    #print(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
-    return send.status_code
+    try:
+        base_send_get = "http://" +ip+ "/textengine/sitechats/sendmsg_integration.php?"
+        send = request.get(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder, timeout=15)
+        #print(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
+        return send.status_code
+    except:
+        return str(2)
 
 #for sending terminal commands: ip is for the server to connect to, command is the command to send, params is the one parameter or argument that goes with CBE commands, and key is the password to send along with the command.
 def send_command(ip, command, params, key):
-    cmdout = requests.get('http://'+ip+'/textengine/sitechats/terminalprocess.php?cmd='+command+'&params='+params+'&pass='+key)
-    return cmdout.status_code
+    try:
+        cmdout = request.get('http://'+ip+'/textengine/sitechats/terminalprocess.php?cmd='+command+'&params='+params+'&pass='+key, timeout=15)
+        return cmdout.status_code
+    except:
+        return str(2)
     
 #sending edits: ip is for the server to connect to, path is for the Chatbox to look in, find is the string to find in the Chatbox, replace is the string to use in place of the find string, and key is the key to password to send along with the command.
 def send_edit(ip, path, find, replace, key):
-    editout = requests.get('http://'+ip+'/textengine/sitechats/adminedits.php?cb='+path+'&gro='+find+'&rw='+replace+'&key='+key)
-    return editout.status_code
+    try:
+        editout = request.get('http://'+ip+'/textengine/sitechats/adminedits.php?cb='+path+'&gro='+find+'&rw='+replace+'&key='+key, timeout=15)
+        return editout.status_code
+    except:
+        return str(2)
+    
+def new_cb(newname, option, allowmed):
+    try:
+        theuri = 'http://'+ip+'/textengine/sitechats/newchat_integration.php?newname='+newname+'&option='+option+'&allowmed='+allowmed+'&rurl=norefer'
+        output = request.get(theuri, timeout=15)
+        list1 = []
+        list1.append(output.status_code)
+        list1.append(output.text)
+        return list1
+    except:
+        list1 = []
+        list1.append('2')     
+        list1.append('Forbidden')  
+        return list1
+        
+   
