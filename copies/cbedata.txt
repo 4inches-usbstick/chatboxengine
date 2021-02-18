@@ -1,0 +1,134 @@
+
+<cbedata docs>
+Looking for the Python Interpreter docs? 
+Here: http://71.255.240.10:8080/textengine/sitechats/info/cbedata_py.txt
+
+
+
+So I got bored again, and decided to make a thing. What is this thing? CBEDATA. CBEDATA is a file format. It can be any plain text file, but you'll need special tools to read it.
+
+
+
+
+
+--.CBEDATA FILES--
+
+All CBEDATA files must begin with 'begin CBEDATA' (without the quotes). Then, you have to create the main object, with 'class [main>'.
+A class or object is a container that can hold attributes, and other objects. To create an object, use 'class[objectname>', where objectname is your 
+new object's name. 
+
+Currently, attributes can be in any object or class so long it's formatted right, so for example:
+
+-------------
+begin CBEDATA
+
+//main class, needed in every cbedata file
+class[main>
+
+//container for eric and may
+class[people>
+qty==2 peoples;
+
+//container for eric and attributes
+class[eric>
+name==eric;
+age==69;
+gender==male;
+]
+
+//container for may and attributes
+class[may>
+name==may;
+age==50;
+gender==female;
+]
+
+
+------------
+
+
+We have the main container, then we have the people sub-container. In the people container, there are two sub-containers, eric and may. All objects can hold attributes and more objects.
+The term 'end-of-the-line' used in the documentation is the end of the filepath (i.e. main-people-may-age, may is the end of the line, because it's the last object). (this is really hard to explain)
+
+If you give attributes to a container that isn't end of line, they are not regconised by the interpreter UNLESS you put those attributes BEFORE any subclasses.
+The ']' closer bracket is only necessary on the end of line objects, such as may and eric. The main and people objects don't need any closer bracket, because they are
+not end-of-the-line.
+
+Attributes on the end of the line objects are in this format:
+
+-------
+attributename==attributevalue;
+-------
+
+where the attributename is the name you will use to call the information stored in attributevalue. So essentially:
+
+-------
+variablename==variablevalue;
+-------
+
+You need the semicolons there. Then, after putting attributes, close off the end of the line object with ']'. 
+A CBEDATA can hold as many objects as you please (up to a certain limit).
+
+--GETTING THIS DATA--
+
+To get the data of these files, you will need to make a GET request for datacall.php with the proper information. Requests are in this format:
+
+---
+http://<cbe server to connect to>/textengine/sitechats/data/datacall.php?src=<chatbox to pull from>&path=<path>&type=<type>
+---
+
+<cbe server to connect to>: the server where your CBEDATA is stored (with port number)
+<chatbox to pull from>: the Chatbox where your data is stored. 
+<path>: the path you take to get to the end-of-line object, and the attribute.
+<type>: the format of data you would like to pull
+
+There are 5 formats you can get:
+1. var
+2. attr
+3. attr-name
+4. class
+5. raw
+
+var gives you the attribute in this format: attribute-name==attribute-value
+attr gives you the attribute value only.
+attr-name gives you the attribute name only.
+class gives you the entire End of Line class.
+raw gives you the whole file to play with.
+
+
+For instance, if you want to connect to  71.255.240.10:8080, pull from Chatbox 194814 (which contains the information from the example above), and get may's age as a number, here's what we have to do:
+
+1. Get our path:
+main-people-may-age
+The path takes you from the main object, to the people object, to the may object, and then the last part is the age attribute. The parts of the path are separated by '-'.
+
+2. Make our GET request:
+http://71.255.240.10:8080/textengine/sitechats/data/datacall.php?src=194814&path=main-people-may-age&type=attr
+
+3. Take the contents of that GET request. 
+(this example shows a fake Chatbox)
+
+
+
+--COMMENTS--
+If it's not within an End of Line object, comments can be anywhere.
+They need no special characters, but in the above example, // is used as an example for comments.
+Comments could go in End of Line objects, but it's not advisable.
+
+--API Edits--
+If you want your EOL classes to be editable, you need to put the entire EOL class in one line (demonstrated below).
+To edit, just make a regular Edit Request with this format: gro=<entire EOL subclass>&rw=<entire EOL subclass but changed>.
+So essentially, make a normal edit request.
+
+Instead of:
+class[Hhhu>  
+name==Hhhu; 
+age==103; 
+dob==may 209; ]
+
+Use this:
+class[Hhhu>  name==Hhhu; age==103; dob==may 209; ]
+
+*Yes, the whitespaces are necessary.
+
+
