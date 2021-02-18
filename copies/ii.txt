@@ -1,0 +1,66 @@
+<api docs>
+Integration Interface (aka an api)
+
+The API allows you and others to send commands to do things to the server by making a GET request for a certain URL. These URLS have data stored in them, and when the server reads these URLs, it acts upon them. Currently, there are five endpoints:
+
+terminalprocess.php (remote management terminal)
+adminedits.php (editing terminal)
+sendmsg_integration.php (remote send message).
+newchat_integration.php (remote open chatbox)
+display.php (get Chatbox contents)
+
+--TO OPEN A FUNCTION TO THE API--
+To create a new endpoint or action that can be accessed, open the file that is reponsible for the action and change all the POSTs to GETs, then save the file.
+
+--TO USE THE API--
+Use the file name of the endpoint (i.e. adminedits), along with any other arguments that the endpoint takes. Then, issue a GET request for your URL.
+Note that there may be CORS conflict issues, especially if the "Access-Control-Allow-Headers:" wildcard is not accepted.
+
+
+--AN EXAMPLE--
+http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=0002&encode=UTF-8&msg=BEEEEEEES&namer=&rurl=norefer
+Making a GET request for this should send these variables to the server:
+
+write=0002
+msg=BEEEEEEES
+encode=UTF-8
+
+These variables tell the server what to do, in this case, write the message "BEEEEEEES" to Chatbox 0002 while using the UTF8 encoder.
+
+
+The API also allows you to get Chatboxes and their contents. 
+You just make an HTTP GET request for <ip>:<port-number>/textengine/sitechats/<chatbox-number>.[file-extension].
+If you are accessing it from another domain (with XMLHTTPREQUEST for example), you're going to need to go through display.php.
+Use <ip>:<port-number>/textengine/sitechats/display.php?chatbox=<chatbox-number>.[file-extension] if using display.php.
+
+To get the contents of a high seurity Chatbox:
+<ip>:<port-number>/textengine/sitechats/high-security/display.php?path=<chatbox>&pass=<password>
+
+For CBEDATA, see 71.255.240.10:8080/textengine/sitechats/info/cbedata.txt
+
+
+
+
+--WHAT ARGUMENTS ARE NEEDED FOR EACH ENDPOINTS--
+
+sendmsg_integration: write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under.
+
+terminal_process: cmd, params (optional: pass). cmd is the command, params is the argument, pass is the password. pass is necessary to execute some commands.
+
+newchat_integration: newname, option, allowmed. newname is the new Chatbox name, option is the type of Chatbox to open, and allowmed is the allowmedia option (more in detail later).
+
+adminedits: cb, gro, rw, key. cb is the Chatbox, gro is the string to get rid of, rw is the replacement string, and key is the password.
+
+display: chatbox. chatbox is the chatbox to read.
+
+
+--NEWCHAT_INTEGRATION--
+For the option and allowmed values, there are wrong answers (you have to use certain values).
+
+option: l, h or d. l is for legacy chatbox, h is for html chatbox, and d is for cbedata chatbox.
+allowmed: allowmed, or forbidmed. one of these allows media upload, the other does not. you figure it out.
+
+--RETURN VALUES--
+Like most APIs, all endpoints return a value when called upon. Unlike most APIs, you're not supposed to use these return values.
+The only use for these return values is error-catching: if an error pops up it will be reflected in the return value. The exception to this rule is display.php (it gives back the contents of a Chatbox).
+

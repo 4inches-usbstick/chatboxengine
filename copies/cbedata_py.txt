@@ -1,0 +1,57 @@
+<cbedata py doc>
+Looking for the CBEDATA docs?
+Here: http://71.255.240.10:8080/textengine/sitechats/info/cbedata.txt
+
+If you choose to use the Python interpreter, here's the documentation.
+Read the CBEDATA docs before because some elements in the Python interpreter require knowledge of CBEDATA.
+
+
+--Functions--
+There are four functions you can call:
+
+1. get_online_obj
+2. get_online
+3. get_offline_obj
+4. get_offline
+
+
+You should use an online function when you want to request the data from somewhere that isn't your local machine, for example, to connect to a Chatbox and pull form there. 
+
+You should use an object function when you want to pull multiple attributes, and a non-object function when you want to pull a single attribute. 
+
+--Syntax--
+
+All four functions have the same parameters: file, path, type.
+
+1. file is where to get the data from. this is a URL or a filepath (online-offline)
+2. path is the path within the CBEDATA file to get to the correct part (the part you are calling upon)
+3. type is the format you want your data back in.
+
+--Non-Object Functions--
+In NOFs, these formats are available (these formats go into the type argument):
+
+1. cls gets the entire subclass
+2. raw gets all the data for you to play with
+3. val gets the value of the attribute you called
+4. var gets the name and value of the attribute you called in this format: attrib-name==attrib-value
+
+The function will return as a string.
+
+--Object Functions--
+In OFs, these formats are available:
+
+1. raw gives you back subclass as a string, however, the 'class[classname>' is gone, unlike the other raw
+2. list-val gives you all the attribute values in a subclass as a list.
+3. list-key gives you all the attribute names in a subclass as a list
+4. dic gives you a Python dictionary with the keys being the attribute names and the values being the attribute values.
+
+--File--
+If you call an online function, provide the URL to the data in the file argument.
+If you call an offline function, provide the filepath to the locally stored data in the file argument.
+
+--What the functions do--
+
+1. get_online_obj: take multiple attribs from the Web and give it back as a list, string, or dictionary
+2. get_online: take single attrib from the Web and give it back as a string
+3. get_offline_obj: take multiple attribs from local machine and give it back as a list, string, or dictionary
+4. get_offline: take single attrib from local machine and give it back as a string.

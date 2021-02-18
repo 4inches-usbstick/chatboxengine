@@ -1,0 +1,39 @@
+<html chatbox doc>
+Sending Messages:
+[1] Type your message into the box
+[2] Click Send, return, or Enter to send the message.
+
+Sending Media / Files:
+[1] Hit Upload Media
+[2] Upload the files there by hitting Choose File then choosing a file, the hitting submit.
+[3] Repeat Step 2 for as many files you want.
+[4] Hit the 'back' button in your browser about two or more times to get back to thechatbox
+[5] Hit Open Finder
+[6] Find the name of the file you just uploaded (wait for it to arrive). After you see it, right click it and copy the link. Paste the link into chat to send the media.
+
+How to use a HTML Chatbox (special case):
+
+1. Choose an element to paste in.
+
+h1-h6: headers and big text.
+br: line break
+p, i, b: regular text, italics, and bold.
+a: link.
+u, s: underline, strikethrough
+c: code (monospace font)
+img: an image.
+ptxt (or ptx, ptex, pt): plain text, or pasting in your own HTML (if you know how to use it)
+
+for h1-h6, p, i, b, just paste the text in and it will turn into the text you want.
+for a, paste in the URL.
+for img: paste the image URL (by opening Finder and copying the link of the file that you want so share)
+for ptxt: paste in any text you want and it will turn out as plain text (unless you choose to paste in HTML, in which all of the HTML is appended to the Chatbox file)
+for vid: paste in the URL of the video.
+for au (or aud): paste in the URL of the audio snippet.
+
+
+TO LISTEN OR WATCH MEDIA: Click 'Watch Media Mode', which allows you to watch videos without the auto updating JS interrupting you. Turn it off after watching media.
+If you don't use Watch Media Mode, the auto updating JS script will grab new data from server frequently, which means that the media playback will be interrupted. This also gets rid of the background until you turn it off.
+
+TO GET A MEDIA URL: You can either source the media from elsewhere by copying the URL, or you can upload files with Upload Media, then take that URL and use it
+to create an audiovisual thing, or a download link.

@@ -1,0 +1,4 @@
+<inchat, inchatntfs, inchat4html trigger warning>
+Your client 'polls' the server. Every few seconds, your client will ask the server for new messages. When the new messages are loaded in for people to see, it causes a brief flash in the area where the messages appear. This applies to both HTML chatboxes and Legacy chatboxes. 
+
+If you are sensitive to flashes, take precautions such as slowing down the polling rate. 
