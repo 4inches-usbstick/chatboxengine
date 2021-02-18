@@ -1,5 +1,13 @@
-READ ME 
+DOC EXPLANATIONS:
+cbedata and cbedata.py: explaining CBEDATA
+ii.txt: API docs
+change.txt: refresh rate explanation
+flash.txt: flashing images trigger warning
+control.txt: unused
+htmlhelp.txt: explaining HTML chatboxes
+explanation_and_installation.txt: installation instructions and documentation explanation
 
+READ ME 
 This Read Me has the instructions for setting up Chatbox Engine for your server. 
 
 --PART ZERO: PRE REQS--
