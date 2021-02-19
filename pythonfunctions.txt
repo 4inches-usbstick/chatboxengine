@@ -1,0 +1,75 @@
+<chatboxengine.py docs>
+
+This page is to document how to use the CHATBOXENGINE module.
+There are three objects to be used: Session, Chatbox and HS_Chatbox
+You have to have requests installed if you're going to be using anything Chatbox Engine related.
+
+--Session object--
+This class holds details such as server IP and password, as well as default passwords. It's better if you set up a Session before accessing Chatboxes.
+
+To initialise:
+
+import chatboxengine
+objectName = chatboxengine.Session(<SERVER-IP>, [SERVER-PASSWORD], [DEFAULT-TIMEOUT])
+#throughout these docs, [] is an optional parameter and <> is a required parameter
+
+This creates a Session object. The Session object has three values:
+> sessionobject.server
+> sessionobject.password
+> sessionobject.timeout
+
+These are just handy references you can use when accessing a Chatbox.
+You can also send CBE commands to the server by using the sendcmd() method.
+
+Syntax: sessionobject.sendcmd(<CMD>, <PARAMETERS>)
+<CMD> is the command, and <PARAMETERS> is what to attach to a command (i.e. sendcmd('del','123456'))
+If a parameter or number or identifier is needed as a function input (i.e. <PARAMETERS> in this example), make sure to feed the function with a string, and only strings.
+
+
+--Chatbox object--
+This class holds methods for managing a single Chatbox
+
+To initialise:
+
+import chatboxengine
+cb = chatboxengine.Chatbox(<SERVER-IP>, <CHATBOX-NUMBER>, [NAME], [ENCODER], [TIMEOUT])
+
+You can use some values from the Session object. (for example, wherever you need a password, you can use sessionobject.password instead of the actual password)
+There are seven methods attached to a chatbox: get, make, write, wipe, delete, delete_html, and edit.
+
+
+GET: for getting Chatbox contents
+syntax: cb.get()
+returns: Chatbox contents or '2' on an exception
+
+MAKE: for creating a Chatbox
+syntax: cb.make([OPTION], [ALLOWMED])
+returns: HTTP response code or '2' on an exception
+notes: OPTION is the new chatbox option (l is for legacy, h is for HTML and d is for data), and ALLOWMED is the allowmed directive (ALLOWMED|FORBIDMED).
+
+WRITE: for writing to a Chatbox
+syntax: cb.write(<CONTENTS>, [NEWLINE])
+returns: HTTP reponse code or '2' on an exception
+notes: [NEWLINE] is whether to use sendmsg_integration or sendmsg_integration_nobreak. One adds a \n to the end, the other does not. Setting [NEWLINE] to 0 will change it to not having a \n on the end.
+
+WIPE/DELETE/DELETE_HTML: wipes or deletes a Chatbox. delete_html is specifically for HTML chatboxes.
+syntax: cb.wipe(<PASSWORD>)
+syntax: cb.delete(<PASSWORD>)
+syntax: cb.delete_html(<PASSWORD>)
+returns: HTTP response code or '2' on an exception
+
+EDIT: edit the contents of a Chatbox with a find-replace system
+syntax: cb.edit(<FIND-STRING>, <REPLACE-STRING>, <PASSWORD>)
+returns: HTTP response code or '2' on an exceptions
+
+--HS_Chatbox--
+This class holds methods for managing a single High Security Chatbox
+This class only holds four methods: get, make, write, delete (and the __init__ function, it's a bit different than the regular Chatbox class)
+
+To initialise:
+
+import chatboxengine
+hscb = HS_Chatbox(<SERVER-IP>, <CHATBOX-NUMBER>, [PASSWORD], [NAME], [ENCODER], [TIMEOUT])
+
+It's the same as the Chatbox class, but there's a password parameter too, because High Security Chatboxes are locked behind a password.
+the GET, WRITE, and DELETE methods are the same. the MAKE method has one change, that being that it takes no parameters.
