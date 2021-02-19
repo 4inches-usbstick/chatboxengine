@@ -1,15 +1,17 @@
 begin CBEDATA
+::Credits file for Chatbox Engine
+
 
 class[main>
-class[credits> version==1.3.7;date==30.JAN.2021 to PRESENT;]
+class[credits> version==1.3.8;date==17.FEB.2021 to PRESENT;]
 
 class[contributors> 
-class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA;]
+class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA, extensions;]
 class[Arjun> role==Testing Chatbox Engine and believing  while CBE was a small child;]
 class[E***k> role==Testing Chatbox Engine and believing  while CBE was a small child;]
 class[C****e> role==Testing Chatbox Engine and believing  while CBE was a small child;]
 class[Multiple unknowns> role==Testing Chatbox Engine and believing  while CBE was a small child;]
-class[Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and believing while CBE was a slightly grown child;]
+class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and believing while CBE was a slightly grown child;]
 
 class[softwares>
 class[PHP 7> role==Serverside, API, CBEDATA;]
@@ -17,3 +19,6 @@ class[Python 3.8> role==Clients, CBEDATA;]
 class[Python Modules> used==requests, tkinter, time, textwrap, discord; role==Clients, bots, CBEDATA;]
 class[HTML,CSS,JS> role==Web client;]
 class[WAMPSERVER> role==Server space;]
+
+class[links>
+class[Github> url==https://github.com/4inches-usbstick/chatboxengine;]
