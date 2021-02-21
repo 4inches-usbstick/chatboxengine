@@ -102,7 +102,7 @@ if ($formaction > 0) {
 	
 echo("
 
-<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessagebitch();return false\">
+<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessage();return false\">
 <fieldset>
 <legend>Options</legend>
 
@@ -152,7 +152,7 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\">
 </form>
 
   <script>
-	function sendmymessagebitch() {
+	function sendmymessage() {
 	var msg = document.getElementById('msg').value;
 	var des = document.getElementById('custid1').value;
 	var enc = document.getElementById('custid2').value;
