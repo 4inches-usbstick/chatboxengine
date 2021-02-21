@@ -117,7 +117,7 @@ while f2 <= len(listofthings):
 
     f2 = f2+2
     f1 = f1+2
-    t.sleep(0.1)
+    #t.sleep(0.1)
 print('------------------------------')
 print('Installation complete, exiting in '+str(cpd)+' seconds')
 t.sleep(int(cpd))
