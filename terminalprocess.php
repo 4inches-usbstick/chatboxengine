@@ -203,32 +203,11 @@ echo("Copied files");
 
 
 
-
-
-
-//remote shutdown, disabled
-if ($_GET["cmd"] == "rsd" and $_GET["pass"] == $pass)
-{
-$path = "control.txt";
-//echo("Shutting down server...");
-//$ff1 = fopen($path);
-
-//$ff1 = unlink($path);
-}
-
 //edit
 if ($_GET["cmd"] == "xedit") {
-	echo("<a href=\"http://71.255.240.10:8080/textengine/sitechats/admineditsutil.php\">Open Editing Terminal</a>");
+	echo("<iframe src=\"http://71.255.240.10:8080/textengine/sitechats/admineditsutil.php\"></iframe>");
 }
 
-//execute editing command
-if ($_GET["cmd"] == "exe" and $_GET["pass"] == $pass) { 
-    echo("<b>Processing command...</b><br>");
-	echo("<iframe src=\"$_GET[params]\" width=\"720\" height=\"400\"></iframe>");
-	//$contents = file_get_contents("$_GET[params]");
-	echo($contents);
-	sleep(0.5);
-}
 
 if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
 	$contents = file_get_contents("loader.py");
@@ -251,28 +230,39 @@ if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) {
 	//print_r($output);
 }
 
+//version
+if ($_GET["cmd"] == "vers" && $_GET['params'] == "showall::YES")
+{
+	$filevers = file_get_contents('credits.cbedata');
+echo("<div style='white-space: pre;'>$filevers</div>");
+}
+
+if ($_GET["cmd"] == "vers" && $_GET['params'] != "showall::YES")
+{
+echo($credits);
+}
 
 
 //help
 if ($_GET["cmd"] == "help")
 {
 echo("
-del: deletes chatbox with number (parameter). <br>
-delhtml: same as del, but only for html chatboxes <br>
-xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
-vers: shows the CBE version, no parameters <br>
-[DISABLED] rsd: shuts down the server remotely, no parameters<br>
+COMMAND LIST: (commands with stars require admin password)<br><br>
+*del: deletes chatbox with number (parameter). <br>
+*delhtml: same as del, but only for html chatboxes <br>
+*xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
+*wipe: delete the contents of a Chatbox but not the Chatbox itself<br>
+vers: shows the CBE version, no required parameters. use 'showall::YES' to bring up the entire credits file instead of just a version number <br>
 xedit: brings up the remote message editing terminal, no parameters<br>
-exe: executes a URL command specified with paramater (i.e. remote edit command)<br>
-banhammer: bans IP address with value (parameter)<br>
-change: changes the admin password to (parameter)<br>
-loadexe: sideloads an extension. requires Python and the RDC extension (now installed by default).
+*banhammer: bans IP address with value (parameter)<br>
+*change: changes the admin password to (parameter)<br>
+*loadexe: sideloads an extension. requires Python, active RDC connection that is listening to .htaremotedesktop and sideloader extension.<br>
 help: brings up this help message, no parameters<br><br>
-The del, delhtml, xcopy, rsd, banhammer, change and exe commands require the Administrator password. The vers, xedit and help commmands require no such password (but the edit terminal itself takes a password).
 
 
-No Verbose means that there will be nothing returned. Note that this option must be unchecked for the check, dir, connect, vers, xedit, exe and help commands. If policy blocks a command's execution
-the No Verbose will be bypassed.
+
+No Verbose allows you to suppress the output of the command (unless a fatal error happens on command execution).
+This feature is only for the web client
 
 
 ");
