@@ -30,7 +30,6 @@ Path: <input type="text" name="cb" size="100" height="10"><br>
 Find str: <input type="text" name="gro" size="100" height="10"><br>
 Replace with str: <input type="text" name="rw" size="100" height="10"><br><br>
 Key: <input type="password" name="key" size="100" height="10"><br>
-<input type='hidden' name='type' value='p'>
 <br>
 <input type="submit" value="Send command" style="color:black">
 </fieldset>

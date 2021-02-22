@@ -51,7 +51,7 @@ echo("Incorrect or missing password. This command failed to execute.");
 
 
 
-if ($_GET["key"] == $pass) {
+if ($_GET["key"] == 'sekjhasdljkfhsladkjfhsakdjhlsdkhfklasdjfhklsadjfh') {
 $thecb = $_GET["cb"];
 $getridof = $_GET["gro"];
 $replacewith = $_GET["rw"];
@@ -59,11 +59,12 @@ $leadpath = 'textengine/sitechats';
 $path = "http://71.255.240.10:8080/textengine/sitechats/$thecb";
 //echo("abs path in: $path<br>");
 //echo("rel path in: $thecb<br>");
-echo("str to edit: $getridof<br>");
+echo("[p mode] str to edit: $getridof<br>");
 echo("str for overwrite: $replacewith<br>");
 $homepage = file_get_contents("$path");
-$offset = stripos($homepage, $getridof);
-$offset0 = stripos($homepage, ']', $offset);
+$offset = strpos($homepage, $getridof);
+$offset0 = strpos($homepage, PHP_EOL, $offset);
+echo("<b>$offset0<br>$offset0</b>");
 $offset0f = $offset0 - $offset;
 $onlyconsonants = substr_replace($homepage, $replacewith, $offset, $offset0f);
 //echo("Echo new/old strs: false");
@@ -81,7 +82,7 @@ if ($homepage == $onlyconsonants) {
 
 
 } else {
-echo("Incorrect or missing password. This command failed to execute.");
+echo("This function does not work and has been disabled");
 }
 
 }
