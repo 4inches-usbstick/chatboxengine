@@ -10,6 +10,7 @@ explanation_and_installation.txt: installation instructions and documentation ex
 
 
 READ ME 
+
 This Read Me has the instructions for setting up Chatbox Engine for your server. 
 
 --PART ZERO: PRE REQS--
@@ -42,7 +43,7 @@ something.
 Make sure .hta files are protected by your server, because they hold things that people aren't supposed to be able to interact with.
 
 --PART TWO: ADAPTION--
-After installing. You need to adapt it to your server. Open all of the files with the *.php file extension in a text editor with a Find and Replace function.
+After installing. You need to adapt it to your server. Open all of the files (yes, even the ones in media, data, and other directories) with the *.php file extension in a text editor with a Find and Replace function.
 Find all instances of a certain string and change it accordingly.
 
 
