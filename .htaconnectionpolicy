@@ -2,7 +2,7 @@ This is a policy page that dictates how the server should announce the precense 
 ONLY CHANGE THIS IF YOU KNOW WHAT YOU ARE DOING
 
 --enable/disable--
-shownewconnect:YES
+shownewconnect:NO
 
 --directives--
 showip:NO
