@@ -54,6 +54,9 @@ CHANGE INTO.
 71.255.240.10:8080                 
 (your servers IP or domain name, with port number)
 
+71.255.240.10:8080/textengine/map.html
+the URL to your index page
+
 C:/wamp64/www/textengine/          
 this depends on your OS and server software, but change it to the path you would use to open these files on your local machine.
 
