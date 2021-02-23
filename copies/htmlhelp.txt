@@ -1,4 +1,6 @@
 <html chatbox doc>
+
+HTML chatboxes have to be accessed through the Div version of inchat.php.
 Sending Messages:
 [1] Type your message into the box
 [2] Click Send, return, or Enter to send the message.
@@ -32,7 +34,7 @@ for vid: paste in the URL of the video.
 for au (or aud): paste in the URL of the audio snippet.
 
 
-TO LISTEN OR WATCH MEDIA: Click 'Watch Media Mode', which allows you to watch videos without the auto updating JS interrupting you. Turn it off after watching media.
+TO LISTEN OR WATCH MEDIA: Click 'No Polling Mode', which allows you to watch videos without the auto updating JS interrupting you. Turn it off after watching media.
 If you don't use Watch Media Mode, the auto updating JS script will grab new data from server frequently, which means that the media playback will be interrupted. This also gets rid of the background until you turn it off.
 
 TO GET A MEDIA URL: You can either source the media from elsewhere by copying the URL, or you can upload files with Upload Media, then take that URL and use it
