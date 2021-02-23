@@ -1,3 +1,10 @@
+<?php
+error_reporting(0);
+
+if(empty($_GET['rr'])) {
+	$_GET['rr'] = 30000;
+}
+?>
 <style>
 
 input[type=text] {
@@ -14,8 +21,8 @@ input[type=text]:focus{
 <fieldset>
 <legend>Join a chatbox</legend>
 <br>
-Chatbox number: <input type="text" name="nums" size="100" height="10"><br>
-Refresh rate: <input type="text" name="refreshrate" size="100" height="10" value="30000"> <br>
+Chatbox number: <input type="text" name="nums" size="100" height="10" value='<?=$_GET["cn"]; ?>'><br>
+Refresh rate: <input type="text" name="refreshrate" size="100" height="10" value='<?=$_GET["rr"]; ?>'> <br>
 Encoder: <input type="text" name="enc" size="100" height="10" value="UTF-8"> <br>
 Name: <input type="text" name="name" size="100" height="10"> <br>
 <br>
