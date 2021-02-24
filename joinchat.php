@@ -30,7 +30,8 @@ $tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&ex
 
 echo("joining: $_POST[nums]<br>");
 echo("rr: $_POST[refreshrate]<br>");
-
+//$link = "http://71.255.240.10:8080/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
+//echo("<iframe src='$link' width='1' height='1'></iframe>");
 ?>
 
 <script>
