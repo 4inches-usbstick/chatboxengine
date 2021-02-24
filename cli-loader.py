@@ -1,4 +1,3 @@
-#i modified this file to learn Git and SSH
 import requests as rq
 import time as t
 import os
