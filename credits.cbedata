@@ -3,7 +3,7 @@ begin CBEDATA
 
 
 class[main>
-class[credits> version==1.3.9; date==23.FEB.2021;]
+class[credits> version==1.3.9 (non public build); date==23.FEB.2021;]
 
 class[contributors> 
 class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA, extensions;]
@@ -11,7 +11,7 @@ class[Arjun> role==Testing Chatbox Engine, and believing while CBE was a small c
 class[E***k> role==Testing Chatbox Engine and believing  while CBE was a small child;]
 class[C****e> role==Testing Chatbox Engine and believing  while CBE was a small child;]
 class[Multiple unknowns> role==Testing Chatbox Engine and believing  while CBE was a small child;]
-class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and believing while CBE was an older child;]
+class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and believing while CBE was a slightly grown child;]
 
 class[softwares>
 class[PHP 7> role==Serverside, API, CBEDATA;]
