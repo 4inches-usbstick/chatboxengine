@@ -307,6 +307,39 @@ if ($_GET["cmd"] == "mkdir" && $_GET["pass"] == $pass) {
 }
 //ADDED mkdir, mload, mdel, mcopy
 
+//broadcast
+if ($_GET["cmd"] == "cbroadcast" && $_GET["pass"] == $pass) {
+	$chatboxes = glob('*');
+	echo('FILE LIST:<br><br>');
+	foreach($chatboxes as $i) {
+		if (is_dir($i)) {
+		echo("$i: DIR-SKIP<br>");
+		goto skipexec;
+		} 
+		//if is dir
+		
+		if (substr_count($i, '.') > 0 && substr_count($i, '.html') == 0) {
+		echo("$i: FILE-SKIP<br>"); 
+		goto skipexec;
+		}
+		//if there is a dot and it's not HTML
+		
+		if (substr_count($i, '.html') > 0 || substr_count($i, '.') == 0) {
+		echo("$i: WRITE<br>"); 
+		
+		if ($_GET['params'] == 'DRYRUN') {
+			echo("$i: DRYRUN-SKIP<br>");
+			goto skipexec;
+		}
+		$g = fopen($i, 'a');
+		fwrite($g, "$_GET[params]\n");
+		fclose($g);
+		}
+		//if there are no dots or it's HTML
+		skipexec:
+		
+	}
+}
 //help
 if ($_GET["cmd"] == "help")
 {
@@ -324,6 +357,7 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 *mcopy: copy Media Directory with name (parameter) to the specified separate area for safekeeping. Using WILDCARD-ALL as the parameter allows you to copy all media dirs<br>
 *mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command unless you are sure all the necessary directories are present.<br>
 *mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br>
+*cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files are affected by using CBROADCAST without actually writing to the files.
 *loadexe: sideloads an extension. requires Python, active RDC connection that is listening to .htaremotedesktop and sideloader extension.<br>
 help: brings up this help message, no parameters<br><br>
 

@@ -3,7 +3,7 @@ begin CBEDATA
 
 
 class[main>
-class[credits> version==1.4.0 build 1; date==26.FEB.2021;]
+class[credits> version==1.4.0 build 2; date==27.FEB.2021;]
 
 class[contributors> 
 class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA, extensions;]
