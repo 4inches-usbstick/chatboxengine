@@ -76,14 +76,15 @@ echo("<
 
 echo("
 
-<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\">
+<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage();return false\">
 <fieldset draggable=\"false\">
 <legend>Say something: </legend>
 <br>
 Message: <input id='msg' type=\"text\" name=\"msg\"><br>
-<input type=\"hidden\" id=\"custid\" name=\"write\" value=\"$_GET[chatnum]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"encode\" value=\"$_GET[encoderm]\"> 
-<input type=\"hidden\" id=\"custid\" name=\"namer\" value=\"$_GET[namer]\"> 
+<input type=\"hidden\" id=\"custid1\" name=\"write\" value=\"$_GET[chatnum]\"> 
+<input type=\"hidden\" id=\"custid2\" name=\"encode\" value=\"$_GET[encoderm]\"> 
+<input type=\"hidden\" id=\"custid3\" name=\"namer\" value=\"$_GET[namer]\"> 
+<input type=\"hidden\" id=\"custid4\" name=\"name\" value=\"$_GET[namer]\"> 
 
 Media Options: $mediaoptions
 <input type=\"submit\" style=\"color:black\" value=\"Send\">
@@ -99,6 +100,29 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 
 
    <script>
+   	function sendmymessage() {
+	var msg = document.getElementById('msg').value;
+	var des = document.getElementById('custid1').value;
+	var enc = document.getElementById('custid2').value;
+	var nam = document.getElementById('custid3').value;
+	var nar = document.getElementById('custid4').value;
+	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer\"];
+	var theUrl = meaningfulname.join('');
+	var boi = theUrl.concat(' :: sending request')
+	console.log(boi);
+	var msg = document.getElementById('msg').value = '';
+	
+
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function() { 
+			//console.log(xmlHttp.responseText);
+			var boi = 'boi';
+    }
+	xmlHttp.open(\"GET\", theUrl, true); // true for asynchronous 
+	xmlHttp.setRequestHeader(\"Cache-Control\", \"no-cache, no-store, max-age=0\");
+    xmlHttp.send(null);
+	}
+	
    var myIframe = document.getElementById('iframe1');
 myIframe.onload = function () {
     myIframe.contentWindow.scrollTo(0,99999999999999999999);
@@ -159,5 +183,14 @@ window.onload = function(){
 ");
 
 };
-echo("<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://71.255.240.10:8080/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+echo("
+<form action='http://71.255.240.10:8080/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Change RR:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='submit' value='Go'>
+</form>
+<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>http://71.255.240.10:8080/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
 

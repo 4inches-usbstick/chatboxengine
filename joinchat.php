@@ -1,5 +1,67 @@
 <title>engine page</title>
 <?php
+date_default_timezone_set('America/New_York');
+$directives = file_get_contents(".htaconnectionpolicy");
+echo($directives);
+$name = $_POST['name'];
+$write = $_POST['nums'];
+$doc = 'connect';
+$alias= substr_count($directives, 'showalias:YES');
+$ts_yes = substr_count($directives, 'showts:YES');
+$ts_LCL = substr_count($directives, 'showts:LOCAL');
+$enable = substr_count($directives, 'shownewconnect:YES');
+
+$offset1 = strpos($directives, '-->');
+$offset2 = strpos($directives, '<--');
+$length = $offset2 - $offset1;
+$messages = substr($directives, $offset1, $length);
+$pieces = explode('::', $messages);
+
+if ($enable == 0) {
+$doc = 'sdf';
+}
+$timestamp1 = date("H:i:s");
+$timestamp2 = date("d.m.y");
+$ts = "[$timestamp1, $timestamp2]";
+if ($doc == 'connect') {
+//user and ts
+if ($alias == 1 && $ts_yes == 1) {
+	$text = $pieces[1];
+	$text = str_replace('%name', $name, $text);
+	$text = str_replace('%ts', $ts, $text);
+	$retuls = $text;
+	echo('M::1<br>');
+}
+//user but no ts
+if ($alias == 1 && $ts_yes == 0) {
+	$text = $pieces[2];
+	$text = str_replace('%name', $name, $text);
+	$retuls = $text;
+	echo('M::2<br>');
+}
+//ts but no user
+if ($alias == 0 && $ts_yes == 1) {
+	$text = $pieces[3];
+	$text = str_replace('%ts', $ts, $text);
+	$retuls = $text;
+	echo('M::3<br>');
+}
+//ts but no user
+if ($alias == 0 && $ts_yes == 0) {
+	$text = $pieces[4];
+	$retuls = $text;
+	echo('M::4<br>');
+}
+}
+//echo($text);
+if ($ts_LCL == 1) {
+$change = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+} else {
+$f = fopen($write, 'a');	
+fwrite($f, $retuls);
+fclose($f);
+}
+
 echo("</p></p><hr>");
 error_reporting(0);
 echo("<b>Attempting to open a Chatbox</b><p></p>");

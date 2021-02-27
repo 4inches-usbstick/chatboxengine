@@ -2,8 +2,10 @@
 error_reporting(0);
 
 if(empty($_GET['rr'])) {
-	$_GET['rr'] = 30000;
+	$_GET['rr'] = 5000;
 }
+
+
 ?>
 <style>
 
