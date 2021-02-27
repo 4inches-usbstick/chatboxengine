@@ -24,7 +24,6 @@ echo("
 		
 		<hr>
 		<!--a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum1]&refreshrate=$_GET[rr]&explorer=0\">Back to Chatbox</a--><br>
-		Return to previous page after uploading files
 		<hr>
 
 

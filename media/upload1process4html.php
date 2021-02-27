@@ -19,10 +19,10 @@ $target_dir = ("C:/wamp64/www/textengine/sitechats/media/$chatboxdir/uploaded/$f
 
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
-echo($target_dir . "<br>You can navigate back to chat page");
+echo($target_dir . "<br>");
 
 $URL = $_SERVER['HTTP_REFERER'];
-header("Location: $URL");
+//header("Location: $URL");
 			
            
             
