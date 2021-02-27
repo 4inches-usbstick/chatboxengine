@@ -198,6 +198,8 @@ TERMINALACCESS
 .Htaconnectionpolicy
 .HTACONNECTIONPOLICY
 
+WILDCARD-ALL
+
 .rdi
 
 0000: documentation

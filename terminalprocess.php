@@ -1,6 +1,44 @@
 
 
 <?php
+function ccp($src, $dst) {  
+   
+    // open the source directory 
+    $dir = opendir($src);  
+   
+    // Make the destination directory if not exist 
+    @mkdir($dst);  
+   
+    // Loop through the files in source directory 
+    foreach (scandir($src) as $file) {
+		copy($src . '/' . $file, $dst . '/' . $file);  
+		echo($src . '/' . $file . $dst . '/' . $file . '<br>');  
+        }
+    closedir($dir); 		
+    }
+	
+   
+function delete_directory($dirname) {
+         if (is_dir($dirname))
+           $dir_handle = opendir($dirname);
+     if (!$dir_handle)
+          return false;
+     while($file = readdir($dir_handle)) {
+           if ($file != "." && $file != "..") {
+                if (!is_dir($dirname."/".$file))
+                     unlink($dirname."/".$file);
+                else
+                     delete_directory($dirname.'/'.$file);
+           }
+     }
+     closedir($dir_handle);
+     rmdir($dirname);
+     return true;
+}
+
+  
+ 
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
@@ -81,23 +119,7 @@ if ($pos === false) {
 $ff1 = fopen($path);
 $ff1 = fclose($path);
 $ff1 = unlink($path);
-function delete_directory($dirname) {
-         if (is_dir($dirname))
-           $dir_handle = opendir($dirname);
-     if (!$dir_handle)
-          return false;
-     while($file = readdir($dir_handle)) {
-           if ($file != "." && $file != "..") {
-                if (!is_dir($dirname."/".$file))
-                     unlink($dirname."/".$file);
-                else
-                     delete_directory($dirname.'/'.$file);
-           }
-     }
-     closedir($dir_handle);
-     rmdir($dirname);
-     return true;
-}
+
 
 delete_directory("C:/wamp64/www/textengine/sitechats/media/$params");
 $ff1 = rmdir("C:/wamp64/www/textengine/sitechats/media/$params");
@@ -146,23 +168,6 @@ if ($pos === false) {
 $ff1 = fopen($path);
 $ff1 = fclose($path);
 $ff1 = unlink($path);
-function delete_directory($dirname) {
-         if (is_dir($dirname))
-           $dir_handle = opendir($dirname);
-     if (!$dir_handle)
-          return false;
-     while($file = readdir($dir_handle)) {
-           if ($file != "." && $file != "..") {
-                if (!is_dir($dirname."/".$file))
-                     unlink($dirname."/".$file);
-                else
-                     delete_directory($dirname.'/'.$file);
-           }
-     }
-     closedir($dir_handle);
-     rmdir($dirname);
-     return true;
-}
 
 
 $mediadir0 = substr($params, 0, -5);
@@ -242,6 +247,65 @@ if ($_GET["cmd"] == "vers" && $_GET['params'] != "showall::YES")
 echo($credits);
 }
 
+//media copy
+if ($_GET["cmd"] == "mcopy" && $_GET['params'] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	chdir("C:/wamp64/www/textengine/sitechats/media/");
+	$medirs = glob('*', GLOB_ONLYDIR);
+	
+	foreach($medirs as $i) {
+		print("$i<br>");
+		ccp("C:/wamp64/www/textengine/sitechats/media/$i/uploaded", "C:/wamp64/www/textengine/sitechats/copies/media/$i");
+		echo('Copied Media Dir');
+	}
+}
+if ($_GET["cmd"] == "mcopy" && $_GET['params'] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	chdir("C:/wamp64/www/textengine/sitechats/media/");
+		ccp("C:/wamp64/www/textengine/sitechats/media/$_GET[params]/uploaded", "C:/wamp64/www/textengine/sitechats/copies/media/$_GET[params]");
+echo('Copied Media Dir');
+}
+//media delete
+if ($_GET["cmd"] == "mdel" && $_GET['params'] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	chdir("C:/wamp64/www/textengine/sitechats/media/");
+	delete_directory("C:/wamp64/www/textengine/sitechats/media/$_GET[params]");
+	$ff1 = rmdir("C:/wamp64/www/textengine/sitechats/media/$_GET[params]");
+	echo('Deleted Media Dir');
+}
+if ($_GET["cmd"] == "mdel" && $_GET['params'] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	echo('WARNING: WILDCARD-ALL REMOVES ALL MEDIA DIRS<br>');
+	chdir("C:/wamp64/www/textengine/sitechats/media/");
+	$medirs = glob('*', GLOB_ONLYDIR);
+	foreach($medirs as $i) {
+	delete_directory("C:/wamp64/www/textengine/sitechats/media/$i");
+	$ff1 = rmdir("C:/wamp64/www/textengine/sitechats/media/$i");
+	echo('Deleted Media Dir');
+}
+}
+//media reload
+if ($_GET["cmd"] == "mload" && $_GET['params'] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	echo('WARNING: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM');
+	chdir("C:/wamp64/www/textengine/sitechats/copies/media/");
+	$medirs = glob('*', GLOB_ONLYDIR);
+	
+	foreach($medirs as $i) {
+		echo("$i<br>");
+		ccp("C:/wamp64/www/textengine/sitechats/copies/media/$i", "C:/wamp64/www/textengine/sitechats/media/$i/uploaded");
+		echo('Loaded Media Dir');
+	}
+}
+if ($_GET["cmd"] == "mload" && $_GET['params'] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
+	echo('WARNING: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM');
+	chdir("C:/wamp64/www/textengine/sitechats/copies/media/");
+		ccp("C:/wamp64/www/textengine/sitechats/copies/media/$_GET[params]", "C:/wamp64/www/textengine/sitechats/media/$_GET[params]/uploaded");
+		echo('Loaded Media Dir');
+}
+//mkdir
+if ($_GET["cmd"] == "mkdir" && $_GET["pass"] == $pass) {
+	echo('WARNING: EXISTING MEDIA DIRS MAY BE OVERWRITTEN');
+	mkdir("C:/wamp64/www/textengine/sitechats/media/$_GET[params]", 0700);
+	mkdir("C:/wamp64/www/textengine/sitechats/media/$_GET[params]/uploaded", 0700);
+		echo('Made directory');
+}
+//ADDED mkdir, mload, mdel, mcopy
 
 //help
 if ($_GET["cmd"] == "help")
@@ -256,13 +320,20 @@ vers: shows the CBE version, no required parameters. use 'showall::YES' to bring
 xedit: brings up the remote message editing terminal, no parameters<br>
 *banhammer: bans IP address with value (parameter)<br>
 *change: changes the admin password to (parameter)<br>
+*mkdir: make a Media Directory where there wasn't one, the media directory will be named (parameter)<br>
+*mcopy: copy Media Directory with name (parameter) to the specified separate area for safekeeping. Using WILDCARD-ALL as the parameter allows you to copy all media dirs<br>
+*mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command.<br>
+*mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br>
 *loadexe: sideloads an extension. requires Python, active RDC connection that is listening to .htaremotedesktop and sideloader extension.<br>
 help: brings up this help message, no parameters<br><br>
 
 
 
 No Verbose allows you to suppress the output of the command (unless a fatal error happens on command execution).
-This feature is only for the web client
+This feature is only for the web client.<br><br>
+
+If there are dangerous commands, there are people who will find a way to mess it up. This terminal does not stop you from making bad decisions.
+If we are only free to make good decisions, we are not free at all.
 
 
 ");
