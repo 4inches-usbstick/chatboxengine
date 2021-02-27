@@ -322,7 +322,7 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 *change: changes the admin password to (parameter)<br>
 *mkdir: make a Media Directory where there wasn't one, the media directory will be named (parameter)<br>
 *mcopy: copy Media Directory with name (parameter) to the specified separate area for safekeeping. Using WILDCARD-ALL as the parameter allows you to copy all media dirs<br>
-*mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command.<br>
+*mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command unless you are sure all the necessary directories are present.<br>
 *mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br>
 *loadexe: sideloads an extension. requires Python, active RDC connection that is listening to .htaremotedesktop and sideloader extension.<br>
 help: brings up this help message, no parameters<br><br>
