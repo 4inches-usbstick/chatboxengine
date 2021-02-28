@@ -60,3 +60,7 @@ CBauth is used to verify certain usernames when sending messages and issuing Ter
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).
 For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
 username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.
+
+Notes:
+1. Make sure to credit me and others by linking to credits.cbedata.
+2. Make sure your server protects all files ending in '.hta'
