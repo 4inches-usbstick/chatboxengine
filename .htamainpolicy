@@ -11,6 +11,8 @@ PID   PNAME   PVAL
 13 allow-media-upload::YES::
 15 allow-loadexe-cmd::YES::
 17 allow-self-media-name::YES::
+19 use-legacy-joinlink::NO::
+21 api-operations-disable::NO::
 -----------------------------------------
 
 
