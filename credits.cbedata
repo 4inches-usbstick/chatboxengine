@@ -20,5 +20,11 @@ class[Python Modules> used==requests, tkinter, time, textwrap, discord; role==Cl
 class[HTML,CSS,JS> role==Web client;]
 class[WAMPSERVER> role==Server space;]
 
+class[places-i-borrowed-code-from>
+class[copydir-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/5707806/recursive-copy-of-directory;]
+class[recursive-del-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/385150/a-piece-of-php-code-im-not-so-sure-about/385468#385468;]
+class[php-fileupload-error-codes> used-in==upload-processors; src==https://www.php.net/manual/en/features.file-upload.errors.php;]
+class[making-textboxes-turn-orange> used-in==all-text-boxes; src==https://stackoverflow.com/questions/43427993/change-the-color-of-a-input-field-when-selected;]
+
 class[links>
 class[Github> url==https://github.com/4inches-usbstick/chatboxengine;]
