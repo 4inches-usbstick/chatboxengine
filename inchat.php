@@ -79,7 +79,7 @@ echo("<
 
 echo("
 
-<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage();return false\">
+<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
 <fieldset draggable=\"false\">
 <legend>Say something: </legend>
 <br>

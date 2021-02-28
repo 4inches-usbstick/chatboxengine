@@ -104,7 +104,7 @@ if ($formaction > 0) {
 	
 echo("
 
-<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessage();return false\">
+<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
 <fieldset>
 <legend>Options</legend>
 
