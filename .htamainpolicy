@@ -1,0 +1,22 @@
+This policy page contains important data that is essential to the operation of Chatbox Engine.
+
+PID   PNAME   PVAL
+-----------------------------------------
+1  server-ip::71.255.240.10:8080::
+3  textengine-path::C:/wamp64/www/textengine::
+5  offshore-path::C:/wamp64/www/textengine/sitechats/copies::
+7  offshore-media-path::C:/wamp64/www/textengine/sitechats/copies/media::
+9  default-timezone::America/New_York::
+11 cbe-max-file-size::12582912::
+13 allow-media-upload::YES::
+15 allow-loadexe-cmd::YES::
+17 allow-self-media-name::YES::
+-----------------------------------------
+
+
+[BEGIN CBAUTH]
+UID::NAME::KEY::PERMS;
+1::RootOfficial::root1234::sudo;
+2::UserOfficial::root1234::notsudo;
+UID::NAME::KEY::PERMS;
+[END CBAUTH]
