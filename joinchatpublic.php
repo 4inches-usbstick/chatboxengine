@@ -35,8 +35,7 @@ Name: <input type="text" name="name" size="100" height="10"> <br>
 <p></p>
 <br>
 <!--p>Default Refresh Rate: 30000</p-->
-<a href="http://71.255.240.10:8080/textengine/map.html">Go back to home</a> <p></p>
-<a href="http://71.255.240.10:8080/textengine/sitechats/info/change.txt">Read before changing refresh rate</a>
+
 
 <p></p>
 <!--

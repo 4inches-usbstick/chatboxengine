@@ -1,7 +1,7 @@
 
 <cbedata docs>
 Looking for the Python Interpreter docs? 
-Here: http://71.255.240.10:8080/textengine/sitechats/info/cbedata_py.txt
+See cbedata_py.txt
 
 
 
@@ -15,10 +15,11 @@ So I got bored again, and decided to make a thing. What is this thing? CBEDATA. 
 
 All CBEDATA files must begin with 'begin CBEDATA' (without the quotes). Then, you have to create the main object, with 'class [main>'.
 A class or object is a container that can hold attributes, and other objects. To create an object, use 'class[objectname>', where objectname is your 
-new object's name. 
+new object's name. Note that class and object are used interchangably in this documentation.
 
-Currently, attributes can be in any object or class so long it's formatted right, so for example:
+All objects can have attributes. More on this later.
 
+Example: 
 -------------
 begin CBEDATA
 
@@ -47,8 +48,10 @@ gender==female;
 ------------
 
 
-We have the main container, then we have the people sub-container. In the people container, there are two sub-containers, eric and may. All objects can hold attributes and more objects.
-The term 'end-of-the-line' used in the documentation is the end of the filepath (i.e. main-people-may-age, may is the end of the line, because it's the last object). (this is really hard to explain)
+We have the main container, then we have the people sub-container. In the people container, there are two sub-containers, eric and may.  The people container has an attribute
+of qty. All objects can hold attributes and more objects (if want to have attributes for a non EOL object, make sure to put the attributes for the object BEFORE any subobjects.
+This is why you see qty==2peoples; before any other subobjects).
+The term 'end-of-the-line' (EOL) used in the documentation is the end of the filepath (i.e. main-people-may-age, may is the end of the line, because it's the last object). 
 
 If you give attributes to a container that isn't end of line, they are not regconised by the interpreter UNLESS you put those attributes BEFORE any subclasses.
 The ']' closer bracket is only necessary on the end of line objects, such as may and eric. The main and people objects don't need any closer bracket, because they are
@@ -67,7 +70,6 @@ variablename==variablevalue;
 -------
 
 You need the semicolons there. Then, after putting attributes, close off the end of the line object with ']'. 
-A CBEDATA can hold as many objects as you please (up to a certain limit).
 
 --GETTING THIS DATA--
 
@@ -112,13 +114,12 @@ http://71.255.240.10:8080/textengine/sitechats/data/datacall.php?src=194814&path
 
 --COMMENTS--
 If it's not within an End of Line object, comments can be anywhere.
-They need no special characters, but in the above example, // is used as an example for comments.
+They need no special characters, but in the above example, // is used as an example..
 Comments could go in End of Line objects, but it's not advisable.
 
 --API Edits--
-If you want your EOL classes to be editable, you need to put the entire EOL class in one line (demonstrated below).
-To edit, just make a regular Edit Request with this format: gro=<entire EOL subclass>&rw=<entire EOL subclass but changed>.
-So essentially, make a normal edit request.
+If you want your EOL classes to be editable, you need to put the entire EOL class in one line.
+This is as a result of how the editing works with Chatbox Engine.
 
 Instead of:
 class[Hhhu>  

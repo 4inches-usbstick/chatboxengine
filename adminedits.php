@@ -1,11 +1,34 @@
 <title>engine page</title>
 
 <?php
+$pass = file_get_contents('.htapassword');
+include 'mainlookup.php';
+$rdir = plsk(3);
+if (plsk(21) != 'YES') {
+	die('API is locked down.');
+}
+
+if (empty($_GET['uid']) || empty($_GET['ukey'])) {
+	goto skipverify;
+}
+
+if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
+	$_GET['key'] = $pass;
+}
+
+if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
+	echo('You are not a sudo user.<br>');
+}
+
+skipverify:
+
+
+$dots = plsk(23);
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
-$pass = file_get_contents('C:/wamp64/www/textengine/sitechats/.htapassword');
+
 $iframe = substr_count(strtolower($_GET["rw"]), 'iframe');
 $script = substr_count(strtolower($_GET["rw"]), 'script');
 
@@ -22,8 +45,7 @@ if ($_GET["key"] == $pass) {
 $thecb = $_GET["cb"];
 $getridof = $_GET["gro"];
 $replacewith = $_GET["rw"];
-$leadpath = 'textengine/sitechats';
-$path = "http://71.255.240.10:8080/textengine/sitechats/$thecb";
+$path = "$rdir/sitechats/$thecb";
 echo("abs path in: $path<br>");
 echo("rel path in: $thecb<br>");
 echo("str to edit: $getridof<br>");

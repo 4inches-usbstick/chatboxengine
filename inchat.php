@@ -11,19 +11,22 @@ input[type=text]:focus{
 </style>
 
 <?php
+include 'mainlookup.php';
+$rdir = plsk(3);
+$ip = plsk(1);
 
-$formact = "http://71.255.240.10:8080/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
+$formact = "http://$ip/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
 error_reporting(0);
 $mediaoptions = 0;
-$gethttd = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/media/$_GET[chatnum]");
+$gethttd = file_get_contents("http://$ip/textengine/sitechats/media/$_GET[chatnum]");
 
 
 if ($gethttd === false) {
 	$mediaoptions = "<code style=\"background: black; color: white\">Media uploads have been disabled for this Chatbox.</code><br>";
 } else {
 	$mediaoptions = "<a href=$formact>Upload Media, </a>
-<a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Find / Post Media, </a>
-<a href=\"http://71.255.240.10:8080/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Close Media Finder, </a><br>";
+<a href=\"http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Find / Post Media, </a>
+<a href=\"http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Close Media Finder, </a><br>";
 }
 	
 
@@ -45,7 +48,7 @@ body {
 echo("refresh rate: ");
 echo("$_GET[refreshrate]ms"   );
 echo("   ");
-//echo("<a href=\"http://71.255.240.10:8080/textengine/change.txt\">Learn more</a>, <a href=\"http://71.255.240.10:8080/textengine/map.html\">Homepage</a>");
+//echo("<a href=\"http://$ip/textengine/change.txt\">Learn more</a>, <a href=\"http://$ip/textengine/map.html\">Homepage</a>");
 echo("<br>encoder: $coder<br>");
 echo("<code style=\"color:red\" draggable=\"false\">trigger warning: this site contains flashing images. </code><br>");
 
@@ -68,7 +71,7 @@ echo("
 <iframe id=\"iframe1\" src=$_GET[chatnum] width=\"700\" height=\"400\" ></iframe></div>");
 echo("<
 <div style=\"overflow:scroll; -webkit-overflow-scrolling:touch; width:700px; height:400px;\">
-<iframe id=\"iframe2\" src=\"http://71.255.240.10:8080/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\"></iframe></div>");
+<iframe id=\"iframe2\" src=\"http://$ip/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\"></iframe></div>");
 //echo("<p></p>");
 }
 
@@ -85,6 +88,8 @@ Message: <input id='msg' type=\"text\" name=\"msg\"><br>
 <input type=\"hidden\" id=\"custid2\" name=\"encode\" value=\"$_GET[encoderm]\"> 
 <input type=\"hidden\" id=\"custid3\" name=\"namer\" value=\"$_GET[namer]\"> 
 <input type=\"hidden\" id=\"custid4\" name=\"name\" value=\"$_GET[namer]\"> 
+<input type=\"hidden\" id=\"custid5\" name=\"uid\" value=\"$_GET[uid]\"> 
+<input type=\"hidden\" id=\"custid6\" name=\"ukey\" value=\"$_GET[ukey]\"> 
 
 Media Options: $mediaoptions
 <input type=\"submit\" style=\"color:black\" value=\"Send\">
@@ -106,7 +111,9 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 	var enc = document.getElementById('custid2').value;
 	var nam = document.getElementById('custid3').value;
 	var nar = document.getElementById('custid4').value;
-	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer\"];
+	var uid = document.getElementById('custid5').value;
+	var uky = document.getElementById('custid6').value;
+	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky];
 	var theUrl = meaningfulname.join('');
 	var boi = theUrl.concat(' :: sending request')
 	console.log(boi);
@@ -183,8 +190,11 @@ window.onload = function(){
 ");
 
 };
+$useleg = plsk(19);
+
+if ($useleg == 'YES') {
 echo("
-<form action='http://71.255.240.10:8080/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change RR:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
@@ -192,5 +202,35 @@ echo("
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
-<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='http://71.255.240.10:8080/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>http://71.255.240.10:8080/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
+<form action='http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
+<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='submit' value='Go'>
+</form>
+<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='http://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>http://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+} else {
+echo("
+<form action='http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Change RR:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='submit' value='Go'>
+</form>
+<form action='http://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
+<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='submit' value='Go'>
+</form>
+<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='http://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>http://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
+}
 

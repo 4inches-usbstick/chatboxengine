@@ -1,5 +1,10 @@
 <title>engine page</title>
 <?php
+include 'mainlookup.php';
+$rdir = plsk(3);
+$dots = plsk(23);
+$ip = plsk(1);
+
 if (file_exists($_POST['nums'])) {
 	$myfile = fopen("$_POST[nums]", "a");
 	$myfile = fclose($myfile);
@@ -7,7 +12,7 @@ if (file_exists($_POST['nums'])) {
 	die('This chatbox does not actually exist');
 }
 
-date_default_timezone_set('America/New_York');
+date_default_timezone_set(plsk(9));
 $directives = file_get_contents(".htaconnectionpolicy");
 $name = $_POST['name'];
 $write = $_POST['nums'];
@@ -57,7 +62,7 @@ if ($alias == 0 && $ts_yes == 0) {
 }
 echo($text);
 if ($ts_LCL == 1) {
-$change = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+$change = file_get_contents("http://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
 $f = fopen($write, 'a');	
 fwrite($f, $retuls);
@@ -66,7 +71,7 @@ fclose($f);
 
 
 //error_reporting(0);
-$link = "http://71.255.240.10:8080/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
+$link = "http://$ip/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
 //echo("<iframe src='$link' width='1' height='1'></iframe>");
 
 if ($_POST['option'] == 'div') {
@@ -78,7 +83,7 @@ $tolink = "inchat.php?chatnum=$_POST[nums]&refreshrate=$_POST[refreshrate]&explo
 echo("<meta http-equiv=\"refresh\" content=\"0; URL=$tolink\">");
 
 
-echo("Not redirected within 3 seconds? Use <a href='http://71.255.240.10:8080/textengine/sitechats/$tolink'>this button</a>");
+echo("Not redirected within 3 seconds? Use <a href='http://$ip/textengine/sitechats/$tolink'>this button</a>");
 //header("Location: $tolink");
 
 ?>

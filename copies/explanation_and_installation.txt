@@ -9,120 +9,54 @@ htmlhelp.txt: explaining HTML chatboxes
 explanation_and_installation.txt: installation instructions and documentation explanation
 
 
-READ ME 
-
+INSTALLATION INSTRUCTIONS:
 This Read Me has the instructions for setting up Chatbox Engine for your server. 
 
 --PART ZERO: PRE REQS--
 You need the following things:
 
--an HTTP server (the OG CBE is hosted on Apache, use what you want)
--PHP 7.3 (yes, this specific version. other versions may work, but will be unstable and require modification come the next PHP update.)
--A C++ compiler (the OG CBE uses MSVC 2017. this may or may not apply to you.) This is required to run PHP 7.3. It's recomneded that you read up on the aforementioned things before going ahead.
--a web browser for testing
--a text editor with a Find and Replace feature
--internet
+-an HTTP server 
+-PHP 7.3 
+-A C++ compiler 
+-text editor
+-web browser
 
-Make sure to read and understand the license before using
+Make sure to read and understand the license before using Chatbox Engine.
 
 
---PART ONE: INSTALLATION--
-Do this on a non-mobile device. 
-
+--Initial Config--
 You'll need to create a directory named textengine on the server. Not in any subfolders or other things, it needs to be its own parent directory.
-Inside your new textengine directory, create another folder named sitechats. From there, copy the ZIP file from its home into the sitechats. 
-Unzip the ZIP file so all of the contents end up in sitechats. Do not delete any files, especially remote management files, inchat files, any of the subfolders in sitechats, or Integration Interface files.
+Inside your new textengine directory, create another folder named sitechats. From there, copy the files and subdirectories into the sitechats dir.
 
-Also, get rid of the home buttons. These are in joinchatpublic, createnewchat and terminal documents. Look for the <a> element and remove the one that says "Go back to home" or simply "Home". Alternatively, create your own homepage and link to that.
+Now, open .htamainpolicy with your favorite text editor and change these things in the config file:
 
-Verify your installation. Turn your HTTP server on and go to this filepath:
+Change 71.255.240.10:8080 to the IP or domain of your server.
+Change C:/wamp64/www/textengine to the path that you would take to get to your textengine directory. No slash on the end.
+Change C:/wamp64/www/textengine/sitechats/copies to the location where you want Chatboxes to be copied when using the XCOPY command.
+Change C:/wamp64/www/textengine/sitechats/copies to the location where you want Media directories to be copied when using the MCOPY command.
+Change America/New_York to the PHP timezone your server uses.
+Change 12582912 to the max number of bytes you want a person to be able to upload to the server. Note that this does not bypass your server's POST limits and whatnot.
 
-http://[your IP or domain name]/textengine/sitechats/inchat.php. A page should come up, but it shouldn't be fully functional. If you can't get the page to open, you've misconfigured
-something.
+For these policies, YES and NO (case sensitive) are the only acceptable values:
 
-Make sure .hta files are protected by your server, because they hold things that people aren't supposed to be able to interact with.
+PID 13: yes for allow media upload universally, no for forbid media upload universally.
+PID 15: yes if you want to enable the LOADEXE command, no if you want to disable the LOADEXE command.
+PID 17: yes if you want people to create their own filenames on upload, no if you want to have uploaded files automatically renamed.
+PID 19: yes if you want to use inchat_joinpage, no if you want to use joinchatpublic.
+PID 21: yes if you want the API to be enabled, and no if you want everything to break. Note that this option does not affect the Terminal.
+PID 23: yes if you want the rule.Timestamps(1) feature, no if you want that feature disabled universally.
 
---PART TWO: ADAPTION--
-After installing. You need to adapt it to your server. Open all of the files (yes, even the ones in media, data, and other directories) with the *.php file extension in a text editor with a Find and Replace function.
-Find all instances of a certain string and change it accordingly.
+--CBauth--
+To add someone to the CBauth list, use this format:
 
+#::Alias::Password::Permissions;
 
+Number is the UID. This number must start from 1 and go up one by one.
+Alias is the name that is tied to the UID.
+Password (a.k.a. the UKEY) is the password tied to the UID,
+Permissions is the permission level this user has.
 
-STRING;
-CHANGE INTO.
-
-71.255.240.10:8080                 
-(your servers IP or domain name, with port number)
-
-71.255.240.10:8080/textengine/map.html
-the URL to your index page
-
-C:/wamp64/www/textengine/          
-this depends on your OS and server software, but change it to the path you would use to open these files on your local machine.
-
-C:/wamp64/www/.htaaccess                                    
-the path you would take to get to an htaccess file
-
-fwrite($f1, "deny from $_GET[params]");                         
-replace the second parameter with what you would write in to ban someone by IP
-
-header('Access-Control-Allow-Origin: *');                     
-if there are CORS policy issues, change this within the files to something else.
-
-line 233-252 of terminalprocess                 
-the correct shell command
-
-America/New_york
-change that into the correct PHP timezone
-
-Try all the functions:
--create new chat
--join chat
--upload small image file
--send commands to Terminal
-
-
-The last steps are to change the server operator / admin password, as well as set some policies:
-
-1. open .htapassword in your new sitechats directory and change the password to literally anything else.
-2. open .htaconnectionpolicy (do this only if you know what this is), and change directives to match what you want.
-3. If you don't want to be able to load extensions with the terminal, then you can take out this snippet in terminalprocess:
-
-if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
-	$contents = file_get_contents("loader.py");
-	$newcontents = str_replace('%%replace01', $_GET['params'], $contents);
-	unlink('loader-tmp.py');
-	$f = fopen('loader-tmp.py', 'w');
-	fwrite($f, $newcontents);
-	fclose($f);
-	echo("<b>Script loaded.</b><br>");
-	
-	$f = fopen('.htaremotedesktop', 'w');
-	fwrite($f, 'shell;start C:/wamp64/www/textengine/sitechats/loader-tmp.py');
-	fclose($f);
-	echo("<b>Script execution started.</b><br>");
-	print_r($output);
-}
-(make sure to change the help section too, as well as delete rdc-modded.py)
-
-
-Now, we have these things called extensions. You can download them from http://71.255.240.10:8080/textengine/downloads/extensions/gallerydy.php.
-Getting extensions is as simple as getting the ZIP file, unzipping it somewhere, and doing some config. Extensions are scripts that change the behavior of CBE, either by adding onto or replacing existing files.
-
-
-More Things:
-
--> For an API-send only configuration, delete inchat.php and friends. That way, people can read Chatboxes, but cannot send them without the API.
--> If you want any API file to be password protected, add this code to the beginning of the API pages:
-
-
-if ($_GET['key'] != $yourpassword) {
-header('HTTP/1.0 403 Forbidden');
-die();
-}
-
--> Chatbox Engine can be used for a lot of things. You only have to make it what you want.
-
-
-
-oh and also remember to change your password regularly 
+CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
+For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).
+For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
+username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.

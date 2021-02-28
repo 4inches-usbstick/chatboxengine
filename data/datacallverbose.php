@@ -2,7 +2,10 @@
 <h2>Verbose Mode</h2>
 <hr>
 <?php
-$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
+include 'mainlookup.php';
+$rdir = plsk(3);
+
+$data = file_get_contents("$rdir/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
 

@@ -1,6 +1,13 @@
 <title>engine page</title>
 
 <?php
+include 'mainlookup.php';
+$rdir = plsk(3);
+
+if (plsk(21) != 'YES') {
+	die('API is locked down.');
+}
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
@@ -20,7 +27,7 @@ if (file_exists($filename)) {
     echo("<p>[1] Complete </p> <p></p>");
 }
 
-$haystaq = file_get_contents('C:\wamp64\www\textengine\sitechats\.htabannednumbers');
+$haystaq = file_get_contents("$rdir/sitechats/.htabannednumbers");
 $findme = $filename;
 $pos = stristr($findme, ".");
 
@@ -34,7 +41,7 @@ if ($pos === false) {
 
 
 
-$haystaq = file_get_contents('C:\wamp64\www\textengine\sitechats\.htabannednumbers');
+$haystaq = file_get_contents("$rdir/sitechats/.htabannednumbers");
 $findme = $filename;
 $pos = strpos($haystaq, $findme);
 
@@ -60,45 +67,39 @@ if ($ok == "1" and $_GET["option"] == h) {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	if ($_GET["allowmed"] == "allowmed") {
-	mkdir("C:/wamp64/www/textengine/sitechats/media/$newmediadir", 0700);
-	//chdir("C:/wamp64/www/textengine/sitechats/media/$_GET[newname]", 0700);
-	mkdir("C:/wamp64/www/textengine/sitechats/media/$newmediadir/uploaded", 0700);
+	mkdir("$rdir/sitechats/media/$newmediadir", 0700);
+	//chdir("$rdir/sitechats/media/$_GET[newname]", 0700);
+	mkdir("$rdir/sitechats/media/$newmediadir/uploaded", 0700);
 	}
-	echo("<b>New Chatbox created with number $new. Give people the code $new if they want to join.</b> <p></p>");
+	echo("<b>New Chatbox created with number $new.");
 	$txt = "This is chatbox with number $filename <p></p>.";
+	fclose($myfile);
 } 
 if ($ok == "1" and $_GET["option"] == l) {
 	$newmediadir = "$_GET[newname]";
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	if ($_GET["allowmed"] == "allowmed") {
-	mkdir("C:/wamp64/www/textengine/sitechats/media/$newmediadir", 0700);
-	//chdir("C:/wamp64/www/textengine/sitechats/media/$_GET[newname]", 0700);
-	mkdir("C:/wamp64/www/textengine/sitechats/media/$newmediadir/uploaded", 0700);
+	mkdir("$rdir/sitechats/media/$newmediadir", 0700);
+	//chdir("$rdir/sitechats/media/$_GET[newname]", 0700);
+	mkdir("$rdir/sitechats/media/$newmediadir/uploaded", 0700);
 	}
-	echo("<b>New Chatbox created with number $new. Give people the code $new if they want to join.</b> <p></p>");
+	echo("<b>New Chatbox created with number $new. ");
 	$txt = "This is chatbox with number $filename <p></p>.";
+	fclose($myfile);
 }
 
 if ($ok == '1' and $_POST['option'] == 'd') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	echo("<b>Chatbox $new created. This is a CBEDATA chatbox, meaning that people should not join as an ordinary user.</b>");
+	fwrite($myfile, "begin CBEDATA\n\n");
 	fwrite($myfile, "class[main>\n");
+	fclose($myfile);
 }
 
 
 
-$URL = $_GET["rurl"];
-
-if ($URL == "norefer") {
-die("Will not return to referer");
-}
-if (empty($URL)) {
-$URL = "javascript://history.go(-1)";
-}
-
-header("Location: $URL");
 ?>
 
 

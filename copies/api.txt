@@ -1,7 +1,7 @@
 <api docs>
-Integration Interface (aka an api)
+The Chatbox Engine API
 
-The API allows you and others to send commands to do things to the server by making a GET request for a certain URL. These URLS have data stored in them, and when the server reads these URLs, it acts upon them. Currently, there are five endpoints:
+The API allows you and others to send commands to do things to the server by making a GET request for a certain URL. Currently, there are five endpoints:
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
@@ -9,17 +9,16 @@ sendmsg_integration.php (remote send message).
 newchat_integration.php (remote open chatbox)
 display.php (get Chatbox contents)
 
---TO OPEN A FUNCTION TO THE API--
-To create a new endpoint or action that can be accessed, open the file that is reponsible for the action and change all the POSTs to GETs, then save the file.
+
 
 --TO USE THE API--
 Use the file name of the endpoint (i.e. adminedits), along with any other arguments that the endpoint takes. Then, issue a GET request for your URL.
-Note that there may be CORS conflict issues, especially if the "Access-Control-Allow-Headers:" wildcard is not accepted.
+Note that there may be CORS conflict issues, especially if the "Access-Control-Allow-Headers: *" wildcard is not accepted.
 
 
 --AN EXAMPLE--
 http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=0002&encode=UTF-8&msg=BEEEEEEES&namer=&rurl=norefer
-Making a GET request for this should send these variables to the server:
+Making a GET request for this should send this information to the server:
 
 write=0002
 msg=BEEEEEEES
@@ -33,10 +32,7 @@ You just make an HTTP GET request for <ip>:<port-number>/textengine/sitechats/<c
 If you are accessing it from another domain (with XMLHTTPREQUEST for example), you're going to need to go through display.php.
 Use <ip>:<port-number>/textengine/sitechats/display.php?chatbox=<chatbox-number>.[file-extension] if using display.php.
 
-To get the contents of a high seurity Chatbox:
-<ip>:<port-number>/textengine/sitechats/high-security/display.php?path=<chatbox>&pass=<password>
-
-For CBEDATA, see 71.255.240.10:8080/textengine/sitechats/info/cbedata.txt
+For CBEDATA API, see cbedata.txt.
 
 
 
@@ -45,7 +41,7 @@ For CBEDATA, see 71.255.240.10:8080/textengine/sitechats/info/cbedata.txt
 
 sendmsg_integration: write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under.
 
-terminal_process: cmd, params (optional: pass). cmd is the command, params is the argument, pass is the password. pass is necessary to execute some commands.
+terminal_process: cmd, params (optional: pass). cmd is the command, params is the argument, pass is the password. pass is necessary to execute some but not all commands.
 
 newchat_integration: newname, option, allowmed. newname is the new Chatbox name, option is the type of Chatbox to open, and allowmed is the allowmedia option (more in detail later).
 

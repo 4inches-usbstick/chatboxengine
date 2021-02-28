@@ -1,8 +1,8 @@
 <cbedata py doc>
 Looking for the CBEDATA docs?
-Here: http://71.255.240.10:8080/textengine/sitechats/info/cbedata.txt
+See cbedata.txt
 
-If you choose to use the Python interpreter, here's the documentation.
+If you choose to use the Python CBEDATA interpreter, here's the documentation.
 Read the CBEDATA docs before because some elements in the Python interpreter require knowledge of CBEDATA.
 
 
@@ -16,7 +16,6 @@ There are four functions you can call:
 
 
 You should use an online function when you want to request the data from somewhere that isn't your local machine, for example, to connect to a Chatbox and pull form there. 
-
 You should use an object function when you want to pull multiple attributes, and a non-object function when you want to pull a single attribute. 
 
 --Syntax--

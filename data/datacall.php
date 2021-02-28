@@ -1,7 +1,10 @@
 
 <?php
+include 'mainlookup.php';
+$rdir = plsk(3);
+$data = file_get_contents("$rdir/sitechats/$_GET[src]");
 error_reporting(0);
-$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
+//$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
 

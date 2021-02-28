@@ -10,15 +10,18 @@ PID   PNAME   PVAL
 11 cbe-max-file-size::12582912::
 13 allow-media-upload::YES::
 15 allow-loadexe-cmd::YES::
-17 allow-self-media-name::YES::
+17 allow-self-media-name::NO::
 19 use-legacy-joinlink::NO::
-21 api-operations-disable::NO::
+21 api-operations-enable::YES::
+23 do-ts-checking::YES::
+25 banhammer-file::C:/wamp64/www/.htaccess::
+27 banhammer-write::deny from %ip::
 -----------------------------------------
 
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
 1::RootOfficial::root1234::sudo;
-2::UserOfficial::root1234::notsudo;
-UID::NAME::KEY::PERMS;
+2::UserOfficial::root5678::notsudo;
+0::1::2::3;
 [END CBAUTH]

@@ -22,21 +22,4 @@ function uidlsk($uid, $skey) {
 		return false;
 	}
 }
-function uid($uid, $skey, $attrno) {
-	$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
-	$offset0 = strpos($f, '[BEGIN CBAUTH]');
-	$offset1 = strpos($f, '[END CBAUTH]');
-	$fs = substr($f, $offset0, $offset1 - $offset0);
-	$ffs = explode(';', $fs);
-	$user = $ffs[$uid];
-	$userats = explode('::', $user);
-	return $userats[$attrno];
-}
-function uid_db() {
-$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
-	$offset0 = strpos($f, '[BEGIN CBAUTH]');
-	$offset1 = strpos($f, '[END CBAUTH]');
-	$fs = substr($f, $offset0, $offset1 - $offset0);
-	return $fs;
-}
 ?>

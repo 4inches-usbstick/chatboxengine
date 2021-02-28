@@ -1,7 +1,6 @@
 HOW TO CHANGE YOUR REFRESH RATE:
 
 The refresh rate determines how often the server should ask the server if anything new has happened within a Chatbox. The less the refresh rate, the more often the client asks the server.
-
-Normal is about 3000ms (grab new messages every 3 seconds)
-Default is 30000 (grab new messages every 30 seconds)
 No Update / Manual Update is any non-integer or non-float number (grab new meesages only when the user tells the client to)
+
+You can change it wherever there's a slot for 'RR' or 'refreshrate'.

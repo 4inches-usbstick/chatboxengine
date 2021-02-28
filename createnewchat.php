@@ -19,7 +19,7 @@ input[type=text]:focus{
 Create a new chatbox. The chatbox name cannot have any special characters / spaces, only the 26 letters of the alphabet, and the numbers 0-9. No spaces or punctuation either. This slot cannot be left blank.
 </p>
 <br><br>
-<form action="newchat.php" method="post">
+<form action="newchat_integration.php" method="get">
 <fieldset>
 <legend>Create a new chatbox</legend>
 <br>
@@ -39,7 +39,7 @@ Allow Media Upload? <input type="checkbox" id="allowmed" name="allowmed" value="
 </fieldset>
 </form>
 
-<a href="http://71.255.240.10:8080/textengine/map.html">Go back to home</a><br>
+
 
 A session number is a unique token that is used for identification. To open a specific Chatbox, you need the session number. It can also be called a Chatbox number, number, code, Chatbox code, and anything that means the same thing.<br><br>
 HTML chatboxes allow you and those who join to 'draw' by pasting HTML elements. When you go to join an HTML chatbox with joinchatpublic.php, choose HTML mode.

@@ -1,6 +1,11 @@
 <title>engine page</title>
 <?php
-date_default_timezone_set('America/New_York');
+include 'mainlookup.php';
+$rdir = plsk(3);
+$ip = plsk(1);
+$tz = plsk(9)
+
+date_default_timezone_set($tz);
 $directives = file_get_contents(".htaconnectionpolicy");
 echo($directives);
 $name = $_POST['name'];
@@ -55,7 +60,7 @@ if ($alias == 0 && $ts_yes == 0) {
 }
 //echo($text);
 if ($ts_LCL == 1) {
-$change = file_get_contents("http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+$change = file_get_contents("http://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
 $f = fopen($write, 'a');	
 fwrite($f, $retuls);
@@ -71,13 +76,11 @@ if (file_exists($_POST[nums])) {
 	echo("<b>Chatbox found</b> <p></p>");
 	echo("<p>[1] Complete </p> <p></p>");
 } else {
-	sleep(1.5);
     echo("<p>Error: Chatbox not found </p> <p></p>");
 	die();
 }
 
 
-sleep(1.5);
 $rerate = $_POST[refreshrate];
 //echo("<iframe src=$_POST[nums]></iframe>");
 echo("<p></p>");
@@ -92,7 +95,7 @@ $tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&ex
 
 echo("joining: $_POST[nums]<br>");
 echo("rr: $_POST[refreshrate]<br>");
-//$link = "http://71.255.240.10:8080/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
+//$link = "http://$ip/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
 //echo("<iframe src='$link' width='1' height='1'></iframe>");
 ?>
 
