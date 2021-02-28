@@ -2,6 +2,7 @@
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
+date_default_timezone_set(plsk(9));
 $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
