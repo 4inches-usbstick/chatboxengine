@@ -36,6 +36,7 @@ Change C:/wamp64/www/textengine/sitechats/copies to the location where you want 
 Change C:/wamp64/www/textengine/sitechats/copies to the location where you want Media directories to be copied when using the MCOPY command.
 Change America/New_York to the PHP timezone your server uses.
 Change 12582912 to the max number of bytes you want a person to be able to upload to the server. Note that this does not bypass your server's POST limits and whatnot.
+Change policies with IDs 25 and 27 with the file that handles banned IPs and what you would input to ban an IP, respectively (for example: 25=.htamainpolicy and 27=deny from %ip).**
 
 For these policies, YES and NO (case sensitive) are the only acceptable values:
 
@@ -64,3 +65,4 @@ username. If you try to use a protected username without the proper credentials,
 Notes:
 1. Make sure to credit me and others by linking to credits.cbedata.
 2. Make sure your server protects all files ending in '.hta'
+3. (**) from earlier: use %ip to show where you would put the IP to ban
