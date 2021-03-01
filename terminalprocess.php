@@ -386,8 +386,8 @@ xedit: brings up the remote message editing terminal, no parameters<br>
 *mcopy: copy Media Directory with name (parameter) to the specified separate area for safekeeping. Using WILDCARD-ALL as the parameter allows you to copy all media dirs<br>
 *mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command unless you are sure all the necessary directories are present.<br>
 *mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br>
-*cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files are affected by using CBROADCAST without actually writing to the files.
-*loadexe: sideloads an extension. this requires Python, active RDC connection that is listening to .htaremotedesktop and sideloader extension. this command can be disabled with PID 15.<br>
+*cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files are affected by using CBROADCAST without actually writing to the files.<br>
+*loadexe: sideloads an extension. this requires Python, an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
 
 
@@ -414,7 +414,7 @@ if ($_GET["pass"] != $pass)
 {
 echo("
 <hr>
-<b>The password entered was incorrect or missing. Elevated priviledge commands will be blocked from running if the password is not correct.</b>
+<b>The password entered was incorrect or missing.</b>
 <hr>
 ");
 }
