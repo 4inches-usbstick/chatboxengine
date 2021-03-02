@@ -4,6 +4,8 @@ This page is to document how to use the CHATBOXENGINE module.
 There are three objects to be used: Session, Chatbox and HS_Chatbox
 You have to have requests installed if you're going to be using anything Chatbox Engine related.
 
+NOTE: in all Chatbox functions, replacing the password with '<UID>::<UKEY>' will make use of the UID functionality (instead of just using the regular admin password).
+
 --Session object--
 This class holds details such as server IP and password, as well as default passwords. It's better if you set up a Session before accessing Chatboxes.
 

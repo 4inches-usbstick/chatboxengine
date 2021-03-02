@@ -1,12 +1,12 @@
 Diags (REMOTE SENDING PAGE)
 <?php
+error_reporting(1);
 include 'mainlookup.php';
-$rdir = plsk(3);
-$dots = plsk(23);
 
 if (plsk(21) != 'YES') {
 	die('API is locked down.');
 }
+//print uid_db();
 //name in there?
 	if (substr_count(uid_db(), $_GET['namer']) != 0) {
 	//echo('Name found in UID pool<br>');
@@ -24,16 +24,18 @@ if (plsk(21) != 'YES') {
 	if (uidlsk($_GET['uid'], $_GET['ukey']) == true && substr_count(uid_db(), $_GET['namer']) != 0) {
 		echo('UID ' . $_GET['uid'] . ' used to send a message as ' . uid($_GET['uid'], $_GET['ukey'], 1));
 	}
+	
 
 
-
+$rdir = plsk(3);
+$dots = plsk(23);
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
-error_reporting(1);
+
 date_default_timezone_set(plsk(9));
-//error_reporting(0);
+//error_reporting(1);
 if (file_exists($_GET['write'])) {
 	$myfile = fopen("$_GET[write]", "a");
 } else {
@@ -41,13 +43,19 @@ if (file_exists($_GET['write'])) {
 }
 
 //check for iframes or js, security measure
-
 $iframe = substr_count(strtolower($_GET["msg"]), 'iframe');
 $script = substr_count(strtolower($_GET["msg"]), 'script');
+$scrip = substr_count(strtolower($_GET["write"]), '.hta');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
 }
+
+if ($scrip > 0) {
+	die("Stop: illegal destination.<br>");
+}
+//end that
+
 
 
 

@@ -47,6 +47,7 @@ while(True):
     E3 = tk.Entry()
     
     L4 = tk.Label(text="Refresh rate <ms>:")
+    L5 = tk.Label(text="Use NAME::UID::UKEY to use CBauth")
     E4 = tk.Entry()
     
     iniwindow.minsize(350, 250)
@@ -78,6 +79,7 @@ while(True):
     E1.pack()
     L2.pack()
     E2.pack()
+    L5.pack()
     entton.pack()
     outton.pack()
     E3.insert(tk.END, ip)
@@ -192,6 +194,13 @@ while(True):
     def deletefun(arg=1):
         global statt
         #print('ddddddd')
+        addon = '&o=x'
+        uid = False
+        if '::' in name:
+            things = name.split('::')
+            addon = '&uid='+str(things[1])+'&ukey='+str(things[2])
+            uid = True
+        
         inputt = text_box.get("1.0", tk.END)
         inputt1 = text_box.get("1.0", tk.END)
         inputt1 = inputt1.replace('\n', '')
@@ -207,11 +216,28 @@ while(True):
         inputt = inputt.replace('\n', '')
         inputt = inputt + '\n'
         text_box.delete("1.0", tk.END)
-        send = requests.get(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + name + "&encode=")
-        print("Debug:")
-        print(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer")
-        print(send.status_code)
-        if int(send.status_code) == 200:
+        
+        if not uid:
+            send = requests.get(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + name + "&encode=")
+            print("Debug:")
+            print(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + name + "&encode=")
+            print(send.status_code)
+        if uid:
+            send = requests.get(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + things[0] + "&encode=" + addon)
+            print("Debug:")
+            print(base_send_get + "msg=" + inputt + "&write=" + cbn + "&rurl=norefer&namer=" + things[0] + "&encode=" + addon)
+            print(send.status_code)
+        
+        banned = ['Illegal element', 'Stop:', 'API is locked down', 'This chatbox does not actually exist']
+        ok = True
+        for i in banned:
+            if i in send.text:
+                ok = send.text
+         
+        if ok != True:
+            statt.config(text='Status: Failure on sending message (Illegal action detected)')
+            print('Status: Failure on sending message (Illegal action detected)')
+        elif int(send.status_code) == 200:
             statt.config(text='Status: Message sent')
         else:
             statt.config(text='Status: HTTP Failure on sending message ('+str(send.status_code)+')')

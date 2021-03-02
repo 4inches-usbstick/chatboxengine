@@ -59,28 +59,44 @@ class Chatbox:
             
     def wipe(self, password):
         try:
-            wiper = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=wipe&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password), timeout=int(self.timeout))
+            addon = '&o=x'
+            if '::' in password:
+                stuff = password.split('::')
+                addon = '&uid='+str(stuff[0])+'&ukey='+str(stuff[1])
+            wiper = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=wipe&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password)+str(addon), timeout=int(self.timeout))
             return str(wiper.status_code)
         except:
             return str(2)
 
     def delete(self, password):
         try:
-            wiper = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=del&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password), timeout=int(self.timeout))
+            addon = '&o=x'
+            if '::' in password:
+                stuff = password.split('::')
+                addon = '&uid='+str(stuff[0])+'&ukey='+str(stuff[1])
+            wiper = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=del&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password)+str(addon), timeout=int(self.timeout))
             return str(wiper.status_code)
         except:
             return str(2)
             
     def delete_html(self, password):
         try:
-            wiper = requests.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=delhtml&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password), timeout=int(self.timeout))
+            addon = '&o=x'
+            if '::' in password:
+                stuff = password.split('::')
+                addon = '&uid='+str(stuff[0])+'&ukey='+str(stuff[1])
+            wiper = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd=delhtml&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(password)+'&key='+str(password)+str(addon), timeout=int(self.timeout))
             return str(wiper.status_code)
         except:
             return str(2)
     
     def edit(self, find, replace, password):
         try:
-            editout = request.get('http://'+self.server+'/textengine/sitechats/adminedits.php?cb='+str(self.chatbox)+'&gro='+find+'&rw='+replace+'&key='+password, timeout=int(self.timeout))
+            addon = '&o=x'
+            if '::' in password:
+                stuff = password.split('::')
+                addon = '&uid='+str(stuff[0])+'&ukey='+str(stuff[1])
+            editout = request.get('http://'+self.server+'/textengine/sitechats/adminedits.php?cb='+str(self.chatbox)+'&gro='+find+'&rw='+replace+'&key='+password+str(addon), timeout=int(self.timeout))
             return str(editout.status_code)
         except:
             return str(2)

@@ -66,3 +66,4 @@ Notes:
 1. Make sure to credit me and others by linking to credits.cbedata.
 2. Make sure your server protects all files ending in '.hta'
 3. (**) from earlier: use %ip to show where you would put the IP to ban
+

@@ -45,9 +45,14 @@ if (file_exists($_GET['write'])) {
 //check for iframes or js, security measure
 $iframe = substr_count(strtolower($_GET["msg"]), 'iframe');
 $script = substr_count(strtolower($_GET["msg"]), 'script');
+$scrip = substr_count(strtolower($_GET["write"]), '.hta');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
+}
+
+if ($scrip > 0) {
+	die("Stop: illegal destination.<br>");
 }
 //end that
 

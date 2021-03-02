@@ -60,3 +60,6 @@ allowmed: allowmed, or forbidmed. one of these allows media upload, the other do
 Like most APIs, all endpoints return a value when called upon. Unlike most APIs, you're not supposed to use these return values.
 The only use for these return values is error-catching: if an error pops up it will be reflected in the return value. The exception to this rule is display.php (it gives back the contents of a Chatbox).
 
+--USING UID/UKEY--
+UID/UKEY (CBauth) allows users to gain special priviledges, such as a reserved username and sudo powers. This currently only works with sendmsg, adminedit and terminal. If you want to use CBauth for those three endpoints, add '&uid=<UID>&ukey=<UKEY>' to your API request, and leave any password or key arguments empty.
+

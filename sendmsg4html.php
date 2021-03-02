@@ -12,9 +12,14 @@ if (file_exists($_POST['write'])) {
 //check for iframes or js, security measure
 $iframe = substr_count($_POST["msg"], 'iframe');
 $script = substr_count($_POST["msg"], 'script');
+$scrit = substr_count($_POST["write"], '.hta');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
+}
+
+if ($scrit > 0) {
+	die('Stop: illegal destination')
 }
 //end that
 
