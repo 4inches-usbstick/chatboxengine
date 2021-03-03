@@ -41,14 +41,4 @@ Allow Media Upload? <input type="checkbox" id="allowmed" name="allowmed" value="
 
 
 
-A session number is a unique token that is used for identification. To open a specific Chatbox, you need the session number. It can also be called a Chatbox number, number, code, Chatbox code, and anything that means the same thing.<br><br>
-HTML chatboxes allow you and those who join to 'draw' by pasting HTML elements. When you go to join an HTML chatbox with joinchatpublic.php, choose HTML mode.
-<!--p>
-New Fun:
-If you add .html to the end of the Chatbox number, you can get it so by entering elements instead of text into the Chatbox, you can draw in HTML instead of chatting in plain text.
-While this is not officially supported, it works. And it's fun. You can also add CSS and JS to customize it to your heart's content. Note however, that anyone can add JS and CSS, so unless you know you are safe, do not use this option. 
-You cannot see things like CSS and JS without Inspector, so hidden elements may pose a threat.
-<p></p>
-However, .html chatboxes are very unsafe, which pose a real problem, so please don't do it. Also, users are advised not to join .html chatboxes they don't trust. Any other file type is also dangerous.
-</p-->
 </html>
