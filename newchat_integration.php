@@ -38,7 +38,13 @@ if ($pos === false) {
 	$ok = 0;
 	die();
 }
+$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN');
 
+foreach ($notallowed as $i) {
+if (substr_count($_GET['newname'], $i) > 0) {
+	die('Stop: Illegal character in filename: ' . $i);
+}
+}
 
 
 $haystaq = file_get_contents("$rdir/sitechats/.htabannednumbers");
