@@ -1,13 +1,46 @@
-Diags (REMOTE SENDING PAGE)
 <?php
 error_reporting(1);
 include 'mainlookup.php';
 
+$rdir = plsk(3);
+$dots = plsk(23);
+$nogo = explode('//', plsk(29));
+$protec = explode('//', plsk(31));
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
+
+
 if (plsk(21) != 'YES') {
 	die('API is locked down.');
 }
-//print uid_db();
-//name in there?
+
+date_default_timezone_set(plsk(9));
+//error_reporting(1);
+if (file_exists($_GET['write'])) {
+	$myfile = fopen("$_GET[write]", "a");
+} else {
+	die('Stop: This chatbox does not actually exist');
+}
+
+//banned words checker
+foreach ($nogo as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["msg"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal element in string detected, halted');
+	}
+}
+//illegal destination checker
+foreach ($protec as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["write"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal destination, halted');
+	}
+}
+
 	if (substr_count(uid_db(), $_GET['namer']) != 0) {
 	//echo('Name found in UID pool<br>');
 	$b = 'b';
@@ -23,41 +56,11 @@ if (plsk(21) != 'YES') {
 //name in and right UID/UKEY pair
 	if (uidlsk($_GET['uid'], $_GET['ukey']) == true && substr_count(uid_db(), $_GET['namer']) != 0) {
 		echo('UID ' . $_GET['uid'] . ' used to send a message as ' . uid($_GET['uid'], $_GET['ukey'], 1));
+		$_GET['namer'] = uid($_GET['uid'], $_GET['ukey'], 1);
 	}
-	
 
-
-$rdir = plsk(3);
-$dots = plsk(23);
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
-
-
-date_default_timezone_set(plsk(9));
-//error_reporting(1);
-if (file_exists($_GET['write'])) {
-	$myfile = fopen("$_GET[write]", "a");
-} else {
-	die('This chatbox does not actually exist');
-}
-
-//check for iframes or js, security measure
-$iframe = substr_count(strtolower($_GET["msg"]), 'iframe');
-$script = substr_count(strtolower($_GET["msg"]), 'script');
-$scrip = substr_count(strtolower($_GET["write"]), '.hta');
-
-if ($iframe > 0 or $script > 0) {
-	die("Illegal element found in string detected, halted.<br>");
-}
-
-if ($scrip > 0) {
-	die("Stop: illegal destination.<br>");
-}
-//end that
-
-
-
+//print uid_db();
+//name in there?
 
 
 //ts on?
@@ -69,14 +72,13 @@ $timestamps = strpos("$contents", "rule.Timestamps(1)");
 echo("<br><br>timestamps at $timestamps<br>");
 }
 
+if (plsk(33) == 'YES') {
 //encoding yes
 $mess = $_GET["msg"];
-$emptyencode = empty($_GET["encode"]);
-$coder = $_GET["encode"];
-
-if (empty($coder) or $coder == "UTF-8") {
-    //echo('UTF8');
-	$coder = "UTF-8";
+if (empty($_GET["encode"])) {
+	$_GET['encode'] = 'UTF-8';
+}
+$mess = mb_convert_encoding($mess, $_GET['encode']);
 }
 
 $URL = $_GET["rurl"];
@@ -86,83 +88,39 @@ if ($URL == "norefer") {
 	$returnbool = "no";
 }
 
-$ref = $_SERVER['HTTP_REFERER'];
-if (strpos($ref, 'inchat')) {
-$URL = $ref;
-}
 
 
 
-$mess = $_GET["msg"];
-$mess1 = mb_convert_encoding($mess, $coder);
-
-
-
-//$ip = $_SERVER['REMOTE_ADDR'];
-//yes ts
-$name = $_GET["namer"];
-
-if ($timestamps != "") {
+$name = $_GET['namer'];
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
-$txt = "$name [$timestamp1, $timestamp2]: $mess1";
 
-//break check
-if ($mess1 == "^^br") {
-    $txt = "";
+if ($timestamps != "" && !empty($name)) {
+$txt = "$name [$timestamp1, $timestamp2]: $mess";
 }
-
-if (empty($name)) {
-    $txt = "[$timestamp1, $timestamp2]: $mess1";
+if ($timestamps != "" && empty($name)) {
+$txt = "[$timestamp1, $timestamp2]: $mess";
 }
-
-
-//end name gap checker
-fwrite($myfile, "$txt");
-fclose($myfile);
-echo("submitted<br>");
-echo("$coder encoder<br>");
-echo("$mess1 = message<br>");
-echo("$URL = referer<br>");
-
-if ($returnbool != "no") {
-header("Location: $URL");
-} else {
-echo ("Will not return to referer");
+if ($timestamps == "" && !empty($name)) {
+$txt = "$name: $mess";
 }
-//no ts
-} else {
-$txt = "$name: $mess1";
-
-//break check
-if ($mess1 == "^^br") {
-    $txt = "";
+if ($timestamps == "" && empty($name)) {
+$txt = "$mess";
 }
-
-if (empty($name)) {
-    $txt = $mess1;
-}
-
 
 fwrite($myfile, "$txt");
 fclose($myfile);
 echo("submitted<br>");
+//echo("$coder encoder<br>");
+//echo("$mess1 = message<br>");
+//echo("$URL = referer<br>");
 
-echo("$coder encoder<br>");
-echo("$mess1 = message<br>");
-echo("$URL = referer<br>");
-
-if ($returnbool != "no") {
-header("Location: $URL");
-} else {
-echo ("Will not return to referer");
+$ref = $_SERVER['HTTP_REFERER'];
+if (strpos($ref, 'inchat')) {
+header("Location: $ref");
 }
-}
-
-//echo(file_get_contents("C:/wamp64/www/textengine/sitechats/.htabannednumbers"));
 
 ?>
 
 <p></p>
-
 

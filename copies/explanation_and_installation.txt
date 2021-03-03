@@ -37,6 +37,8 @@ Change C:/wamp64/www/textengine/sitechats/copies to the location where you want 
 Change America/New_York to the PHP timezone your server uses.
 Change 12582912 to the max number of bytes you want a person to be able to upload to the server. Note that this does not bypass your server's POST limits and whatnot.
 Change policies with IDs 25 and 27 with the file that handles banned IPs and what you would input to ban an IP, respectively (for example: 25=.htamainpolicy and 27=deny from %ip).**
+Change PID 29 if you want to ban certain words from being used. For each word, use '//' after (// is the delimiter between words).
+Change PID 31 to protect system files with certain extensions. For each extension, use '//' after it. 
 
 For these policies, YES and NO (case sensitive) are the only acceptable values:
 
@@ -46,6 +48,7 @@ PID 17: yes if you want people to create their own filenames on upload, no if yo
 PID 19: yes if you want to use inchat_joinpage, no if you want to use joinchatpublic.
 PID 21: yes if you want the API to be enabled, and no if you want everything to break. Note that this option does not affect the Terminal.
 PID 23: yes if you want the rule.Timestamps(1) feature, no if you want that feature disabled universally.
+PID 33: yes if you want encoder conversions, no if you want to disable encoding conversions.
 
 --CBauth--
 To add someone to the CBauth list, use this format:
@@ -55,7 +58,7 @@ To add someone to the CBauth list, use this format:
 Number is the UID. This number must start from 1 and go up one by one.
 Alias is the name that is tied to the UID.
 Password (a.k.a. the UKEY) is the password tied to the UID,
-Permissions is the permission level this user has.
+Permissions is the permission level this user has (either sudo or notsudo).
 
 CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).

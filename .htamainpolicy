@@ -16,7 +16,15 @@ PID   PNAME   PVAL
 23 do-ts-checking::YES::
 25 banhammer-file::C:/wamp64/www/.htaccess::
 27 banhammer-write::deny from %ip::
+29 no-go-phrases::iframe//script::
+31 illegal-destination::.py//.php//.hta::
+33 do-encoding-conversion::YES::
 -----------------------------------------
+Notes:
+1. All filepaths must use '/'
+2. Boolean values must have YES or NO
+3. Only use no-go-phrases if certain words would threaten user security (i.e. <script> tag)
+4. On no-go-phrases and protect-extensions: use '//' as the delimiter between phrases.
 
 
 [BEGIN CBAUTH]
