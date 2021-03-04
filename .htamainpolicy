@@ -25,7 +25,9 @@ Notes:
 2. Boolean values must have YES or NO
 3. Only use no-go-phrases if certain words would threaten user security (i.e. <script> tag)
 4. On no-go-phrases and protect-extensions: use '//' as the delimiter between phrases.
-
+5. PERMS within the CBauth section must be sudo or notsudo, where sudo allows users to run admin commands and perform admin actions. All users in CBauth will be granted a reserved name.
+6. RESRICT-TO in FILESAFE has three options: local, sudo and login. local means no writing is allowed through the API, sudo means you have to be a sudo user to write to the file, and login means you just have to log in to write to the file.
+7. WHile CBauth needs semicolons at the end of each entry, FILESAFE does not, it just needs '::'.
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
@@ -33,3 +35,9 @@ UID::NAME::KEY::PERMS;
 2::UserOfficial::root5678::notsudo;
 0::1::2::3;
 [END CBAUTH]
+
+[BEGIN FILESAFE]
+C#::RESTRICT-TO::
+04universal-upload::sudo::
+0000::local::
+[END FILESAFE]

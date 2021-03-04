@@ -1,5 +1,61 @@
 Diags<br>
 <?php
+include 'mainlookup.php';
+if (plsk(21) != 'YES') {
+	die('API is locked down.');
+}
+//banned words checker
+foreach ($nogo as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["msg"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal element in string detected, halted');
+	}
+}
+//illegal destination checker
+foreach ($protec as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["write"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal destination, halted');
+	}
+}
+//write protecc?
+	if (substr_count(wr_db(), $_GET['write']) != 0) {
+		echo('File protected, checking permissions...<br>');
+		//user didnt try to authenticate
+		if (empty($_GET['uid']) || empty($_GET['ukey'])) {
+			die('Stop: Protected file and no UID/UKEY');
+		}
+		//user did try and got it
+		if (uidlsk($_GET['uid'], $_GET['ukey']) == true) {
+			//only login
+			//echo(wr_bycb($_GET['write'], 2));
+			if (wr_bycb($_GET['write'], 2) == 'login') {
+				$b = 'c';
+			}
+			//local needed
+			if (wr_bycb($_GET['write'], 2) == 'local') {
+				die('Stop: Protected file with local access only.');
+			}
+			//sudo needed and not provided
+			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
+				die('Stop: Protected file with sudo access only.');
+			}
+			//sudo needed and was provided
+			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
+				$b = 'd';
+			}
+		}
+		//user did try but did not get it
+		if (uidlsk($_GET['uid'], $_GET['ukey']) == false) {
+			die('Stop: Protected file and invalid UID/UKEY');
+		}
+	} else {
+		echo('File not protected<br>');
+		//echo(wr_db() . '<b>d</b><br>');
+	}
+	
 
 date_default_timezone_set(plsk(9));
 //error_reporting(0);

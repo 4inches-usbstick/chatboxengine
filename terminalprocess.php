@@ -368,7 +368,14 @@ if ($_GET["cmd"] == "cbroadcast" && $_GET["pass"] == $pass) {
 		skipexec:
 		
 	}
+	
 }
+//cload
+if ($_GET["cmd"] == "cload" && $_GET["pass"] == $pass) {
+copy("$rdir/sitechats/copies/$_GET[params]", "$rdir/sitechats/$_GET[params]");
+echo("Copied");
+}
+
 //help
 if ($_GET["cmd"] == "help")
 {
