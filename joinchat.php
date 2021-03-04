@@ -3,7 +3,7 @@
 include 'mainlookup.php';
 $rdir = plsk(3);
 $ip = plsk(1);
-$tz = plsk(9)
+$tz = plsk(9);
 
 date_default_timezone_set($tz);
 $directives = file_get_contents(".htaconnectionpolicy");
