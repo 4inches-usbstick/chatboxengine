@@ -64,6 +64,18 @@ For issuing TerminEdit commands, use the UID and UKEY slots to verify your ident
 For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
 username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.
 
+-FILESAFE--
+
+To protect a file from unauthorised writing add;
+FILENAME::PERMISSION::
+
+Filename is the file you want to protect from writing, and permission is who can write.
+Permission has three levels: login, sudo and local.
+
+login: users must be logged in (with a UID/UKEY)
+sudo: users must be logged in as a sudo account
+local: users cannot write to the file
+
 Notes:
 1. Make sure to credit me and others by linking to credits.cbedata.
 2. Make sure your server protects all files ending in '.hta'
