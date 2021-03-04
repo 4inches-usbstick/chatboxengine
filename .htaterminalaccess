@@ -5,6 +5,9 @@ This is a policy page that protects certain files from accidental deletion.
 0002
 0003
 0004
+0005
+0006
+0007
 .htaterminalaccess
 .htabannednumbers
 .htapassword
@@ -22,6 +25,7 @@ admineditsutil.php
 create_remote_chatbox.php
 create_remote_command.php
 createnewchat.php
+display.php
 inchat.php
 inchat_joinpage.php
 inchat_joinpage_process.php
@@ -33,10 +37,10 @@ newchat.php
 newchat_integration.php
 remote_chatbox_gen.php
 sendmsg_integration.php
+sendmsg_integration_nobreak.php
 sendmsg4html.php
 terminal.php
 terminalprocess.php
-remotedesktop.rdi
 
 credits.cbedata
 credits-schoolags.cbedata
