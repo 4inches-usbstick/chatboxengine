@@ -1,4 +1,4 @@
-This policy page contains important data that is essential to the operation of Chatbox Engine.
+      This policy page contains important data that is essential to the operation of Chatbox Engine.
 
 PID   PNAME   PVAL
 -----------------------------------------
@@ -19,7 +19,10 @@ PID   PNAME   PVAL
 29 no-go-phrases::iframe//script::
 31 illegal-destination::.py//.php//.hta::
 33 do-encoding-conversion::YES::
+35 allow-remotemainedit::YES::
+37 terminal-errors::0::
 -----------------------------------------
+
 Notes:
 1. All filepaths must use '/'
 2. Boolean values must have YES or NO
@@ -28,6 +31,7 @@ Notes:
 5. PERMS within the CBauth section must be sudo or notsudo, where sudo allows users to run admin commands and perform admin actions. All users in CBauth will be granted a reserved name.
 6. RESRICT-TO in FILESAFE has three options: local, sudo and login. local means no writing is allowed through the API, sudo means you have to be a sudo user to write to the file, and login means you just have to log in to write to the file.
 7. WHile CBauth needs semicolons at the end of each entry, FILESAFE does not, it just needs '::'.
+8. PID 37 is specifically for debugging. 0 is for suppress all terminal errors, and 1 is for allow terminal errors to show up.
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
@@ -41,3 +45,4 @@ C#::RESTRICT-TO::
 04universal-upload::sudo::
 0000::local::
 [END FILESAFE]
+      

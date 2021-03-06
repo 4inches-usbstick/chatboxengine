@@ -7,6 +7,8 @@ $ip = plsk(1);
 $mcc = plsk(7);
 $cc = plsk(5);
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
+$useduid = false;
+error_reporting(plsk(37));
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
@@ -14,6 +16,8 @@ if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
 	$_GET['pass'] = $pass;
+	//echo('<hr>You are a sudo user. You are able to run most commands, except for the CHANGE and INICFG commands.<hr>');
+	$useduid = true;
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
@@ -107,13 +111,30 @@ if ($_GET["cmd"] == "banhammer" and $_GET["pass"] == $pass) {
 }
 
 //change
-if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass) {
+if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
 	$f1 = fopen("$rdir/sitechats/.htapassword", "w");
 	fwrite($f1, "$_GET[params]");
 	fclose($f1);
 	echo("Password changed: $_GET[params]");
 }
+if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
+	echo("You must use the main admin password to run the CHANGE command.");
+}
 
+//policy
+if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
+	$f1 = fopen("$rdir/sitechats/.htamainpolicy", "w");
+	fwrite($f1, "$_POST[params]");
+	fclose($f1);
+	echo("Written to file: $_POST[params]");
+}
+if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
+	echo("You must use the main admin password to run the INICFG command.");
+}
+
+if ($_GET['cmd'] == 'ecfg') {
+	echo('<a href="maineditor.php">Open</a>');
+}
 
 //del
 if ($_GET["cmd"] == "del" and $_GET["pass"] == $pass) {
@@ -380,7 +401,7 @@ echo("Copied");
 if ($_GET["cmd"] == "help")
 {
 echo("
-COMMAND LIST: (commands with stars require admin password)<br><br>
+COMMAND LIST: (commands with stars require admin password or UID/UKEY)<br><br>
 *del: deletes chatbox with number (parameter). <br>
 *delhtml: same as del, but only for html chatboxes <br>
 *xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
@@ -401,6 +422,8 @@ help: brings up this help message, no parameters<br><br>
 
 No Verbose allows you to suppress the output of the command (unless a fatal error happens on command execution).
 This feature is only for the web client.<br><br>
+
+The CHANGE command requires the admin password, and cannot accept UID/UKEY.
 
 If there are dangerous commands, there are people who will find a way to mess it up. This terminal does not stop you from making bad decisions.
 If we are only free to make good decisions, we are not free at all.

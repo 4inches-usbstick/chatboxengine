@@ -48,6 +48,8 @@ PID  Change to
 29   Banned phrases (use // to separate each word, i.e. "f*ck//sh*t//bit*h")
 31   Illegal destintation Chatboxes. Use '.extension' to protect certain extensions (i.e. '.php//.py').
 33   Whether or not to convert encodings upon request. (YES for convert, NO for don't convert)
+35   Whether or not you want to allow Admin to remotely edit .htamainpolicy (YES for allow, NO for forbid).
+37   PHP suppress errors in the terminal. 0 for suppress, and 1 for do not suppress.
 
 --CBauth--
 To add someone to the CBauth list, use this format:
