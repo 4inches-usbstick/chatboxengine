@@ -49,7 +49,7 @@ $gethttd = file_get_contents("http://$ip/textengine/sitechats/media/$nub-med");
 if (plsk(39) == 'YES') {
 $gethttd = true;
 }
-if (plsk(39) == 'NO') {
+if (plsk(39) == 'NO' || substr_count($_GET['chatnum'], '.html') < 1) {
 $gethttd = false;
 }
 //$gethttd = false;
@@ -113,6 +113,7 @@ $formaction = substr_count($_GET["chatnum"], '.html');
 if ($formaction > 0) {
 	$form = 'sendmsg4html.php';
 	$way = 'POST';
+		echo("<style>div { white-space: pre-wrap; }</style>");
 } else {
 	$form = 'sendmsg_integration.php';
 	$way = 'GET';
