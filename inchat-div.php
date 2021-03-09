@@ -21,8 +21,16 @@ $ip = plsk(1);
 $formact = "http://$ip/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
 error_reporting(1);
 $mediaoptions = 0;
-$gethttd = file_get_contents("http://$ip/textengine/sitechats/media/$_GET[chatnum]");
 
+if (plsk(39) == 'CHECK') {
+$gethttd = file_get_contents("http://$ip/textengine/sitechats/media/$_GET[chatnum]");
+}
+if (plsk(39) == 'YES') {
+$gethttd = true;
+}
+if (plsk(39) == 'NO') {
+$gethttd = false;
+}
 
 if ($gethttd === false) {
 	$bruh = 'bruh';
@@ -35,7 +43,16 @@ if ($gethttd === false) {
 
 
 $nub = substr($_GET['chatnum'], 0, -5);
+if (plsk(39) == 'CHECK') {
 $gethttd = file_get_contents("http://$ip/textengine/sitechats/media/$nub-med");
+}
+if (plsk(39) == 'YES') {
+$gethttd = true;
+}
+if (plsk(39) == 'NO') {
+$gethttd = false;
+}
+//$gethttd = false;
 
 if ($gethttd === false) {
 	$bruh = 'bruh';

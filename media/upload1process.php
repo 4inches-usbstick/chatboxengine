@@ -7,6 +7,13 @@ $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
 
+if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
+	$m = 'f';
+} else {
+	die('Stop: This chatbox does not actually exist');
+}
+
+
 if ($enable != 'YES') {
 die('Stop: Uploads stopped by .htamainpolicy');
 }

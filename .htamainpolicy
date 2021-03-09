@@ -1,4 +1,4 @@
-      This policy page contains important data that is essential to the operation of Chatbox Engine.
+This policy page contains important data that is essential to the operation of Chatbox Engine.
 
 PID   PNAME   PVAL
 -----------------------------------------
@@ -21,6 +21,7 @@ PID   PNAME   PVAL
 33 do-encoding-conversion::YES::
 35 allow-remotemainedit::YES::
 37 terminal-errors::0::
+39 domediacheck::CHECK::
 -----------------------------------------
 
 Notes:
@@ -32,6 +33,7 @@ Notes:
 6. RESRICT-TO in FILESAFE has three options: local, sudo and login. local means no writing is allowed through the API, sudo means you have to be a sudo user to write to the file, and login means you just have to log in to write to the file.
 7. WHile CBauth needs semicolons at the end of each entry, FILESAFE does not, it just needs '::'.
 8. PID 37 is specifically for debugging. 0 is for suppress all terminal errors, and 1 is for allow terminal errors to show up.
+9. PID 39 has three values: CHECK, YES, NO. NO is for assume there is no media upload for that Chatbox, YES assumes there is a valid media upload for that Chatbox, CHECK checks per Chatbox (slower but better)/
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;

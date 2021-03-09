@@ -50,6 +50,7 @@ PID  Change to
 33   Whether or not to convert encodings upon request. (YES for convert, NO for don't convert)
 35   Whether or not you want to allow Admin to remotely edit .htamainpolicy (YES for allow, NO for forbid).
 37   PHP suppress errors in the terminal. 0 for suppress, and 1 for do not suppress.
+39   Read the notes on PID 39 in the config file.
 
 --CBauth--
 To add someone to the CBauth list, use this format:
