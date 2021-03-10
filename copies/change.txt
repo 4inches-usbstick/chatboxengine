@@ -1,3 +1,4 @@
+
 HOW TO CHANGE YOUR REFRESH RATE:
 
 The refresh rate determines how often the server should ask the server if anything new has happened within a Chatbox. The less the refresh rate, the more often the client asks the server.

@@ -1,3 +1,4 @@
+
 #this is the python version of the terminal
 ip = "71.255.240.10:8080"
 print("Chatbox Engine Terminal for Python. Type pyterm-help for special help (commands specific to this terminal), and help for CBE commands.")
@@ -84,3 +85,4 @@ while True:
        
         
         
+

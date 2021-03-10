@@ -1,3 +1,4 @@
+
 <chatboxengine.py docs>
 
 This page is to document how to use the CHATBOXENGINE module.
@@ -75,3 +76,4 @@ hscb = HS_Chatbox(<SERVER-IP>, <CHATBOX-NUMBER>, [PASSWORD], [NAME], [ENCODER], 
 
 It's the same as the Chatbox class, but there's a password parameter too, because High Security Chatboxes are locked behind a password.
 the GET, WRITE, and DELETE methods are the same. the MAKE method has one change, that being that it takes no parameters.
+

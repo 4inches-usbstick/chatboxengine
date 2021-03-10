@@ -182,7 +182,7 @@ echo("$mess2 = messageHTML<br>");
 
 <p></p>
 <form>
- <input type="button" value="← Back" onclick="history.back()">
+ <input type="button" value="Back" onclick="history.back()">
 </form>
 
 

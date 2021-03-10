@@ -1,3 +1,4 @@
+
 import requests as rq
 import time as t
 import os
@@ -69,10 +70,10 @@ while f2 <= len(listofthings):
         pathorigin.clear()
         pathorigin = str(listofthings[f2]).split('##')
         f = open(listofthings[f1], 'w', encoding=encode)
-        pathorigin[2] = pathorigin[2].replace('%c',':')
-        pathorigin[2] = pathorigin[2].replace('%d','::')
-        pathorigin[2] = pathorigin[2].replace('%h','#')
-        pathorigin[2] = pathorigin[2].replace('%j','##')
+        pathorigin[2] = pathorigin[2].replace(':',':')
+        pathorigin[2] = pathorigin[2].replace('::','::')
+        pathorigin[2] = pathorigin[2].replace('#','#')
+        pathorigin[2] = pathorigin[2].replace('##','##')
         f.write(pathorigin[2])
         f.close()
         names.append(listofthings[f1])
@@ -123,3 +124,4 @@ print('Installation complete, exiting in '+str(cpd)+' seconds')
 t.sleep(int(cpd))
 exit()
 #input()
+

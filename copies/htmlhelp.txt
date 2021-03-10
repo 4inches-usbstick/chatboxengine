@@ -1,3 +1,4 @@
+
 <html chatbox doc>
 
 HTML chatboxes have to be accessed through the Div version of inchat.php.
@@ -39,3 +40,4 @@ If you don't use Watch Media Mode, the auto updating JS script will grab new dat
 
 TO GET A MEDIA URL: You can either source the media from elsewhere by copying the URL, or you can upload files with Upload Media, then take that URL and use it
 to create an audiovisual thing, or a download link.
+

@@ -84,13 +84,13 @@ if (file_exists($_POST[nums])) {
 $rerate = $_POST[refreshrate];
 //echo("<iframe src=$_POST[nums]></iframe>");
 echo("<p></p>");
-$tolink = "<a href=\"inchat.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\">→ Connect to the chatbox (Legacy Mode, Iframe Standard) ←</a><br>";
+$tolink = "<a href=\"inchat.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\"> Connect to the chatbox (Legacy Mode, Iframe Standard) </a><br>";
 echo($tolink);
-$tolink = "<a href=\"inchat-div.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\">→ Connect to the chatbox (Legacy Mode, Div Standard) ←</a><br>";
+$tolink = "<a href=\"inchat-div.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\"> Connect to the chatbox (Legacy Mode, Div Standard) </a><br>";
 echo($tolink);
-$tolink = "<a href=\"inchat4html.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\">→ Connect to the chatbox (HTML Mode) ←</a><br>";
+$tolink = "<a href=\"inchat4html.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\"> Connect to the chatbox (HTML Mode) </a><br>";
 //echo($tolink);
-$tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\">→ Connect to the chatbox (CSS'd up) ←</a><br><br>";
+$tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0\"> Connect to the chatbox (CSS'd up) </a><br><br>";
 //echo($tolink);
 
 echo("joining: $_POST[nums]<br>");
