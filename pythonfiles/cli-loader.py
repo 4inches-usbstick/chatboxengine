@@ -74,6 +74,7 @@ while f2 <= len(listofthings):
         pathorigin[2] = pathorigin[2].replace('%h','#')
         pathorigin[2] = pathorigin[2].replace('%j','##')
         f.write(pathorigin[2])
+        #print(bytes(pathorigin[2], 'utf-8'))
         f.close()
         names.append(listofthings[f1])
         print('WRITE '+listofthings[f1])
