@@ -6,3 +6,4 @@ Student-created, open-source, extendable software designed for communication and
 -> Rickrolling people by luring them into a random Chatbox
 
 [!]: Docs are in the COPIES directory. See explanation_and_installation.txt for a list of the doc files and their purposes.
+[!]: See https://github.com/4inches-usbstick/ziputility for more info on the Zip utility that comes with CBE.
