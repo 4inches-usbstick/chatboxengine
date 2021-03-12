@@ -69,7 +69,7 @@ $new = "$_GET[newname]";
 
 $newmediadir = "$_GET[newname]-med";
 
-if ($ok == "1" and $_GET["option"] == h) {
+if ($ok == "1" and $_GET["option"] == 'h') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	if ($_GET["allowmed"] == "allowmed") {
@@ -81,7 +81,7 @@ if ($ok == "1" and $_GET["option"] == h) {
 	$txt = "This is chatbox with number $filename <p></p>.";
 	fclose($myfile);
 } 
-if ($ok == "1" and $_GET["option"] == l) {
+if ($ok == "1" and $_GET["option"] == 'l') {
 	$newmediadir = "$_GET[newname]";
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
@@ -95,7 +95,7 @@ if ($ok == "1" and $_GET["option"] == l) {
 	fclose($myfile);
 }
 
-if ($ok == '1' and $_POST['option'] == 'd') {
+if ($ok == '1' and $_GET['option'] == 'd') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	echo("<b>Chatbox $new created. This is a CBEDATA chatbox, meaning that people should not join as an ordinary user.</b>");

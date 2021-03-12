@@ -40,7 +40,9 @@ foreach ($protec as $i) {
 		die('Stop: Illegal destination, halted');
 	}
 }
-
+	if (empty($_GET['namer'])) {
+		$_GET['namer'] = 'PHR-NUL';
+	}
 	if (substr_count(uid_db(), $_GET['namer']) != 0) {
 	//echo('Name found in UID pool<br>');
 	$b = 'b';
@@ -128,14 +130,20 @@ $name = $_GET['namer'];
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
 
-if ($timestamps != "" && !empty($name)) {
+if ($timestamps != "" && !empty($name) && $name != 'PHR-NUL') {
 $txt = "$name [$timestamp1, $timestamp2]: $mess";
+}
+if ($timestamps != "" && !empty($name) && $name == 'PHR-NUL') {
+$txt = "[$timestamp1, $timestamp2]: $mess";
 }
 if ($timestamps != "" && empty($name)) {
 $txt = "[$timestamp1, $timestamp2]: $mess";
 }
-if ($timestamps == "" && !empty($name)) {
+if ($timestamps == "" && !empty($name) && $name != 'PHR-NUL') {
 $txt = "$name: $mess";
+}
+if ($timestamps == "" && !empty($name) && $name == 'PHR-NUL') {
+$txt = "$mess";
 }
 if ($timestamps == "" && empty($name)) {
 $txt = "$mess";

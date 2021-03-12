@@ -72,7 +72,7 @@ error_reporting(0);
 echo("<b>Attempting to open a Chatbox</b><p></p>");
 $ok = 1;
 
-if (file_exists($_POST[nums])) {
+if (file_exists($_POST["nums"])) {
 	echo("<b>Chatbox found</b> <p></p>");
 	echo("<p>[1] Complete </p> <p></p>");
 } else {
@@ -81,7 +81,7 @@ if (file_exists($_POST[nums])) {
 }
 
 
-$rerate = $_POST[refreshrate];
+$rerate = $_POST["refreshrate"];
 //echo("<iframe src=$_POST[nums]></iframe>");
 echo("<p></p>");
 $tolink = "<a href=\"inchat.php?chatnum=$_POST[nums]&refreshrate=$rerate&explorer=0&encoderm=$_POST[enc]&namer=$_POST[name]\"> Connect to the chatbox (Legacy Mode, Iframe Standard) </a><br>";

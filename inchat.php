@@ -67,7 +67,7 @@ if (empty($width)) {
     $width = "800";
 }
 
-$explorer = $_GET[explorer];
+$explorer = $_GET["explorer"];
 if ($explorer == "0")
 {
 echo("<iframe id=\"iframe1\" src=$_GET[chatnum] width=\"$width\" height=\"400\"></iframe>");
