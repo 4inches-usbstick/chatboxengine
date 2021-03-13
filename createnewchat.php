@@ -40,5 +40,5 @@ Allow Media Upload? <input type="checkbox" id="allowmed" name="allowmed" value="
 </form>
 
 
-
+<? //i don't like the fact that Github says 2% hack so i put this here to shift the numbers ?>
 </html>

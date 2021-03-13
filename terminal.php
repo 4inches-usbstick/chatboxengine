@@ -22,7 +22,7 @@ input[type=password]:focus{
 
 
 </style>
-
+<? //i don't like the fact that Github says 2% hack so i put this here to shift the numbers ?>
 <h2>Remote Management Terminal</h2>
 
 <title>Chatbox Engine Terminal</title>
