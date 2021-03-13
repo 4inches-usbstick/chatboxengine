@@ -159,10 +159,6 @@ if ($pos === false) {
 
 
 
-
-
-$ff1 = fopen($path);
-$ff1 = fclose($path);
 $ff1 = unlink($path);
 
 
@@ -210,8 +206,6 @@ if ($pos === false) {
 
 
 
-$ff1 = fopen($path);
-$ff1 = fclose($path);
 $ff1 = unlink($path);
 
 
