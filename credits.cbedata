@@ -7,18 +7,16 @@ class[credits> version==1.4.3; date==11.MAR.2021 to PRESENT;]
 
 class[contributors> 
 class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA, extensions;]
-class[Arjun> role==Testing Chatbox Engine, and believing while CBE was a small child;]
-class[E***k> role==Testing Chatbox Engine and believing  while CBE was a small child;]
-class[C****e> role==Testing Chatbox Engine and believing  while CBE was a small child;]
-class[Multiple unknowns> role==Testing Chatbox Engine and believing  while CBE was a small child;]
-class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and believing while CBE was a slightly grown child;]
+class[Arjun> role==Testing Chatbox Engine, and supporting me and CBE while CBE was in development;]
+class[E***k> role==Testing Chatbox Engine and supporting it in the early days;]
+class[C****e> role==Testing Chatbox Engine and supporting it in the early days;]
+class[Multiple unknowns> role==Testing Chatbox Engine and supporting it in the early days;]
+class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and supporting it right before the early days were over;]
 
 class[softwares>
-class[PHP 7> role==Serverside, API, CBEDATA;]
+class[PHP 7, 8> role==Serverside, API, CBEDATA;]
 class[Python 3.8> role==Clients, CBEDATA;]
 class[Python Modules> used==requests, tkinter, time, textwrap, discord; role==Clients, bots, CBEDATA;]
-class[HTML,CSS,JS> role==Web client;]
-class[WAMPSERVER> role==Server space;]
 
 class[places-i-borrowed-code-from>
 class[copydir-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/5707806/recursive-copy-of-directory;]
