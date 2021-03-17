@@ -20,8 +20,9 @@ PID   PNAME   PVAL
 31 illegal-destination::.py//.php//.hta::
 33 do-encoding-conversion::YES::
 35 allow-remotemainedit::YES::
-37 terminal-errors::0::
+37 terminal-errors::1::
 39 domediacheck::YES::
+41 editneedmaster::NO::
 -----------------------------------------
 
 Notes:

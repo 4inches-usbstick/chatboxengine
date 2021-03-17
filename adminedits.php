@@ -8,12 +8,15 @@ if (plsk(21) != 'YES') {
 	die('API is locked down.');
 }
 
+$useduid = false;
+
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
 	$_GET['key'] = $pass;
+	$useduid = true;
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
@@ -21,20 +24,30 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) !
 }
 
 skipverify:
-
+if ($_GET["key"] == $pass and $useduid == false) {
+	echo("Logged in with Master Password<br>");
+}
+if ($_GET["key"] == $pass and $useduid == true && plsk(41) == 'YES') {
+	die('Stop: UID/UKEY users cannot edit');
+}
+if ($_GET["key"] == $pass and $useduid == true && plsk(41) == 'NO') {
+	echo('PID41 ok<br>');
+}
 
 $dots = plsk(23);
+$nogo = explode('//', plsk(29));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
-
-$iframe = substr_count(strtolower($_GET["rw"]), 'iframe');
-$script = substr_count(strtolower($_GET["rw"]), 'script');
-
-if ($iframe > 0 or $script > 0) {
-	die("Illegal element found in string detected, halted.<br>");
+foreach ($nogo as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["rw"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal element in string detected, halted');
+	}
 }
+
 if (empty($_GET['type'])) {
 	$type = 'all';
 }

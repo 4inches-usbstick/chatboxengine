@@ -23,6 +23,10 @@ input[type=password]:focus{
 
 </style>
 <?php
+$pass = file_get_contents(".htapassword");
+if ($_GET['pass'] != $pass) {
+	die('Incorrect password, need master password.');
+}
 $currentpolicy = file_get_contents('.htamainpolicy');
 include 'mainlookup.php';
 if (plsk(35) != 'YES') {

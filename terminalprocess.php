@@ -118,7 +118,7 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
 	echo("Password changed: $_GET[params]");
 }
 if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
-	echo("You must use the main admin password to run the CHANGE command.");
+	echo("Master password required to run the CHANGE command.");
 }
 
 //policy
@@ -132,8 +132,11 @@ if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
 	echo("You must use the main admin password to run the INICFG command.");
 }
 
-if ($_GET['cmd'] == 'ecfg') {
-	echo('<a href="maineditor.php">Open</a>');
+if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == false) {
+	echo("<a href=\"maineditor.php?pass=$_GET[pass]\">Open</a>");
+}
+if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
+	echo("Master password required to run ECFG command");
 }
 
 //del
@@ -395,29 +398,36 @@ echo("Copied");
 if ($_GET["cmd"] == "help")
 {
 echo("
-COMMAND LIST: (commands with stars require admin password or UID/UKEY)<br><br>
+COMMANDS: <br><br>
 *del: deletes chatbox with number (parameter). <br>
 *delhtml: same as del, but only for html chatboxes <br>
 *xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
-*wipe: delete the contents of a Chatbox but not the Chatbox itself<br>
+*wipe: delete the contents of a Chatbox but not the Chatbox itself<br><br>
+
 vers: shows the CBE version, no required parameters. use 'showall::YES' to bring up the entire credits file instead of just a version number <br>
-xedit: brings up the remote message editing terminal, no parameters<br>
-*banhammer: bans IP address with value (parameter)<br>
-*change: changes the admin password to (parameter)<br>
+xedit: brings up the remote message editing terminal, no parameters<br><br>
+
+*banhammer: bans IP address with value (parameter)<br><br>
+
 *mkdir: make a Media Directory where there wasn't one, the media directory will be named (parameter)<br>
 *mcopy: copy Media Directory with name (parameter) to the specified separate area for safekeeping. Using WILDCARD-ALL as the parameter allows you to copy all media dirs<br>
-*mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. Note that when you try to load Backup Media Dir contents into the main Media dir, the destination dir must already exist. Do not use WILDCARD-ALL with this command unless you are sure all the necessary directories are present.<br>
-*mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br>
-*cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files are affected by using CBROADCAST without actually writing to the files.<br>
-*loadexe: sideloads an extension. this requires Python, an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
+*mload: pull Media Directory with name (parameter) from safekeeping to the main Media dir. The destination dir must already exist. Do not use WILDCARD-ALL with this command.<br>
+*mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br><br>
+
+*cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files will be written to without actually writing.<br>
+*loadexe: sideloads an extension. an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
+
+*^ecfg: configure .htamainpolicy. this command can be disabled by PID 35<br>
+*^change: change Master Admin Password<br><br>
 
 
 
 No Verbose allows you to suppress the output of the command (unless a fatal error happens on command execution).
 This feature is only for the web client.<br><br>
 
-The CHANGE command requires the admin password, and cannot accept UID/UKEY.
+* = requires UID/UKEY or password<br>
+^ = requires password and cannot take UID/UKEY<br>
 
 If there are dangerous commands, there are people who will find a way to mess it up. This terminal does not stop you from making bad decisions.
 If we are only free to make good decisions, we are not free at all.
