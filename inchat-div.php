@@ -189,16 +189,29 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\">
 	console.log(boi);
 	var msg = document.getElementById('msg').value = '';
 	
-
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
 			var boi = 'boi';
-    }
+						if (xmlHttp.responseText.includes('Stop') || xmlHttp.responseText.includes('API')) {
+				document.getElementById(\"report\").innerHTML = document.getElementById(\"report\").innerHTML.concat('<br>ERROR-> '.concat(xmlHttp.responseText));
+			}
+			
+		if (xmlHttp.readyState === 4){   //if complete
+        if(xmlHttp.status === 200){ 
+            var boi = 'boi';
+        } else {
+            document.getElementById(\"report\").innerHTML = document.getElementById(\"report\").innerHTML.concat('<br>ERROR-> XMLHTTP Error '.concat(xmlHttp.status));
+        }
+    } 
+}
+    
 	xmlHttp.open(\"GET\", theUrl, true); // true for asynchronous 
 	xmlHttp.setRequestHeader(\"Cache-Control\", \"no-cache, no-store, max-age=0\");
     xmlHttp.send(null);
 	}
+	
+	
 
 	
 
@@ -208,6 +221,8 @@ function httpGet(theUrl)
     xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
 			document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
+			
+
 			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,999999999999999), 10);
 			var str1 = theUrl;
 			var str2 = \"?math=\";
@@ -274,12 +289,14 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 
 
 
-
+<code id='report' style='color: red'></code>
 <fieldset>
 <legend>Actions</legend>
+
  <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='httpGet(\"$getter\")'>
 <input type=\"button\" style=\"color:black\" onclick=\"location.href='http://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=foobar&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
 <!--input type=\"button\" style=\"color:black\" onclick=\"location.href='http://$ip/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
+<button onclick='document.getElementById(\"report\").innerHTML = \"\"'>Supress Error</button>
 
 <form action='http://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change Refresh Rate:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>

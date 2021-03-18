@@ -90,6 +90,7 @@ echo("
 
 <form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
 <fieldset draggable=\"false\">
+
 <legend>Say something: </legend>
 <br>
 Message: <input id='msg' type=\"text\" name=\"msg\"><br>
@@ -104,7 +105,8 @@ Media Options: $mediaoptions
 <input type=\"submit\" style=\"color:black\" value=\"Send\">
 </fieldset>
 </form>
-
+<code id='report' style='color: red'></code>
+<button onclick='document.getElementById(\"report\").innerHTML = \"\"'>Supress Error</button>
 
 
 
@@ -130,11 +132,23 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 	
 
 	var xmlHttp = new XMLHttpRequest();
-	xmlHttp.onreadystatechange = function() { 
+xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
 			var boi = 'boi';
+						if (xmlHttp.responseText.includes('Stop') || xmlHttp.responseText.includes('API')) {
+				document.getElementById(\"report\").innerHTML = document.getElementById(\"report\").innerHTML.concat('<br>ERROR-> '.concat(xmlHttp.responseText));
+			}
+			
+		if (xmlHttp.readyState === 4){   //if complete
+        if(xmlHttp.status === 200){ 
+            var boi = 'boi';
+        } else {
+            document.getElementById(\"report\").innerHTML = document.getElementById(\"report\").innerHTML.concat('<br>ERROR-> XMLHTTP Error '.concat(xmlHttp.status));
+        }
     }
-	xmlHttp.open(\"GET\", theUrl, true); // true for asynchronous 
+
+	}
+		xmlHttp.open(\"GET\", theUrl, true); // true for asynchronous 
 	xmlHttp.setRequestHeader(\"Cache-Control\", \"no-cache, no-store, max-age=0\");
     xmlHttp.send(null);
 	}
