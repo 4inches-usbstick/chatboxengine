@@ -1,4 +1,3 @@
-
 DOC EXPLANATIONS:
 cbedata and cbedata.py: explaining CBEDATA
 pythonfunctions.txt: how to use chatboxengine.py
@@ -31,28 +30,22 @@ Inside your new textengine directory, create another folder named sitechats. Fro
 
 Now, open .htamainpolicy with your favorite text editor and change these things in the config file:
 
-PID  Change to
-1    Your server's IP or domain name
-3    Path to textengine dir without / on the end
-5    Where Chatboxes should be copied when someone uses XCOPY, no / on the end
-7    Where Chatbox Media dirs should be copied when someone uses MCOPY, no / on the end
-9    Correct PHP timezone
-11   Max upload file size in bytes. *
-13   Allow media upload (YES to allow, NO to forbid)
-15   Allow LOADEXE command (YES to allow, NO to forbid)
-17   Allow users to name their own files (YES to allow, NO to forbid)
-19   Use inchat_joinpage or joinchatpublic (YES for inchat_joinpage, NO for joinchatpublic)
-21   Enable API (YES to unlock API and NO if you want everything to break)
-23   Do TS checking (YES to enable timestamps, NO to disable all timestamps)
-25   The filepath to the file that controls banned IP addresses, no / on the end.
-27   What you would put into the aforementioned file to ban an IP. **
-29   Banned phrases (use // to separate each word, i.e. "f*ck//sh*t//bit*h")
-31   Illegal destintation Chatboxes. Use '.extension' to protect certain extensions (i.e. '.php//.py').
-33   Whether or not to convert encodings upon request. (YES for convert, NO for don't convert)
-35   Whether or not you want to allow Admin to remotely edit .htamainpolicy (YES for allow, NO for forbid).
-37   PHP suppress errors in the terminal. 0 for suppress, and 1 for do not suppress.
-39   Read the notes on PID 39 in the config file.
-41   Whether to require the master password to send editing commands, YES for require and NO for don't require
+Change 71.255.240.10:8080 to the IP or domain of your server.
+Change C:/wamp64/www/textengine to the path that you would take to get to your textengine directory. No slash on the end.
+Change C:/wamp64/www/textengine/sitechats/copies to the location where you want Chatboxes to be copied when using the XCOPY command.
+Change C:/wamp64/www/textengine/sitechats/copies to the location where you want Media directories to be copied when using the MCOPY command.
+Change America/New_York to the PHP timezone your server uses.
+Change 12582912 to the max number of bytes you want a person to be able to upload to the server. Note that this does not bypass your server's POST limits and whatnot.
+Change policies with IDs 25 and 27 with the file that handles banned IPs and what you would input to ban an IP, respectively (for example: 25=.htamainpolicy and 27=deny from %ip).**
+
+For these policies, YES and NO (case sensitive) are the only acceptable values:
+
+PID 13: yes for allow media upload universally, no for forbid media upload universally.
+PID 15: yes if you want to enable the LOADEXE command, no if you want to disable the LOADEXE command.
+PID 17: yes if you want people to create their own filenames on upload, no if you want to have uploaded files automatically renamed.
+PID 19: yes if you want to use inchat_joinpage, no if you want to use joinchatpublic.
+PID 21: yes if you want the API to be enabled, and no if you want everything to break. Note that this option does not affect the Terminal.
+PID 23: yes if you want the rule.Timestamps(1) feature, no if you want that feature disabled universally.
 
 --CBauth--
 To add someone to the CBauth list, use this format:
@@ -62,29 +55,15 @@ To add someone to the CBauth list, use this format:
 Number is the UID. This number must start from 1 and go up one by one.
 Alias is the name that is tied to the UID.
 Password (a.k.a. the UKEY) is the password tied to the UID,
-Permissions is the permission level this user has (either sudo or notsudo).
+Permissions is the permission level this user has.
 
 CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).
 For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
 username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.
 
--FILESAFE--
-
-To protect a file from unauthorised writing add;
-FILENAME::PERMISSION::
-
-Filename is the file you want to protect from writing, and permission is who can write.
-Permission has three levels: login, sudo and local.
-
-login: users must be logged in (with a UID/UKEY)
-sudo: users must be logged in as a sudo account
-local: users cannot write to the file
-
 Notes:
 1. Make sure to credit me and others by linking to credits.cbedata.
 2. Make sure your server protects all files ending in '.hta'
 3. (**) from earlier: use %ip to show where you would put the IP to ban
-4. (*) from earlier: this does not bypass server limit for file uploads
-
 

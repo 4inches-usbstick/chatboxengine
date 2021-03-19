@@ -1,8 +1,7 @@
-
 <api docs>
 The Chatbox Engine API
 
-The API allows you and others to send commands to do things to the server by making a GET request for a certain URL. Currently, there are five endpoints:
+Currently, there are five endpoints, all using HTTP GET:
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
@@ -63,5 +62,4 @@ The only use for these return values is error-catching: if an error pops up it w
 
 --USING UID/UKEY--
 UID/UKEY (CBauth) allows users to gain special priviledges, such as a reserved username and sudo powers. This currently only works with sendmsg, adminedit and terminal. If you want to use CBauth for those three endpoints, add '&uid=<UID>&ukey=<UKEY>' to your API request, and leave any password or key arguments empty.
-
 

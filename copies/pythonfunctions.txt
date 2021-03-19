@@ -1,4 +1,3 @@
-
 <chatboxengine.py docs>
 
 This page is to document how to use the CHATBOXENGINE module.
@@ -13,13 +12,15 @@ This class holds details such as server IP and password, as well as default pass
 To initialise:
 
 import chatboxengine
-objectName = chatboxengine.Session(<SERVER-IP>, [SERVER-PASSWORD], [DEFAULT-TIMEOUT])
+objectName = chatboxengine.Session(<SERVER-IP>, [SERVER-PASSWORD], [DEFAULT-TIMEOUT], [UID], [UKEY])
 #throughout these docs, [] is an optional parameter and <> is a required parameter
 
 This creates a Session object. The Session object has three values:
 > sessionobject.server
 > sessionobject.password
 > sessionobject.timeout
+> sessionobject.uid
+> sessionobject.ukey
 
 These are just handy references you can use when accessing a Chatbox.
 You can also send CBE commands to the server by using the sendcmd() method.
@@ -27,6 +28,9 @@ You can also send CBE commands to the server by using the sendcmd() method.
 Syntax: sessionobject.sendcmd(<CMD>, <PARAMETERS>)
 <CMD> is the command, and <PARAMETERS> is what to attach to a command (i.e. sendcmd('del','123456'))
 If a parameter or number or identifier is needed as a function input (i.e. <PARAMETERS> in this example), make sure to feed the function with a string, and only strings.
+
+UID:UKEY: If you initialize the session with the UID/UKEY, you can use sessionobject.sendcmduid(<CMD>, <PARAMETERS>), which will use
+sessionobject.uid and sessionobject.ukey instead of sessionobject.password
 
 
 --Chatbox object--
@@ -40,6 +44,7 @@ cb = chatboxengine.Chatbox(<SERVER-IP>, <CHATBOX-NUMBER>, [NAME], [ENCODER], [TI
 You can use some values from the Session object. (for example, wherever you need a password, you can use sessionobject.password instead of the actual password)
 There are seven methods attached to a chatbox: get, make, write, wipe, delete, delete_html, and edit.
 
+To use UID/UKEY, there are not separate functions in the Class. Instead, use 'UID::UKEY' in place of the password.
 
 GET: for getting Chatbox contents
 syntax: cb.get()
@@ -76,4 +81,3 @@ hscb = HS_Chatbox(<SERVER-IP>, <CHATBOX-NUMBER>, [PASSWORD], [NAME], [ENCODER], 
 
 It's the same as the Chatbox class, but there's a password parameter too, because High Security Chatboxes are locked behind a password.
 the GET, WRITE, and DELETE methods are the same. the MAKE method has one change, that being that it takes no parameters.
-

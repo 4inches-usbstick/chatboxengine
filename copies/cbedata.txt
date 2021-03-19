@@ -1,5 +1,4 @@
 
-
 <cbedata docs>
 Looking for the Python Interpreter docs? 
 See cbedata_py.txt
@@ -70,7 +69,7 @@ where the attributename is the name you will use to call the information stored 
 variablename==variablevalue;
 -------
 
-You need the semicolons there. Then, after putting attributes, close off the end of the line object with ']'. 
+You need the semicolons there. Then, after putting attributes, close off the end of the line object with ']'. Non EOL objects do not require a ']' but it's good practice to put it on.
 
 --GETTING THIS DATA--
 
@@ -132,6 +131,5 @@ Use this:
 class[Hhhu>  name==Hhhu; age==103; dob==may 209; ]
 
 *Yes, the whitespaces are necessary.
-
 
 

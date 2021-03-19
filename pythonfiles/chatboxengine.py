@@ -1,15 +1,23 @@
-
 import requests as request
 
 class Session:
-    def __init__(self, server, password='', timeout=''):
+    def __init__(self, server, password='', timeout='', uid='', ukey=''):
         self.server = server
         self.password = password
         self.timeout = timeout
+        self.uid = uid
+        self.ukey = ukey
     
     def sendcmd(self, cmd, params):
         try:
             cmdout = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd='+cmd+'&params='+params+'&pass='+str(self.password), timeout=int(self.timeout))
+            return cmdout.status_code
+        except:
+            return str(2)
+            
+    def sendcmduid(self, cmd, params):
+        try:
+            cmdout = request.get('http://'+self.server+'/textengine/sitechats/terminalprocess.php?cmd='+cmd+'&params='+params+'&uid='+str(self.uid)+'&ukey='+str(self.ukey), timeout=int(self.timeout))
             return cmdout.status_code
         except:
             return str(2)
@@ -144,4 +152,3 @@ class HS_Chatbox:
         except:
             return str(2)
             
-
