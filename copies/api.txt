@@ -1,13 +1,14 @@
 <api docs>
 The Chatbox Engine API
 
-Currently, there are five endpoints, all using HTTP GET:
+Currently, there are six endpoints, five explained here, all using HTTP GET:
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
 sendmsg_integration.php (remote send message).
 newchat_integration.php (remote open chatbox)
 display.php (get Chatbox contents)
+/data/datacall.php (parse CBEDATA, explained in cbedata.txt)
 
 
 
@@ -63,3 +64,5 @@ The only use for these return values is error-catching: if an error pops up it w
 --USING UID/UKEY--
 UID/UKEY (CBauth) allows users to gain special priviledges, such as a reserved username and sudo powers. This currently only works with sendmsg, adminedit and terminal. If you want to use CBauth for those three endpoints, add '&uid=<UID>&ukey=<UKEY>' to your API request, and leave any password or key arguments empty.
 
+--ERROR REPORTING--
+If an error occurs and the operation was halted, the string 'Stop:' will appear in the return value. The one exception is with terminalprocess, where Auth-Warning will appear if you provided inadequate authorization but that did not stop execution.
