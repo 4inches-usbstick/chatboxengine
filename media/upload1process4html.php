@@ -1,4 +1,3 @@
-
 <title>engine page</title>
 <?php
 include 'mainlookup.php';
@@ -35,13 +34,13 @@ ini_set('max_execution_time', 300);
 ini_set('memory_limit', '128M');
 		$phpFileUploadErrors = array(
     0 => 'OK',
-    1 => 'PAYLOAD TOO BIG (PHP.INI)',
-    2 => 'PAYLOAD TOO BIG (HTML)',
-    3 => 'PARTIAL UPLOAD',
-    4 => 'BLANK PAYLOAD',
-    6 => 'NO TMP DIR',
-    7 => 'WRITING FAILURE',
-    8 => 'EXTENSION CONFLICT',
+    1 => 'Stop: PAYLOAD TOO BIG (PHP.INI)',
+    2 => 'Stop: PAYLOAD TOO BIG (HTML)',
+    3 => 'Stop: PARTIAL UPLOAD',
+    4 => 'Stop: BLANK PAYLOAD',
+    6 => 'Stop: NO TMP DIR',
+    7 => 'Stop: WRITING FAILURE',
+    8 => 'Stop: EXTENSION CONFLICT',
 );
 
 

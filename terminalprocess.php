@@ -21,7 +21,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('You are not a sudo user.<br>');
+	echo('Stop: You are not a sudo user.<br>');
 }
 
 skipverify:
@@ -86,7 +86,7 @@ if ($_GET["cmd"] == "wipe" and $_GET["pass"] == $pass) {
 	$script = substr_count($banned, $params);
 	
 	if ($script > 0) {
-	die("This Chatbox is protected and thus cannot be wiped.<br>");
+	die("Stop: This Chatbox is protected and thus cannot be wiped.<br>");
 }
 	
 	$f1 = fopen($params, "w");
@@ -118,7 +118,7 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
 	echo("Password changed: $_GET[params]");
 }
 if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
-	echo("Master password required to run the CHANGE command.");
+	echo("Stop: Master password required to run the CHANGE command.");
 }
 
 //policy
@@ -129,14 +129,14 @@ if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
 	echo("Written to file: $_POST[params]");
 }
 if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
-	echo("You must use the main admin password to run the INICFG command.");
+	echo("Stop: You must use the main admin password to run the INICFG command.");
 }
 
 if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == false) {
 	echo("<a href=\"maineditor.php?pass=$_GET[pass]\">Open</a>");
 }
 if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
-	echo("Master password required to run ECFG command");
+	echo("Stop: Master password required to run ECFG command");
 }
 
 //del
@@ -156,7 +156,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "<br>";
 } else {
-    echo "This file is protected and thus cannot be accessed";
+    echo "Stop: This file is protected and thus cannot be accessed";
 	die();
 }
 
@@ -170,7 +170,7 @@ $ff1 = rmdir("$rdir/sitechats/media/$params");
 //system("rm -rf ".escapeshellarg("$rdir/sitechats/media/$params"));
 
 if (file_exists($path)) {
-    echo "Chatbox failed to delete<br>";
+    echo "Stop: Chatbox failed to delete<br>";
 } else {
     echo "Chatbox deleted<br>";
 }
@@ -178,7 +178,7 @@ if (file_exists($path)) {
 
 
 if (file_exists("$rdir/sitechats/media/$params")) {
-    echo "Media directory failed to delete<br>";
+    echo "Stop: Media directory failed to delete<br>";
 } else {
     echo "Media directory deleted<br>";
 }
@@ -201,7 +201,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "<br>";
 } else {
-    echo "This file is protected and thus cannot be accessed";
+    echo "Stop: This file is protected and thus cannot be accessed";
 	die();
 }
 
@@ -448,7 +448,7 @@ if ($_GET["pass"] != $pass)
 {
 echo("
 <hr>
-<b>The password entered was incorrect or missing.</b>
+<b>(Auth-Warning) The password entered was incorrect or missing.</b>
 <hr>
 ");
 }

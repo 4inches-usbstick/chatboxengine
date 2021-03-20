@@ -5,14 +5,14 @@ include 'mainlookup.php';
 $rdir = plsk(3);
 
 if (plsk(21) != 'YES') {
-	die('API is locked down.');
+	die('Stop: API is locked down.');
 }
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
-echo("This is a Chatbox Engine processing page. This page is part of the integration interface. </p></p><hr>");
+//echo("This is a Chatbox Engine processing page. This page is part of the integration interface. </p></p><hr>");
 error_reporting(0);
 echo("<b>Attempting to create new chatbox</b><p></p>");
 $ok = 1;
@@ -21,7 +21,7 @@ $filename = $_GET["newname"];
 
 if (file_exists($filename)) {
     $ok = 0;
-	echo("<b>Error: This chatbox number is in use.</b> <p></p>");
+	echo("<b>Stop: This chatbox number is in use.</b> <p></p>");
 	die();
 } else {
     echo("<p>[1] Complete </p> <p></p>");
@@ -34,7 +34,7 @@ $pos = stristr($findme, ".");
 if ($pos === false) {
     echo "[2] Complete<p></p>";
 } else {
-    echo "This is a forbidden Chatbox number";
+    echo "Stop: This is a forbidden Chatbox number";
 	$ok = 0;
 	die();
 }
@@ -54,7 +54,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "[2] Complete<p></p>";
 } else {
-    echo "This is a forbidden Chatbox number";
+    echo "Stop: This is a forbidden Chatbox number";
 	$ok = 0;
 	die();
 }

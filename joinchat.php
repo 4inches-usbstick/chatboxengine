@@ -76,7 +76,7 @@ if (file_exists($_POST["nums"])) {
 	echo("<b>Chatbox found</b> <p></p>");
 	echo("<p>[1] Complete </p> <p></p>");
 } else {
-    echo("<p>Error: Chatbox not found </p> <p></p>");
+    echo("<p>Stop: Chatbox not found </p> <p></p>");
 	die();
 }
 

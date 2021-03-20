@@ -5,7 +5,7 @@ $pass = file_get_contents('.htapassword');
 include 'mainlookup.php';
 $rdir = plsk(3);
 if (plsk(21) != 'YES') {
-	die('API is locked down.');
+	die('Stop: API is locked down.');
 }
 
 $useduid = false;
@@ -20,7 +20,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('You are not a sudo user.<br>');
+	echo('Stop: You are not a sudo user.<br>');
 }
 
 skipverify:
@@ -80,7 +80,7 @@ if ($homepage == $onlyconsonants) {
 
 
 } else {
-echo("Incorrect or missing password. This command failed to execute.");
+echo("Stop: Incorrect or missing password. This command failed to execute.");
 }
 } else {
 
@@ -117,7 +117,7 @@ if ($homepage == $onlyconsonants) {
 
 
 } else {
-echo("This function does not work and has been disabled");
+echo("Stop: This function does not work and has been disabled");
 }
 
 }
