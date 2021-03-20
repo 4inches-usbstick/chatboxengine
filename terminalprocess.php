@@ -30,9 +30,9 @@ function logger() {
 	global $useduid, $pass;
 	//good with master
 	$addon = '';
-	echo $_GET['pass'];
-	echo $pass;
-	echo $useduid;
+	//echo $_GET['pass'];
+	//echo $pass;
+	//echo $useduid;
 	if ($_GET['pass'] == $pass && !$useduid) {
 		$addon = ": yesauth/masterkey";
 	}
