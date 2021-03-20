@@ -1,12 +1,13 @@
 <api docs>
 The Chatbox Engine API
 
-Currently, there are six endpoints, five explained here, all using HTTP GET:
+Currently, there are seven endpoints, five explained here, all using HTTP GET:
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
 sendmsg_integration.php (remote send message).
-newchat_integration.php (remote open chatbox)
+sendmsg_integration_nobreak.php (remote send message without auto newline placement)
+newchat_integration_nobreak_post.php (identical to sendmsg_integration_nobreak but taking HTTP POST instead of HTTP GET)
 display.php (get Chatbox contents)
 /data/datacall.php (parse CBEDATA, explained in cbedata.txt)
 
@@ -40,7 +41,9 @@ For CBEDATA API, see cbedata.txt.
 
 --WHAT ARGUMENTS ARE NEEDED FOR EACH ENDPOINTS--
 
-sendmsg_integration: write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under.
+sendmsg_integration (all types): write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under.
+
+*Note that sendmsg_integration_nobreak_post takes HTTP POST instead of HTTP GET
 
 terminal_process: cmd, params (optional: pass). cmd is the command, params is the argument, pass is the password. pass is necessary to execute some but not all commands.
 

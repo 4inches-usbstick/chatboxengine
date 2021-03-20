@@ -23,6 +23,7 @@ PID   PNAME   PVAL
 37 terminal-errors::1::
 39 domediacheck::YES::
 41 editneedmaster::NO::
+43 allowpostsendmsg::YES::
 -----------------------------------------
 
 Notes:

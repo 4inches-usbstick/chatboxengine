@@ -13,7 +13,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-
 
 
 if (plsk(21) != 'YES') {
-	die('API is locked down.');
+	die('Stop: API is locked down.');
 }
 
 date_default_timezone_set(plsk(9));
