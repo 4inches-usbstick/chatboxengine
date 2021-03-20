@@ -8,7 +8,7 @@ $mcc = plsk(7);
 $cc = plsk(5);
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
-error_reporting(plsk(37));
+//error_reporting(plsk(37));
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
@@ -25,6 +25,40 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) !
 }
 
 skipverify:
+
+function logger() {
+	global $useduid, $pass;
+	//good with master
+	$addon = '';
+	echo $_GET['pass'];
+	echo $pass;
+	echo $useduid;
+	if ($_GET['pass'] == $pass && !$useduid) {
+		$addon = ": yesauth/masterkey";
+	}
+	
+	//good with uidukey
+	if ($_GET['pass'] == $pass && $useduid) {
+		$addon = ": yesauth/uidukey";
+	}
+	
+	//bad
+	if ($_GET['pass'] != $pass) {
+		$addon = ": noauth/missingkey";
+	}
+	
+	if (plsk(47) != 'YES') {
+		return 0;
+	}
+	
+	$f = fopen(plsk(45), 'a');
+	fwrite($f, "SERVER TERMINAL - $_GET[cmd] $_GET[params] $addon \n");
+	fclose($f);
+}
+
+//log
+logger();
+
 function ccp($src, $dst) {  
    
     // open the source directory 

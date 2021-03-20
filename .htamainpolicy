@@ -24,6 +24,8 @@ PID   PNAME   PVAL
 39 domediacheck::YES::
 41 editneedmaster::NO::
 43 allowpostsendmsg::YES::
+45 terminal-log-file::terminal-logger::
+47 doterminal-logging::NO::
 -----------------------------------------
 
 Notes:
@@ -49,5 +51,6 @@ UID::NAME::KEY::PERMS;
 C#::RESTRICT-TO::
 04universal-upload::sudo::
 0000::local::
+terminal-logger::sudo::
 [END FILESAFE]
       
