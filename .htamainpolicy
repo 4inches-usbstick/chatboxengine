@@ -26,6 +26,7 @@ PID   PNAME   PVAL
 43 allowpostsendmsg::YES::
 45 terminal-log-file::terminal-logger::
 47 doterminal-logging::NO::
+49 nolog-commands::change, inicfg, ecfg::
 -----------------------------------------
 
 Notes:
