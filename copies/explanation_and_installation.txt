@@ -55,6 +55,10 @@ PID  Change to
 43   Allow HTTP POST for sendmsg, YES for allow and NO for forbid.
 45   Where to log terminal commands, needs a filepath (relative or absolute both OK).
 47   Whether to terminal log, YES for log and NO for don't log.
+49   Which commands to not log, separated by commas
+51   Whether managing the CBauth list requires master key or not, YES for need and NO for no need
+53   Whether newchat_integration endpoint works, YES for work and NO for don't work
+55   Whether using the COPEN command requires masterkey, YES for require and NO for don't require
 
 --CBauth--
 To add someone to the CBauth list, use this format:

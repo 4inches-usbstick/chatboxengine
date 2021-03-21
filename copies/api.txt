@@ -1,13 +1,14 @@
 <api docs>
 The Chatbox Engine API
 
-Currently, there are seven endpoints, five explained here, all using HTTP GET:
+Currently, there are seven endpoints, six explained here, all using HTTP GET (except for sendmsg_integration_nobreak_post):
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
-sendmsg_integration.php (remote send message).
-sendmsg_integration_nobreak.php (remote send message without auto newline placement)
-newchat_integration_nobreak_post.php (identical to sendmsg_integration_nobreak but taking HTTP POST instead of HTTP GET)
+sendmsg_integration.php (send message).
+sendmsg_integration_nobreak.php (send message without auto newline placement)
+sendmsg_integration_nobreak_post.php (POST instead of GET for sendmsg)
+newchat_integration.php (open a Chatbox)
 display.php (get Chatbox contents)
 /data/datacall.php (parse CBEDATA, explained in cbedata.txt)
 
@@ -26,7 +27,7 @@ write=0002
 msg=BEEEEEEES
 encode=UTF-8
 
-These variables tell the server what to do, in this case, write the message "BEEEEEEES" to Chatbox 0002 while using the UTF8 encoder.
+The URL tells the server what to do, in this case, write the message "BEEEEEEES" to Chatbox 0002 while using the UTF8 encoder.
 
 
 The API also allows you to get Chatboxes and their contents. 
