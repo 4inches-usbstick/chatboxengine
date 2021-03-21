@@ -27,6 +27,9 @@ PID   PNAME   PVAL
 45 terminal-log-file::terminal-logger::
 47 doterminal-logging::NO::
 49 nolog-commands::change, inicfg, ecfg::
+51 udb-manage-needmaster::YES::
+53 allow-newchat::YES::
+55 newchat-terminal-needmaster::NO::
 -----------------------------------------
 
 Notes:
@@ -45,6 +48,7 @@ Notes:
 UID::NAME::KEY::PERMS;
 1::RootOfficial::root1234::sudo;
 2::UserOfficial::root5678::notsudo;
+3::Username::Password::Perms;
 0::1::2::3;
 [END CBAUTH]
 
@@ -53,5 +57,5 @@ C#::RESTRICT-TO::
 04universal-upload::sudo::
 0000::local::
 terminal-logger::sudo::
-[END FILESAFE]
+[END FILESAFE] 
       

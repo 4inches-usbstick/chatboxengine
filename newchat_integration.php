@@ -7,6 +7,9 @@ $rdir = plsk(3);
 if (plsk(21) != 'YES') {
 	die('Stop: API is locked down.');
 }
+if (plsk(53) != 'YES') {
+	die('Stop: Newchat Endpoint Disabled [PID53]');
+}
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');

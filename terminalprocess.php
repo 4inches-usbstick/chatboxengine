@@ -158,6 +158,71 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
 	echo("Stop: Master password required to run the CHANGE command.");
 }
 
+//uid db management
+if ($_GET['cmd'] == 'udb add' && $_GET['pass'] == $pass) {
+	if (plsk(51) == 'YES' && $useduid) {
+		die('Stop: Master password required to run udb add command (PID 51)');
+	}
+	$ps = explode(' ', $_GET['params']);
+	$c = uid_db();
+	$f = file_get_contents('.htamainpolicy');
+	$pos = strpos($c, '0::1::2::3;');
+	$newc = substr_replace($c, "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n0::1::2::3;\n", $pos);
+	//echo("<div style='white-space: pre;'>$newc</div>");
+	$newcc = str_replace(uid_db(), $newc, $f);
+	file_put_contents('.htamainpolicy', $newcc);
+}
+if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
+	if (plsk(51) == 'YES' && $useduid) {
+		die('Stop: Master password required to run udb del command (PID 51)');
+	}
+	$ps = explode(' ', $_GET['params']);
+	$f = file_get_contents('.htamainpolicy');
+	$newcc = str_replace("\n$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
+	file_put_contents('.htamainpolicy', $newcc);
+	if ($newcc == $f) {
+		die('Warning: No user was found (nonfatal)');
+	}
+}
+if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
+	$ps = explode(' ', $_GET['params']);
+	
+	if (plsk(55) == 'YES' && $useduid) {
+		die('Stop: Need masterkey for COPEN command [PID55]')
+	}
+	if (file_exists($ps[0])) {
+		die('Stop: This chatbox exists');
+	}
+	$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN');
+
+	foreach ($notallowed as $i) {
+	if (substr_count($ps[0], $i) > 0) {
+		die('Stop: Illegal character in filename: ' . $i);
+	}
+	}
+	
+	$f = fopen($ps[0], 'w');
+	fclose($f);
+	
+	$names = explode('.', $ps[0]);
+	$name = $names[0];
+	if ($ps[1] == '--allowmed') {
+	mkdir("$rdir/sitechats/media/$ps[0]", 0700);
+	mkdir("$rdir/sitechats/media/$ps[0]/uploaded", 0700);
+	}
+	if ($ps[1] == '--allowmedhtml') {
+	mkdir("$rdir/sitechats/media/$name-med", 0700);
+	mkdir("$rdir/sitechats/media/$name-med/uploaded", 0700);
+	}
+	if ($ps[1] == '--forbidmed') {
+	echo('--forbidmed flag passed<br>');
+	}
+	echo('chatbox opened<br>');
+	
+
+}
+
+
 //policy
 if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
 	$f1 = fopen("$rdir/sitechats/.htamainpolicy", "w");
@@ -457,6 +522,8 @@ help: brings up this help message, no parameters<br><br>
 
 *^ecfg: configure .htamainpolicy. this command can be disabled by PID 35<br>
 *^change: change Master Admin Password<br><br>
+*^uid add: add a user and give them a permission. the parameter should be in this syntax: <UID> <Name> <Password> <Permission> (space char as delimiter)
+*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: <UID> <Name> <Password> <Permission> (space char as delimiter)
 
 
 
