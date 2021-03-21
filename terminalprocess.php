@@ -188,7 +188,7 @@ if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
 	
 	if (plsk(55) == 'YES' && $useduid) {
-		die('Stop: Need masterkey for COPEN command [PID55]')
+		die('Stop: Need masterkey for COPEN command [PID55]');
 	}
 	if (file_exists($ps[0])) {
 		die('Stop: This chatbox exists');

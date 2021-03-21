@@ -5,6 +5,14 @@ $rdir = plsk(3);
 $ip = plsk(1);
 $tz = plsk(9);
 
+if (file_exists($_POST["nums"])) {
+	echo("<b>Chatbox found</b> <p></p>");
+	echo("<p>[1] Complete </p> <p></p>");
+} else {
+    echo("<p>Stop: Chatbox not found </p> <p></p>");
+	die();
+}
+
 date_default_timezone_set($tz);
 $directives = file_get_contents(".htaconnectionpolicy");
 echo($directives);
