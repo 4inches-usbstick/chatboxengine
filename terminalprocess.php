@@ -517,6 +517,7 @@ xedit: brings up the remote message editing terminal, no parameters<br><br>
 *mdel: remove a specific Media Directory with name (parameter) without deleting the Chatbox. Using WILDCARD-ALL removes all media directories, so be careful.<br><br>
 
 *cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files will be written to without actually writing.<br>
+*^_copen: open a Chatbox. parameters slot syntax: FILENAME.FILE-EXT --MEDIAOPTION
 *loadexe: sideloads an extension. an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
 
@@ -532,6 +533,7 @@ This feature is only for the web client.<br><br>
 
 * = requires UID/UKEY or password<br>
 ^ = requires password and cannot take UID/UKEY<br>
+_ = three options: --allowmed, --allowmedhtml, --forbidmed<br>
 
 If there are dangerous commands, there are people who will find a way to mess it up. This terminal does not stop you from making bad decisions.
 If we are only free to make good decisions, we are not free at all.
