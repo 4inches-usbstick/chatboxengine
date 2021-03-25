@@ -56,9 +56,11 @@ returns: HTTP response code or '2' on an exception
 notes: OPTION is the new chatbox option (l is for legacy, h is for HTML and d is for data), and ALLOWMED is the allowmed directive (ALLOWMED|FORBIDMED).
 
 WRITE: for writing to a Chatbox
-syntax: cb.write(<CONTENTS>, [NEWLINE])
+syntax: cb.write(<CONTENTS>, [NEWLINE], [UID], [UKEY])
 returns: HTTP reponse code or '2' on an exception
 notes: [NEWLINE] is whether to use sendmsg_integration or sendmsg_integration_nobreak. One adds a \n to the end, the other does not. Setting [NEWLINE] to 0 will change it to not having a \n on the end.
+
+Using UID and UKEY will grant you access to Chatboxes that would normally be locked off to you.
 
 WIPE/DELETE/DELETE_HTML: wipes or deletes a Chatbox. delete_html is specifically for HTML chatboxes.
 syntax: cb.wipe(<PASSWORD>)
