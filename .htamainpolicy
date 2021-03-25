@@ -43,12 +43,12 @@ Notes:
 8. PID 37 is specifically for debugging. 0 is for suppress all terminal errors, and 1 is for allow terminal errors to show up.
 9. PID 39 has three values: CHECK, YES, NO. NO is for assume there is no media upload for that Chatbox, YES assumes there is a valid media upload for that Chatbox, CHECK checks per Chatbox (slower but better)/
 10. You can't use PHR-NUL anywhere within the CBauth list.
+11. These policies apply to files on this server. Clients hosted by other servers will not be affected by this file. For example, PercentAutoencode will work on clients that support it and are on the Chatbox Engine server.
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
 1::RootOfficial::root1234::sudo;
 2::UserOfficial::root5678::notsudo;
-3::Username::Password::Perms;
 0::1::2::3;
 [END CBAUTH]
 
