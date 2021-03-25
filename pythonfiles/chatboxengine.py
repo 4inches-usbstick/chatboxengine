@@ -50,7 +50,7 @@ class Chatbox:
         if newline == 1:
             try:
                 base_send_get = 'http://' +self.server+ '/textengine/sitechats/sendmsg_integration.php?'
-                send = request.get(base_send_get + 'msg=' + str(contents) + '&write=' + str(self.chatbox) + '&rurl=norefer&namer=' + str(self.name) + '&encode=' + self.encoder + '&uid='str(uid) + '&ukey=' + str(ukey), timeout=int(self.timeout))
+                send = request.get(base_send_get + 'msg=' + str(contents) + '&write=' + str(self.chatbox) + '&rurl=norefer&namer=' + str(self.name) + '&encode=' + self.encoder + '&uid='+str(uid) + '&ukey=' + str(ukey), timeout=int(self.timeout))
                 #print(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
                 return str(send.status_code)
             except:
@@ -58,7 +58,7 @@ class Chatbox:
         elif newline == 0:
             try:
                 base_send_get = 'http://' +self.server+ '/textengine/sitechats/sendmsg_integration_nobreak.php?'
-                send = request.get(base_send_get + 'msg=' + str(contents) + '&write=' + str(self.chatbox) + '&rurl=norefer&namer=' + str(self.name) + '&encode=' + self.encoder + '&uid='str(uid) + '&ukey=' + str(ukey), timeout=int(self.timeout))
+                send = request.get(base_send_get + 'msg=' + str(contents) + '&write=' + str(self.chatbox) + '&rurl=norefer&namer=' + str(self.name) + '&encode=' + self.encoder + '&uid='+str(uid) + '&ukey=' + str(ukey), timeout=int(self.timeout))
                 #print(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
                 return str(send.status_code)
             except:
