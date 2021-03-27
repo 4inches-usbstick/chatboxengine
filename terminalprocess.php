@@ -518,13 +518,14 @@ xedit: brings up the remote message editing terminal, no parameters<br><br>
 
 *cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files will be written to without actually writing.<br>
 *^_copen: open a Chatbox. parameters slot syntax: FILENAME.FILE-EXT --MEDIAOPTION<br>
-*loadexe: sideloads an extension. rquires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
+*loadexe: sideloads an extension. requires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
 
 *^ecfg: configure .htamainpolicy. this command can be disabled by PID 35<br>
 *^change: change Master Admin Password<br><br>
-*^uid add: add a user and give them a permission. the parameter should be in this syntax: <UID> <Name> <Password> <Permission> (space char as delimiter)
-*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: <UID> <Name> <Password> <Permission> (space char as delimiter)
+
+*^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Permission (space char as delimiter)<br>
+*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Permission (space char as delimiter)<br><br>
 
 
 
