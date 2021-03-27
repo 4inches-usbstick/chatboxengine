@@ -1,5 +1,4 @@
 
-
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
@@ -8,6 +7,10 @@ error_reporting(0);
 //$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
+
+if (plsk(21) != 'YES') {
+	die('Stop: API is locked down.');
+}
 
 if (strpos($data, 'begin CBEDATA') === false) {
     die("Error: CBEDATA files must begin with a declaration");

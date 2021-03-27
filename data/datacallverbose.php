@@ -1,10 +1,13 @@
-
 <h1>CBEData Getter</h1>
 <h2>Verbose Mode</h2>
 <hr>
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
+
+if (plsk(21) != 'YES') {
+	die('Stop: API is locked down.');
+}
 
 $data = file_get_contents("$rdir/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
