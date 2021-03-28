@@ -28,6 +28,8 @@ Make sure to read and understand the license before using Chatbox Engine.
 You'll need to create a directory named textengine on the server. Not in any subfolders or other things, it needs to be its own parent directory.
 Inside your new textengine directory, create another folder named sitechats. From there, copy the files and subdirectories into the sitechats dir.
 
+Next, make sure your server protects all files with .hta* as their extension. This will prevent people from looking at various protected files.
+
 Now, open .htamainpolicy with your favorite text editor and change these things in the config file:
 
 PID  Change to
@@ -59,6 +61,7 @@ PID  Change to
 51   Whether managing the CBauth list requires master key or not, YES for need and NO for no need
 53   Whether newchat_integration endpoint works, YES for work and NO for don't work
 55   Whether using the COPEN command requires masterkey, YES for require and NO for don't require
+57   Whether begin CBEDATA header is required, YES for require and NO for do not require
 
 --CBauth--
 To add someone to the CBauth list, use this format:
@@ -85,7 +88,12 @@ Permission has three levels: login, sudo and local.
 
 login: users must be logged in (with a UID/UKEY)
 sudo: users must be logged in as a sudo account
-local: users cannot write to the file
+local: users cannot write to the file at all
+
+--MAINLOOKUP--
+
+This is the only hardcoded part of Chatbox Engine that still exists.
+In each subdir and sitechats dir, open mainlookup.php and replace "C:/wamp64/www/textengine/sitechats/.htamainpolicy" with the filepath to your .htamainpolicy file.
 
 Notes:
 1. Make sure to credit me and others by linking to credits.cbedata.

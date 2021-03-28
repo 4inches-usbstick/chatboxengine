@@ -1,4 +1,4 @@
-This policy page contains important data that is essential to the operation of Chatbox Engine.
+    This policy page contains important data that is essential to the operation of Chatbox Engine.
 
 PID   PNAME   PVAL
 -----------------------------------------
@@ -30,6 +30,7 @@ PID   PNAME   PVAL
 51 udb-manage-needmaster::YES::
 53 allow-newchat::YES::
 55 newchat-terminal-needmaster::NO::
+57 cbedata-header-strict::YES::
 -----------------------------------------
 
 Notes:
@@ -58,4 +59,4 @@ C#::RESTRICT-TO::
 0000::local::
 terminal-logger::sudo::
 [END FILESAFE] 
-      
+          

@@ -13,8 +13,17 @@ $data = file_get_contents("$rdir/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
 
-if (strpos($data, 'begin CBEDATA') === false) {
-    die("Error: CBEDATA files must begin with a declaration.");
+if (strpos($data, 'begin CBEDATA') === false && plsk(57) == 'YES') {
+    die("Error: CBEDATA files must begin with a declaration [PID 57]");
+}
+
+$protec = explode('//', plsk(31));
+foreach ($protec as $i) {
+	$iframe = 0;
+	$iframe = substr_count(strtolower($_GET["src"]), $i);
+	if ($iframe > 0) {
+		die('Stop: Illegal destination, halted');
+	}
 }
 
 
