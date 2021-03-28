@@ -130,73 +130,8 @@ x
 y
 z
 
-this
-THIS
-that
-THAT
-
-
-
-71
-255
-240
-10
-
-schoolags
-Schoolags
-SCHOOLAGS
-
-mkc
-Mkc
-MKC
-
-textengine
-Textengine
-TEXTENGINE
-
-advice
-Advice
-ADVICE
-
-01dschoolags
-01dSchoolags
-01dSCHOOLAGS
-
-02dmkc
-02dMkc
-02dMKC
-
-03dadvice
-03dAdvice
-03dADVICE
-
 04univseral-upload
-04Univseral-upload
-04UNIVERSAL-UPLOAD
-
-bannednumbers
-Bannednumbers
-BANNEDNUMBERS
-
-.bannednumbers
-.Bannednumbers
-.BANNEDNUMBERS
-
-terminalaccess
-Terminalaccess
-TERMINALACCESS
-
-.bannednumbers
-.Bannednumbers
-.BANNEDNUMBERS
-
-.terminalaccess
-.Terminalaccess
-.TERMINALACCESS
-
-.htaconnectionpolicy
-.Htaconnectionpolicy
-.HTACONNECTIONPOLICY
+terminal-logger
 
 WILDCARD-ALL
 sudo
@@ -204,10 +139,3 @@ login
 local
 
 .rdi
-
-0000: documentation
-0001: unassigned
-0002: testing
-0003: unassigned
-0Xabcdef: reserved
-04universal-upload: universal upload directory

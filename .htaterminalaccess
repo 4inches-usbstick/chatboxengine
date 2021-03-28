@@ -12,18 +12,14 @@ This is a policy page that protects certain files from accidental deletion.
 .htabannednumbers
 .htapassword
 .htaconnectionpolicy
-01dschoolags
-02dmkc
-03dadvice
-03dadviceinternal
+.htamainpolicy
+credits.cbedata
 04universal-upload
 MFS
 mfs
 
 adminedits.php
 admineditsutil.php
-create_remote_chatbox.php
-create_remote_command.php
 createnewchat.php
 display.php
 inchat.php
@@ -33,15 +29,17 @@ inchat-div.php
 index.php
 joinchat.php
 joinchatpublic.php
+maineditor.php
+mainlookup.php
 newchat.php
 newchat_integration.php
-remote_chatbox_gen.php
-sendmsg_integration.php
+newchat_integration.php
+sendmsg_integration_nobreak_post.php
 sendmsg_integration_nobreak.php
 sendmsg4html.php
 terminal.php
 terminalprocess.php
 
 credits.cbedata
-credits-schoolags.cbedata
+
 
