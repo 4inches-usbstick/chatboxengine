@@ -14,7 +14,7 @@ $datapath = $_GET['path'];
 $startfrom = "00";
 
 if (strpos($data, 'begin CBEDATA') === false && plsk(57) == 'YES') {
-    die("Error: CBEDATA files must begin with a declaration [PID 57]");
+    die("Stop: CBEDATA files must begin with a declaration [PID 57]");
 }
 
 $protec = explode('//', plsk(31));

@@ -12,7 +12,7 @@ if (plsk(21) != 'YES') {
 	die('Stop: API is locked down.');
 }
 if (strpos($data, 'begin CBEDATA') === false && plsk(57) == 'YES') {
-    die("Error: CBEDATA files must begin with a declaration [PID 57]");
+    die("Stop: CBEDATA files must begin with a declaration [PID 57]");
 }
 
 $protec = explode('//', plsk(31));
@@ -26,7 +26,7 @@ foreach ($protec as $i) {
 
 $getclass = $_GET['type'];
 if (empty($_GET['type'])) {
-die('Error: missing data type, no data can be given.');
+die('Stop: missing data type, no data can be given.');
 }
 
 
@@ -107,7 +107,7 @@ if ($getclass == 'raw') {
 }
 
 if ($getclass != 'var' and $getclass != 'attr' and $getclass != 'attr-name' and $getclass != 'class' and $getclass != 'raw') {
-		echo('Error: unspecified data type, no data can be given.');
+		echo('Stop: unspecified data type, no data can be given.');
 		die();
 }
 //echo('<br>');
