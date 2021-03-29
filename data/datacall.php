@@ -1,6 +1,12 @@
 
 <?php
 include 'mainlookup.php';
+$protec = explode('//', plsk(31));
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
+
 $rdir = plsk(3);
 $data = file_get_contents("$rdir/sitechats/$_GET[src]");
 //error_reporting(0);

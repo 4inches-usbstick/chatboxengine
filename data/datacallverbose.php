@@ -4,6 +4,11 @@
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
+$protec = explode('//', plsk(31));
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
 
 if (plsk(21) != 'YES') {
 	die('Stop: API is locked down.');
