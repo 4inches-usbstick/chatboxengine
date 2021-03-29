@@ -6,6 +6,7 @@ $rdir = plsk(3);
 $ip = plsk(1);
 $mcc = plsk(7);
 $cc = plsk(5);
+$pcl = plsk(59);
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
 //error_reporting(plsk(37));
@@ -109,8 +110,8 @@ header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-
 //also because i want to do things without being at pc
 
 //update the credits up here now
-$version = file_get_contents("http://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-version&type=attr");
-$date = file_get_contents("http://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr");
+$version = file_get_contents("$pcl://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-version&type=attr");
+$date = file_get_contents("$pcl://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr");
 $credits = "We are on Chatbox Engine version $version, revised $date, created 28.OCT.2020.";
 
 $params = $_GET["params"];
@@ -354,7 +355,7 @@ echo("Copied files");
 
 //edit
 if ($_GET["cmd"] == "xedit") {
-	echo("<iframe src=\"http://$ip/textengine/sitechats/admineditsutil.php\" width='720' height='660'></iframe>");
+	echo("<iframe src=\"$pcl://$ip/textengine/sitechats/admineditsutil.php\" width='720' height='660'></iframe>");
 }
 
 

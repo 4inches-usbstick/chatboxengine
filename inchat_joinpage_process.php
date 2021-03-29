@@ -4,6 +4,7 @@ include 'mainlookup.php';
 $rdir = plsk(3);
 $dots = plsk(23);
 $ip = plsk(1);
+$pcl = plsk(59);
 
 if (file_exists($_POST['nums'])) {
 	$myfile = fopen("$_POST[nums]", "a");
@@ -62,7 +63,7 @@ if ($alias == 0 && $ts_yes == 0) {
 }
 echo($text);
 if ($ts_LCL == 1) {
-$change = file_get_contents("http://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+$change = file_get_contents("$pcl://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
 $f = fopen($write, 'a');	
 fwrite($f, $retuls);
@@ -71,7 +72,7 @@ fclose($f);
 
 
 //error_reporting(0);
-$link = "http://$ip/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
+$link = "$pcl://$ip/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
 //echo("<iframe src='$link' width='1' height='1'></iframe>");
 
 if ($_POST['option'] == 'div') {
@@ -83,7 +84,7 @@ $tolink = "inchat.php?chatnum=$_POST[nums]&refreshrate=$_POST[refreshrate]&explo
 echo("<meta http-equiv=\"refresh\" content=\"0; URL=$tolink\">");
 
 
-echo("Not redirected within 3 seconds? Use <a href='http://$ip/textengine/sitechats/$tolink'>this button</a>");
+echo("Not redirected within 3 seconds? Use <a href='$pcl://$ip/textengine/sitechats/$tolink'>this button</a>");
 //header("Location: $tolink");
 
 ?>

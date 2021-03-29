@@ -31,6 +31,7 @@ PID   PNAME   PVAL
 53 allow-newchat::YES::
 55 newchat-terminal-needmaster::NO::
 57 cbedata-header-strict::YES::
+59 protocol::http::
 -----------------------------------------
 
 Notes:
