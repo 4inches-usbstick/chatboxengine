@@ -4,6 +4,7 @@ include 'mainlookup.php';
 $rdir = plsk(3);
 $ip = plsk(1);
 $tz = plsk(9);
+$pcl = plsk(59);
 
 if (file_exists($_POST["nums"])) {
 	echo("<b>Chatbox found</b> <p></p>");
@@ -68,7 +69,7 @@ if ($alias == 0 && $ts_yes == 0) {
 }
 //echo($text);
 if ($ts_LCL == 1) {
-$change = file_get_contents("http://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+$change = file_get_contents("$pcl://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
 $f = fopen($write, 'a');	
 fwrite($f, $retuls);
