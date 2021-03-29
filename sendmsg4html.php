@@ -47,7 +47,7 @@ foreach ($protec as $i) {
 				$b = 'd';
 			}
 		}
-		//user did try but did not get it
+		//user did try but did not GET it
 		if (uidlsk($_GET['uid'], $_GET['ukey']) == false) {
 			die('Stop: Protected file and invalid UID/UKEY');
 		}
@@ -59,16 +59,16 @@ foreach ($protec as $i) {
 
 date_default_timezone_set(plsk(9));
 //error_reporting(0);
-if (file_exists($_POST['write'])) {
-	$myfile = fopen("$_POST[write]", "a");
+if (file_exists($_GET['write'])) {
+	$myfile = fopen("$_GET[write]", "a");
 } else {
 	die('This chatbox does not actually exist');
 }
 
 //check for iframes or js, security measure
-$iframe = substr_count($_POST["msg"], 'iframe');
-$script = substr_count($_POST["msg"], 'script');
-$scrit = substr_count($_POST["write"], '.hta');
+$iframe = substr_count($_GET["msg"], 'iframe');
+$script = substr_count($_GET["msg"], 'script');
+$scrit = substr_count($_GET["write"], '.hta');
 
 if ($iframe > 0 or $script > 0) {
 	die("Illegal element found in string detected, halted.<br>");
@@ -81,19 +81,19 @@ if ($scrit > 0) {
 
 
 //encoding yes
-$mess = $_POST["msg"];
-$emptyencode = empty($_POST["encode"]);
-$coder = $_POST["encode"];
+$mess = $_GET["msg"];
+$emptyencode = empty($_GET["encode"]);
+$coder = $_GET["encode"];
 
 if (empty($coder) or $coder == "UTF-8") {
     //echo('UTF8');
 	$coder = "UTF-8";
 }
 
-$mess = $_POST["msg"];
+$mess = $_GET["msg"];
 $mess1 = mb_convert_encoding($mess, $coder);
 
-$option = $_POST["option"];
+$option = $_GET["option"];
 
 if ($option == "h1") { 
 $mess2 = "<h1>$mess1</h1>";
@@ -136,7 +136,7 @@ $mess2 = "<a href=\"$mess1\">$mess1</a><br>";
 }
 
 if ($option == "img") { 
-$mess2 = "<a href='$mess' target='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
+$mess2 = "<a href='$mess' tarGET='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
 }
 
 if ($option == "video") { 

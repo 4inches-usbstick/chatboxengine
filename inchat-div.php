@@ -14,6 +14,38 @@ input[type=text]:focus{
 </style>
 <?php
 include 'mainlookup.php';
+
+$nopac = array(
+
+0 => "var msg = document.getElementById('msg').value;",
+1 => "var des = document.getElementById('custid1').value;",
+2 => "var enc = document.getElementById('custid2').value;",
+3 => "var nam = document.getElementById('custid3').value;",
+4 => "var nar = document.getElementById('custid4').value;",
+5 => "var uid = document.getElementById('custid5').value;",
+6 => "var uky = document.getElementById('custid6').value;",
+
+);
+
+$pac = array(
+
+0 => "var msg = document.getElementById('msg').value.replace(/&/g, '%26');",
+1 => "var des = document.getElementById('custid1').value;",
+2 => "var enc = document.getElementById('custid2').value;",
+3 => "var nam = document.getElementById('custid3').value.replace(/&/g, '%26');",
+4 => "var nar = document.getElementById('custid4').value.replace(/&/g, '%26');",
+5 => "var uid = document.getElementById('custid5').value.replace(/&/g, '%26');",
+6 => "var uky = document.getElementById('custid6').value.replace(/&/g, '%26');",
+
+);
+
+
+if (plsk(61) == 'YES') {
+	$aetouse = $pac;
+}
+if (plsk(61) == 'NO') {
+	$aetouse = $nopac;
+}
 $rdir = plsk(3);
 $ip = plsk(1);
 $pcl = plsk(59);
@@ -175,15 +207,15 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\">
 
   <script>
 	function sendmymessage() {
-	var msg = document.getElementById('msg').value;
-	var des = document.getElementById('custid1').value;
-	var enc = document.getElementById('custid2').value;
-	var nam = document.getElementById('custid3').value;
-	var nar = document.getElementById('custid4').value;
-	var uid = document.getElementById('custid5').value;
-	var uky = document.getElementById('custid6').value;
+	$aetouse[0]
+	$aetouse[1]
+	$aetouse[2]
+	$aetouse[3]
+	$aetouse[4]
+	$aetouse[5]
+	$aetouse[6]
 	var opt = document.getElementsByName('option').value;
-	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky];
+	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky,\"&option=\",opt];
 	var theUrl = meaningfulname.join('');
 	var boi = theUrl.concat(' :: sending request')
 	console.log(boi);

@@ -32,6 +32,7 @@ PID   PNAME   PVAL
 55 newchat-terminal-needmaster::NO::
 57 cbedata-header-strict::YES::
 59 protocol::http::
+61 defaultclient-percentAutoencode::YES::
 -----------------------------------------
 
 Notes:
@@ -46,6 +47,7 @@ Notes:
 9. PID 39 has three values: CHECK, YES, NO. NO is for assume there is no media upload for that Chatbox, YES assumes there is a valid media upload for that Chatbox, CHECK checks per Chatbox (slower but better)/
 10. You can't use PHR-NUL anywhere within the CBauth list.
 11. These policies apply to files on this server. Clients hosted by other servers will not be affected by this file. For example, PercentAutoencode will work on clients that support it and are on the Chatbox Engine server.
+12. Don't use any filesystem protected / conflict characters (such as NUL, >, &, etc.) in any part of the CBauth list.
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
