@@ -62,6 +62,7 @@ PID  Change to
 53   Whether newchat_integration endpoint works, YES for work and NO for don't work
 55   Whether using the COPEN command requires masterkey, YES for require and NO for don't require
 57   Whether begin CBEDATA header is required, YES for require and NO for do not require
+59   Whether to use HTTP or HTTPS in relevant spots. 'http' for HTTP, 'https' for HTTPS.
 
 --CBauth--
 To add someone to the CBauth list, use this format:
