@@ -33,6 +33,7 @@ PID   PNAME   PVAL
 57 cbedata-header-strict::YES::
 59 protocol::http::
 61 defaultclient-percentAutoencode::YES::
+63 accept-wildcard-xedit::YES::
 -----------------------------------------
 
 Notes:

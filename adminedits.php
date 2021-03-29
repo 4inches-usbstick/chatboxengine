@@ -53,7 +53,7 @@ if (empty($_GET['type'])) {
 }
 
 
-if ($type == 'all') {
+if ($type == 'all' && $_GET['cb'] != 'WILDCARD-ALL') {
 if ($_GET["key"] == $pass) {
 $thecb = $_GET["cb"];
 $getridof = $_GET["gro"];
@@ -78,6 +78,51 @@ if ($homepage == $onlyconsonants) {
 }
 
 
+//passcheck
+} else {
+echo("Stop: Incorrect or missing password. This command failed to execute.");
+}
+}
+
+//WILDCARD
+
+if ($type == 'all' && $_GET['cb'] == 'WILDCARD-ALL' && plsk(63) == 'YES') {
+if ($_GET["key"] == $pass) {
+//$thecb = $_GET["cb"];
+$getridof = $_GET["gro"];
+$replacewith = $_GET["rw"];
+echo("str to edit: $getridof<br>");
+echo("str for overwrite: $replacewith<br>");
+
+$chatboxes = glob("*");
+foreach($chatboxes as $i) {
+	if (is_dir($i)) {
+		echo("$i: DIR-SKIP<br>");
+		goto skipexec;
+		} 
+		//if is dir
+		
+		//if is a file or html
+		if (substr_count($i, ".") > 0 && substr_count($i, ".html") == 0) {
+		echo("$i: FILE-SKIP<br>"); 
+		goto skipexec;
+		}
+		
+$homepage = file_get_contents($i);
+$onlyconsonants = str_replace($getridof, $replacewith, $homepage);
+//echo("Echo new/old strs: false");
+//echo("new str: $onlyconsonants<br>");
+//echo("old str: $homepage<br>");
+file_put_contents($i, $onlyconsonants);
+
+echo("<br>output:<br>");
+if ($homepage == $onlyconsonants) {
+	echo("Found 0 instances in Chatbox $i<br>");
+} else {
+	echo("Found at least 1 instance in Chatbox $i<br>");
+}
+skipexec:
+}
 
 } else {
 echo("Stop: Incorrect or missing password. This command failed to execute.");
