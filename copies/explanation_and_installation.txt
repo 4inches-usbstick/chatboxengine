@@ -63,6 +63,8 @@ PID  Change to
 55   Whether using the COPEN command requires masterkey, YES for require and NO for don't require
 57   Whether begin CBEDATA header is required, YES for require and NO for do not require
 59   Whether to use HTTP or HTTPS in relevant spots. 'http' for HTTP, 'https' for HTTPS.
+61   Whether clients that support it should use PercentAutoencode, YES for use and NO for do not use
+63   Whether XEDIT accepts WILDCARD-ALL, YES for accept and NO for do not accept
 
 --CBauth--
 To add someone to the CBauth list, use this format:
