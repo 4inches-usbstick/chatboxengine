@@ -41,7 +41,7 @@ if ($pos === false) {
 	$ok = 0;
 	die();
 }
-$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN');
+$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN', '&');
 
 foreach ($notallowed as $i) {
 if (substr_count($_GET['newname'], $i) > 0) {
