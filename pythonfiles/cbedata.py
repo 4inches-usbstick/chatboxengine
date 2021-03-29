@@ -1,9 +1,4 @@
 
-#SETUP
-import requests as rq
-
-
-
 #OFFLINE PORTION
 
 

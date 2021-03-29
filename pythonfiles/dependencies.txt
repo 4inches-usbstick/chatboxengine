@@ -1,0 +1,19 @@
+Dependencies per file:
+
+cbe_discord:
+import discord, requests, random, time
+
+cbe_fordistro, cbe_terminal:
+import requests, tkinter
+
+cbedata:
+no dependencies
+
+chatboxengine:
+import requests
+
+cli-loader:
+import requests, time, os
+
+cli-zipper:
+import os, base64
