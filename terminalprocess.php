@@ -9,7 +9,7 @@ $cc = plsk(5);
 $pcl = plsk(59);
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
-//error_reporting(plsk(37));
+error_reporting(plsk(37));
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
@@ -35,7 +35,7 @@ function logger() {
 	//echo $pass;
 	//echo $useduid;
 	if (substr_count($_GET['cmd'], plsk(49)) > 0) {
-		return 0;
+		echo('nolog');
 	}
 	if ($_GET['pass'] == $pass && !$useduid) {
 		$addon = ": yesauth/masterkey";
