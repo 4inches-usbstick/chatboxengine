@@ -191,7 +191,7 @@ $mediaoptions
 <fieldset>
 <legend>Input</legend>
 <code>
-Message: <input type=\"text\" name=\"msg\" id=\"msg\">
+Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 <input type=\"hidden\" id=\"custid1\" name=\"write\" value=\"$_GET[chatnum]\"> 
 <input type=\"hidden\" id=\"custid2\" name=\"encode\" value=\"$_GET[encoderm]\"> 
 <input type=\"hidden\" id=\"custid3\" name=\"name\" value=\"$_GET[namer]\"> 

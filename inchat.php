@@ -125,7 +125,7 @@ echo("
 
 <legend>Say something: </legend>
 <br>
-Message: <input id='msg' type=\"text\" name=\"msg\"><br>
+Message: <input id='msg' type=\"text\" name=\"msg\" style=\"width: 500;\"><br>
 <input type=\"hidden\" id=\"custid1\" name=\"write\" value=\"$_GET[chatnum]\"> 
 <input type=\"hidden\" id=\"custid2\" name=\"encode\" value=\"$_GET[encoderm]\"> 
 <input type=\"hidden\" id=\"custid3\" name=\"namer\" value=\"$_GET[namer]\"> 
