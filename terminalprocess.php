@@ -7,6 +7,13 @@ $ip = plsk(1);
 $mcc = plsk(7);
 $cc = plsk(5);
 $pcl = plsk(59);
+
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
+
+
+
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
 error_reporting(plsk(37));
@@ -102,9 +109,6 @@ function delete_directory($dirname) {
   
  
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
 
 //this script is all the other scripts combined into one,
@@ -180,10 +184,11 @@ if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
 	}
 	$ps = explode(' ', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
-	$newcc = str_replace("\n$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
+	$rrr = random_int(10000000, 99999999);
+	$newcc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];", "$ps[0]::User Deleted Using Terminal::$rrr::notsudo", $f);
 	file_put_contents('.htamainpolicy', $newcc);
 	if ($newcc == $f) {
-		die('Warning: No user was found (nonfatal)');
+		die('Warning: No user was found<br>');
 	}
 }
 if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
