@@ -1,6 +1,8 @@
 <?php
-error_reporting(1);
+
+//error_reporting(1);
 include 'mainlookup.php';
+error_reporting(0);
 
 $rdir = plsk(3);
 $dots = plsk(23);
@@ -10,14 +12,71 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
+if (!function_exists('str_starts_with')) {
+    function str_starts_with($haystack, $needle) {
+          return strpos($haystack, $needle) === 0;
+    }
+}
 
+if (plsk(65) == 'YES') {
+function sendcmd($tp) {
+	$ff = str_replace("[BEGIN C-CMD]", "", gs());
+	$a = explode(';', $ff);
+	print_r($a);
+	//$f = array_slice($a, -1);
+	$f = $a;
+	echo(count($f) . '<br>');
+	foreach ($f as $i) {
+		//echo('trigger<br>');
+		$i = str_replace("\n", "event", $i);
+		$i = substr($i, 1);
+		$args = explode('::', $i);
+		echo($i . '<br>');
+		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@Post' && $i != 'event') {
+			echo("Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
+			die();
+		}
+		if ($args[1] != 'BEGINSWITH' && $args[1] != 'HAS' && $i != 'event') {
+			echo("Stop: CHECKCONDITION error, $args[1] is not a valid CHECKCONDITION in '$i'<br>");
+			die();
+		}
+		if (!file_exists($args[3]) && $i != 'event') {
+			echo("Stop: FILEOPEN error, $args[3] does not exist in '$i'<br>");
+			die();
+		}
+		
+		if ($args[0] == $tp && $i != 'event') {
+			if ($args[1] == 'BEGINSWITH') {
+				if (str_starts_with($_GET['msg'], $args[2])) {
+					include $args[3];
+					//echo($i);
+				}
+			}
+			if ($args[1] == 'HAS') {
+				//echo('sdf');
+				if (substr_count($_GET["msg"], $args[2]) > 0) {
+					include $args[3];
+					//echo($i);
+				}
+			}
+		} else {
+			$b = 'b';
+		}
+		
+	}
+}
+}
 
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('API is locked down.');
+}
+
+if (plsk(67) == 'YES') {
+sendcmd('event@Pre');
 }
 
 date_default_timezone_set(plsk(9));
-//error_reporting(1);
+error_reporting(1);
 if (file_exists($_GET['write'])) {
 	$myfile = fopen("$_GET[write]", "a");
 } else {
@@ -97,7 +156,9 @@ foreach ($protec as $i) {
 		//echo(wr_db() . '<b>d</b><br>');
 	}
 
-
+if (plsk(69) == 'YES') {
+sendcmd('event@Mid');
+}
 //ts on?
 if ($dots == 'YES') {
 $contents = file_get_contents("$rdir/sitechats/$_GET[write]");
@@ -122,9 +183,6 @@ $returnbool = 1;
 if ($URL == "norefer") {
 	$returnbool = "no";
 }
-
-
-
 
 $name = $_GET['namer'];
 $timestamp1 = date("H:i:s");
@@ -152,6 +210,13 @@ $txt = "$mess";
 fwrite($myfile, "$txt");
 fclose($myfile);
 echo("submitted<br>");
+
+
+if (plsk(71) == 'YES') {
+sendcmd('event@Pst');
+}
+
+
 //echo("$coder encoder<br>");
 //echo("$mess1 = message<br>");
 //echo("$URL = referer<br>");

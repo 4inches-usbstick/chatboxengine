@@ -20,12 +20,12 @@ PID   PNAME   PVAL
 31 illegal-destination::.py//.php//.hta::
 33 do-encoding-conversion::YES::
 35 allow-remotemainedit::YES::
-37 terminal-errors::1::
+37 terminal-errors::0::
 39 domediacheck::YES::
 41 editneedmaster::NO::
 43 allowpostsendmsg::YES::
 45 terminal-log-file::terminal-logger::
-47 doterminal-logging::NO::
+47 doterminal-logging::YES::
 49 nolog-commands::change, inicfg, ecfg::
 51 udb-manage-needmaster::YES::
 53 allow-newchat::YES::
@@ -34,6 +34,10 @@ PID   PNAME   PVAL
 59 protocol::http::
 61 defaultclient-percentAutoencode::YES::
 63 accept-wildcard-xedit::YES::
+65 do-sendmsgendpoint-cmdcheck::YES::
+67 allow-preexec::YES::
+69 allow-midexec::YES::
+71 allow-pstexec::YES::
 -----------------------------------------
 
 Notes:
@@ -49,6 +53,8 @@ Notes:
 10. You can't use PHR-NUL anywhere within the CBauth list.
 11. These policies apply to files on this server. Clients hosted by other servers will not be affected by this file. For example, PercentAutoencode will work on clients that support it and are on the Chatbox Engine server.
 12. Don't use any filesystem protected / conflict characters (such as NUL, >, &, etc.) in any part of the CBauth list.
+13. If sendmsgendpoint_cmdchek is NO, then PIDs 65-71 must also be NO.
+
 
 [BEGIN CBAUTH]
 UID::NAME::KEY::PERMS;
@@ -63,4 +69,22 @@ C#::RESTRICT-TO::
 0000::local::
 terminal-logger::sudo::
 [END FILESAFE] 
+
+[BEGIN C-CMD]
+@Pre::BEGINSWITH::/example::script.php;
+[END C-CMD]
+
+C-CMD:
+@Exepoint::CONDITION::arg1::includescriptpath::
+
+Exepoint is when sendmsg checks for it. @Pre is before UID.UKEY, @Mid is after UID.UKEY but before FOPEN, @Pst is after the rest of the script is done.
+
+Condition has two values: BEGINSWITH and HAS. Beginswith means 'if message begins with [str]', HAS means 'if message contains [str]'.
+
+Arg1 is [str] from the previous example.
+
+Includescriptpath is the script that is PHP included if the message meets the conditions.
+
+Note that a message can meet multiple conditions at once.
+
           

@@ -10,6 +10,54 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
+if (plsk(65) == 'YES') {
+function sendcmd($tp) {
+	$ff = str_replace("[BEGIN C-CMD]", "", gs());
+	$a = explode(';', $ff);
+	print_r($a);
+	//$f = array_slice($a, -1);
+	$f = $a;
+	echo(count($f) . '<br>');
+	foreach ($f as $i) {
+		//echo('trigger<br>');
+		$i = str_replace("\n", "event", $i);
+		$i = substr($i, 1);
+		$args = explode('::', $i);
+		echo($i . '<br>');
+		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@Post' && $i != 'event') {
+			echo("Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
+			die();
+		}
+		if ($args[1] != 'BEGINSWITH' && $args[1] != 'HAS' && $i != 'event') {
+			echo("Stop: CHECKCONDITION error, $args[1] is not a valid CHECKCONDITION in '$i'<br>");
+			die();
+		}
+		if (!file_exists($args[3]) && $i != 'event') {
+			echo("Stop: FILEOPEN error, $args[3] does not exist in '$i'<br>");
+			die();
+		}
+		
+		if ($args[0] == $tp && $i != 'event') {
+			if ($args[1] == 'BEGINSWITH') {
+				if (str_starts_with($_GET['msg'], $args[2])) {
+					include $args[3];
+					//echo($i);
+				}
+			}
+			if ($args[1] == 'HAS') {
+				//echo('sdf');
+				if (substr_count($_GET["msg"], $args[2]) > 0) {
+					include $args[3];
+					//echo($i);
+				}
+			}
+		} else {
+			$b = 'b';
+		}
+		
+	}
+}
+}
 
 
 if (plsk(21) != 'YES') {
@@ -17,6 +65,10 @@ if (plsk(21) != 'YES') {
 }
 if(plsk(43) != 'YES') {
 	die('Stop: HTTP POST for sendmsg not allowed on this server.')
+}
+
+if (plsk(67) == 'YES') {
+sendcmd('event@Pre');
 }
 
 date_default_timezone_set(plsk(9));
@@ -100,7 +152,9 @@ foreach ($protec as $i) {
 		//echo(wr_db() . '<b>d</b><br>');
 	}
 
-
+if (plsk(69) == 'YES') {
+sendcmd('event@Mid');
+}
 //ts on?
 if ($dots == 'YES') {
 $contents = file_POST_contents("$rdir/sitechats/$_POST[write]");
@@ -155,6 +209,12 @@ $txt = "$mess";
 fwrite($myfile, "$txt\n");
 fclose($myfile);
 echo("submitted<br>");
+
+if (plsk(71) == 'YES') {
+sendcmd('event@Pst');
+}
+
+
 //echo("$coder encoder<br>");
 //echo("$mess1 = message<br>");
 //echo("$URL = referer<br>");
