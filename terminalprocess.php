@@ -12,11 +12,11 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-
+error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
-error_reporting(plsk(37));
+
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
@@ -191,6 +191,29 @@ if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
 		die('Warning: No user was found<br>');
 	}
 }
+
+if ($_GET['cmd'] == 'cmd add' && $_GET['pass'] == $pass) {
+	if ($useduid) {
+		die('Stop: Master password required to run cmd add command');
+	}
+	$ps = explode(';', $_GET['params']);
+	$f = file_get_contents('.htamainpolicy');
+	$pos = strpos($f, '[END C-CMD]');
+	$newc = substr_replace($f, "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n[END C-CMD]\n", $pos);
+	file_put_contents('.htamainpolicy', $newc);
+}
+if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
+	if ($useduid) {
+		die('Stop: Master password required to run cmd del command');
+	}
+	$ps = explode(';', $_GET['params']);
+	$f = file_get_contents('.htamainpolicy');
+	$pos = strpos($f, '[END C-CMD]');
+	$newc = str_replace("\n$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
+	file_put_contents('.htamainpolicy', $newc);
+}
+
+
 if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
 	
@@ -531,6 +554,8 @@ help: brings up this help message, no parameters<br><br>
 *^ecfg: configure .htamainpolicy. this command can be disabled by PID 35<br>
 *^change: change Master Admin Password<br><br>
 
+*^cmd add: add a custom command in this syntax: @Event;Condition;String;Includepath<br>
+*^cmd del: remove a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Permission (space char as delimiter)<br>
 *^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Permission (space char as delimiter)<br><br>
 
