@@ -69,6 +69,8 @@ PID  Change to
 67   Allow pre-exc for custom cmds, for 67-71, YES for allow and NO for forbid
 69   Allow mid-exc for custom cmds
 71   Allow post-exc for custom cmds
+73   Whether nonmaster users can issue LOCK ADD/DEL commands
+75   Whether to enable UIDUKEY lockout
 
 --CBauth--
 To add someone to the CBauth list, use this format:
@@ -85,7 +87,7 @@ For issuing TerminEdit commands, use the UID and UKEY slots to verify your ident
 For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
 username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.
 
--FILESAFE--
+--FILESAFE--
 
 To protect a file from unauthorised writing add;
 FILENAME::PERMISSION::
@@ -108,3 +110,20 @@ Notes:
 3. (**) from earlier: use %ip to show where you would put the IP to ban
 4. (*) from earlier: this does not bypass server limit for file uploads
 
+--CCMD--
+Let's say you want to support image sending but you don't want the stupid inchat-div client. You can use Custom Commands. Every time a message is sent sendmsg checks if a string is in / is the beginning of the message.
+To add or delete these events, use the terminal. Use the help command for more info.
+
+@Event;Condition;String;Includepath
+
+Event is the point in execution of sendmsg that you want CCMD to work.
+
+@Pre is before almost all execution, @Mid is after UID.UKEY checking but before message send, @Pst is after all execution.
+Condition has two values: HAS and BEGINSWITH. HAS is 'if msg contains [str]', BEGINSWITH is 'if msg startswith [str]'.
+String is [str] to check for from earlier.
+Includepath is the PHP script to call upon when triggered by the condition and [str].
+
+--UIDUKEY LOCKOUT--
+Lock someone out: [chatbox no.] deny from [int: UID]
+Use lock add to lock someone out and lock del to unlock.
+WILDCARD-ALL to lock out the entire server for that UID.
