@@ -71,7 +71,7 @@ terminal-logger::sudo::
 [END FILESAFE] 
 
 [BEGIN C-CMD]
-@Pre::BEGINSWITH::/example::script.php;
+@Pre::BEGINSWITH::/example::mainlookup.php;
 [END C-CMD]
 
 C-CMD:
