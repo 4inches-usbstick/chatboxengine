@@ -39,7 +39,7 @@ PID   PNAME   PVAL
 69 allow-midexec::YES::
 71 allow-pstexec::YES::
 73 uidukey-canlockoutotheruidukeyusers::NO::
-75 douidukey-lockout::NO::
+75 douidukey-lockout::YES::
 -----------------------------------------
 
 Notes:
