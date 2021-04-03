@@ -43,7 +43,7 @@ PID   PNAME   PVAL
 Notes:
 1. All filepaths must use '/'
 2. Boolean values must have YES or NO
-3. Only use no-go-phrases if certain words would threaten user security (i.e. <script> tag)
+3. Only use no-go-phrases if certain words would threaten user security (i.e. script tag)
 4. On no-go-phrases and protect-extensions: use '//' as the delimiter between phrases.
 5. PERMS within the CBauth section must be sudo or notsudo, where sudo allows users to run admin commands and perform admin actions. All users in CBauth will be granted a reserved name.
 6. RESRICT-TO in FILESAFE has three options: local, sudo and login. local means no writing is allowed through the API, sudo means you have to be a sudo user to write to the file, and login means you just have to log in to write to the file.
@@ -73,18 +73,3 @@ terminal-logger::sudo::
 [BEGIN C-CMD]
 @Pre::BEGINSWITH::/example::mainlookup.php;
 [END C-CMD]
-
-C-CMD:
-@Exepoint::CONDITION::arg1::includescriptpath::
-
-Exepoint is when sendmsg checks for it. @Pre is before UID.UKEY, @Mid is after UID.UKEY but before FOPEN, @Pst is after the rest of the script is done.
-
-Condition has two values: BEGINSWITH and HAS. Beginswith means 'if message begins with [str]', HAS means 'if message contains [str]'.
-
-Arg1 is [str] from the previous example.
-
-Includescriptpath is the script that is PHP included if the message meets the conditions.
-
-Note that a message can meet multiple conditions at once.
-
-          
