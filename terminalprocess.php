@@ -213,6 +213,26 @@ if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 	file_put_contents('.htamainpolicy', $newc);
 }
 
+if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
+	if ($useduid && plsk(75) == 'YES') {
+		die('Stop: Master password required to run lock add command');
+	}
+	$f = file_get_contents('.htamainpolicy');
+	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
+	$newc = substr_replace($f, "$_GET[params]\n[END UIDUKEY LOCKOUT]\n", $pos);
+	file_put_contents('.htamainpolicy', $newc);
+	//echo $newc;
+}
+if ($_GET['cmd'] == 'lock del' && $_GET['pass'] == $pass) {
+	if ($useduid && plsk(75) == 'YES') {
+		die('Stop: Master password required to run lock del command');
+	}
+	$f = file_get_contents('.htamainpolicy');
+	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
+	$newc = str_replace("$_GET[params]", "", $f);
+	file_put_contents('.htamainpolicy', $newc);
+}
+
 
 if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
