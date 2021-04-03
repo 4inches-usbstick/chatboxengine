@@ -214,7 +214,7 @@ if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 }
 
 if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(75) == 'YES') {
+	if ($useduid && plsk(75) != 'YES') {
 		die('Stop: Master password required to run lock add command');
 	}
 	$f = file_get_contents('.htamainpolicy');
@@ -224,7 +224,7 @@ if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
 	//echo $newc;
 }
 if ($_GET['cmd'] == 'lock del' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(75) == 'YES') {
+	if ($useduid && plsk(75) != 'YES') {
 		die('Stop: Master password required to run lock del command');
 	}
 	$f = file_get_contents('.htamainpolicy');
