@@ -73,7 +73,14 @@ $f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
 	$fs = substr($f, $offset0, $offset1 - $offset0);
 	return $fs;
 }
-
+//get access
+function ga() {
+$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	$offset0 = strpos($f, '[BEGIN UIDUKEY LOCKOUT]');
+	$offset1 = strpos($f, '[END UIDUKEY LOCKOUT]');
+	$fs = substr($f, $offset0, $offset1 - $offset0);
+	return $fs;
+}
 //I HATH CONNECT HELPERFUNCTION
 function speakout($name, $write) {
 date_default_timezone_set(plsk(9));
