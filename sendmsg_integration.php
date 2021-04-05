@@ -156,7 +156,7 @@ foreach ($protec as $i) {
 		//echo(wr_db() . '<b>d</b><br>');
 	}
 	
-if (plsk(75) == 'YES') {
+if (plsk(75) == 'YES' && !empty($_GET['uid'])) {
 if (substr_count(ga(), "$_GET[write] deny from $_GET[uid]") > 0 || substr_count(ga(), "WILDCARD-ALL deny from $_GET[uid]") > 0) {
 	die("Stop: This UID ($_GET[uid]) is locked out from this chatbox");
 }
