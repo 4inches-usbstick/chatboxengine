@@ -20,7 +20,12 @@ if ($iframe > 0) {
 if ($_GET['divecho']) {
 	echo('<div style="white-space: pre;">');
 }
+if (file_exists($chatbox)) {
 echo(file_get_contents($chatbox));
+} else {
+	echo('Stop: 404 Not Found');
+	header("HTTP/1.0 404 Not Found");
+}
 
 if ($_GET['divecho']) {
 	echo('</div>');
