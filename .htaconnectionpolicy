@@ -13,7 +13,7 @@ showts:NO
 ::<br><i> SERVER - User <b>%name</b> has connected at %ts</i><br>
 ::<br><i> SERVER - User <b>%name</b> has connected</i><br>
 ::<br><i> SERVER - A user has connected at %ts</i><br><br>
-::<br><i> SERVER - A user has connected<i><br><br> <--
+::<br><i> SERVER - A user has connected</i><br><br> <--
 
 
 Notes:
