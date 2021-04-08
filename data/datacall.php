@@ -15,10 +15,10 @@ $datapath = $_GET['path'];
 $startfrom = "00";
 
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('[err:4] Stop: API is locked down.');
 }
 if (strpos($data, 'begin CBEDATA') === false && plsk(57) == 'YES') {
-    die("Stop: CBEDATA files must begin with a declaration [PID 57]");
+    die("[err:24]Stop: CBEDATA files must begin with a declaration [PID 57]");
 }
 
 $protec = explode('//', plsk(31));
@@ -26,13 +26,13 @@ foreach ($protec as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_GET["src"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal destination, halted');
+		die('[err:7] Stop: Illegal destination, halted');
 	}
 }
 
 $getclass = $_GET['type'];
 if (empty($_GET['type'])) {
-die('Stop: missing data type, no data can be given.');
+die('[err:25] Stop: missing data type, no data can be given.');
 }
 
 
@@ -113,7 +113,7 @@ if ($getclass == 'raw') {
 }
 
 if ($getclass != 'var' and $getclass != 'attr' and $getclass != 'attr-name' and $getclass != 'class' and $getclass != 'raw') {
-		echo('Stop: unspecified data type, no data can be given.');
+		echo('[err:25] Stop: unspecified data type, no data can be given.');
 		die();
 }
 //echo('<br>');

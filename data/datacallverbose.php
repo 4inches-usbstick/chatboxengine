@@ -11,7 +11,7 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-
 
 
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('[err:4] Stop: API is locked down.');
 }
 
 $data = file_get_contents("$rdir/sitechats/$_GET[src]");
@@ -19,7 +19,7 @@ $datapath = $_GET['path'];
 $startfrom = "00";
 
 if (strpos($data, 'begin CBEDATA') === false && plsk(57) == 'YES') {
-    die("Stop: CBEDATA files must begin with a declaration [PID 57]");
+    die("[err:24] Stop: CBEDATA files must begin with a declaration [PID 57]");
 }
 
 $protec = explode('//', plsk(31));
@@ -27,7 +27,7 @@ foreach ($protec as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_GET["src"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal destination, halted');
+		die('[err:7] Stop: Illegal destination, halted');
 	}
 }
 
