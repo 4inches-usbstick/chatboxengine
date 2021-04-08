@@ -607,7 +607,7 @@ if ($_GET["pass"] != $pass)
 {
 echo("
 <hr>
-<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid [err:33]</b>
+<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid [warn:33]</b>
 <hr>
 ");
 }
