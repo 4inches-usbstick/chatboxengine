@@ -70,3 +70,40 @@ UID/UKEY (CBauth) allows users to gain special priviledges, such as a reserved u
 
 --ERROR REPORTING--
 If an error occurs and the operation was halted, the string 'Stop:' will appear in the return value. The one exception is with terminalprocess, where Auth-Warning will appear if you provided inadequate authorization but that did not stop execution.
+
+There are now error codes: if an error pops up it will be in this syntax: [err:ERRCODE] or [warn:ERRCODE] if the Stop: is only a warning.
+
+Error codes and what they mean
+1 executionpoint error (internal error)
+2 checkcondition error (internal error)
+3 file IO error (internal error)
+4 API lockdown status
+5 This Chatbox Does Not Actuaully Exist
+6 Forbidden string
+7 Forbidden chatbox destination
+8 Protected file
+9 Local level needed
+10 Sudo level needed
+11 This UID is locked out
+12 HTTP POST for sendmsg is disabled
+13 403 Forbidden
+14 404 Not Found
+15 Reserved, not used
+16 No/incorrect auth
+17 Newchat disabled
+18 This file exists already
+19 This filename is illegal
+20 This user level cannot edit
+21 Not high enough user authorization
+22 Reserved, not used
+23 UID/UKEY is not acceptable and masterkey is needed
+24 begin CBEDATA is on strict mode
+25 No data type
+26 .htamainpolicy stopped execution
+27 Payload too large on HTTP POST
+28 No media dir to work with
+29 .htaterminalaccess stopped execution
+30 User did not exist in first place (UID DEL)
+31 Failure to delete (unknown error)
+32 LOADEXE command stopped (unknown error)
+33 Generic Authorization Error
