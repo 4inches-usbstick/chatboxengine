@@ -29,7 +29,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('Auth-Warning: This user is not a sudo user<br>');
+	echo('[warn:21] Auth-Warning: This user is not a sudo user<br>');
 }
 
 skipverify:
@@ -129,7 +129,7 @@ if ($_GET["cmd"] == "wipe" and $_GET["pass"] == $pass) {
 	$script = substr_count($banned, $params);
 	
 	if ($script > 0) {
-	die("Stop: This Chatbox is protected and thus cannot be wiped.<br>");
+	die("[err:29] Stop: This Chatbox is protected and thus cannot be wiped.<br>");
 }
 	
 	$f1 = fopen($params, "w");
@@ -161,13 +161,13 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
 	echo("Password changed: $_GET[params]");
 }
 if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
-	echo("Stop: Master password required to run the CHANGE command.");
+	echo("[err:23] Stop: Master password required to run the CHANGE command.");
 }
 
 //uid db management
 if ($_GET['cmd'] == 'udb add' && $_GET['pass'] == $pass) {
 	if (plsk(51) == 'YES' && $useduid) {
-		die('Stop: Master password required to run udb add command (PID 51)');
+		die('[err:23] Stop: Master password required to run udb add command (PID 51)');
 	}
 	$ps = explode(' ', $_GET['params']);
 	$c = uid_db();
@@ -180,7 +180,7 @@ if ($_GET['cmd'] == 'udb add' && $_GET['pass'] == $pass) {
 }
 if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
 	if (plsk(51) == 'YES' && $useduid) {
-		die('Stop: Master password required to run udb del command (PID 51)');
+		die('[err:23] Stop: Master password required to run udb del command (PID 51)');
 	}
 	$ps = explode(' ', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
@@ -188,13 +188,13 @@ if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
 	$newcc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];", "$ps[0]::User Deleted Using Terminal::$rrr::notsudo;", $f);
 	file_put_contents('.htamainpolicy', $newcc);
 	if ($newcc == $f) {
-		die('Warning: No user was found<br>');
+		die('[warn:30] Warning: No user was found<br>');
 	}
 }
 
 if ($_GET['cmd'] == 'cmd add' && $_GET['pass'] == $pass) {
 	if ($useduid) {
-		die('Stop: Master password required to run cmd add command');
+		die('[err:23] Stop: Master password required to run cmd add command');
 	}
 	$ps = explode(';', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
@@ -204,7 +204,7 @@ if ($_GET['cmd'] == 'cmd add' && $_GET['pass'] == $pass) {
 }
 if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 	if ($useduid) {
-		die('Stop: Master password required to run cmd del command');
+		die('[err:23] Stop: Master password required to run cmd del command');
 	}
 	$ps = explode(';', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
@@ -215,7 +215,7 @@ if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 
 if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
 	if ($useduid && plsk(75) != 'YES') {
-		die('Stop: Master password required to run lock add command');
+		die('[err:23] Stop: Master password required to run lock add command');
 	}
 	$f = file_get_contents('.htamainpolicy');
 	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
@@ -225,7 +225,7 @@ if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
 }
 if ($_GET['cmd'] == 'lock del' && $_GET['pass'] == $pass) {
 	if ($useduid && plsk(75) != 'YES') {
-		die('Stop: Master password required to run lock del command');
+		die('[err:23] Stop: Master password required to run lock del command');
 	}
 	$f = file_get_contents('.htamainpolicy');
 	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
@@ -238,16 +238,16 @@ if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
 	
 	if (plsk(55) == 'YES' && $useduid) {
-		die('Stop: Need masterkey for COPEN command [PID55]');
+		die('[err:23] Stop: Need masterkey for COPEN command [PID55]');
 	}
 	if (file_exists($ps[0])) {
-		die('Stop: This chatbox exists');
+		die('[err:18] Stop: This chatbox exists');
 	}
 	$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN');
 
 	foreach ($notallowed as $i) {
 	if (substr_count($ps[0], $i) > 0) {
-		die('Stop: Illegal character in filename: ' . $i);
+		die('[err:19] Stop: Illegal character in filename: ' . $i);
 	}
 	}
 	
@@ -281,14 +281,14 @@ if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
 	echo("Written to file: $_POST[params]");
 }
 if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
-	echo("Stop: You must use the main admin password to run the INICFG command.");
+	echo("[err:23] Stop: You must use the main admin password to run the INICFG command.");
 }
 
 if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == false) {
 	echo("<a href=\"maineditor.php?pass=$_GET[pass]\">Open</a>");
 }
 if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
-	echo("Stop: Master password required to run ECFG command");
+	echo("[err:23] Stop: Master password required to run ECFG command");
 }
 
 //del
@@ -308,7 +308,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "<br>";
 } else {
-    echo "Stop: This file is protected and thus cannot be accessed";
+    echo "[err:29] Stop: This file is protected and thus cannot be accessed";
 	die();
 }
 
@@ -322,7 +322,7 @@ $ff1 = rmdir("$rdir/sitechats/media/$params");
 //system("rm -rf ".escapeshellarg("$rdir/sitechats/media/$params"));
 
 if (file_exists($path)) {
-    echo "Stop: Chatbox failed to delete<br>";
+    echo "[err:31] Stop: Chatbox failed to delete<br>";
 } else {
     echo "Chatbox deleted<br>";
 }
@@ -330,7 +330,7 @@ if (file_exists($path)) {
 
 
 if (file_exists("$rdir/sitechats/media/$params")) {
-    echo "Stop: Media directory failed to delete<br>";
+    echo "[err:31] Stop: Media directory failed to delete<br>";
 } else {
     echo "Media directory deleted<br>";
 }
@@ -353,7 +353,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "<br>";
 } else {
-    echo "Stop: This file is protected and thus cannot be accessed";
+    echo "[err:29] Stop: This file is protected and thus cannot be accessed";
 	die();
 }
 
@@ -410,7 +410,7 @@ if ($_GET["cmd"] == "xedit") {
 
 if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
 
-if (plsk(15) == 'YES') {
+if (plsk(15) == 'YES' && !$useduid) {
 	$contents = file_get_contents("loader.py");
 	$newcontents = str_replace("%%replace01", $_GET["params"], $contents);
 	unlink("loader-tmp.py");
@@ -430,7 +430,7 @@ if (plsk(15) == 'YES') {
 	echo("<b>START command sent.</b><br>");
 	//print_r($output);
 } else {
-die('Stop: loadexe disabled by .htamainpolicy');
+die('[err:32] Stop: loadexe disabled by .htamainpolicy OR no masterkey');
 }
 }
 
@@ -470,7 +470,7 @@ if ($_GET["cmd"] == "mdel" && $_GET["params"] != "WILDCARD-ALL" && $_GET["pass"]
 	echo("Deleted Media Dir");
 }
 if ($_GET["cmd"] == "mdel" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("WARNING: WILDCARD-ALL REMOVES ALL MEDIA DIRS<br>");
+	echo("Notice: WILDCARD-ALL REMOVES ALL MEDIA DIRS<br>");
 	chdir("$rdir/sitechats/media/");
 	$medirs = glob("*", GLOB_ONLYDIR);
 	foreach($medirs as $i) {
@@ -481,7 +481,7 @@ if ($_GET["cmd"] == "mdel" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"]
 }
 //media reload
 if ($_GET["cmd"] == "mload" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("WARNING: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
+	echo("Notice: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
 	chdir("$rdir/sitechats/copies/media/");
 	$medirs = glob("*", GLOB_ONLYDIR);
 	
@@ -492,14 +492,14 @@ if ($_GET["cmd"] == "mload" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"
 	}
 }
 if ($_GET["cmd"] == "mload" && $_GET["params"] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("WARNING: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
+	echo("Notice: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
 	chdir("$rdir/sitechats/copies/media/");
 		ccp("$mcc/$_GET[params]", "$rdir/sitechats/media/$_GET[params]/uploaded");
 		echo("Loaded Media Dir");
 }
 //mkdir
 if ($_GET["cmd"] == "mkdir" && $_GET["pass"] == $pass) {
-	echo("WARNING: EXISTING MEDIA DIRS MAY BE OVERWRITTEN");
+	echo("Notice: EXISTING MEDIA DIRS MAY BE OVERWRITTEN");
 	mkdir("$rdir/sitechats/media/$_GET[params]", 0700);
 	mkdir("$rdir/sitechats/media/$_GET[params]/uploaded", 0700);
 		echo("Made directory");
@@ -607,7 +607,7 @@ if ($_GET["pass"] != $pass)
 {
 echo("
 <hr>
-<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid</b>
+<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid [err:33]</b>
 <hr>
 ");
 }

@@ -9,7 +9,7 @@ foreach ($nogo as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_GET["msg"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal element in string detected, halted');
+		die('[err:6] Stop: Illegal element in string detected, halted');
 	}
 }
 //illegal destination checker
@@ -17,7 +17,7 @@ foreach ($protec as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_GET["write"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal destination, halted');
+		die('[err:7] Stop: Illegal destination, halted');
 	}
 }
 //write protecc?
@@ -25,7 +25,7 @@ foreach ($protec as $i) {
 		echo('File protected, checking permissions...<br>');
 		//user didnt try to authenticate
 		if (empty($_GET['uid']) || empty($_GET['ukey'])) {
-			die('Stop: Protected file and no UID/UKEY');
+			die('[err:8] Stop: Protected file and no UID/UKEY');
 		}
 		//user did try and got it
 		if (uidlsk($_GET['uid'], $_GET['ukey']) == true) {
@@ -36,11 +36,11 @@ foreach ($protec as $i) {
 			}
 			//local needed
 			if (wr_bycb($_GET['write'], 2) == 'local') {
-				die('Stop: Protected file with local access only.');
+				die('[err:9] Stop: Protected file with local access only.');
 			}
 			//sudo needed and not provided
 			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-				die('Stop: Protected file with sudo access only.');
+				die('[err:10] Stop: Protected file with sudo access only.');
 			}
 			//sudo needed and was provided
 			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
@@ -49,7 +49,7 @@ foreach ($protec as $i) {
 		}
 		//user did try but did not GET it
 		if (uidlsk($_GET['uid'], $_GET['ukey']) == false) {
-			die('Stop: Protected file and invalid UID/UKEY');
+			die('[err:8] Stop: Protected file and invalid UID/UKEY');
 		}
 	} else {
 		echo('File not protected<br>');
@@ -71,12 +71,19 @@ $script = substr_count($_GET["msg"], 'script');
 $scrit = substr_count($_GET["write"], '.hta');
 
 if ($iframe > 0 or $script > 0) {
-	die("Illegal element found in string detected, halted.<br>");
+	die("[err:6] Illegal element found in string detected, halted.<br>");
 }
 
 if ($scrit > 0) {
-	die('Stop: illegal destination')
+	die('[err:7] Stop: illegal destination')
 }
+
+if (plsk(75) == 'YES' && !empty($_GET['uid'])) {
+if (substr_count(ga(), "$_GET[write] deny from $_GET[uid]") > 0 || substr_count(ga(), "WILDCARD-ALL deny from $_GET[uid]") > 0) {
+	die("[err:11] Stop: This UID ($_GET[uid]) is locked out from this chatbox");
+}
+}
+
 //end that
 
 

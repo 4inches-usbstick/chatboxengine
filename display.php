@@ -14,7 +14,7 @@ $iframe = substr_count($_GET["chatbox"], '.hta');
 
 if ($iframe > 0) {
 	header("HTTP/1.0 403 Forbidden");
-	die("Stop: 403 Forbidden");
+	die("[err:13] Stop: 403 Forbidden");
 }
 
 if ($_GET['divecho']) {
@@ -23,7 +23,7 @@ if ($_GET['divecho']) {
 if (file_exists($chatbox)) {
 echo(file_get_contents($chatbox));
 } else {
-	echo('Stop: 404 Not Found');
+	echo('[err:14] Stop: 404 Not Found');
 	header("HTTP/1.0 404 Not Found");
 }
 

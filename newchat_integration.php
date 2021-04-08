@@ -5,10 +5,10 @@ include 'mainlookup.php';
 $rdir = plsk(3);
 
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('[err:4] Stop: API is locked down.');
 }
 if (plsk(53) != 'YES') {
-	die('Stop: Newchat Endpoint Disabled [PID53]');
+	die('[err:17] Stop: Newchat Endpoint Disabled [PID53]');
 }
 
 header('Access-Control-Allow-Origin: *');
@@ -24,7 +24,7 @@ $filename = $_GET["newname"];
 
 if (file_exists($filename)) {
     $ok = 0;
-	echo("<b>Stop: This chatbox number is in use.</b> <p></p>");
+	echo("<b>[err:18] Stop: This chatbox number is in use.</b> <p></p>");
 	die();
 } else {
     echo("<p>[1] Complete </p> <p></p>");
@@ -37,7 +37,7 @@ $pos = stristr($findme, ".");
 if ($pos === false) {
     echo "[2] Complete<p></p>";
 } else {
-    echo "Stop: This is a forbidden Chatbox number";
+    echo "[err:19] Stop: This is a forbidden Chatbox number";
 	$ok = 0;
 	die();
 }
@@ -45,7 +45,7 @@ $notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'C
 
 foreach ($notallowed as $i) {
 if (substr_count($_GET['newname'], $i) > 0) {
-	die('Stop: Illegal character in filename: ' . $i);
+	die('[err:19] Stop: Illegal character in filename: ' . $i);
 }
 }
 
@@ -57,7 +57,7 @@ $pos = strpos($haystaq, $findme);
 if ($pos === false) {
     echo "[2] Complete<p></p>";
 } else {
-    echo "Stop: This is a forbidden Chatbox number";
+    echo "[err:19] Stop: This is a forbidden Chatbox number";
 	$ok = 0;
 	die();
 }

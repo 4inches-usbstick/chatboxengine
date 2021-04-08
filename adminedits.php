@@ -5,7 +5,7 @@ $pass = file_get_contents('.htapassword');
 include 'mainlookup.php';
 $rdir = plsk(3);
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('[err:4] Stop: API is locked down.');
 }
 
 $useduid = false;
@@ -20,7 +20,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('Stop: You are not a sudo user.<br>');
+	echo('[err:21] Stop: You are not a sudo user.<br>');
 }
 
 skipverify:
@@ -28,7 +28,7 @@ if ($_GET["key"] == $pass and $useduid == false) {
 	echo("Logged in with Master Password<br>");
 }
 if ($_GET["key"] == $pass and $useduid == true && plsk(41) == 'YES') {
-	die('Stop: UID/UKEY users cannot edit');
+	die('[err:23] Stop: UID/UKEY users cannot edit');
 }
 if ($_GET["key"] == $pass and $useduid == true && plsk(41) == 'NO') {
 	echo('PID41 ok<br>');
@@ -44,7 +44,7 @@ foreach ($nogo as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_GET["rw"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal element in string detected, halted');
+		die('[err:6] Stop: Illegal element in string detected, halted');
 	}
 }
 
@@ -80,7 +80,7 @@ if ($homepage == $onlyconsonants) {
 
 //passcheck
 } else {
-echo("Stop: Incorrect or missing password. This command failed to execute.");
+echo("[err:16] Stop: Incorrect or missing password. This command failed to execute.");
 }
 }
 
@@ -125,7 +125,7 @@ skipexec:
 }
 
 } else {
-echo("Stop: Incorrect or missing password. This command failed to execute.");
+echo("[err:16] Stop: Incorrect or missing password. This command failed to execute.");
 }
 }
 

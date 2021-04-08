@@ -1,6 +1,8 @@
 <?php
-error_reporting(1);
+
+//error_reporting(1);
 include 'mainlookup.php';
+error_reporting(0);
 
 $rdir = plsk(3);
 $dots = plsk(23);
@@ -9,6 +11,12 @@ $protec = explode('//', plsk(31));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
+if (!function_exists('str_starts_with')) {
+    function str_starts_with($haystack, $needle) {
+          return strpos($haystack, $needle) === 0;
+    }
+}
 
 if (plsk(65) == 'YES') {
 function sendcmd($tp) {
@@ -25,28 +33,28 @@ function sendcmd($tp) {
 		$args = explode('::', $i);
 		echo($i . '<br>');
 		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@Post' && $i != 'event') {
-			echo("Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
+			echo("[err:1] Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
 			die();
 		}
 		if ($args[1] != 'BEGINSWITH' && $args[1] != 'HAS' && $i != 'event') {
-			echo("Stop: CHECKCONDITION error, $args[1] is not a valid CHECKCONDITION in '$i'<br>");
+			echo("[err:2] Stop: CHECKCONDITION error, $args[1] is not a valid CHECKCONDITION in '$i'<br>");
 			die();
 		}
 		if (!file_exists($args[3]) && $i != 'event') {
-			echo("Stop: FILEOPEN error, $args[3] does not exist in '$i'<br>");
+			echo("[err:3] Stop: FILEOPEN error, $args[3] does not exist in '$i'<br>");
 			die();
 		}
 		
 		if ($args[0] == $tp && $i != 'event') {
 			if ($args[1] == 'BEGINSWITH') {
-				if (str_starts_with($_GET['msg'], $args[2])) {
+				if (str_starts_with($_POST['msg'], $args[2])) {
 					include $args[3];
 					//echo($i);
 				}
 			}
 			if ($args[1] == 'HAS') {
 				//echo('sdf');
-				if (substr_count($_GET["msg"], $args[2]) > 0) {
+				if (substr_count($_POST["msg"], $args[2]) > 0) {
 					include $args[3];
 					//echo($i);
 				}
@@ -59,12 +67,11 @@ function sendcmd($tp) {
 }
 }
 
-
 if (plsk(21) != 'YES') {
-	die('Stop: API is locked down.');
+	die('[err:4] API is locked down.');
 }
 if(plsk(43) != 'YES') {
-	die('Stop: HTTP POST for sendmsg not allowed on this server.')
+	die('[err:12] Stop: HTTP POST for sendmsg not allowed on this server.')
 }
 
 if (plsk(67) == 'YES') {
@@ -72,11 +79,11 @@ sendcmd('event@Pre');
 }
 
 date_default_timezone_set(plsk(9));
-//error_reporting(1);
+error_reporting(1);
 if (file_exists($_POST['write'])) {
 	$myfile = fopen("$_POST[write]", "a");
 } else {
-	die('Stop: This chatbox does not actually exist');
+	die('[err:5] Stop: This chatbox does not actually exist');
 }
 
 //banned words checker
@@ -84,7 +91,7 @@ foreach ($nogo as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_POST["msg"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal element in string detected, halted');
+		die('[err:6] Stop: Illegal element in string detected, halted');
 	}
 }
 //illegal destination checker
@@ -92,7 +99,7 @@ foreach ($protec as $i) {
 	$iframe = 0;
 	$iframe = substr_count(strtolower($_POST["write"]), $i);
 	if ($iframe > 0) {
-		die('Stop: Illegal destination, halted');
+		die('[err:7] Stop: Illegal destination, halted');
 	}
 }
 	if (empty($_POST['namer'])) {
@@ -104,11 +111,11 @@ foreach ($protec as $i) {
 	}
 //no keypair there
 	if ((empty($_POST['uid']) || empty($_POST['ukey'])) && substr_count(uid_db(), $_POST['namer']) > 0) {
-		die('Stop: No UKEY');
+		die('[err:16] Stop: No UKEY');
 	}
 //keypair there, but not right
 	if (uidlsk($_POST['uid'], $_POST['ukey']) == false && substr_count(uid_db(), $_POST['namer']) != 0) {
-		die('Stop: invalid UKEY');
+		die('[err:16] Stop: invalid UKEY');
 	}
 //name in and right UID/UKEY pair
 	if (uidlsk($_POST['uid'], $_POST['ukey']) == true && substr_count(uid_db(), $_POST['namer']) != 0) {
@@ -121,7 +128,7 @@ foreach ($protec as $i) {
 		echo('File protected, checking permissions...<br>');
 		//user didnt try to authenticate
 		if (empty($_POST['uid']) || empty($_POST['ukey'])) {
-			die('Stop: Protected file and no UID/UKEY');
+			die('[err:8] Stop: Protected file and no UID/UKEY');
 		}
 		//user did try and got it
 		if (uidlsk($_POST['uid'], $_POST['ukey']) == true) {
@@ -132,11 +139,11 @@ foreach ($protec as $i) {
 			}
 			//local needed
 			if (wr_bycb($_POST['write'], 2) == 'local') {
-				die('Stop: Protected file with local access only.');
+				die('[err:9] Stop: Protected file with local access only.');
 			}
 			//sudo needed and not provided
 			if (wr_bycb($_POST['write'], 2) == 'sudo' && uid($_POST['uid'], $_POST['ukey'], 3) != 'sudo') {
-				die('Stop: Protected file with sudo access only.');
+				die('[err:10] Stop: Protected file with sudo access only.');
 			}
 			//sudo needed and was provided
 			if (wr_bycb($_POST['write'], 2) == 'sudo' && uid($_POST['uid'], $_POST['ukey'], 3) == 'sudo') {
@@ -145,17 +152,19 @@ foreach ($protec as $i) {
 		}
 		//user did try but did not POST it
 		if (uidlsk($_POST['uid'], $_POST['ukey']) == false) {
-			die('Stop: Protected file and invalid UID/UKEY');
+			die('[err:8] Stop: Protected file and invalid UID/UKEY');
 		}
 	} else {
 		echo('File not protected<br>');
 		//echo(wr_db() . '<b>d</b><br>');
 	}
-if (plsk(75) == 'YES' && !empty($_GET['uid'])) {
-if (substr_count(ga(), "$_GET[write] deny from $_GET[uid]") > 0 || substr_count(ga(), "WILDCARD-ALL deny from $_GET[uid]") > 0) {
-	die("Stop: This UID ($_GET[uid]) is locked out from this chatbox");
+
+if (plsk(75) == 'YES' && !empty($_POST['uid'])) {
+if (substr_count(ga(), "$_POST[write] deny from $_POST[uid]") > 0 || substr_count(ga(), "WILDCARD-ALL deny from $_POST[uid]") > 0) {
+	die("[err:11] Stop: This UID ($_POST[uid]) is locked out from this chatbox");
 }
 }
+
 if (plsk(69) == 'YES') {
 sendcmd('event@Mid');
 }
@@ -184,9 +193,6 @@ if ($URL == "norefer") {
 	$returnbool = "no";
 }
 
-
-
-
 $name = $_POST['namer'];
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
@@ -213,6 +219,7 @@ $txt = "$mess";
 fwrite($myfile, "$txt\n");
 fclose($myfile);
 echo("submitted<br>");
+
 
 if (plsk(71) == 'YES') {
 sendcmd('event@Pst');
