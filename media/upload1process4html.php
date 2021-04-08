@@ -10,7 +10,7 @@ $canuseselfname = plsk(17);
 if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
 	$m = 'f';
 } else {
-	die('Stop: This chatbox does not actually exist');
+	die('[err:28] Stop: This chatbox does not actually exist');
 }
 
 
@@ -19,12 +19,12 @@ $notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'C
 
 foreach ($notallowed as $i) {
 if (substr_count($_FILES['ftu']['name'], $i) > 0) {
-	die('Stop: Illegal character in filename: ' . $i);
+	die('[err:19] Stop: Illegal character in filename: ' . $i);
 }
 }
 
 if ($enable != 'YES') {
-die('Stop: Uploads stopped by .htamainpolicy');
+die('[err:26] Stop: Uploads stopped by .htamainpolicy');
 }
 
 ini_set('upload_max_filesize', '12M');
@@ -50,7 +50,7 @@ echo('Bytes: ' . $_FILES['ftu']['size'] . '<br>PHP Status: ' . $_FILES['ftu']['e
 
 if (isset($_FILES['ftu'])) {
     if ($_FILES['ftu']['size'] > $maxfilesize) {
-				echo('Stop: Illegal payload size detected, halted<br>');
+				echo('[err:27] Stop: Illegal payload size detected, halted<br>');
 				die();
     } else {
         $b = 'b';
