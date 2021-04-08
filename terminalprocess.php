@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(plsk(37));
+//error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -29,7 +29,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('Stop: You are not a sudo user.<br>');
+	echo('Auth-Warning: This user is not a sudo user<br>');
 }
 
 skipverify:
@@ -607,7 +607,7 @@ if ($_GET["pass"] != $pass)
 {
 echo("
 <hr>
-<b>(Auth-Warning) The password entered was incorrect or missing.</b>
+<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid</b>
 <hr>
 ");
 }

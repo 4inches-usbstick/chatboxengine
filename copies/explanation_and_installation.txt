@@ -77,15 +77,15 @@ To add someone to the CBauth list, use this format:
 
 #::Alias::Password::Permissions;
 
-Number is the UID. This number must start from 1 and go up one by one.
+Number is the UID. This is the ID that users have.
 Alias is the name that is tied to the UID.
 Password (a.k.a. the UKEY) is the password tied to the UID,
 Permissions is the permission level this user has (either sudo or notsudo).
 
 CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).
-For sending messages with a protected username, enter the web client with the protected username, then enter the correct UID and UKEY in the web client. Any messages you send are now under the protected
-username. If you try to use a protected username without the proper credentials, you will be stopped and your request to send a message will be denied.
+For sending messages with a protected username (or to provide any endpoint with UID/UKEY), add uid=UID&ukey=UKEY to the request URL.
+username. If you try to use a protected username without the proper credentials the request will fail.
 
 --FILESAFE--
 
@@ -111,8 +111,8 @@ Notes:
 4. (*) from earlier: this does not bypass server limit for file uploads
 
 --CCMD--
-Let's say you want to support image sending but you don't want the stupid inchat-div client. You can use Custom Commands. Every time a message is sent sendmsg checks if a string is in / is the beginning of the message.
-To add or delete these events, use the terminal. Use the help command for more info.
+Let's say you want to support image sending but you don't want the stupid inchat-div client. You can use Custom Commands (but you have to build your own image sending functionality by yourself). Every time a message is sent sendmsg checks if a string is in / is the beginning of the message.
+To add or delete these events, use the terminal. Use the help command and see .htamainpoilcy for more info.
 
 @Event;Condition;String;Includepath
 

@@ -13,10 +13,7 @@ function uidlsk($uid, $skey) {
 	$offset0 = strpos($f, '[BEGIN CBAUTH]');
 	$offset1 = strpos($f, '[END CBAUTH]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
-	$ffs = explode(';', $fs);
-	$user = $ffs[$uid];
-	$userats = explode('::', $user);
-	$ckey = $userats[2];
+	$ckey = uid($uid, $skey, 2);
 	//echo($ckey);
 	if ($ckey == $skey) {
 		return true;
@@ -30,8 +27,12 @@ function uid($uid, $skey, $attrno) {
 	$offset0 = strpos($f, '[BEGIN CBAUTH]');
 	$offset1 = strpos($f, '[END CBAUTH]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
-	$ffs = explode(';', $fs);
-	$user = $ffs[$uid];
+	
+	//get the user
+	$offset0 = strpos($fs, "$uid::");
+	$offset1 = strpos($fs, ';', $offset0);
+	$user = substr($fs, $offset0, $offset1 - $offset0);
+	
 	$userats = explode('::', $user);
 	return $userats[$attrno];
 }
