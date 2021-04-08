@@ -56,12 +56,12 @@ Notes:
 11. These policies apply to files on this server. Clients hosted by other servers will not be affected by this file. For example, PercentAutoencode will work on clients that support it and are on the Chatbox Engine server.
 12. Don't use any filesystem protected / conflict characters (such as NUL, >, &, etc.) in any part of the CBauth list.
 13. If sendmsgendpoint_cmdchek is NO, then PIDs 65-71 must also be NO.
+14. CBAUTH is no longer number dependent. That means no preassigned UID/UKEY
 
 
 [BEGIN CBAUTH]
-UID::NAME::KEY::PERMS;
-1::RootOfficial::root1234::sudo;
-2::UserOfficial::root5678::notsudo;
+D1::RootOfficial::root1234::sudo;
+D2::UserOfficial::root5678::notsudo;
 0::1::2::3;
 [END CBAUTH]
 
@@ -77,5 +77,5 @@ terminal-logger::sudo::
 [END C-CMD]
 
 [BEGIN UIDUKEY LOCKOUT]
-0002 deny from 1
+0002 deny from 
 [END UIDUKEY LOCKOUT]
