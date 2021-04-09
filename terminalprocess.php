@@ -170,12 +170,12 @@ if ($_GET['cmd'] == 'udb add' && $_GET['pass'] == $pass) {
 		die('[err:23] Stop: Master password required to run udb add command (PID 51)');
 	}
 	$ps = explode(' ', $_GET['params']);
-	$c = uid_db();
+	//$c = uid_db();
 	$f = file_get_contents('.htamainpolicy');
-	$pos = strpos($c, '0::1::2::3;');
-	$newc = substr_replace($c, "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n0::1::2::3;\n", $pos);
+	//$pos = strpos($c, '0::1::2::3;');
+	$newcc = str_replace("0::1::2::3;", "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n0::1::2::3;", $f);
 	//echo("<div style='white-space: pre;'>$newc</div>");
-	$newcc = str_replace(uid_db(), $newc, $f);
+	//$newcc = str_replace(uid_db(), $newc, $f);
 	file_put_contents('.htamainpolicy', $newcc);
 }
 if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
@@ -199,7 +199,7 @@ if ($_GET['cmd'] == 'cmd add' && $_GET['pass'] == $pass) {
 	$ps = explode(';', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
 	$pos = strpos($f, '[END C-CMD]');
-	$newc = substr_replace($f, "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n[END C-CMD]\n", $pos);
+	$newc = str_replace("[END C-CMD]", "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n[END C-CMD]", $f);
 	file_put_contents('.htamainpolicy', $newc);
 }
 if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
@@ -209,7 +209,7 @@ if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 	$ps = explode(';', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
 	$pos = strpos($f, '[END C-CMD]');
-	$newc = str_replace("\n$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
+	$newc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
 	file_put_contents('.htamainpolicy', $newc);
 }
 
@@ -218,8 +218,8 @@ if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
 		die('[err:23] Stop: Master password required to run lock add command');
 	}
 	$f = file_get_contents('.htamainpolicy');
-	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
-	$newc = substr_replace($f, "$_GET[params]\n[END UIDUKEY LOCKOUT]\n", $pos);
+	//$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
+	$newc = str_replace('[END UIDUKEY LOCKOUT]', "$_GET[params]\n[END UIDUKEY LOCKOUT]", $f);
 	file_put_contents('.htamainpolicy', $newc);
 	//echo $newc;
 }

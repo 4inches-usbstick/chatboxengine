@@ -21,6 +21,7 @@ if (!function_exists('str_starts_with')) {
 if (plsk(65) == 'YES') {
 function sendcmd($tp) {
 	$ff = str_replace("[BEGIN C-CMD]", "", gs());
+	$ff = preg_replace("/\s\s+/", "", $ff); //thank you to this question (https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space) for the regex
 	$a = explode(';', $ff);
 	print_r($a);
 	//$f = array_slice($a, -1);
@@ -28,11 +29,13 @@ function sendcmd($tp) {
 	echo(count($f) . '<br>');
 	foreach ($f as $i) {
 		//echo('trigger<br>');
-		$i = str_replace("\n", "event", $i);
-		$i = substr($i, 1);
+		$i = substr_replace($i, "event", 0,0);
+		//$i = substr($i, 1);
+		echo $i . '<br>';
 		$args = explode('::', $i);
-		echo($i . '<br>');
-		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@Post' && $i != 'event') {
+		echo(count($args) . ' items<br>');
+		//echo($i . '<br>');
+		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@POST' && $i != 'event') {
 			echo("[err:1] Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
 			die();
 		}
@@ -47,14 +50,14 @@ function sendcmd($tp) {
 		
 		if ($args[0] == $tp && $i != 'event') {
 			if ($args[1] == 'BEGINSWITH') {
-				if (str_starts_with($_POST['msg'], $args[2])) {
+				if (str_starts_with($_GET['msg'], $args[2])) {
 					include $args[3];
 					//echo($i);
 				}
 			}
 			if ($args[1] == 'HAS') {
 				//echo('sdf');
-				if (substr_count($_POST["msg"], $args[2]) > 0) {
+				if (substr_count($_GET["msg"], $args[2]) > 0) {
 					include $args[3];
 					//echo($i);
 				}
@@ -66,6 +69,7 @@ function sendcmd($tp) {
 	}
 }
 }
+
 
 if (plsk(21) != 'YES') {
 	die('[err:4] API is locked down.');

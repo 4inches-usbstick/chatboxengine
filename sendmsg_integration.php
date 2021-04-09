@@ -2,7 +2,7 @@
 
 //error_reporting(1);
 include 'mainlookup.php';
-error_reporting(0);
+//error_reporting(0);
 
 $rdir = plsk(3);
 $dots = plsk(23);
@@ -21,6 +21,7 @@ if (!function_exists('str_starts_with')) {
 if (plsk(65) == 'YES') {
 function sendcmd($tp) {
 	$ff = str_replace("[BEGIN C-CMD]", "", gs());
+	$ff = preg_replace("/\s\s+/", "", $ff);  //thank you to this question (https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space) for the regex
 	$a = explode(';', $ff);
 	print_r($a);
 	//$f = array_slice($a, -1);
@@ -28,11 +29,13 @@ function sendcmd($tp) {
 	echo(count($f) . '<br>');
 	foreach ($f as $i) {
 		//echo('trigger<br>');
-		$i = str_replace("\n", "event", $i);
-		$i = substr($i, 1);
+		$i = substr_replace($i, "event", 0,0);
+		//$i = substr($i, 1);
+		echo $i . '<br>';
 		$args = explode('::', $i);
-		echo($i . '<br>');
-		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@GET' && $i != 'event') {
+		echo(count($args) . ' items<br>');
+		//echo($i . '<br>');
+		if ($args[0] != 'event@Pre' && $args[0] != 'event@Mid' && $args[0] != 'event@POST' && $i != 'event') {
 			echo("[err:1] Stop: EXECUTIONPOINT error, $args[0] is not a valid execution point in '$i'<br>");
 			die();
 		}
@@ -213,7 +216,7 @@ if ($timestamps == "" && empty($name)) {
 $txt = "$mess";
 }
 
-fwrite($myfile, "$txt");
+fwrite($myfile, "$txt\n");
 fclose($myfile);
 echo("submitted<br>");
 

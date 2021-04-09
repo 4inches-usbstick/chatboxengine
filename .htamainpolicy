@@ -72,10 +72,12 @@ C#::RESTRICT-TO::
 terminal-logger::sudo::
 [END FILESAFE] 
 
+
+[BEGIN UIDUKEY LOCKOUT]
+0002 deny from 1
+[END UIDUKEY LOCKOUT]
+
 [BEGIN C-CMD]
 @Pre::BEGINSWITH::/example::mainlookup.php;
 [END C-CMD]
 
-[BEGIN UIDUKEY LOCKOUT]
-0002 deny from 
-[END UIDUKEY LOCKOUT]
