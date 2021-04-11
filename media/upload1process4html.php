@@ -12,7 +12,7 @@ if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
 } else {
 	die('[err:28] Stop: This chatbox does not actually exist');
 }
-if (is_dir("$rdir/sitechats/media/uploaded/$_POST[hidden]/uploaded")) {
+if (is_dir("$rdir/sitechats/media/$_POST[hidden]/uploaded")) {
 	$m = 'f';
 } else {
 	die('[err:28] Stop: This chatbox has a missing or damaged media dir');
