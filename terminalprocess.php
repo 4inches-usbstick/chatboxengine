@@ -616,7 +616,7 @@ xedit: brings up the remote message editing terminal, no parameters<br><br>
 *^_copen: open a Chatbox. parameters slot syntax: FILENAME.FILE-EXT --MEDIAOPTION<br>
 clist: list all Chatboxes and whether or not they are protected<br>
 *cload: copy Chatbox from designated dir to main sitechats dir<br>
-*csend: write a message to a Chatbox bypassing nogo phrases and UID/UKEY checking. Use csend --nobreak to not use a newline char when writing to the Chatbox<. Can be disabled by PID 77br>
+*csend: write a message to a Chatbox bypassing nogo phrases and UID/UKEY checking. Use csend --nobreak to not use a newline char when writing to the Chatbox. Can be disabled by PID 77<br>
 
 *loadexe: sideloads an extension. requires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
