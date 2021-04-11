@@ -40,6 +40,7 @@ PID   PNAME   PVAL
 71 allow-pstexec::YES::
 73 uidukey-canlockoutotheruidukeyusers::NO::
 75 douidukey-lockout::YES::
+77 allow-csend-cmd::YES::
 -----------------------------------------
 
 Notes:
@@ -76,8 +77,3 @@ terminal-logger::sudo::
 [BEGIN UIDUKEY LOCKOUT]
 0002 deny from 1
 [END UIDUKEY LOCKOUT]
-
-[BEGIN C-CMD]
-@Pre::BEGINSWITH::/example::mainlookup.php;
-[END C-CMD]
-

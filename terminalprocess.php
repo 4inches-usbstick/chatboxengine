@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(plsk(37));
+//error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -576,7 +576,22 @@ if ($_GET["cmd"] == "cload" && $_GET["pass"] == $pass) {
 copy("$rdir/sitechats/copies/$_GET[params]", "$rdir/sitechats/$_GET[params]");
 echo("Copied");
 }
-
+//send
+if ($_GET["cmd"] == "csend" && $_GET["pass"] == $pass) {
+$conditions = explode(';', $_GET['params']);
+$f = fopen($conditions[0], 'a');
+fwrite($f, "$conditions[1]\n");
+fclose($f);
+echo("Wrote '$conditions[1]' to $conditions[0]");
+}
+//send
+if ($_GET["cmd"] == "csend --nobreak" && $_GET["pass"] == $pass) {
+$conditions = explode(';', $_GET['params']);
+$f = fopen($conditions[0], 'a');
+fwrite($f, "$conditions[1]");
+fclose($f);
+echo("Wrote '$conditions[1]' to $conditions[0]");
+}
 //help
 if ($_GET["cmd"] == "help")
 {
@@ -600,6 +615,9 @@ xedit: brings up the remote message editing terminal, no parameters<br><br>
 *cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files will be written to without actually writing.<br>
 *^_copen: open a Chatbox. parameters slot syntax: FILENAME.FILE-EXT --MEDIAOPTION<br>
 clist: list all Chatboxes and whether or not they are protected<br>
+*cload: copy Chatbox from designated dir to main sitechats dir<br>
+*csend: write a message to a Chatbox bypassing nogo phrases and UID/UKEY checking. Use csend --nobreak to not use a newline char when writing to the Chatbox<. Can be disabled by PID 77br>
+
 *loadexe: sideloads an extension. requires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
 
