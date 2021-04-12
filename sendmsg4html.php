@@ -1,5 +1,6 @@
 Diags<br>
 <?php
+error_reporting(0);
 include 'mainlookup.php';
 if (plsk(21) != 'YES') {
 	die('API is locked down.');

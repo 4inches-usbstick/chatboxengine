@@ -2,7 +2,7 @@
 
 //error_reporting(1);
 include 'mainlookup.php';
-//error_reporting(0);
+error_reporting(0);
 
 $rdir = plsk(3);
 $dots = plsk(23);

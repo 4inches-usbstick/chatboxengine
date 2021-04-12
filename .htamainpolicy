@@ -66,6 +66,9 @@ D2::UserOfficial::root5678::notsudo;
 0::1::2::3;
 [END CBAUTH]
 
+Make sure to keep secure passwords. If someone guesses the last character of the UID and know the password, they can validata. 
+The only thing stopping people from this is a strong password.
+
 [BEGIN FILESAFE]
 C#::RESTRICT-TO::
 04universal-upload::sudo::
