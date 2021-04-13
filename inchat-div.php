@@ -144,7 +144,7 @@ if ($_GET['explorer'] == 1 and $type == 'htm') {
 $formaction = substr_count($_GET["chatnum"], '.html');
 if ($formaction > 0) {
 	$form = 'sendmsg4html.php';
-	$way = 'POST';
+	$way = 'GET';
 		echo("<style>div { white-space: pre-wrap; }</style>");
 } else {
 	$form = 'sendmsg_integration.php';
@@ -215,7 +215,7 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 	$aetouse[5]
 	$aetouse[6]
 	var opt = document.getElementsByName('option').value;
-	var meaningfulname = [\"sendmsg_integration.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky,\"&option=\",opt];
+	var meaningfulname = [\"$form.php?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky,\"&option=\",opt];
 	var theUrl = meaningfulname.join('');
 	var boi = theUrl.concat(' :: sending request')
 	console.log(boi);
