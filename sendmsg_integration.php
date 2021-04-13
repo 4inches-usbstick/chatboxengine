@@ -198,22 +198,36 @@ $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
 
 if ($timestamps != "" && !empty($name) && $name != 'PHR-NUL') {
-$txt = "$name [$timestamp1, $timestamp2]: $mess";
+$txt = plsk(79);
+$txt = str_replace('%time', $timestamp1, $txt);
+$txt = str_replace('%date', $timestamp2, $txt);
+$txt = str_replace('%name', $name, $txt);
+$txt = str_replace('%mess', $mess, $txt);
 }
 if ($timestamps != "" && !empty($name) && $name == 'PHR-NUL') {
-$txt = "[$timestamp1, $timestamp2]: $mess";
+$txt = plsk(81);
+$txt = str_replace('%time', $timestamp1, $txt);
+$txt = str_replace('%date', $timestamp2, $txt);
+$txt = str_replace('%mess', $mess, $txt);
 }
 if ($timestamps != "" && empty($name)) {
-$txt = "[$timestamp1, $timestamp2]: $mess";
+$txt = plsk(81);
+$txt = str_replace('%time', $timestamp1, $txt);
+$txt = str_replace('%date', $timestamp2, $txt);
+$txt = str_replace('%mess', $mess, $txt);
 }
 if ($timestamps == "" && !empty($name) && $name != 'PHR-NUL') {
-$txt = "$name: $mess";
+$txt = plsk(83);
+$txt = str_replace('%name', $name, $txt);
+$txt = str_replace('%mess', $mess, $txt);
 }
 if ($timestamps == "" && !empty($name) && $name == 'PHR-NUL') {
-$txt = "$mess";
+$txt = plsk(85);
+$txt = str_replace('%mess', $mess, $txt);
 }
 if ($timestamps == "" && empty($name)) {
-$txt = "$mess";
+$txt = plsk(85);
+$txt = str_replace('%mess', $mess, $txt);
 }
 
 fwrite($myfile, "$txt\n");

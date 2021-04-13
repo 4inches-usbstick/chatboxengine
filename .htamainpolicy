@@ -41,6 +41,10 @@ PID   PNAME   PVAL
 73 uidukey-canlockoutotheruidukeyusers::NO::
 75 douidukey-lockout::YES::
 77 allow-csend-cmd::YES::
+79 ts-structure1::[%time, %date] %name: %mess::
+81 ts-structure2::[%time, %date]: %mess::
+83 ts-structure3::%name: %mess::
+85 ts-structure4::%mess::
 -----------------------------------------
 
 Notes:
