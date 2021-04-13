@@ -1,10 +1,15 @@
 Diags<br>
 <?php
-error_reporting(0);
+//error_reporting(0);
 include 'mainlookup.php';
 if (plsk(21) != 'YES') {
 	die('API is locked down.');
 }
+
+$nogo = explode('//', plsk(29));
+$protec = explode('//', plsk(31));
+
+
 //banned words checker
 foreach ($nogo as $i) {
 	$iframe = 0;
@@ -76,7 +81,7 @@ if ($iframe > 0 or $script > 0) {
 }
 
 if ($scrit > 0) {
-	die('[err:7] Stop: illegal destination')
+	die('[err:7] Stop: illegal destination');
 }
 
 if (plsk(75) == 'YES' && !empty($_GET['uid'])) {
@@ -144,7 +149,7 @@ $mess2 = "<a href=\"$mess1\">$mess1</a><br>";
 }
 
 if ($option == "img") { 
-$mess2 = "<a href='$mess' tarGET='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
+$mess2 = "<a href='$mess' target='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
 }
 
 if ($option == "video") { 
@@ -181,7 +186,7 @@ fwrite($myfile, "$mess2\n");
 fclose($myfile);
 echo("submitted<br>");
 $URL = $_SERVER['HTTP_REFERER'];
-header("Location: $URL");
+//header("Location: $URL");
 echo("$coder encoder<br>");
 echo("$mess1 = message<br>");
 echo("$mess2 = messageHTML<br>");
