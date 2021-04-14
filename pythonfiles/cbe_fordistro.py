@@ -1,3 +1,4 @@
+#helo. you are most likely from CBE, you need to download something called Python, which can read and act on these script files.
 ip = "71.255.240.10:8080" #(change this if you always connect to a certain server other than 71.255.240.10 port 8080)
 print("Chatbox Engine Python")
 print("Close this window specifically to instantly close the program")
@@ -115,7 +116,7 @@ while(True):
     cbtex = pullfromtheserver()   
     #checktheserver()
     
-    x1 = requests.get("http://"+ip+"/textengine/sitechats/" + cbn)
+    x1 = requests.get("http://"+ip+"/textengine/sitechats/display.php?chatbox=" + cbn)
     cbrs = x1.status_code
     #cbrs = 404
     
@@ -234,7 +235,7 @@ while(True):
                 ok = send.text
          
         if ok != True:
-            statt.config(text='Status: Failure on sending message (Illegal action detected)')
+            statt.config(text='Status: Failure on sending message (' + ok + ')')
             print('Status: Failure on sending message (Illegal action detected)')
         elif int(send.status_code) == 200:
             statt.config(text='Status: Message sent')
@@ -304,4 +305,3 @@ while(True):
     window.mainloop()
     
     
-
