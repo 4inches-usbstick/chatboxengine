@@ -1,9 +1,4 @@
-
-#REPLACE YOUR IP HERE with the IP of the desired CBE server 
-#REPLACE CORRECTADMINPASSWORD with the admin password of the desired CBE server
-#WE NOW USE A ROLLING CODE SYSTEM FOR SAYAS
-#REPLACE TOKEN with the Discord Bot Token
-#USE '$ help' WHILE BOT IS ONLINE FOR HELP
+#open cbediscord and adjust the values
 
 import discord
 import requests as request
@@ -218,4 +213,3 @@ async def on_message(message):
 
     
 client.run(bot_token)
-
