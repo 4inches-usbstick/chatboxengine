@@ -70,8 +70,12 @@ PID  Change to
 69   Allow mid-exc for custom cmds
 71   Allow post-exc for custom cmds
 73   Whether nonmaster users can issue LOCK ADD/DEL commands
-75   Whether to enable UIDUKEY lockout
-
+75   Whether to enable UIDUKEY lockout (YES/NO)
+77   Whether CSEND is enabled (YES/NO)
+79   Structure of a message with timestamps, name and msg. Use %time, %date, %name, and %mess to refer to different values.
+81   Structure of a message with timestamps and message, excluding %name.
+83   Structure of a message with name and message, excluding %time and %date.
+85   Structure of a message with only message excluding %time, %date, %name.
 --CBauth--
 To add someone to the CBauth list, use this format:
 
