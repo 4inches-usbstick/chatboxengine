@@ -1,6 +1,5 @@
-
-#this is the python version of the terminal
-ip = "71.255.240.10:8080"
+#change to connect to a different server by default
+ip = "example.com"
 print("Chatbox Engine Terminal for Python. Type pyterm-help for special help (commands specific to this terminal), and help for CBE commands.")
 print("Use UID::UKEY to replace the password with login info.")
 print("The default IP is: " + ip)

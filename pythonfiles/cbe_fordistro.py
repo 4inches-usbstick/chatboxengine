@@ -1,5 +1,5 @@
-#helo. you are most likely from CBE, you need to download something called Python, which can read and act on these script files.
-ip = "71.255.240.10:8080" #(change this if you always connect to a certain server other than 71.255.240.10 port 8080)
+
+ip = "example.com" 
 print("Chatbox Engine Python")
 print("Close this window specifically to instantly close the program")
 print("-----------------------------------------")
