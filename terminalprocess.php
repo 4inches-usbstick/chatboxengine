@@ -12,7 +12,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-//error_reporting(plsk(37));
+error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -35,6 +35,9 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) !
 skipverify:
 
 function logger() {
+	if (empty($_GET['cmd'])) {
+		return 0;
+	}
 	global $useduid, $pass;
 	//good with master
 	$addon = '';
