@@ -84,3 +84,7 @@ terminal-logger::sudo::
 [BEGIN UIDUKEY LOCKOUT]
 0002 deny from 1
 [END UIDUKEY LOCKOUT]
+
+[BEGIN C-CMD]
+@Pre::BEGINSWITH::/example::mainlookup.php;
+[END C-CMD]
