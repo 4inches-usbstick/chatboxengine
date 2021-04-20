@@ -188,7 +188,7 @@ if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
 	$f = file_get_contents('.htamainpolicy');
 	$rrr = random_int(10000000, 99999999);
-	$newcc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];", "$ps[0]::User Deleted Using Terminal::$rrr::notsudo;", $f);
+	$newcc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];\n", "", $f);
 	file_put_contents('.htamainpolicy', $newcc);
 	if ($newcc == $f) {
 		die('[warn:30] Warning: No user was found<br>');
