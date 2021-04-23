@@ -1,0 +1,1 @@
+this directory contains examples of python clients, bots, etc. it's mostly just a place for me to back up what i've made. the only important files are chatboxengine.py and cbedata.py
