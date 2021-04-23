@@ -21,7 +21,7 @@ if (!function_exists('str_starts_with')) {
 if (plsk(65) == 'YES') {
 function sendcmd($tp) {
 	$ff = str_replace("[BEGIN C-CMD]", "", gs());
-	$ff = preg_replace("/\s\s+/", "", $ff); //thank you to this question (https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space) for the regex
+	$ff = preg_replace("/\s\s+/", "", $ff);  //thank you to this question (https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space) for the regex
 	$a = explode(';', $ff);
 	print_r($a);
 	//$f = array_slice($a, -1);
@@ -50,14 +50,14 @@ function sendcmd($tp) {
 		
 		if ($args[0] == $tp && $i != 'event') {
 			if ($args[1] == 'BEGINSWITH') {
-				if (str_starts_with($_GET['msg'], $args[2])) {
+				if (str_starts_with($_POST['msg'], $args[2])) {
 					include $args[3];
 					//echo($i);
 				}
 			}
 			if ($args[1] == 'HAS') {
 				//echo('sdf');
-				if (substr_count($_GET["msg"], $args[2]) > 0) {
+				if (substr_count($_POST["msg"], $args[2]) > 0) {
 					include $args[3];
 					//echo($i);
 				}
@@ -70,12 +70,8 @@ function sendcmd($tp) {
 }
 }
 
-
 if (plsk(21) != 'YES') {
 	die('[err:4] API is locked down.');
-}
-if(plsk(43) != 'YES') {
-	die('[err:12] Stop: HTTP POST for sendmsg not allowed on this server.')
 }
 
 if (plsk(67) == 'YES') {
@@ -121,10 +117,14 @@ foreach ($protec as $i) {
 	if (uidlsk($_POST['uid'], $_POST['ukey']) == false && substr_count(uid_db(), $_POST['namer']) != 0) {
 		die('[err:16] Stop: invalid UKEY');
 	}
-//name in and right UID/UKEY pair
-	if (uidlsk($_POST['uid'], $_POST['ukey']) == true && substr_count(uid_db(), $_POST['namer']) != 0) {
+//name in and right UID/UKEY pair AND correct name
+	if (uidlsk($_POST['uid'], $_POST['ukey']) == true && substr_count(uid_db(), $_POST['namer']) != 0 && uid($_POST['uid'], $_POST['ukey'], 1) == $_POST['namer']) {
 		echo('UID ' . $_POST['uid'] . ' used to send a message as ' . uid($_POST['uid'], $_POST['ukey'], 1));
 		$_POST['namer'] = uid($_POST['uid'], $_POST['ukey'], 1);
+	}
+//not the correct name but good creds
+	if (uidlsk($_POST['uid'], $_POST['ukey']) == true && substr_count(uid_db(), $_POST['namer']) != 0 && uid($_POST['uid'], $_POST['ukey'], 1) != $_POST['namer']) {
+		die("[err:33] Stop: Generic Auth Error \n<br> this name is not the one linked to this UID");
 	}
 
 //write protecc?
@@ -149,6 +149,7 @@ foreach ($protec as $i) {
 			if (wr_bycb($_POST['write'], 2) == 'sudo' && uid($_POST['uid'], $_POST['ukey'], 3) != 'sudo') {
 				die('[err:10] Stop: Protected file with sudo access only.');
 			}
+			echo wr_bycb($_POST['write'], 2);
 			//sudo needed and was provided
 			if (wr_bycb($_POST['write'], 2) == 'sudo' && uid($_POST['uid'], $_POST['ukey'], 3) == 'sudo') {
 				$b = 'd';
@@ -174,7 +175,7 @@ sendcmd('event@Mid');
 }
 //ts on?
 if ($dots == 'YES') {
-$contents = file_POST_contents("$rdir/sitechats/$_POST[write]");
+$contents = file_get_contents("$rdir/sitechats/$_POST[write]");
 //echo("$contents, C:/wamp64/www/textengine/sitechats/$_POST[write]");
 $needle = "rule.Timestamps(1)";
 $timestamps = strpos("$contents", "rule.Timestamps(1)");
@@ -234,7 +235,7 @@ $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
 }
 
-fwrite($myfile, "$txt\n");
+fwrite($myfile, "$txt");
 fclose($myfile);
 echo("submitted<br>");
 

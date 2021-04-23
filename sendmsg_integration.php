@@ -117,10 +117,14 @@ foreach ($protec as $i) {
 	if (uidlsk($_GET['uid'], $_GET['ukey']) == false && substr_count(uid_db(), $_GET['namer']) != 0) {
 		die('[err:16] Stop: invalid UKEY');
 	}
-//name in and right UID/UKEY pair
-	if (uidlsk($_GET['uid'], $_GET['ukey']) == true && substr_count(uid_db(), $_GET['namer']) != 0) {
+//name in and right UID/UKEY pair AND correct name
+	if (uidlsk($_GET['uid'], $_GET['ukey']) == true && substr_count(uid_db(), $_GET['namer']) != 0 && uid($_GET['uid'], $_GET['ukey'], 1) == $_GET['namer']) {
 		echo('UID ' . $_GET['uid'] . ' used to send a message as ' . uid($_GET['uid'], $_GET['ukey'], 1));
 		$_GET['namer'] = uid($_GET['uid'], $_GET['ukey'], 1);
+	}
+//not the correct name but good creds
+	if (uidlsk($_GET['uid'], $_GET['ukey']) == true && substr_count(uid_db(), $_GET['namer']) != 0 && uid($_GET['uid'], $_GET['ukey'], 1) != $_GET['namer']) {
+		die("[err:33] Stop: Generic Auth Error \n<br> this name is not the one linked to this UID");
 	}
 
 //write protecc?
@@ -145,6 +149,7 @@ foreach ($protec as $i) {
 			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
 				die('[err:10] Stop: Protected file with sudo access only.');
 			}
+			echo wr_bycb($_GET['write'], 2);
 			//sudo needed and was provided
 			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
 				$b = 'd';

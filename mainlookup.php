@@ -60,8 +60,10 @@ function wr_bycb($cb, $attrno) {
 	$offset0 = strpos($f, '[BEGIN FILESAFE]');
 	$offset1 = strpos($f, '[END FILESAFE]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
+	$fs = preg_replace("/\s\s+/", "", $fs); //thank you to this question (https://stackoverflow.com/questions/3760816/remove-new-lines-from-string-and-replace-with-one-empty-space) for the regex 
 	$ffs = explode('::', $fs);
 	$key = array_search($cb, $ffs);
+	echo "FOUND: $key<br>\n";
 	$key = $key + 1;
 	return $ffs[$key];
 }
@@ -82,7 +84,7 @@ $f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
 	$fs = substr($f, $offset0, $offset1 - $offset0);
 	return $fs;
 }
-//I HATH CONNECT HELPERFUNCTION
+
 function speakout($name, $write) {
 date_default_timezone_set(plsk(9));
 $directives = file_get_contents(".htaconnectionpolicy");
