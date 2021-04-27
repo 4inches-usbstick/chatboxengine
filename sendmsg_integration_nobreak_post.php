@@ -235,6 +235,15 @@ $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
 }
 
+if (plsk(89) == 'byte') {
+	$count = strlen($txt);
+}
+if (plsk(89) == 'char') {
+	$count = mb_strlen($txt);
+}
+if ($count > plsk(91)) {
+	die('[err:35] Stop: Message exceeds byte/char limits for HTTP POST');
+}
 fwrite($myfile, "$txt");
 fclose($myfile);
 echo("submitted<br>");

@@ -14,7 +14,7 @@ input[type=text]:focus{
 </style>
 <?php
 include 'mainlookup.php';
-
+speakout($_GET['namer'], $_GET['chatnum']);
 $nopac = array(
 
 0 => "var msg = document.getElementById('msg').value;",
@@ -255,7 +255,7 @@ function httpGet(theUrl)
 			document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
 			
 
-			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,999999999999999), 10);
+			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,999999999999999), 1);
 			var str1 = theUrl;
 			var str2 = \"?math=\";
 			var str3 = Math.random();
@@ -341,11 +341,22 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 <input type='submit' value='Go'>
 </form>
 <form action='$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
-<code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
+<code>Change Chatbox:</code>
+<input type='text' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='uid' value='$_GET[uid]'>
+<input type='hidden' name='ukey' value='$_GET[ukey]'>
+<input type='submit' value='Go'>
+</form>
+<form action='$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Authenticate with UID/UKEY:</code> UID <input type='text' style='width: 32px;' name='uid'> KEY <input type='text' style='width: 128px;' name='ukey'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
-<input type='hidden' name='namer' value='$_GET[namer]'>
+NAME <input type='text' name='namer' style='width: 128px;' value='$_GET[namer]'>
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
@@ -358,10 +369,10 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 $useleg = plsk(19);
 if ($useleg == 'YES') {
 echo("
-<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+<code>Join by URL:<br></code><code><a href='$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
 } else {
 echo("
-<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
+<code>Join by URL:<br></code><code><a href='$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
 }
 
 

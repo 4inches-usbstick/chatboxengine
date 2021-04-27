@@ -1,4 +1,4 @@
-This policy page contains important data that is essential to the operation of Chatbox Engine.
+    This policy page contains important data that is essential to the operation of Chatbox Engine.
 
 PID   PNAME   PVAL
 -----------------------------------------
@@ -45,6 +45,9 @@ PID   PNAME   PVAL
 81 ts-structure2::[%time, %date]: %mess::
 83 ts-structure3::%name: %mess::
 85 ts-structure4::%mess::
+87 max-char-byte-msg::2000::
+89 countbyte-countchar::byte::
+91 max-char-byte-post::20000::
 -----------------------------------------
 
 Notes:
@@ -62,11 +65,15 @@ Notes:
 12. Don't use any filesystem protected / conflict characters (such as NUL, >, &, etc.) in any part of the CBauth list.
 13. If sendmsgendpoint_cmdchek is NO, then PIDs 65-71 must also be NO.
 14. CBAUTH is no longer number dependent. That means no preassigned UID/UKEY
+15. Turn PID 89 to char if you intend on using UTF-8 encoded strings all the time
 
 
 [BEGIN CBAUTH]
 D1::RootOfficial::root1234::sudo;
 D2::UserOfficial::root5678::notsudo;
+SB5::STARBUNNIES [AUTHORATATIVE PEE ROLE]::securepassword::sudo;
+ST4::STEL [NONAUTHORATATIVE PEE ROLE]::password::sudo;
+BCK::B!CK [GREG KOMAEDA ROLE]::password1342::sudo;
 0::1::2::3;
 [END CBAUTH]
 
@@ -82,9 +89,14 @@ terminal-logger::sudo::
 
 
 [BEGIN UIDUKEY LOCKOUT]
-0002 deny from 1
+0002 deny from D1
 [END UIDUKEY LOCKOUT]
 
 [BEGIN C-CMD]
 @Pre::BEGINSWITH::/example::mainlookup.php;
 [END C-CMD]
+
+[BEGIN CPOLICY]
+** Custom config and options go here **
+[END CPOLICY]
+    

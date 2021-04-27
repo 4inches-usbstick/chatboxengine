@@ -1,5 +1,5 @@
 
-ip = "example.com" 
+ip = "71.255.240.10:8080" #
 print("Chatbox Engine Python")
 print("Close this window specifically to instantly close the program")
 print("-----------------------------------------")
@@ -193,6 +193,7 @@ while(True):
     #nice line comment
     def deletefun(arg=1):
         global statt
+        global cbn
         #print('ddddddd')
         addon = '&o=x'
         uid = False
@@ -207,6 +208,9 @@ while(True):
         inputt1 = inputt1.replace('\r', '')
         inputt1 = inputt1.replace('\\', '')
         inputt1 = inputt1.replace(' ', '')
+        if ';;changecb' in inputt1:
+            cbn = inputt1.split(';;')[0]
+            statt.config(text='Status: Changed Chatbox')
         if not inputt1:
             statt.config(text='Status: Cannot send an empty message')
             text_box.delete("1.0", tk.END)

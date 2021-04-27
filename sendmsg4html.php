@@ -180,7 +180,15 @@ $mess2 = "<u>$mess1</u><br>";
 if ($option == "s") { 
 $mess2 = "<s>$mess1</s><br>";
 }
-
+if (plsk(89) == 'byte') {
+	$count = strlen($mess2);
+}
+if (plsk(89) == 'char') {
+	$count = mb_strlen($mess2);
+}
+if ($count > plsk(87)) {
+	die('[err:35] Stop: Message exceeds byte/char limits');
+}
 
 fwrite($myfile, "$mess2\n");
 fclose($myfile);

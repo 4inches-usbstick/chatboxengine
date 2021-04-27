@@ -107,3 +107,4 @@ Error codes and what they mean
 31 Failure to delete (unknown error)
 32 LOADEXE command stopped (unknown error)
 33 Generic Authorization Error
+35 Message exceeds char or byte limit

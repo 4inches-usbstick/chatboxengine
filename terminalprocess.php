@@ -13,7 +13,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(plsk(37));
+//error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -401,6 +401,18 @@ $yes = copy($takesrc, $destiny);
 echo("Copied files");
 
 }
+
+//make a copy of a chat but append it to the current file
+if ($_GET["cmd"] == "xcopy --append" and $_GET["pass"] == $pass)
+{
+
+$cpc = file_get_contents($_GET['params']);
+$f = fopen("$cc/$_GET[params]", 'a');
+fwrite($f, $cpc);
+fclose($f);
+echo("Copied chatbox and appended it to any existing copies");
+
+}
 //sleep(0.15);
 
 
@@ -603,7 +615,7 @@ echo("
 COMMANDS: <br><br>
 *del: deletes chatbox with number (parameter). <br>
 *delhtml: same as del, but only for html chatboxes <br>
-*xcopy: copies chatbox with number (parameter) to a separate area for safekeeping <br>
+*xcopy: copies chatbox with number (parameter) to a separate area for safekeeping. use xcopy --append to not erase any currently existing copies of that chatbox <br>
 *wipe: delete the contents of a Chatbox but not the Chatbox itself<br><br>
 
 vers: shows the CBE version, no required parameters. use 'showall::YES' to bring up the entire credits file instead of just a version number <br>

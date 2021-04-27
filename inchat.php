@@ -15,6 +15,7 @@ include 'mainlookup.php';
 $rdir = plsk(3);
 $ip = plsk(1);
 $pcl = plsk(59);
+speakout($_GET['namer'], $_GET['chatnum']);
 
 $formact = "$pcl://$ip/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
 error_reporting(0);
@@ -258,6 +259,20 @@ echo("
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
+
+<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Change Chatbox:</code>
+<input type='text' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+<input type='hidden' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='uid' value='$_GET[uid]'>
+<input type='hidden' name='ukey' value='$_GET[ukey]'>
+<input type='submit' value='Go'>
+</form>
+
+
 <form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
@@ -278,15 +293,29 @@ echo("
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
+
 <form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
-<code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
-<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
-<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<code>Change Chatbox:</code>
+<input type='text' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
 <input type='hidden' name='namer' value='$_GET[namer]'>
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='uid' value='$_GET[uid]'>
+<input type='hidden' name='ukey' value='$_GET[ukey]'>
 <input type='submit' value='Go'>
 </form>
-<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
+
+
+<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<code>Authenticate with UID/UKEY:</code> UID <input type='text' style='width: 32px;' name='uid'> UKEY <input type='text' style='width: 128px;' name='ukey'>
+<input type='hidden' name='chatnum' value='$_GET[chatnum]'>
+<input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
+<input type='hidden' name='encoderm' value='$_GET[encoderm]'>
+NAME <input type='text' name='namer' value='$_GET[namer]'>
+<input type='hidden' name='explorer' value='$_GET[explorer]'>
+<input type='submit' value='Go'>
+</form>
+<code>Join by URL:<br></code><code><a href='$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
 }
 

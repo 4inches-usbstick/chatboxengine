@@ -1,7 +1,10 @@
 <?php
+$regpath = ".htamainpolicy";
+
 //get the value of a policy
 function plsk($pid) {
-	$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+	$f = file_get_contents("$regpath");
 	$fs = explode('::', $f);
 	return $fs[$pid];
 }
@@ -9,7 +12,8 @@ function plsk($pid) {
 
 //verify the identity of a UID
 function uidlsk($uid, $skey) {
-	$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+	$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN CBAUTH]');
 	$offset1 = strpos($f, '[END CBAUTH]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -23,7 +27,8 @@ function uidlsk($uid, $skey) {
 }
 //get UID info
 function uid($uid, $skey, $attrno) {
-	$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+	$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN CBAUTH]');
 	$offset1 = strpos($f, '[END CBAUTH]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -38,7 +43,8 @@ function uid($uid, $skey, $attrno) {
 }
 //get whole UID list
 function uid_db() {
-$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN CBAUTH]');
 	$offset1 = strpos($f, '[END CBAUTH]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -48,7 +54,8 @@ $f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
 
 //get whole RW protection list
 function wr_db() {
-$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN FILESAFE]');
 	$offset1 = strpos($f, '[END FILESAFE]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -56,7 +63,8 @@ $f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
 }
 //get RW info by Chatbox
 function wr_bycb($cb, $attrno) {
-	$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+	$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN FILESAFE]');
 	$offset1 = strpos($f, '[END FILESAFE]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -70,15 +78,28 @@ function wr_bycb($cb, $attrno) {
 
 //get scripting 
 function gs() {
-$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN C-CMD]');
 	$offset1 = strpos($f, '[END C-CMD]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
 	return $fs;
 }
+
+//get custom
+function gcpp() {
+	global $regpath;
+$f = file_get_contents("$regpath");
+	$offset0 = strpos($f, '[BEGIN CPOLICY]');
+	$offset1 = strpos($f, '[END CPOLICY]');
+	$fs = substr($f, $offset0, $offset1 - $offset0);
+	return $fs;
+}
+
 //get access
 function ga() {
-$f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
+	global $regpath;
+$f = file_get_contents("$regpath");
 	$offset0 = strpos($f, '[BEGIN UIDUKEY LOCKOUT]');
 	$offset1 = strpos($f, '[END UIDUKEY LOCKOUT]');
 	$fs = substr($f, $offset0, $offset1 - $offset0);
@@ -86,6 +107,7 @@ $f = file_get_contents("C:/wamp64/www/textengine/sitechats/.htamainpolicy");
 }
 
 function speakout($name, $write) {
+global $regpath;
 date_default_timezone_set(plsk(9));
 $directives = file_get_contents(".htaconnectionpolicy");
 $doc = 'connect';
