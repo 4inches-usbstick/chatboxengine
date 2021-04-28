@@ -1,5 +1,5 @@
 <?php
-$regpath = ".htamainpolicy";
+$regpath = "C:/wamp64/www/textengine/sitechats/.htamainpolicy";
 
 //get the value of a policy
 function plsk($pid) {
@@ -122,14 +122,24 @@ $length = $offset2 - $offset1;
 $messages = substr($directives, $offset1, $length);
 $pieces = explode('::', $messages);
 
+$text = '';
+$retuls = '';
+
 if ($enable == 0) {
 $doc = 'sdf';
 }
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
 $ts = "[$timestamp1, $timestamp2]";
+
+$text = null;
+$retuls = null;
+
+
 if ($doc == 'connect') {
 //user and ts
+
+
 if ($alias == 1 && $ts_yes == 1) {
 	$text = $pieces[1];
 	$text = str_replace('%name', $name, $text);
@@ -148,13 +158,13 @@ if ($alias == 0 && $ts_yes == 1) {
 	$text = str_replace('%ts', $ts, $text);
 	$retuls = $text;
 }
-//ts but no user
+
 if ($alias == 0 && $ts_yes == 0) {
 	$text = $pieces[4];
 	$retuls = $text;
 }
 }
-echo($text);
+//echo($text);
 if ($ts_LCL == 1) {
 $change = file_get_contents("$pcl://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {

@@ -16,25 +16,23 @@ This Read Me has the instructions for setting up Chatbox Engine for your server.
 You need the following things:
 
 -an HTTP server 
--PHP 7.3 
+-PHP 7+
 -A C++ compiler (needed for PHP and some server software)
 -text editor
--web browser
 
 Make sure to read and understand the license before using Chatbox Engine.
 
 
 --Initial Config--
-You'll need to create a directory named textengine on the server. Not in any subfolders or other things, it needs to be its own parent directory.
-Inside your new textengine directory, create another folder named sitechats. From there, copy the files and subdirectories into the sitechats dir.
+You'll need to create a directory on the server. Remember the path to this directory, you'll need it later. Next, in that new dir, unzip the ZIP into that dir.
 
-Next, make sure your server protects all files with .hta* as their extension. This will prevent people from looking at various protected files.
+Next, make sure your server protects all files with .hta* as the extension. All the hidden and somewhat important files are .hta* files, so its imperative that you do this.
 
 Now, open .htamainpolicy with your favorite text editor and change these things in the config file:
 
 PID  Change to
 1    Your server's IP or domain name
-3    Path to textengine dir without / on the end
+3    Path to textengine (a folder with sitechats in it) dir without / on the end
 5    Where Chatboxes should be copied when someone uses XCOPY, no / on the end
 7    Where Chatbox Media dirs should be copied when someone uses MCOPY, no / on the end
 9    Correct PHP timezone
@@ -45,13 +43,13 @@ PID  Change to
 19   Use inchat_joinpage or joinchatpublic (YES for inchat_joinpage, NO for joinchatpublic)
 21   Enable API (YES to unlock API and NO if you want everything to break)
 23   Do TS checking (YES to enable timestamps, NO to disable all timestamps)
-25   The filepath to the file that controls banned IP addresses, no / on the end.
+25   The filepath to the file that controls banned IP addresses, no / on the end (i.e. .htaccess).
 27   What you would put into the aforementioned file to ban an IP. **
 29   Banned phrases (use // to separate each word, i.e. "f*ck//sh*t//bit*h")
 31   Illegal destintation Chatboxes. Use '.extension' to protect certain extensions (i.e. '.php//.py').
 33   Whether or not to convert encodings upon request. (YES for convert, NO for don't convert)
 35   Whether or not you want to allow Admin to remotely edit .htamainpolicy (YES for allow, NO for forbid).
-37   PHP suppress errors in the terminal. 0 for suppress, and 1 for do not suppress.
+37   PHP suppress errors in the terminal. 0 for suppress, and E_ALL for don't.
 39   Read the notes on PID 39 in the config file.
 41   If the editing terminal needs the master key, YES for master and NO for master or uidukey.
 43   Allow HTTP POST for sendmsg, YES for allow and NO for forbid.
@@ -76,6 +74,9 @@ PID  Change to
 81   Structure of a message with timestamps and message, excluding %name.
 83   Structure of a message with name and message, excluding %time and %date.
 85   Structure of a message with only message excluding %time, %date, %name.
+87   Max size of a message thru GET in bytes or chars
+89   Whether to count message size in bytes or chars.
+91   Max size of a message thru POST in bytes or chars.
 --CBauth--
 To add someone to the CBauth list, use this format:
 
@@ -84,7 +85,7 @@ To add someone to the CBauth list, use this format:
 Number is the UID. This is the ID that users have.
 Alias is the name that is tied to the UID.
 Password (a.k.a. the UKEY) is the password tied to the UID,
-Permissions is the permission level this user has (either sudo or notsudo).
+Permissions is the permission level this user has (either sudo or notsudo). This will change in a future update.
 
 CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).

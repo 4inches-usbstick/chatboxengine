@@ -122,6 +122,9 @@ $length = $offset2 - $offset1;
 $messages = substr($directives, $offset1, $length);
 $pieces = explode('::', $messages);
 
+$text = null;
+$retuls = null;
+
 if ($enable == 0) {
 $doc = 'sdf';
 }
