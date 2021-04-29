@@ -68,8 +68,8 @@ if ($gethttd === false) {
 	$bruh = 'bruh';
 } else {
 	$mediaoptions = "<a href='$pcl://$ip/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]'>Upload Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]\">Find / Post Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]\">Close Media Finder, </a><br>";
+<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Find / Post Media, </a>
+<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Close Media Finder, </a><br>";
 	$type = 'leg';
 }
 
@@ -90,8 +90,8 @@ if ($gethttd === false) {
 	$bruh = 'bruh';
 } else {
 	$mediaoptions = "<a href='$pcl://$ip/textengine/sitechats/media/uploadform4html.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]'>Upload Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Find / Post Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Close Media Finder, </a><br>";
+<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Find / Post Media, </a>
+<a href=\"$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Close Media Finder, </a><br>";
 	$type = 'htm';
 }
 echo($type);

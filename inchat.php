@@ -67,8 +67,8 @@ if ($gethttd === false) {
 	$mediaoptions = "<code style=\"background: black; color: white\">Media uploads have been disabled for this Chatbox.</code><br>";
 } else {
 	$mediaoptions = "<a href=$formact>Upload Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Find / Post Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]\">Close Media Finder, </a><br>";
+<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Find / Post Media, </a>
+<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Close Media Finder, </a><br>";
 }
 	
 
