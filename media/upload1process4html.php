@@ -91,7 +91,8 @@ $target_dir = ("$rdir/sitechats/media/$chatboxdir/uploaded/$txt");
 
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
-echo('Path: ' . $target_dir . "<br>");
+echo('Path: ' . $target_dir . "<br>\n");
+echo("\n<br>URL : <a href='/textengine/sitechats/media/$_POST[hidden]/uploaded/$txt'>/textengine/sitechats/media/$_POST[hidden]/uploaded/$txt</a>");
 
 $URL = $_SERVER['HTTP_REFERER'];
 }

@@ -59,7 +59,8 @@ fclose($f);
 }
            
             
-echo("\n<br>Path : $rdir/sitechats/media/$_POST[hidden]/uploaded/$n")
+echo("\n<br>Path : $rdir/sitechats/media/$_POST[hidden]/uploaded/$n<br>\n");
+echo("\n<br>URL : <a href='/textengine/sitechats/media/$_POST[hidden]/uploaded/$n'>/textengine/sitechats/media/$_POST[hidden]/uploaded/$n</a>");
 		
 		
 		?>
