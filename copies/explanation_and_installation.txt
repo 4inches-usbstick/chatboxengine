@@ -24,7 +24,9 @@ Make sure to read and understand the license before using Chatbox Engine.
 
 
 --Initial Config--
-You'll need to create a directory on the server. Remember the path to this directory, you'll need it later. Next, in that new dir, unzip the ZIP into that dir.
+You'll need to create a directory named textengineon the server. Remember the path to this directory, you'll need it later. Next, in that new dir, make a folder named sitechats. Extract the ZIP into sitechats.
+
+(yes you should use those dir names)
 
 Next, make sure your server protects all files with .hta* as the extension. All the hidden and somewhat important files are .hta* files, so its imperative that you do this.
 
