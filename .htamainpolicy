@@ -48,6 +48,10 @@ PID   PNAME   PVAL
 87 max-char-byte-msg::2000::
 89 countbyte-countchar::byte::
 91 max-char-byte-post::20000::
+93 recovery-chatbox::RECOVER::
+95 recovery-password::rootLL::
+97 recover-enable::YES::
+99 recover-time::20::
 -----------------------------------------
 
 Notes:
@@ -71,9 +75,6 @@ Notes:
 [BEGIN CBAUTH]
 D1::RootOfficial::root1234::sudo;
 D2::UserOfficial::root5678::notsudo;
-SB5::STARBUNNIES [AUTHORATATIVE PEE ROLE]::securepassword::sudo;
-ST4::STEL [NONAUTHORATATIVE PEE ROLE]::password::sudo;
-BCK::B!CK [GREG KOMAEDA ROLE]::password1342::sudo;
 0::1::2::3;
 [END CBAUTH]
 

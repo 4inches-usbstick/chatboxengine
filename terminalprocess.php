@@ -13,7 +13,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-//error_reporting(plsk(37));
+error_reporting(plsk(37));
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -607,6 +607,23 @@ $f = fopen($conditions[0], 'a');
 fwrite($f, "$conditions[1]");
 fclose($f);
 echo("Wrote '$conditions[1]' to $conditions[0]");
+}
+
+if ($_GET['cmd'] == "inirecovery") {
+	if (plsk(97) != 'YES') {
+		die('[err:32] Stop: This procedure has been disabled by PID 97. Recovery cannot continue.');
+	}
+	$f = fopen(plsk(93), 'w');
+	fclose($f);
+	sleep(plsk(99));
+	$c = file_get_contents(plsk(93));
+		unlink(plsk(93));
+	if ($c == plsk(95)) {
+		echo(file_get_contents('.htapassword'));
+	} else {
+		die('[err:33] Stop: Incorrect recovery password');
+	}
+
 }
 //help
 if ($_GET["cmd"] == "help")
