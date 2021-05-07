@@ -10,7 +10,8 @@ sendmsg_integration_nobreak.php (send message without auto newline placement)
 sendmsg_integration_nobreak_post.php (POST instead of GET for sendmsg)
 newchat_integration.php (open a Chatbox)
 display.php (get Chatbox contents)
-/data/datacall.php (parse CBEDATA, explained in cbedata.txt)
+/sitechats/data/datacall.php (parse CBEDATA, explained in cbedata.txt)
+/sitechats/media/base64upload.php
 
 
 
@@ -53,6 +54,8 @@ newchat_integration: newname, option, allowmed. newname is the new Chatbox name,
 adminedits: cb, gro, rw, key. cb is the Chatbox, gro is the string to get rid of, rw is the replacement string, and key is the password.
 
 display: chatbox. chatbox is the chatbox to read.
+
+base64upload: content is the file contents, name is the filename and hidden is the chatbox no.
 
 
 --NEWCHAT_INTEGRATION--
