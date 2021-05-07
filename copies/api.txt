@@ -11,7 +11,7 @@ sendmsg_integration_nobreak_post.php (POST instead of GET for sendmsg)
 newchat_integration.php (open a Chatbox)
 display.php (get Chatbox contents)
 /sitechats/data/datacall.php (parse CBEDATA, explained in cbedata.txt)
-/sitechats/media/base64upload.php
+/sitechats/media/base64upload.php (HTTP POST, base64 upload)
 
 
 
