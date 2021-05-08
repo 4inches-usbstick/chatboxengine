@@ -24,6 +24,7 @@ $nopac = array(
 4 => "var nar = document.getElementById('custid4').value;",
 5 => "var uid = document.getElementById('custid5').value;",
 6 => "var uky = document.getElementById('custid6').value;",
+7 => "var opt = document.main0.option.value;",
 
 );
 
@@ -36,7 +37,7 @@ $pac = array(
 4 => "var nar = document.getElementById('custid4').value.replace(/&/g, '%26');",
 5 => "var uid = document.getElementById('custid5').value.replace(/&/g, '%26');",
 6 => "var uky = document.getElementById('custid6').value.replace(/&/g, '%26');",
-
+7 => "var opt = document.getElementById('main0').document.getElementsByName('option').value;",
 );
 
 
@@ -154,7 +155,7 @@ if ($formaction > 0) {
 	
 echo("
 
-<form action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
+<form id=\"main0\"action=\"$form\" method=\"$way\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
 <fieldset>
 <legend>Options</legend>
 
@@ -214,7 +215,8 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 	$aetouse[4]
 	$aetouse[5]
 	$aetouse[6]
-	var opt = document.getElementsByName('option').value;
+	$aetouse[7]
+	//var opt = document.getElementsByName('option').value;
 	var meaningfulname = [\"$form?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky,\"&option=\",opt];
 	var theUrl = meaningfulname.join('');
 	var boi = theUrl.concat(' :: sending request')

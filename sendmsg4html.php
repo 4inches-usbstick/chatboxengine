@@ -3,9 +3,10 @@ Diags<br>
 //error_reporting(0);
 include 'mainlookup.php';
 if (plsk(21) != 'YES') {
-	die('API is locked down.');
+	die('[err:4] Stop: API is locked down.');
 }
 
+echo 'Stop: Debug';
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
 
@@ -137,27 +138,27 @@ $mess2 = "<p>$mess1</p>";
 }
 
 if ($option == "b") { 
-$mess2 = "<b>$mess1</b><br>";
+$mess2 = "<b>$mess1</b>";
 }
 
 if ($option == "i") { 
-$mess2 = "<i>$mess1</i><br>";
+$mess2 = "<i>$mess1</i>";
 }
 
 if ($option == "a") { 
-$mess2 = "<a href=\"$mess1\">$mess1</a><br>";
+$mess2 = "<a href=\"$mess1\">$mess1</a>";
 }
 
 if ($option == "img") { 
-$mess2 = "<a href='$mess' target='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a><br>";
+$mess2 = "<a href='$mess' target='_blank'><img src=\"$mess1\" alt='error loading this image' style=\"max-height: 216px;  max-width: 384px;\"></img></a>";
 }
 
 if ($option == "video") { 
-$mess2 = "<video width=\"384\" height=\"216\" controls> <source src=\"$mess1\" type=\"video/mp4\"></video><br>";
+$mess2 = "<video width=\"384\" height=\"216\" controls> <source src=\"$mess1\" type=\"video/mp4\"></video>";
 }
 
 if ($option == "audio") { 
-$mess2 = "<audio controls> <source src=\"$mess1\" type=\"audio/mpeg\"></audio><br>";
+$mess2 = "<audio controls> <source src=\"$mess1\" type=\"audio/mpeg\"></audio>";
 }
 
 if ($option == "break") { 
@@ -166,19 +167,19 @@ $mess2 = "<br>";
 
 
 if ($option == "pt") { 
-$mess2 = "$mess1<br>";
+$mess2 = "$mess1";
 }
 
 if ($option == "c") { 
-$mess2 = "<code>$mess1</code><br>";
+$mess2 = "<code>$mess1</code>";
 }
 
 if ($option == "u") { 
-$mess2 = "<u>$mess1</u><br>";
+$mess2 = "<u>$mess1</u>";
 }
 
 if ($option == "s") { 
-$mess2 = "<s>$mess1</s><br>";
+$mess2 = "<s>$mess1</s>";
 }
 if (plsk(89) == 'byte') {
 	$count = strlen($mess2);
