@@ -80,11 +80,10 @@ sendcmd('event@Pre');
 
 date_default_timezone_set(plsk(9));
 error_reporting(1);
-if (file_exists($_GET['write'])) {
-	$myfile = fopen("$_GET[write]", "a");
-} else {
+if (file_exists($_POST['write']) != true) {
 	die('[err:5] Stop: This chatbox does not actually exist');
 }
+$myfile = fopen("$_POST[write]", "a");
 
 //banned words checker
 foreach ($nogo as $i) {
