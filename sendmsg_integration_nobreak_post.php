@@ -4,6 +4,12 @@
 include 'mainlookup.php';
 error_reporting(0);
 
+if (file_exists($_POST['write'])) {
+	$myfile = fopen("$_POST[write]", "a");
+} else {
+	die('[err:5] Stop: This chatbox does not actually exist');
+}
+
 $rdir = plsk(3);
 $dots = plsk(23);
 $nogo = explode('//', plsk(29));

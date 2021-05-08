@@ -4,6 +4,17 @@
 include 'mainlookup.php';
 error_reporting(0);
 
+if (file_exists($_GET['write']) != true) {
+	die('[err:5] Stop: This chatbox does not actually exist');
+}
+if (file_exists($_GET['write'])) {
+	$myfile = fopen("$_GET[write]", "a");
+} else {
+	die('[err:5] Stop: This chatbox does not actually exist');
+}
+
+
+
 $rdir = plsk(3);
 $dots = plsk(23);
 $nogo = explode('//', plsk(29));
@@ -80,10 +91,8 @@ sendcmd('event@Pre');
 
 date_default_timezone_set(plsk(9));
 error_reporting(1);
-if (file_exists($_POST['write']) != true) {
-	die('[err:5] Stop: This chatbox does not actually exist');
-}
-$myfile = fopen("$_POST[write]", "a");
+
+
 
 //banned words checker
 foreach ($nogo as $i) {

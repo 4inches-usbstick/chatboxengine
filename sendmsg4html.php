@@ -5,10 +5,15 @@ include 'mainlookup.php';
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
 }
-
-echo 'Stop: Debug';
+clearstatcache();
+if (file_exists($_GET['write'])) {
+	$myfile = fopen("$_GET[write]", "a");
+} else {
+	die('[err:5] Stop: This chatbox does not actually exist');
+}
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
+
 
 
 //banned words checker
@@ -66,11 +71,7 @@ foreach ($protec as $i) {
 
 date_default_timezone_set(plsk(9));
 //error_reporting(0);
-if (file_exists($_GET['write'])) {
-	$myfile = fopen("$_GET[write]", "a");
-} else {
-	die('This chatbox does not actually exist');
-}
+
 
 //check for iframes or js, security measure
 $iframe = substr_count($_GET["msg"], 'iframe');
