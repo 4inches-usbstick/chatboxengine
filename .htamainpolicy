@@ -78,9 +78,6 @@ Notes:
 [BEGIN CBAUTH]
 D1::RootOfficial::root1234::sudo;
 D2::UserOfficial::root5678::notsudo;
-SB5::STARBUNNIES [AUTHORATATIVE PEE ROLE]::password::sudo;
-ST4::STEL [NONAUTHORATATIVE PEE ROLE]::password::sudo;
-BCK::B!CK [GREG KOMAEDA ROLE]::password::sudo;
 0::1::2::3;
 [END CBAUTH]
 
