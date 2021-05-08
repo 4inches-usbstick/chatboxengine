@@ -79,6 +79,12 @@ PID  Change to
 87   Max size of a message thru GET in bytes or chars
 89   Whether to count message size in bytes or chars.
 91   Max size of a message thru POST in bytes or chars.
+93   The recovery chatbox where the recovery code must be entered
+95   The recovery password
+97   Whether the recovery procedure can run
+99   The time allotted to the user to enter the recovery code.
+101  Commands that can only be ran with the admin password and not UID/UKEY. Note that some commands already have no-cbauth
+policies. check PIDs 51,55,73,41.
 --CBauth--
 To add someone to the CBauth list, use this format:
 

@@ -72,6 +72,14 @@ function logger() {
 	fclose($f);
 }
 
+$admincmds = explode('//', plsk(101));
+foreach ($admincmds as $i) {
+	//echo $i . '<br>';
+	if ($_GET['cmd'] == $i && $useduid) {
+		die('[err:23] Stop: PID 101 dictates that this command requires an admin password instead of a UID/UKEY');
+	}
+}
+
 //log
 logger();
 
@@ -218,7 +226,7 @@ if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
 }
 
 if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(75) != 'YES') {
+	if ($useduid && plsk(73) != 'YES') {
 		die('[err:23] Stop: Master password required to run lock add command');
 	}
 	$f = file_get_contents('.htamainpolicy');
@@ -228,7 +236,7 @@ if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
 	//echo $newc;
 }
 if ($_GET['cmd'] == 'lock del' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(75) != 'YES') {
+	if ($useduid && plsk(73) != 'YES') {
 		die('[err:23] Stop: Master password required to run lock del command');
 	}
 	$f = file_get_contents('.htamainpolicy');
@@ -661,9 +669,10 @@ help: brings up this help message, no parameters<br><br>
 *^cmd del: remove a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Permission (space char as delimiter)<br>
 *^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Permission (space char as delimiter)<br><br>
-*^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]
-*^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD
+*^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
+*^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br><br>
 
+inirecovery: starts the 'I FORGOT THE PASSWORD'  procedure. Opens a Chatbox then gives you time to enter the backup code from .htamainpolicy.<br><br>
 
 
 No Verbose allows you to suppress the output of the command (unless a fatal error happens on command execution).

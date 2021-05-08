@@ -49,16 +49,19 @@ PID   PNAME   PVAL
 89 countbyte-countchar::byte::
 91 max-char-byte-post::20000::
 93 recovery-chatbox::RECOVER::
-95 recovery-password::rootLL::
+95 recovery-password::110525::
 97 recover-enable::YES::
-99 recover-time::20::
+99 recover-time::60::
+101 need-master-cmd::del//delhtml//mdel//cmd add//cmd del//udb del//udb add//change//inicfg//ecfg::
 -----------------------------------------
+                       
+
 
 Notes:
 1. All filepaths must use '/'
 2. Boolean values must have YES or NO
 3. Only use no-go-phrases if certain words would threaten user security (i.e. script tag)
-4. On no-go-phrases and protect-extensions: use '//' as the delimiter between phrases.
+4. On no-go-phrases, and PID 101 and protect-extensions: use '//' as the delimiter between phrases.
 5. PERMS within the CBauth section must be sudo or notsudo, where sudo allows users to run admin commands and perform admin actions. All users in CBauth will be granted a reserved name.
 6. RESRICT-TO in FILESAFE has three options: local, sudo and login. local means no writing is allowed through the API, sudo means you have to be a sudo user to write to the file, and login means you just have to log in to write to the file.
 7. WHile CBauth needs semicolons at the end of each entry, FILESAFE does not, it just needs '::'.
@@ -75,6 +78,9 @@ Notes:
 [BEGIN CBAUTH]
 D1::RootOfficial::root1234::sudo;
 D2::UserOfficial::root5678::notsudo;
+SB5::STARBUNNIES [AUTHORATATIVE PEE ROLE]::password::sudo;
+ST4::STEL [NONAUTHORATATIVE PEE ROLE]::password::sudo;
+BCK::B!CK [GREG KOMAEDA ROLE]::password::sudo;
 0::1::2::3;
 [END CBAUTH]
 
