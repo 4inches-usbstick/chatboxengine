@@ -3,6 +3,7 @@
 //error_reporting(1);
 include 'mainlookup.php';
 error_reporting(0);
+clearstatcache();
 
 if (file_exists($_POST['write'])) {
 	$myfile = fopen("$_POST[write]", "a");

@@ -3,6 +3,7 @@
 //error_reporting(1);
 include 'mainlookup.php';
 error_reporting(0);
+clearstatcache();
 
 if (file_exists($_GET['write']) != true) {
 	die('[err:5] Stop: This chatbox does not actually exist');

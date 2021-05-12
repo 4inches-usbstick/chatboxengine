@@ -6,6 +6,7 @@ if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
 }
 clearstatcache();
+echo('Stop: ');
 if (file_exists($_GET['write'])) {
 	$myfile = fopen("$_GET[write]", "a");
 } else {
