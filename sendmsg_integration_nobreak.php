@@ -253,7 +253,9 @@ if (plsk(89) == 'char') {
 if ($count > plsk(87)) {
 	die('[err:35] Stop: Message exceeds byte/char limits');
 }
-fwrite($myfile, "$txt");
+
+$txt = str_replace("%nl","\n",$txt);
+fwrite($myfile, "$txt\n");
 fclose($myfile);
 echo("submitted<br>");
 

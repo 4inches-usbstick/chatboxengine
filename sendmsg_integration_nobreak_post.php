@@ -249,6 +249,7 @@ if (plsk(89) == 'char') {
 if ($count > plsk(91)) {
 	die('[err:35] Stop: Message exceeds byte/char limits for HTTP POST');
 }
+$txt = str_replace("%nl","\n",$txt);
 fwrite($myfile, "$txt");
 fclose($myfile);
 echo("submitted<br>");
