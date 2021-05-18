@@ -64,7 +64,7 @@ echo("rel path in: $thecb<br>");
 echo("str to edit: $getridof<br>");
 echo("str for overwrite: $replacewith<br>");
 $homepage = file_get_contents("$path");
-$onlyconsonants = str_replace($getridof, $replacewith, $homepage);
+$onlyconsonants = preg_replace($getridof, $replacewith, $homepage);
 echo("Echo new/old strs: false");
 //echo("new str: $onlyconsonants<br>");
 //echo("old str: $homepage<br>");
@@ -109,7 +109,7 @@ foreach($chatboxes as $i) {
 		}
 		
 $homepage = file_get_contents($i);
-$onlyconsonants = str_replace($getridof, $replacewith, $homepage);
+$onlyconsonants = preg_replace($getridof, $replacewith, $homepage);
 //echo("Echo new/old strs: false");
 //echo("new str: $onlyconsonants<br>");
 //echo("old str: $homepage<br>");

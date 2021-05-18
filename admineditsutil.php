@@ -23,9 +23,26 @@ input[type=password]:focus{
 
 
 
+<form action="admineditsreverse.php" method="GET" autocomplete="off">
+<fieldset>
+<legend>Nth Instance</legend>
+<br>
+Path: <input type="text" name="cb" size="100" height="10"><br>
+Find str: <input type="text" name="gro" size="100" height="10"><br>
+Index: <input type="text" name="index" size="100" height="10"><br>
+Replace with str: <input type="text" name="rw" size="100" height="10"><br><br>
+Key: <input type="password" name="key" size="100" height="10"><br><br><hr>
+
+UID: <input type="text" name="uid" size="100" height="10"><br><br>
+UKEY: <input type="text" name="ukey" size="100" height="10"><br><br>
+<br>
+<input type="submit" value="Send command" style="color:black">
+</fieldset>
+</form>
+
 <form action="adminedits.php" method="GET" autocomplete="off">
 <fieldset>
-<legend>Edit Message Terminal</legend>
+<legend>All Instance</legend>
 <br>
 Path: <input type="text" name="cb" size="100" height="10"><br>
 Find str: <input type="text" name="gro" size="100" height="10"><br>
