@@ -1,7 +1,7 @@
 <api docs>
 The Chatbox Engine API
 
-Currently, there are seven endpoints, six explained here, all using HTTP GET (except for sendmsg_integration_nobreak_post):
+Currently, there are a fuck ton of endpoints, some explained here, all using HTTP GET (except for sendmsg_integration_nobreak_post):
 
 terminalprocess.php (remote management terminal)
 adminedits.php (editing terminal)
@@ -52,6 +52,8 @@ terminal_process: cmd, params (optional: pass). cmd is the command, params is th
 newchat_integration: newname, option, allowmed. newname is the new Chatbox name, option is the type of Chatbox to open, and allowmed is the allowmedia option (more in detail later).
 
 adminedits: cb, gro, rw, key. cb is the Chatbox, gro is the string to get rid of, rw is the replacement string, and key is the password.
+
+admineditsreverse: the same as adminedits but index replaces the indexth instance of the substr in the str. use -1 to replace the last one.
 
 display: chatbox. chatbox is the chatbox to read.
 
@@ -111,3 +113,5 @@ Error codes and what they mean
 32 LOADEXE command stopped (unknown error)
 33 Generic Authorization Error
 35 Message exceeds char or byte limit
+37 Could not find string in admineditsreverse (the other adminedits endpoint raises no warn/err when no match found_
+39 Invalid index in admineditsreverse
