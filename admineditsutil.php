@@ -29,7 +29,7 @@ input[type=password]:focus{
 <br>
 Path: <input type="text" name="cb" size="100" height="10"><br>
 Find str: <input type="text" name="gro" size="100" height="10"><br>
-Index: <input type="text" name="index" size="100" height="10"><br>
+Index (begins at 0): <input type="text" name="index" size="100" height="10"><br>
 Replace with str: <input type="text" name="rw" size="100" height="10"><br><br>
 Key: <input type="password" name="key" size="100" height="10"><br><br><hr>
 

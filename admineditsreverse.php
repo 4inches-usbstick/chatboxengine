@@ -36,7 +36,7 @@ function str_replace_index( $search , $replace , $st , $index ) {
 	}
 	
 	if (count($rlist) != 0) {
-	$tr = substr_replace($str, $replace, $rlist[$index], strlen($replace));
+	$tr = substr_replace($str, $replace, $rlist[$index], strlen($search));
 	return ltrim($tr,'/');
 	} else {
 		echo("[warn:37] Unable to locate replacement string (0 instance)<br>\n");
