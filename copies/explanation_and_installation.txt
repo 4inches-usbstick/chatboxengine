@@ -140,3 +140,11 @@ Includepath is the PHP script to call upon when triggered by the condition and [
 Lock someone out: [chatbox no.] deny from [int: UID]
 Use lock add to lock someone out and lock del to unlock.
 WILDCARD-ALL to lock out the entire server for that UID.
+
+--CLIENTS--
+Chatbox Engine comes prepackaged with a client designed for text-based communication, however, clients have can have other purposes.
+You could have a conversation like regular people in one chatbox while another chatbox is remote controlling a remote computer. 
+
+There is no way to differentiate between Chatboxes with different purposes on the server side (the closest thing being "cipher::NO, cipher::YES for hs chatboxes").
+
+Most people seem to think this software is only for chatting. This is w r o n g. There are hundreds of other things you could use a CBE server for.
