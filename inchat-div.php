@@ -24,7 +24,7 @@ $nopac = array(
 4 => "var nar = document.getElementById('custid4').value;",
 5 => "var uid = document.getElementById('custid5').value;",
 6 => "var uky = document.getElementById('custid6').value;",
-7 => "var opt = document.main0.option.value;",
+7 => "//var opt = document.main0.option.value;",
 
 );
 
@@ -37,7 +37,7 @@ $pac = array(
 4 => "var nar = document.getElementById('custid4').value.replace(/&/g, '%26');",
 5 => "var uid = document.getElementById('custid5').value.replace(/&/g, '%26');",
 6 => "var uky = document.getElementById('custid6').value.replace(/&/g, '%26');",
-7 => "var opt = document.getElementById('main0').document.getElementsByName('option').value;",
+7 => "//var opt = document.getElementById('main0').getElementByName('option').value;",
 );
 
 
@@ -207,6 +207,12 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 </form>
 
   <script>
+window.onload = function() {
+	console.log('loaded page');
+	  document.getElementById(\"mydiv\").scrollTop = 999999999999999999999999;
+};
+
+
 	function sendmymessage() {
 	$aetouse[0]
 	$aetouse[1]
@@ -216,7 +222,7 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 	$aetouse[5]
 	$aetouse[6]
 	$aetouse[7]
-	//var opt = document.getElementsByName('option').value;
+	var opt = document.getElementsByName('option').value;
 	var meaningfulname = [\"$form?msg=\",msg,\"&write=\",des,\"&encode=\",enc,\"&namer=\",nam,\"&rurl=norefer&referer=norefer&uid=\",uid,\"&ukey=\",uky,\"&option=\",opt];
 	var theUrl = meaningfulname.join('');
 	var boi = theUrl.concat(' :: sending request')
@@ -249,15 +255,14 @@ Message: <input type=\"text\" name=\"msg\" id=\"msg\" style=\"width: 500;\">
 
 	
 
-function httpGet(theUrl)
+function httpGet(theUrl, a)
 {
+	
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
 			//console.log(xmlHttp.responseText);
 			document.getElementById(\"stuff\").innerHTML = xmlHttp.responseText;
-			
-
-			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,999999999999999), 1);
+			setTimeout(document.getElementById(\"mydiv\").scrollTo(0,a), 1);
 			var str1 = theUrl;
 			var str2 = \"?math=\";
 			var str3 = Math.random();
@@ -280,6 +285,7 @@ function scrollToBottom (id) {
 
 document.addEventListener('keydown', bruhw234re);
 
+
 function bruhw234re() {
 if (event.isComposing || event.keyCode === 27) {
     document.getElementById(\"msg\").focus();
@@ -299,8 +305,18 @@ var cur = httpGet(\"$getter\");
 
 
         function reloadiframe() {
+				var scr = document.getElementById(\"mydiv\").scrollTop;
+				
+			if (document.getElementById(\"unlock\").checked == false) {
+				console.log('scrolling locked')
+				var scr = 9999999999999999;
+			}
+			
+			console.log(scr);
             console.log('reloading..');
-            var currentvar = httpGet(\"$getter\");
+            var currentvar = httpGet(\"$getter\", scr);
+						//setTimeout(document.getElementById(\"mydiv\").scrollTo(0,1000), 1);
+			
 
 		
 			
@@ -327,10 +343,15 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 <fieldset>
 <legend>Actions</legend>
 
- <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='httpGet(\"$getter\")'>
+ <input type=\"button\" style=\"color:black\" value=\"Force Reload\" onclick='reloadiframe()'>
+
 <input type=\"button\" style=\"color:black\" onclick=\"location.href='$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&refreshrate=foobar&encoderm=$_GET[encoderm]&namer=$_GET[namer]';\" value=\"No Polling Mode\" />
 <!--input type=\"button\" style=\"color:black\" onclick=\"location.href='$pcl://$ip/textengine/sitechats/high-security/media/uploadform.php';\" value=\"Upload Files\" /-->
 <button onclick='document.getElementById(\"report\").innerHTML = \"\"'>Supress Error</button>
+ <input type=\"button\" style=\"color:black\" value=\"Travel To Bottom\" onclick='document.getElementById(\"mydiv\").scrollTop = 999999999999999999999999;'>
+ <input type=\"checkbox\" id=\"unlock\" name=\"Unlock Scrolling\" value=\"Unlock Scrolling\"></input>
+ <label for=\"unlock\"><code>Unlock Scrolling</label>
+
 
 <form action='$pcl://$ip/textengine/sitechats/inchat-div.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change Refresh Rate:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
@@ -363,7 +384,7 @@ NAME <input type='text' name='namer' style='width: 128px;' value='$_GET[namer]'>
 <input type='submit' value='Go'>
 </form>
 
-</fieldset>
+</fieldset></code>
 ");
 
 
