@@ -208,9 +208,11 @@ if (event.isComposing || event.keyCode === 27) {
 
 
         function reloadiframe() {
+			var scr = document.getElementById(\"iframe1\").contentDocument.scrollTop;
             console.log('reloading..');
-            document.getElementById(\"iframe1\").contentWindow.location.reload(false);
-			//document.getElementById(\"iframe1\").contentWindow.document.style = 'white-space: pre;';
+            document.getElementById(\"iframe1\").contentWindow.location.reload(true);
+			console.log(scr);
+			 setTimeout(function () { document.getElementById(\"iframe1\").contentWindow.scrollTo(0, 9999999999999999999999999); }, 2);
         }
     </script>
 	
@@ -234,8 +236,11 @@ window.onload = function(){
 }
 
         function reloadiframe() {
+			var scr = document.getElementById(\"iframe1\").scrollTop;
             console.log('reloading..');
-            document.getElementById(\"iframe2\").contentWindow.location.reload(false);
+            document.getElementById(\"iframe2\").contentWindow.location.reload(true);
+			console.log(scr);
+			//setTimeout(function () { document.getElementById(\"iframe2\").contentWindow.scrollTo(0, 9999999999999999999999999); }, 2);
         }
     </script>
 	
