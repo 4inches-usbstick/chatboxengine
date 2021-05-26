@@ -72,10 +72,10 @@ PID  Change to
 73   Whether nonmaster users can issue LOCK ADD/DEL commands
 75   Whether to enable UIDUKEY lockout (YES/NO)
 77   Whether CSEND is enabled (YES/NO)
-79   Structure of a message with timestamps, name and msg. Use %time, %date, %name, and %mess to refer to different values.
-81   Structure of a message with timestamps and message, excluding %name.
-83   Structure of a message with name and message, excluding %time and %date.
-85   Structure of a message with only message excluding %time, %date, %name.
+79   Structure of a message with timestamps, name and msg. Use %time, %date, %name, and %mess to refer to different values. ###
+81   Structure of a message with timestamps and message, excluding %name.###
+83   Structure of a message with name and message, excluding %time and %date.###
+85   Structure of a message with only message excluding %time, %date, %name.###
 87   Max size of a message thru GET in bytes or chars
 89   Whether to count message size in bytes or chars.
 91   Max size of a message thru POST in bytes or chars.
@@ -122,6 +122,7 @@ Notes:
 2. Make sure your server protects all files ending in '.hta'
 3. (**) from earlier: use %ip to show where you would put the IP to ban
 4. (*) from earlier: this does not bypass server limit for file uploads
+5. (###) from earlier: use %id to replace the used UID (applies to all of them).
 
 --CCMD--
 Let's say you want to support image sending but you don't want the stupid inchat-div client. You can use Custom Commands (but you have to build your own image sending functionality by yourself). Every time a message is sent sendmsg checks if a string is in / is the beginning of the message.
