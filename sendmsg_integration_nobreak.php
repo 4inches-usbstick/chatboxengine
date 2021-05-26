@@ -217,31 +217,66 @@ $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%name', $name, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
+
 }
 if ($timestamps != "" && !empty($name) && $name == 'PHR-NUL') {
 $txt = plsk(81);
 $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
+
 }
 if ($timestamps != "" && empty($name)) {
 $txt = plsk(81);
 $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
 }
 if ($timestamps == "" && !empty($name) && $name != 'PHR-NUL') {
 $txt = plsk(83);
 $txt = str_replace('%name', $name, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
+
 }
 if ($timestamps == "" && !empty($name) && $name == 'PHR-NUL') {
 $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
+
 }
 if ($timestamps == "" && empty($name)) {
 $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
+
 }
 
 if (plsk(89) == 'byte') {

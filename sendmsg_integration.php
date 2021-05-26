@@ -15,12 +15,14 @@ if (file_exists($_GET['write'])) {
 	die('[err:5] Stop: This chatbox does not actually exist');
 }
 
+
 $rdir = plsk(3);
 $dots = plsk(23);
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, GET, PATCH, PUT, DELETE, OPTIONS');
+
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
 
 if (!function_exists('str_starts_with')) {
@@ -218,31 +220,58 @@ $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%name', $name, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
 }
 if ($timestamps != "" && !empty($name) && $name == 'PHR-NUL') {
 $txt = plsk(81);
 $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
 }
 if ($timestamps != "" && empty($name)) {
 $txt = plsk(81);
 $txt = str_replace('%time', $timestamp1, $txt);
 $txt = str_replace('%date', $timestamp2, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
 }
 if ($timestamps == "" && !empty($name) && $name != 'PHR-NUL') {
 $txt = plsk(83);
 $txt = str_replace('%name', $name, $txt);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
 }
 if ($timestamps == "" && !empty($name) && $name == 'PHR-NUL') {
 $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
+
 }
 if ($timestamps == "" && empty($name)) {
 $txt = plsk(85);
 $txt = str_replace('%mess', $mess, $txt);
+
+if (!empty($_GET['uid'])) {
+$txt = str_replace('%id', $_GET['uid'], $txt);
+}
 }
 
 if (plsk(89) == 'byte') {
