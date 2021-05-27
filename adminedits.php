@@ -89,8 +89,8 @@ echo("[err:16] Stop: Incorrect or missing password. This command failed to execu
 if ($type == 'all' && $_GET['cb'] == 'WILDCARD-ALL' && plsk(63) == 'YES') {
 if ($_GET["key"] == $pass) {
 //$thecb = $_GET["cb"];
-$getridof = $_GET["gro"];
-$replacewith = $_GET["rw"];
+$getridof = str_replace("%nl","\n", $_GET["gro"]);
+$replacewith = str_replace("%nl","\n", $_GET["rw"])
 echo("str to edit: $getridof<br>");
 echo("str for overwrite: $replacewith<br>");
 

@@ -99,8 +99,8 @@ if (empty($_GET['type'])) {
 if ($type == 'all' && $_GET['cb'] != 'WILDCARD-ALL') {
 if ($_GET["key"] == $pass) {
 $thecb = $_GET["cb"];
-$getridof = $_GET["gro"];
-$replacewith = $_GET["rw"];
+$getridof = str_replace("%nl","\n", $_GET["gro"]);
+$replacewith = str_replace("%nl","\n", $_GET["rw"]);
 $path = "$rdir/sitechats/$thecb";
 echo("abs path in: $path<br>");
 echo("rel path in: $thecb<br>");
