@@ -9,6 +9,14 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-
 
 $rdir = plsk(3);
 $data = file_get_contents("$rdir/sitechats/$_GET[src]");
+
+$data = str_replace('^[', '{special}1',$data);
+$data = str_replace('^]', '{special}2',$data);
+$data = str_replace('^==', '{special}3',$data);
+$data = str_replace('^>', '{special}4',$data);
+$data = str_replace('^;', '{special}5',$data);
+
+
 //error_reporting(0);
 //$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
 $datapath = $_GET['path'];
@@ -89,25 +97,50 @@ $actualdata1 = explode("==", $listofdata0[$index]);
 //echo("$actualdata1[0]<br>");
 //echo("<b>var value</b><br>");
 if ($getclass == 'var') {
+	$listofdata0[$index] = str_replace('{special}1', '[',$listofdata0[$index]);
+	$listofdata0[$index] = str_replace('{special}2', ']',$listofdata0[$index]);
+	$listofdata0[$index] = str_replace('{special}3', '==',$listofdata0[$index]);
+	$listofdata0[$index] = str_replace('{special}4', '>',$listofdata0[$index]);
+	$listofdata0[$index] = str_replace('{special}5', ';',$listofdata0[$index]);
 	echo($listofdata0[$index]);
 	die();
 }
 if ($getclass == 'attr') {
+	$actualdata1[1] = str_replace('{special}1', '[',$actualdata1[1]);
+	$actualdata1[1] = str_replace('{special}2', ']',$actualdata1[1]);
+	$actualdata1[1] = str_replace('{special}3', '==',$actualdata1[1]);
+	$actualdata1[1] = str_replace('{special}4', '>',$actualdata1[1]);
+	$actualdata1[1] = str_replace('{special}5', ';',$actualdata1[1]);
 	echo($actualdata1[1]);
 	die();
 }
 
 if ($getclass == 'attr-name') {
+	$actualdata1[0] = str_replace('{special}1', '[',$actualdata1[0]);
+	$actualdata1[0] = str_replace('{special}2', ']',$actualdata1[0]);
+	$actualdata1[0] = str_replace('{special}3', '==',$actualdata1[0]);
+	$actualdata1[0] = str_replace('{special}4', '>',$actualdata1[0]);
+	$actualdata1[0] = str_replace('{special}5', ';',$actualdata1[0]);
 	echo($actualdata1[0]);
 	die();
 }
 
 if ($getclass == 'class') {
+	$return = str_replace('{special}1', '[',$return);
+	$return = str_replace('{special}2', ']',$return);
+	$return = str_replace('{special}3', '==',$return);
+	$return = str_replace('{special}4', '>',$return);
+	$return = str_replace('{special}5', ';',$return);
 	echo($return);
 	die();
 }
 
 if ($getclass == 'raw') {
+	$data = str_replace('{special}1', '[',$data);
+	$data = str_replace('{special}2', ']',$data);
+	$data = str_replace('{special}3', '==',$data);
+	$data = str_replace('{special}4', '>',$data);
+	$data = str_replace('{special}5', ';',$data);
 	echo($data);
 	die();
 }
