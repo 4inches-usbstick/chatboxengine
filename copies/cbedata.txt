@@ -119,7 +119,8 @@ Comments could go in End of Line objects, but it's not advisable.
 
 --API Edits--
 If you want your EOL classes to be editable, you need to put the entire EOL class in one line.
-This is as a result of how the editing works with Chatbox Engine.
+This is as a result of how the editing works with Chatbox Engine. With the new updates to the way editing works you may not have to do this but I haven't tried it
+because I'm starting to lose interest in things that used to be fun for me.
 
 Instead of:
 class[Hhhu>  
@@ -132,4 +133,16 @@ class[Hhhu>  name==Hhhu; age==103; dob==may 209; ]
 
 *Yes, the whitespaces are necessary.
 
+--ESCAPING--
+Some characters like > and ; are key characters or keywords, which means that you previously could not use them anywhere in data, which meant someone could break a lot with one
+misplaced ;
 
+Now, it is possible to escape these characters by adding ^ to the front. Here is a list of all the keychars/words, escaped:
+
+^;
+^>
+^[
+^]
+^==
+
+(class is technically not a keyword for reasons)
