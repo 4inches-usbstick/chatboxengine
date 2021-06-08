@@ -200,7 +200,9 @@ $mess = $_GET["msg"];
 if (empty($_GET["encode"])) {
 	$_GET['encode'] = 'UTF-8';
 }
+if ($_GET['encode'] != 'none') {
 $mess = mb_convert_encoding($mess, $_GET['encode']);
+}
 }
 
 $URL = $_GET["rurl"];

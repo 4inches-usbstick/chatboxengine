@@ -14,6 +14,7 @@ header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
 error_reporting(plsk(37));
+chdir("$rdir/sitechats");
 
 $pass = file_get_contents("$rdir/sitechats/.htapassword");
 $useduid = false;
@@ -135,36 +136,6 @@ $params = $_GET["params"];
 
 //error_reporting(0);
 //wipe
-if ($_GET["cmd"] == "wipe" and $_GET["pass"] == $pass) {
-	
-	$banned = file_get_contents(".htaterminalaccess");
-	$script = substr_count($banned, $params);
-	
-	if ($script > 0) {
-	die("[err:29] Stop: This Chatbox is protected and thus cannot be wiped.<br>");
-}
-	
-	$f1 = fopen($params, "w");
-	fwrite($f1, "");
-	fclose($f1);
-	echo("Chatbox wiped.");
-	
-	
-}
-
-
-//ban
-if ($_GET["cmd"] == "banhammer" and $_GET["pass"] == $pass) {
-	$towrite = plsk(27);
-	$tofile = plsk(25);
-	$f1 = fopen($tofile, "a");
-	$tt = str_replace('%ip', $_GET['params'], $towrite);
-	fwrite($f1, "$tt\n");
-	echo(str_replace('%ip', $_GET['params'], $towrite) . '<br>');
-	fclose($f1);
-	echo("IP banned: $_GET[params]");
-}
-
 //change
 if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
 	$f1 = fopen("$rdir/sitechats/.htapassword", "w");
@@ -177,112 +148,9 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
 }
 
 //uid db management
-if ($_GET['cmd'] == 'udb add' && $_GET['pass'] == $pass) {
-	if (plsk(51) == 'YES' && $useduid) {
-		die('[err:23] Stop: Master password required to run udb add command (PID 51)');
-	}
-	$ps = explode(' ', $_GET['params']);
-	//$c = uid_db();
-	$f = file_get_contents('.htamainpolicy');
-	//$pos = strpos($c, '0::1::2::3;');
-	$newcc = str_replace("0::1::2::3;", "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n0::1::2::3;", $f);
-	//echo("<div style='white-space: pre;'>$newc</div>");
-	//$newcc = str_replace(uid_db(), $newc, $f);
-	file_put_contents('.htamainpolicy', $newcc);
-}
-if ($_GET['cmd'] == 'udb del' && $_GET['pass'] == $pass) {
-	if (plsk(51) == 'YES' && $useduid) {
-		die('[err:23] Stop: Master password required to run udb del command (PID 51)');
-	}
-	$ps = explode(' ', $_GET['params']);
-	$f = file_get_contents('.htamainpolicy');
-	$rrr = random_int(10000000, 99999999);
-	$newcc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];\n", "", $f);
-	file_put_contents('.htamainpolicy', $newcc);
-	if ($newcc == $f) {
-		die('[warn:30] Warning: No user was found<br>');
-	}
-}
-
-if ($_GET['cmd'] == 'cmd add' && $_GET['pass'] == $pass) {
-	if ($useduid) {
-		die('[err:23] Stop: Master password required to run cmd add command');
-	}
-	$ps = explode(';', $_GET['params']);
-	$f = file_get_contents('.htamainpolicy');
-	$pos = strpos($f, '[END C-CMD]');
-	$newc = str_replace("[END C-CMD]", "$ps[0]::$ps[1]::$ps[2]::$ps[3];\n[END C-CMD]", $f);
-	file_put_contents('.htamainpolicy', $newc);
-}
-if ($_GET['cmd'] == 'cmd del' && $_GET['pass'] == $pass) {
-	if ($useduid) {
-		die('[err:23] Stop: Master password required to run cmd del command');
-	}
-	$ps = explode(';', $_GET['params']);
-	$f = file_get_contents('.htamainpolicy');
-	$pos = strpos($f, '[END C-CMD]');
-	$newc = str_replace("$ps[0]::$ps[1]::$ps[2]::$ps[3];", "", $f);
-	file_put_contents('.htamainpolicy', $newc);
-}
-
-if ($_GET['cmd'] == 'lock add' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(73) != 'YES') {
-		die('[err:23] Stop: Master password required to run lock add command');
-	}
-	$f = file_get_contents('.htamainpolicy');
-	//$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
-	$newc = str_replace('[END UIDUKEY LOCKOUT]', "$_GET[params]\n[END UIDUKEY LOCKOUT]", $f);
-	file_put_contents('.htamainpolicy', $newc);
-	//echo $newc;
-}
-if ($_GET['cmd'] == 'lock del' && $_GET['pass'] == $pass) {
-	if ($useduid && plsk(73) != 'YES') {
-		die('[err:23] Stop: Master password required to run lock del command');
-	}
-	$f = file_get_contents('.htamainpolicy');
-	$pos = strpos($f, '[END UIDUKEY LOCKOUT]');
-	$newc = str_replace("$_GET[params]", "", $f);
-	file_put_contents('.htamainpolicy', $newc);
-}
 
 
-if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
-	$ps = explode(' ', $_GET['params']);
-	
-	if (plsk(55) == 'YES' && $useduid) {
-		die('[err:23] Stop: Need masterkey for COPEN command [PID55]');
-	}
-	if (file_exists($ps[0])) {
-		die('[err:18] Stop: This chatbox exists');
-	}
-	$notallowed = array('<', '>', ':', '"', '/', '\\', '|', '?', '*', ';', 'NUL', 'COM', 'LPT', 'CON', 'PRN');
-
-	foreach ($notallowed as $i) {
-	if (substr_count($ps[0], $i) > 0) {
-		die('[err:19] Stop: Illegal character in filename: ' . $i);
-	}
-	}
-	
-	$f = fopen($ps[0], 'w');
-	fclose($f);
-	
-	$names = explode('.', $ps[0]);
-	$name = $names[0];
-	if ($ps[1] == '--allowmed') {
-	mkdir("$rdir/sitechats/media/$ps[0]", 0700);
-	mkdir("$rdir/sitechats/media/$ps[0]/uploaded", 0700);
-	}
-	if ($ps[1] == '--allowmedhtml') {
-	mkdir("$rdir/sitechats/media/$name-med", 0700);
-	mkdir("$rdir/sitechats/media/$name-med/uploaded", 0700);
-	}
-	if ($ps[1] == '--forbidmed') {
-	echo('--forbidmed flag passed<br>');
-	}
-	echo('chatbox opened<br>');
-	
-
-}
+//work with FILESAFE to restrict chatboxes to certain user groups such as local
 
 
 //policy
@@ -304,132 +172,10 @@ if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
 }
 
 //del
-if ($_GET["cmd"] == "del" and $_GET["pass"] == $pass) {
-$params = $_GET["params"];
-$abspath = dirname($params);
-$path = "$abspath/$params";
-echo($params);
-echo($abspath);
-echo($path);
-	
-//echo($path);
-$haystaq = file_get_contents("$rdir/sitechats/.htaterminalaccess");
-$findme = $params;
-$pos = strpos($haystaq, $findme);
 
-if ($pos === false) {
-    echo "<br>";
-} else {
-    echo "[err:29] Stop: This file is protected and thus cannot be accessed";
-	die();
-}
-
-
-
-$ff1 = unlink($path);
-
-
-delete_directory("$rdir/sitechats/media/$params");
-$ff1 = rmdir("$rdir/sitechats/media/$params");
-//system("rm -rf ".escapeshellarg("$rdir/sitechats/media/$params"));
-
-if (file_exists($path)) {
-    echo "[err:31] Stop: Chatbox failed to delete<br>";
-} else {
-    echo "Chatbox deleted<br>";
-}
-
-
-
-if (file_exists("$rdir/sitechats/media/$params")) {
-    echo "[err:31] Stop: Media directory failed to delete<br>";
-} else {
-    echo "Media directory deleted<br>";
-}
-}
 
 //del html
-if ($_GET["cmd"] == "delhtml" and $_GET["pass"] == $pass) {
-$params = $_GET["params"];
-$abspath = dirname($params);
-$path = "$rdir/sitechats/$params";
-//echo($params);
-//echo($abspath);
-//echo($path);
-	
-//echo($path);
-$haystaq = file_get_contents("$rdir/sitechats/.htaterminalaccess");
-$findme = $params;
-$pos = strpos($haystaq, $findme);
 
-if ($pos === false) {
-    echo "<br>";
-} else {
-    echo "[err:29] Stop: This file is protected and thus cannot be accessed";
-	die();
-}
-
-
-
-
-
-$ff1 = unlink($path);
-
-
-$mediadir0 = substr($params, 0, -5);
-$mediadir = "$mediadir0-med";
-
-echo("
-$mediadir0<br>
-$mediadir<br>
-$path<br>");
-delete_directory("$rdir/sitechats/media/$mediadir");
-$ff1 = rmdir("$rdir/sitechats/media/$mediadir");
-//system("rm -rf ".escapeshellarg("$rdir/sitechats/media/$params"));
-
-
-}
-
-
-
-
-
-//make a copy of a chat
-if ($_GET["cmd"] == "xcopy" and $_GET["pass"] == $pass)
-{
-
-
-$params = $_GET["params"];
-$abspath = dirname($params);
-$path = "$abspath/$params";
-$takesrc = $path;
-$destiny = "$cc/$params";
-
-$yes = copy($takesrc, $destiny);
-echo("Copied files");
-
-}
-
-//make a copy of a chat but append it to the current file
-if ($_GET["cmd"] == "xcopy --append" and $_GET["pass"] == $pass)
-{
-
-$cpc = file_get_contents($_GET['params']);
-$f = fopen("$cc/$_GET[params]", 'a');
-fwrite($f, $cpc);
-fclose($f);
-echo("Copied chatbox and appended it to any existing copies");
-
-}
-//sleep(0.15);
-
-
-
-
-//edit
-if ($_GET["cmd"] == "xedit") {
-	echo("<iframe src=\"$pcl://$ip/textengine/sitechats/admineditsutil.php\" width='720' height='660'></iframe>");
-}
 
 
 if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
@@ -470,153 +216,16 @@ if ($_GET["cmd"] == "vers" && $_GET["params"] != "showall::YES")
 echo($credits);
 }
 
-//media copy
-if ($_GET["cmd"] == "mcopy" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	chdir("$rdir/sitechats/media/");
-	$medirs = glob("*", GLOB_ONLYDIR);
-	
-	foreach($medirs as $i) {
-		print("$i<br>");
-		ccp("$rdir/sitechats/media/$i/uploaded", "$mcc/$i");
-		echo("Copied Media Dir");
-	}
-}
-if ($_GET["cmd"] == "mcopy" && $_GET["params"] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	chdir("$rdir/sitechats/media/");
-		ccp("$rdir/sitechats/media/$_GET[params]/uploaded", "$mcc/$_GET[params]");
-echo("Copied Media Dir");
-}
-//media delete
-if ($_GET["cmd"] == "mdel" && $_GET["params"] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	chdir("$rdir/sitechats/media/");
-	delete_directory("$rdir/sitechats/media/$_GET[params]");
-	$ff1 = rmdir("$rdir/sitechats/media/$_GET[params]");
-	echo("Deleted Media Dir");
-}
-if ($_GET["cmd"] == "mdel" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("Notice: WILDCARD-ALL REMOVES ALL MEDIA DIRS<br>");
-	chdir("$rdir/sitechats/media/");
-	$medirs = glob("*", GLOB_ONLYDIR);
-	foreach($medirs as $i) {
-	delete_directory("$rdir/sitechats/media/$i");
-	$ff1 = rmdir("$rdir/sitechats/media/$i");
-	echo("Deleted Media Dir");
-}
-}
-//media reload
-if ($_GET["cmd"] == "mload" && $_GET["params"] == "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("Notice: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
-	chdir("$rdir/sitechats/copies/media/");
-	$medirs = glob("*", GLOB_ONLYDIR);
-	
-	foreach($medirs as $i) {
-		echo("$i<br>");
-		ccp("$mcc/$i", "$rdir/sitechats/media/$i/uploaded");
-		echo("Loaded Media Dir");
-	}
-}
-if ($_GET["cmd"] == "mload" && $_GET["params"] != "WILDCARD-ALL" && $_GET["pass"] == $pass) {
-	echo("Notice: MEDIA DIRECTORIES MUST EXIST BEFORE YOU LOAD THEM");
-	chdir("$rdir/sitechats/copies/media/");
-		ccp("$mcc/$_GET[params]", "$rdir/sitechats/media/$_GET[params]/uploaded");
-		echo("Loaded Media Dir");
-}
-//mkdir
-if ($_GET["cmd"] == "mkdir" && $_GET["pass"] == $pass) {
-	echo("Notice: EXISTING MEDIA DIRS MAY BE OVERWRITTEN");
-	mkdir("$rdir/sitechats/media/$_GET[params]", 0700);
-	mkdir("$rdir/sitechats/media/$_GET[params]/uploaded", 0700);
-		echo("Made directory");
-}
+
 //ADDED mkdir, mload, mdel, mcopy
 
 //broadcast
-if ($_GET["cmd"] == "cbroadcast" && $_GET["pass"] == $pass) {
-	$chatboxes = glob("*");
-	echo("FILE LIST:<br><br>");
-	foreach($chatboxes as $i) {
-		if (is_dir($i)) {
-		echo("$i: DIR-SKIP<br>");
-		goto skipexec;
-		} 
-		//if is dir
-		
-		if (substr_count($i, ".") > 0 && substr_count($i, ".html") == 0) {
-		echo("$i: FILE-SKIP<br>"); 
-		goto skipexec;
-		}
-		//if there is a dot and it"s not HTML
-		
-		if (substr_count($i, ".html") > 0 || substr_count($i, ".") == 0) {
-		echo("$i: WRITE<br>"); 
-		
-		if ($_GET["params"] == "DRYRUN") {
-			echo("$i: DRYRUN-SKIP<br>");
-			goto skipexec;
-		}
-		$g = fopen($i, "a");
-		fwrite($g, "$_GET[params]\n");
-		fclose($g);
-		}
-		//if there are no dots or it"s HTML
-		skipexec:
-		
-	}
-	
-}
+
 
 //
-if ($_GET["cmd"] == "clist") {
-	$chatboxes = glob("*");
-	echo("All Chatboxes:<br><br>");
-	foreach($chatboxes as $i) {
-		if (is_dir($i)) {
-		//echo("$i: DIR-SKIP<br>");
-		goto skipexec1;
-		} 
-		//if is dir
-		
-		if (substr_count($i, ".") > 0 && substr_count($i, ".html") == 0 && substr_count($i, ".cbedata") == 0) {
-		goto skipexec1;
-		}
-		//if there is a dot and it"s not HTML
-		if (substr_count(wr_db(), $i) != 0) {
-		$v = ' : protected';
-		} else {
-			$v = ' : open';
-		}
-		
-		if (substr_count($i, ".html") > 0 || substr_count($i, ".") == 0) {
-		echo("$i $v<br>\n"); 
-		}
-		//if there are no dots or it"s HTML
-		skipexec1:
-		
-	}
-	
-}
-//cload
-if ($_GET["cmd"] == "cload" && $_GET["pass"] == $pass) {
-copy("$rdir/sitechats/copies/$_GET[params]", "$rdir/sitechats/$_GET[params]");
-echo("Copied");
-}
+
 //send
-if ($_GET["cmd"] == "csend" && $_GET["pass"] == $pass) {
-$conditions = explode(';', $_GET['params']);
-$f = fopen($conditions[0], 'a');
-$conditions[1] = str_replace("%nl","\n", $conditions[1]);
-fwrite($f, "$conditions[1]\n");
-fclose($f);
-echo("Wrote '$conditions[1]' to $conditions[0]");
-}
-//send
-if ($_GET["cmd"] == "csend --nobreak" && $_GET["pass"] == $pass) {
-$conditions = explode(';', $_GET['params']);
-$f = fopen($conditions[0], 'a');
-fwrite($f, "$conditions[1]");
-fclose($f);
-echo("Wrote '$conditions[1]' to $conditions[0]");
-}
+
 
 if ($_GET['cmd'] == "inirecovery") {
 	if (plsk(97) != 'YES') {
@@ -645,7 +254,6 @@ COMMANDS: <br><br>
 *wipe: delete the contents of a Chatbox but not the Chatbox itself<br><br>
 
 vers: shows the CBE version, no required parameters. use 'showall::YES' to bring up the entire credits file instead of just a version number <br>
-xedit: brings up the remote message editing terminal, no parameters<br><br>
 
 *banhammer: bans IP address with value (parameter)<br><br>
 
@@ -671,7 +279,9 @@ help: brings up this help message, no parameters<br><br>
 *^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Permission (space char as delimiter)<br>
 *^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Permission (space char as delimiter)<br><br>
 *^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
-*^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br><br>
+*^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
+*^filesafe add: add a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
+*^filesafe del: remove a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
 
 inirecovery: starts the 'I FORGOT THE PASSWORD'  procedure. Opens a Chatbox then gives you time to enter the backup code from .htamainpolicy.<br><br>
 
@@ -680,7 +290,7 @@ No Verbose allows you to suppress the output of the command (unless a fatal erro
 This feature is only for the web client.<br><br>
 
 * = requires UID/UKEY or password<br>
-^ = requires password and cannot take UID/UKEY<br>
+^ = requires password and cannot take UID/UKEY (by default, it is possible to change some of these commands in .htamainpolicy)<br>
 _ = three options: --allowmed, --allowmedhtml, --forbidmed<br>
 
 If there are dangerous commands, there are people who will find a way to mess it up. This terminal does not stop you from making bad decisions.
@@ -690,20 +300,35 @@ If we are only free to make good decisions, we are not free at all.
 ");
 }
 
+$imfedupwiththisshit = str_replace("\n", "", file_get_contents('.htaterminalkeys'));
+$keys = explode(";", $imfedupwiththisshit);
+#print_r($keys);
+$done = False;
 
 
-
-
-
+//this is broken
+foreach($keys as $i) {
+	$things = explode("::", $i);
+	//echo(str_replace("\n", "", $things[0] . '<br>'));
+	//echo("compare: " . $_GET['cmd'] . '==' . substr($things[0],1) . '<br>');
+	//and this is the problem
+	if ($_GET['cmd'] == substr($things[0],1)) {
+		echo("filepath: " . str_replace("%rdir", $rdir, $things[1])) . "<br>\n";
+		include str_replace("%rdir", $rdir, $things[1]);
+		$done = True;
+	}
+}
+clearstatcache();
+if (file_exists("$rdir/sitechats/terminal/" . $_GET['cmd'] . '.php') && !$done) {
+	include "$rdir/sitechats/terminal/$_GET[cmd].php";
+}
 
 
 //pw error
 if ($_GET["pass"] != $pass)
 {
 echo("
-<hr>
-<b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid [warn:33]</b>
-<hr>
+<hr><b>(Auth-Warning) UID/UKEY or MASTERKEY was not valid [warn:33]</b><hr>
 ");
 }
 //verbose mode

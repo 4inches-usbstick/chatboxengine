@@ -193,7 +193,9 @@ $mess = $_POST["msg"];
 if (empty($_POST["encode"])) {
 	$_POST['encode'] = 'UTF-8';
 }
+if ($_POST['encode'] != 'none') {
 $mess = mb_convert_encoding($mess, $_POST['encode']);
+}
 }
 
 $URL = $_POST["rurl"];

@@ -1,0 +1,18 @@
+ udb add::%rdir/sitechats/terminal/udbmanager.php;
+udb del::%rdir/sitechats/terminal/udbmanager.php;
+filesafe add::%rdir/sitechats/terminal/filesafemanager.php;
+filesafe del::%rdir/sitechats/terminal/filesafemanager.php;
+cmd add::%rdir/sitechats/terminal/cmdmanager.php;
+cmd del::%rdir/sitechats/terminal/cmdmanager.php;
+lock add::%rdir/sitechats/terminal/cmdmanager.php;
+lock del::%rdir/sitechats/terminal/lockmanager.php;
+mcopy::%rdir/sitechats/terminal/mediatransfer.php;
+mdel::%rdir/sitechats/terminal/mediatransfer.php;
+mload::%rdir/sitechats/terminal/mediatransfer.php;
+mkdir::%rdir/sitechats/terminal/mediatransfer.php;
+cbroadcast::%rdir/sitechats/terminal/cbr.php;
+clist::%rdir/sitechats/terminal/cbmanager.php;
+cload::%rdir/sitechats/terminal/cbmanager.php;
+csend::%rdir/sitechats/terminal/csend.php;
+csend --nobreak::%rdir/sitechats/terminal/csend.php;
+xcopy --append::%rdir/sitechats/terminal/xcopy.php
