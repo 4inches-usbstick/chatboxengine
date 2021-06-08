@@ -33,11 +33,12 @@ In the NOF, these formats are available (these formats go into the type argument
 The function will return as a string.
 
 --Object Function--
+Note that with the OF, if you want all values from subclass C, you don't specify an end value (the actual key). You just give the subclass that the key belongs to.
 In the OF, these formats are available:
 
 1. raw gives you back subclass as a string, however, the 'class[classname>' is gone, unlike the other raw
 2. list-val gives you all the attribute values in a subclass as a list.
 3. list-key gives you all the attribute names in a subclass as a list
 4. dic gives you a Python dictionary with the keys being the attribute names and the values being the attribute values.
-
+5. sbc-list givse you a Python array of all found subclasses in a certain class.
 

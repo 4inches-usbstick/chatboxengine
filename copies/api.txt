@@ -42,8 +42,9 @@ For CBEDATA API, see cbedata.txt.
 
 
 --WHAT ARGUMENTS ARE NEEDED FOR EACH ENDPOINTS--
+If a UID/UKEY is needed, add the arguments UID=<uid> and UKEY=<correctukey>
 
-sendmsg_integration (all types): write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under.
+sendmsg_integration (all types): write, msg (optional: namer, encoder). write is the destination Chatbox, msg is the message, encode is the encoder to use, and namer is the alias to go under. use none for the encoder to post binary data without touching it.
 
 *Note that sendmsg_integration_nobreak_post takes HTTP POST instead of HTTP GET
 
@@ -55,7 +56,7 @@ adminedits: cb, gro, rw, key. cb is the Chatbox, gro is the string to get rid of
 
 admineditsreverse: the same as adminedits but index replaces the indexth instance of the substr in the str. use -1 to replace the last one.
 
-display: chatbox. chatbox is the chatbox to read.
+display: chatbox. chatbox is the chatbox to read. optional: encode, which encodes the bytes into a certain encoding. to transfer binary data use base64 as the encode option.
 
 base64upload: content is the file contents, name is the filename and hidden is the chatbox no.
 
@@ -115,3 +116,4 @@ Error codes and what they mean
 35 Message exceeds char or byte limit
 37 Could not find string in admineditsreverse (the other adminedits endpoint raises no warn/err when no match found_
 39 Invalid index in admineditsreverse
+41 Damaged or missing settings file
