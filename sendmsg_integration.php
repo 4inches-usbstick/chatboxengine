@@ -2,7 +2,7 @@
 
 //error_reporting(1);
 include 'mainlookup.php';
-error_reporting(E_ALL);
+error_reporting(0);
 echo('Stop: ' . '<br>');
 clearstatcache();
 
