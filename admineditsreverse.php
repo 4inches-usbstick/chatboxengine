@@ -63,7 +63,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('[err:21] Stop: You are not a sudo user.<br>');
+	die('[err:21] Stop: You are not a sudo user.<br>');
 }
 
 skipverify:
@@ -139,6 +139,7 @@ $replacewith = str_replace("%nl","\n", $_GET["rw"]);
 echo("str to edit: $getridof<br>");
 echo("str for overwrite: $replacewith<br>");
 
+}
 $chatboxes = glob("*");
 foreach($chatboxes as $i) {
 	if (is_dir($i)) {
@@ -152,7 +153,8 @@ foreach($chatboxes as $i) {
 		echo("$i: FILE-SKIP<br>"); 
 		goto skipexec;
 		}
-		
+
+
 $homepage = file_get_contents($i);
 $onlyconsonants = str_replace_index($getridof, $replacewith, $homepage, $ine);
 //echo("Echo new/old strs: false");
@@ -172,7 +174,7 @@ skipexec:
 } else {
 echo("[err:16] Stop: Incorrect or missing password. This command failed to execute.");
 }
-}
+
 
 
 

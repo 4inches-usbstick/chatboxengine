@@ -20,7 +20,7 @@ if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) =
 }
 
 if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('[err:21] Stop: You are not a sudo user.<br>');
+	die('[err:21] Stop: You are not a sudo user.<br>');
 }
 
 skipverify:
@@ -66,7 +66,9 @@ echo("rel path in: $thecb<br>");
 echo("str to edit: $getridof<br>");
 echo("str for overwrite: $replacewith<br>");
 $homepage = file_get_contents("$path");
-$onlyconsonants = preg_replace($getridof, $replacewith, $homepage);
+echo "file: " . $homepage;
+$onlyconsonants = str_replace($getridof, $replacewith, $homepage);
+echo $onlyconsonants;
 echo("Echo new/old strs: false");
 //echo("new str: $onlyconsonants<br>");
 //echo("old str: $homepage<br>");
@@ -74,9 +76,9 @@ file_put_contents($thecb, $onlyconsonants);
 
 echo("<br>output:");
 if ($homepage == $onlyconsonants) {
-	echo("<br>Found 0 instances.");
+	echo("<br>Found 0 instances. []");
 } else {
-	echo("<br>Found at least 1 instance of");
+	echo("<br>Found at least 1 instance of []");
 }
 
 
@@ -111,7 +113,7 @@ foreach($chatboxes as $i) {
 		}
 		
 $homepage = file_get_contents($i);
-$onlyconsonants = preg_replace($getridof, $replacewith, $homepage);
+$onlyconsonants = str_replace($getridof, $replacewith, $homepage);
 //echo("Echo new/old strs: false");
 //echo("new str: $onlyconsonants<br>");
 //echo("old str: $homepage<br>");
