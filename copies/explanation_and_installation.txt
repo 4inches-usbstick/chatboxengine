@@ -2,6 +2,7 @@ DOC EXPLANATIONS:
 cbedata and cbedata.py: explaining CBEDATA
 pythonfunctions.txt: how to use chatboxengine.py
 api.txt: API docs
+accessingmainlookupandvars.txt: built in helpers for people who make extensions or custom commands.
 change.txt: refresh rate explanation
 flash.txt: flashing images trigger warning
 control.txt: unused
@@ -157,6 +158,8 @@ Extensions that take custom config? Use the CPOLICY area for custom config and c
 --GROUPS--
 groupname give sudo gives a group sudo. Without this the group is assumed as nonsudo.
 That's all.
+
+Also, using GROUPNAME cantrun COMMAND NAME locks that user group out of using that command. If one of the user's groups can't run that command, all other groups that can are ignored.
 
 --CLIENTS--
 Chatbox Engine comes prepackaged with a client designed for text-based communication, however, clients have can have other purposes.

@@ -1,0 +1,27 @@
+<include mainlookup.php docs>
+For scripts using CCMD over sendmsg: 
+access the details using $_GET[] or $_POST[] arrays. They take the same options the api docs state they take.
+
+For scripts using mainlookup:
+plsk(int pid): get a PID value (not really for custom PHP scripts). returns str.
+uidlsk(str uid,str ukey): verify whether a set of cbauth details are valid. returns bool.
+group_db(): get the entire user group commands list. returns str.
+uid(str uid,str ukey,int attrno): get information about users. returns str. {1}
+uid_db(): get the whole user list/db. returns str.
+wr_db(): get the whole filesafe list return str.
+wr_bycb(str cb,int attrno): get the attribute of a certain chatbox in filesafe. returns str. {2}
+gs(): get the whole CCMD pile, returns str.
+gcpp(): get all custom command, returns str.
+ga(): get uid ukey lockout list. returns str.
+speakout(str name, str write): write a hello message to WRITE mentioning user NAME.
+
+
+{1}: 0 is for the name of the user, 1 is for uid, 2 is for password, 3 is whether or not that user is in a sudo group, and 4 is for that user's group list. All of these values return strs. 3 returns notsudo or sudo as strings instead of booleans.
+
+{2}: 0 is for the chatbox number and 1 is for the protection level or allowed groups.
+By default, scripts start out with sitechats as their working dir.
+
+
+For custom commands:
+--> You'll be able to run it like you're in sitechats, without changing the dir.
+--> Add a terminalkeys entry: COMMAND NAME::/path/to/file.php;
