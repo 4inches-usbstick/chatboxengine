@@ -42,7 +42,7 @@ def recordaudios():
     currentaudio = []
     chunk = int(getsetting('chunksizebit')) # Record in chunks of 1024 samples
     sample_format = pyaudio.paInt16  # 16 bits per sample
-    channels = 2
+    channels = int(getsetting('channels'))
     fs = int(getsetting('samplerate'))  # Record at 44100 samples per second
     filename = getsetting('outputfile')
 
@@ -176,11 +176,11 @@ def stoprecordaudio(self):
     stillgoing = False
 
 def starthelperfunct(self):
-    threading.Thread(target=recordaudios).start()
+    threading.Thread(target=recordaudios, daemon=True).start()
     global tx
     tx['text'] = 'Release to transmit'
     
-#base6 = recordaudio()
+#custom class for font that just returns a font object with the correct font
 class Csize:
     def __init__(self, size):
         self.obj = font.Font(size=int(size))

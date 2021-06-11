@@ -1,0 +1,25 @@
+::main config file for CBVC 1.0
+begin CBEDATA
+
+class[main>
+
+class[generalpreferences>
+uidukeysystem==NO;
+uid==None;
+ukey==None;
+server==71.255.250.10:8080;
+chunksizebit==1024;
+samplerate==44100;
+channels==2;
+chatbox==110vc;
+outputfile==audiodatapost.wav;
+inputfile==audiodataforplay.wav;
+disconnectonerr==NO;
+daemonthreadplay==NO;
+url==http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration_nobreak_post.php;
+displayendpoint==http://71.255.240.10:8080/textengine/sitechats/display.php;
+refreshrate==0.5;
+selfreflect==YES;
+]
+
+]

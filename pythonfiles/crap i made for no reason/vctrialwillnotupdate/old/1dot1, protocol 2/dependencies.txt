@@ -1,0 +1,7 @@
+pip install:
+wave, pyaudio, requests
+
+all dependencies:
+wave, pyaudio, requests, base64, os, tkinter, threading, cbedata, random, chatboxengine, cbedata
+
+built on py 32bit 3.8 for Windows.

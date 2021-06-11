@@ -1,0 +1,1 @@
+first: fix the requests while in the middle of speaking problem

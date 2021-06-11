@@ -1,0 +1,33 @@
+::main config file for CBVC 1.1 BETA
+begin CBEDATA
+
+class[main>
+
+class[comments>
+notes==
+1. disconnect on err is no longer supported but is still here to maintain consistency
+2. server goes unused but it is best practice to keep that accurate for the future.
+;
+
+
+class[generalpreferences>
+uidukeysystem==NO;
+uid==None;
+ukey==None;
+server==71.255.250.10:8080;
+chunksizebit==1024;
+samplerate==44100;
+channels==2;
+chatbox==110.txt;
+outputfile==audiodatapost.wav;
+inputfile==audiodataforplay.wav;
+disconnectonerr==NO;
+packetsizeinseconds==0.25;
+daemonthreadplay==NO;
+url==http://71.255.240.10:8080/textengine/sitechats/sendmsg_integration_nobreak_post.php;
+displayendpoint==http://71.255.240.10:8080/textengine/sitechats/display.php;
+refreshrate==0.5;
+selfreflect==YES;
+]
+
+]

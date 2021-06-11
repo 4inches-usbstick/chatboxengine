@@ -1,0 +1,28 @@
+     _____ ______      _______
+    / ____|  _ \ \    / / ____|  
+   | (___ | |_) \ \  / / |     
+ SUSBOX VOICE CALLLING (CBVC:UDP3)
+    ____) | |_) | \  / | |____ 
+   |_____/|____/   \/   \_____|  
+===================================
+                             
+
+1. run dependencies.bat to install the require dependencies
+2. here's the sus part: unlock the firewall either by running firewalloff.bat or going through the Windows Defender GUI. [run as admin!!]
+3. open config.cbedata and change the following settings:
+
+change channels to one unless you know for a fact that you will be fine in two channel mode
+change ambience to None so the client will know to calibrate the rms limits for you
+change udplistenport to an open and unused port that will be used to push data to you. as long as its above 1024 and not used then its fine.
+change udptalkingport to the port that the relay you're connecting takes. if you don't do this then the relay just won't pick up on your instructions.
+change remoteserver to the IP address of the relay
+change myip to your local IP address. if you are in a home network or something like that, you will need to open port forwarding. use your public IP address, not your internal one
+
+4. run pull.py first. then run push.py and select an input. make sure to stay quiet while the client calibrates the rms limits. if you set it up right you will be automatically connected 
+to the relay. in future versions you may be prompted to authenticate.
+5. all server messages, command readbacks and clientside warnigns will be reflected on pull.py.
+
+If you're running on Linux, first of all good job, second of all, you will not be able to run the BAT files and will have to do everything yourself.
+If you're on Mac then you should really consider moving to either WinOS or Linux
+
+This application is written using Py 3.8

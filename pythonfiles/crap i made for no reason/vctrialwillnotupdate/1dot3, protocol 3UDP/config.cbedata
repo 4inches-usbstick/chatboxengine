@@ -1,0 +1,26 @@
+::main config file for CBVC 1.1 BETA
+begin CBEDATA
+
+class[main>
+
+class[generalpreferences>
+chunksizebit==1024;
+samplerate==44100;
+channels==2;
+packetsize==0.3;
+ambience==3;
+rmsthreshold==3;
+pullpyverbose==NO;
+]
+
+class[networking>
+udplistenport==1711;
+udptalkingport==1712;
+remoteserver==192.168.102.1;
+uidukeysystem==NO;
+uid==None;
+ukey==None;
+myip==192.168.102.1;
+]
+
+]

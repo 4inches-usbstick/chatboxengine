@@ -7,9 +7,11 @@ import base64
 import playsound
 import random
 import wave
+import threading
 from helpers import *
 current = 0
 counter = 0
+x = ''
 os.system('title cbvc listen')
 
 f = open('config.cbedata','r')
@@ -26,10 +28,10 @@ filename = getsetting('inputfile')
    
 ok = True
 inicfg = None
-print('Listening ability will activate in 4 seconds (do not speak until you are fully connected)')
+print('version 1.2 new cbedata - protocol 2')
 for i in reversed(range(1,5)):
     #print(str(i), end=' ')
-    time.sleep(1)
+    time.sleep(0.1)
 startgateway()
 def fileget(name):
     f = open(name, 'r')
@@ -58,23 +60,36 @@ print('\n')
 
 #placeholder, will actually play audio later
 def play(audio):
+    global comeon
+    comeon = False
+    audio = audio.replace('%nd', '')
     print('Executing an audio packet...')
     global chunk, sample_format, fs, filename, channels
-    fss = str(random.randint(0,1000))+'.wav'
+    fss = str(random.randint(0,100000000000000))+'.wav'
     f = open(fss, 'wb')
     f.write(base64.b64decode(bytes(audio, 'ASCII')))
     f.close()
     playsound.playsound(fss)
 
     #os.unlink(fss)
+def setx():
+    global x
+    ree = requests.get(getsetting('displayendpoint')+'?chatbox='+getsetting('chatbox'))
+    x = ree
+    return None
 
 #will make HTTP requests later
+comeon = True
 print('=======Packet GET log for debug=======')
 while True:
     ok = True
-    print('Making request: '+str(counter),end=';  ')
-    ree = requests.get(getsetting('displayendpoint')+'?chatbox='+getsetting('chatbox'))
-    x = ree.text
+    if comeon:
+        print('Making request: '+str(counter),end=';  ')
+        if comeon:
+            ree = requests.get(getsetting('displayendpoint')+'?chatbox='+getsetting('chatbox'))
+            x = ree.text
+    else:
+        x = x
     print('Retrieved data with '+str(len(x))+' chars of data in total',end=', response time = '+str(ree.elapsed.total_seconds())+', ')
     print('current index: '+str(current)+', ')
     #the remote chatbox was reset and its time to reset the index
@@ -99,22 +114,42 @@ while True:
         print('index after '+str(current))
         if len(content) > 2:
             contentlist = content.split(';')
+            print(len(contentlist))
         
         for i in contentlist:
             if len(i) < 4:
-                pass
+                comeon = False
             else:
+                comeon = False
+                print('Packet: '+str(len(i))+' chars')
+                print(i[0:10])
                 iss = i.split(':')
+                tospeak = ''
                 #print(iss)
-                #print('DATA: '+iss[1])
-                if getsetting('selfreflect') == 'NO':
-                    if len(iss[1]) > 1000 and counter > 0 and iss[0] != str(token) and iss[0] != token:
-                        #print(iss[1][0:45])
+                #print(iss)
+                #print('DATA: '+iss[1if getsetting('selfreflect') == 'YES':
+                oklocal = True
+                try:
+                    if getsetting('selfreflect') == 'NO' and iss[0] == str(token):
+                        oklocal = False
+                    if iss[1] != '%nd':
+                        oklocal = True
+                    if iss[1] == '%nd':
+                        oklocal = False
+                except Exception as eeee:
+                    print('Exception: '+eeee)
+                    print('Will not be executing this packet')
+                    oklocal = False
+
+                try:
+                    if oklocal and counter > 0:
                         play(iss[1])
-                if getsetting('selfreflect') == 'YES':
-                    if len(iss[1]) > 1000 and counter > 0:
-                        #print(iss[1][0:45])
-                        play(iss[1])
+                except Exception as eee:
+                    print('Exception while playing a packet: '+eee)
+        if len(contentlist) < 1:
+            comeon = True
+    if not ok:
+        comeon = True
         
     print('--')
     counter = counter + 1
