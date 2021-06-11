@@ -1,6 +1,6 @@
 <?php
-$regpath = "C:/wamp64/www/textengine/sitechats/.htamainpolicy";
-
+$regpath = ".htamainpolicy";
+const br = '<br>';
 //get the value of a policy
 function plsk($pid) {
 	global $regpath;
@@ -25,6 +25,16 @@ function uidlsk($uid, $skey) {
 		return false;
 	}
 }
+//get group info
+function group_db() {
+	global $regpath;
+$f = file_get_contents("$regpath");
+	$offset0 = strpos($f, '[BEGIN GROUPS]');
+	$offset1 = strpos($f, '[END GROUPS]');
+	$fs = substr($f, $offset0, $offset1 - $offset0);
+	return $fs;
+}
+//echo group_db();
 //get UID info
 function uid($uid, $skey, $attrno) {
 	global $regpath;
@@ -37,9 +47,44 @@ function uid($uid, $skey, $attrno) {
 	$offset0 = strpos($fs, "$uid::");
 	$offset1 = strpos($fs, ';', $offset0);
 	$user = substr($fs, $offset0, $offset1 - $offset0);
-	
 	$userats = explode('::', $user);
+	if ($attrno < 3) {
 	return $userats[$attrno];
+	}
+	
+	if ($attrno == 3) {
+	$groupsin = explode('//', $userats[3]);
+	
+	//users can be in multiple groups.
+	$cs = 0;
+	$has = False;
+	while($cs < count($groupsin)) {
+	$sssi = $groupsin[$cs];
+	//echo $sssi . br;
+	if (strlen($sssi) < 2) {
+		die('[err:33] Stop: group names of one char or less are illegal.');
+		return('notsudo');
+	}
+	//print_r($groupsin);
+	//echo br;
+	//echo "$sssi give sudo";
+	//echo br;
+	//echo "index: $cs";
+	//echo br;
+	if (substr_count(group_db(), "$sssi give sudo") > 0) {
+		return 'sudo';
+		$has = True;
+	}
+	$cs = $cs + 1;
+	}
+	if (!$has) {
+		return 'notsudo';
+	}
+	
+	}
+	if ($attrno == 4) {
+		return $userats[3];
+	}
 }
 //get whole UID list
 function uid_db() {
@@ -122,8 +167,8 @@ $length = $offset2 - $offset1;
 $messages = substr($directives, $offset1, $length);
 $pieces = explode('::', $messages);
 
-$text = '';
-$retuls = '';
+$text = null;
+$retuls = null;
 
 if ($enable == 0) {
 $doc = 'sdf';
@@ -131,15 +176,8 @@ $doc = 'sdf';
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
 $ts = "[$timestamp1, $timestamp2]";
-
-$text = null;
-$retuls = null;
-
-
 if ($doc == 'connect') {
 //user and ts
-
-
 if ($alias == 1 && $ts_yes == 1) {
 	$text = $pieces[1];
 	$text = str_replace('%name', $name, $text);
@@ -158,13 +196,13 @@ if ($alias == 0 && $ts_yes == 1) {
 	$text = str_replace('%ts', $ts, $text);
 	$retuls = $text;
 }
-
+//ts but no user
 if ($alias == 0 && $ts_yes == 0) {
 	$text = $pieces[4];
 	$retuls = $text;
 }
 }
-//echo($text);
+echo($text);
 if ($ts_LCL == 1) {
 $change = file_get_contents("$pcl://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
