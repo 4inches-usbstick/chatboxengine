@@ -1,4 +1,4 @@
-![Imagealttext](https://media.discordapp.net/attachments/758489886708727830/821551691454873660/1_4.png)
+![Imagealttext](https://media.discordapp.net/attachments/755174018663055483/851306563365109820/unknown.png)
 
 Student-created, open-source, extendable software designed for communication and capable of various other activities, including but not limited to:
 
