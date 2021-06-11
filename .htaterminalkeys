@@ -15,4 +15,6 @@ clist::%rdir/sitechats/terminal/cbmanager.php;
 cload::%rdir/sitechats/terminal/cbmanager.php;
 csend::%rdir/sitechats/terminal/csend.php;
 csend --nobreak::%rdir/sitechats/terminal/csend.php;
-xcopy --append::%rdir/sitechats/terminal/xcopy.php
+xcopy --append::%rdir/sitechats/terminal/xcopy.php;
+group add::%rdir/sitechats/terminal/usergroupmanager.php;
+group del::%rdir/sitechats/terminal/usergroupmanager.php
