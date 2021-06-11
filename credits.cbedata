@@ -3,10 +3,10 @@ begin CBEDATA
 
 
 class[main>
-class[credits> version==1.4.3; date==11.MAR.2021 to 11.APR.2021;]
+class[credits> version==1.4.4; date==11.JUN.2021 to PRESENT;]
 
 class[contributors> 
-class[Charles> role==Client programming, serverside programming, server space, API, Chatbox management, HS Chatbox management, CBEDATA, extensions;]
+class[Charles> role==All code, Github repo. extensions;]
 class[Arjun> role==Testing Chatbox Engine, and supporting me and CBE while CBE was in development;]
 class[E***k> role==Testing Chatbox Engine and supporting it in the early days;]
 class[C****e> role==Testing Chatbox Engine and supporting it in the early days;]
