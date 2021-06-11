@@ -3,7 +3,7 @@
 //error_reporting(1);
 include 'mainlookup.php';
 error_reporting(0);
-echo('Stop: ' . '<br>');
+echo('' . '<br>');
 clearstatcache();
 
 if (file_exists($_GET['write']) != true) {
