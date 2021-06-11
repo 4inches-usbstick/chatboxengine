@@ -292,6 +292,8 @@ help: brings up this help message, no parameters<br><br>
 *^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
 *^filesafe add: add a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
 *^filesafe del: remove a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
+*^group add: add a user group command, either GROUPNAME give sudo or GROUPNAME cantrun CMDNAME<br>
+*^group del: removes a user group command, in the same syntax as group add<br>
 
 inirecovery: starts the 'I FORGOT THE PASSWORD'  procedure. Opens a Chatbox then gives you time to enter the backup code from .htamainpolicy.<br><br>
 
