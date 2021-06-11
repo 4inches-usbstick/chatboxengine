@@ -93,12 +93,14 @@ To add someone to the CBauth list, use this format:
 Number is the UID. This is the ID that users have.
 Alias is the name that is tied to the UID.
 Password (a.k.a. the UKEY) is the password tied to the UID,
-Permissions is the permission level this user has (either sudo or notsudo). This will change in a future update.
+Permissions is the user groups this person is in. Delimited by '//', ie: GROUP//GROUP1//GROUP2
 
 CBauth is used to verify certain usernames when sending messages and issuing Terminal/Edit (TerminEdit) commands.
 For issuing TerminEdit commands, use the UID and UKEY slots to verify your identity (and don't enter the password that TerminEdit commands usually want).
 For sending messages with a protected username (or to provide any endpoint with UID/UKEY), add uid=UID&ukey=UKEY to the request URL.
 username. If you try to use a protected username without the proper credentials the request will fail.
+
+Giving someone a sudo and a nonsudo group, the user gets the priviledge of the sudo group.
 
 --FILESAFE--
 
@@ -111,6 +113,12 @@ Permission has three levels: login, sudo and local.
 login: users must be logged in (with a UID/UKEY)
 sudo: users must be logged in as a sudo account
 local: users cannot write to the file at all
+
+To include only some user groups use:
+
+FILENAME::g:GROUP1//GROUP2::
+
+where each group is an allowed group on that chatbox. this assumes that all other groups are locked out.
 
 --MAINLOOKUP--
 
@@ -125,8 +133,7 @@ Notes:
 5. (###) from earlier: use %id to replace the used UID (applies to all of them).
 
 --CCMD--
-Let's say you want to support image sending but you don't want the stupid inchat-div client. You can use Custom Commands (but you have to build your own image sending functionality by yourself). Every time a message is sent sendmsg checks if a string is in / is the beginning of the message.
-To add or delete these events, use the terminal. Use the help command and see .htamainpoilcy for more info.
+Triggers: if something is in string do this:
 
 @Event;Condition;String;Includepath
 
@@ -142,10 +149,20 @@ Lock someone out: [chatbox no.] deny from [int: UID]
 Use lock add to lock someone out and lock del to unlock.
 WILDCARD-ALL to lock out the entire server for that UID.
 
+This one does not accept user grouping.
+
+--CPOLICY--
+Extensions that take custom config? Use the CPOLICY area for custom config and call the gcpp() function in extensions (more on this in another doc).\
+
+--GROUPS--
+groupname give sudo gives a group sudo. Without this the group is assumed as nonsudo.
+That's all.
+
 --CLIENTS--
 Chatbox Engine comes prepackaged with a client designed for text-based communication, however, clients have can have other purposes.
 You could have a conversation like regular people in one chatbox while another chatbox is remote controlling a remote computer. 
 
 There is no way to differentiate between Chatboxes with different purposes on the server side (the closest thing being "cipher::NO, cipher::YES for hs chatboxes").
 
-Most people seem to think this software is only for chatting. This is w r o n g. There are hundreds of other things you could use a CBE server for.
+Most people seem to think this software is only for chatting. This is w r o n g. There are hundreds of other things you could use a CBE server for and im getting sad watching people
+not think about what could be done
