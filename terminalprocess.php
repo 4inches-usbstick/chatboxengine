@@ -276,8 +276,8 @@ help: brings up this help message, no parameters<br><br>
 
 *^cmd add: add a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^cmd del: remove a custom command in this syntax: @Event;Condition;String;Includepath<br>
-*^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Permission (space char as delimiter)<br>
-*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Permission (space char as delimiter)<br><br>
+*^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Groups (space char as delimiter)<br>
+*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Groups (space char as delimiter)<br><br>
 *^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
 *^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
 *^filesafe add: add a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
