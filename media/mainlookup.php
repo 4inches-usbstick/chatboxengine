@@ -1,5 +1,5 @@
 <?php
-$regpath = ".htamainpolicy";
+$regpath = "C:/wamp64/www/textengine/sitechats/.htamainpolicy";
 const br = '<br>';
 //get the value of a policy
 function plsk($pid) {
