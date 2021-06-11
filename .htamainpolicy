@@ -47,7 +47,7 @@ PID   PNAME   PVAL
 85 ts-structure4::%mess::
 87 max-char-byte-msg::2000::
 89 countbyte-countchar::byte::
-91 max-char-byte-post::999999999999999999999::
+91 max-char-byte-post::200000::
 93 recovery-chatbox::RECOVER::
 95 recovery-password::110525::
 97 recover-enable::YES::
