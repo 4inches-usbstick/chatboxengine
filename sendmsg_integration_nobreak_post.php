@@ -140,7 +140,7 @@ foreach ($protec as $i) {
 			die('[err:8] Stop: Protected file and no UID/UKEY');
 		}
 		//user did try and got it
-		if (uidlsk($_POST['uid'], $_POST['ukey']) == true) {
+		if (uidlsk($_POST['uid'], $_POST['ukey']) == true && wr_bycb($_GET['write'], 2)[0] != 'g') {
 			//only login
 			//echo(wr_bycb($_POST['write'], 2));
 			if (wr_bycb($_POST['write'], 2) == 'login') {
@@ -160,6 +160,30 @@ foreach ($protec as $i) {
 				$b = 'd';
 			}
 		}
+		
+		//group declaration and user did get it and g declaration was on
+		if (uidlsk($_POST['uid'], $_POST['ukey']) == true && wr_bycb($_POST['write'], 2)[0] == 'g') {
+			$thing = explode(":", wr_bycb($_POST['write'], 2));
+			$allowed = explode('//', $thing[1]);
+			$count = 0;
+			$yes = False;
+			print_r($allowed);
+			while ($count < count($allowed)) {
+				//if the allowed group appears in the user's groups
+				$s = uid($_POST['uid'], $_POST['ukey'], 4);
+				echo("checking: $allowed[$count] in array object $s");
+				echo '<br><br>' . in_array($allowed[$count], explode('//', uid($_POST['uid'], $_POST['ukey'], 4)) , TRUE);
+				if (in_array($allowed[$count], explode('//', uid($_POST['uid'], $_POST['ukey'], 4)) , TRUE)) {
+					$yes = True;
+				}
+				$count = $count + 1;
+			}
+			if ($yes != True) {
+				die('[err:33] Stop: Group not allowed in this Chatbox');
+			}
+			
+		}
+		
 		//user did try but did not POST it
 		if (uidlsk($_POST['uid'], $_POST['ukey']) == false) {
 			die('[err:8] Stop: Protected file and invalid UID/UKEY');

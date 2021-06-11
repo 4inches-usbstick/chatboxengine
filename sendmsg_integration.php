@@ -2,7 +2,8 @@
 
 //error_reporting(1);
 include 'mainlookup.php';
-error_reporting(0);
+error_reporting(E_ALL);
+echo('Stop: ' . '<br>');
 clearstatcache();
 
 if (file_exists($_GET['write']) != true) {
@@ -147,7 +148,7 @@ foreach ($protec as $i) {
 			die('[err:8] Stop: Protected file and no UID/UKEY');
 		}
 		//user did try and got it
-		if (uidlsk($_GET['uid'], $_GET['ukey']) == true) {
+		if (uidlsk($_GET['uid'], $_GET['ukey']) == true && wr_bycb($_GET['write'], 2)[0] != 'g') {
 			//only login
 			//echo(wr_bycb($_GET['write'], 2));
 			if (wr_bycb($_GET['write'], 2) == 'login') {
@@ -166,6 +167,28 @@ foreach ($protec as $i) {
 			if (wr_bycb($_GET['write'], 2) == 'sudo' && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
 				$b = 'd';
 			}
+		}
+		//group declaration and user did get it and g declaration was on
+		if (uidlsk($_GET['uid'], $_GET['ukey']) == true && wr_bycb($_GET['write'], 2)[0] == 'g') {
+			$thing = explode(":", wr_bycb($_GET['write'], 2));
+			$allowed = explode('//', $thing[1]);
+			$count = 0;
+			$yes = False;
+			print_r($allowed);
+			while ($count < count($allowed)) {
+				//if the allowed group appears in the user's groups
+				$s = uid($_GET['uid'], $_GET['ukey'], 4);
+				echo("checking: $allowed[$count] in array object $s");
+				echo '<br><br>' . in_array($allowed[$count], explode('//', uid($_GET['uid'], $_GET['ukey'], 4)) , TRUE);
+				if (in_array($allowed[$count], explode('//', uid($_GET['uid'], $_GET['ukey'], 4)) , TRUE)) {
+					$yes = True;
+				}
+				$count = $count + 1;
+			}
+			if ($yes != True) {
+				die('[err:33] Stop: Group not allowed in this Chatbox');
+			}
+			
 		}
 		//user did try but did not GET it
 		if (uidlsk($_GET['uid'], $_GET['ukey']) == false) {
