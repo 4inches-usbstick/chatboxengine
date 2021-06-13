@@ -53,6 +53,8 @@ PID   PNAME   PVAL
 97 recover-enable::YES::
 99 recover-time::60::
 101 need-master-cmd::udb add//udb del//filesafe add//filesafe del//ecfg//inicfg//group add//group del::
+103 phpdateformat::d.m.y::
+105 phptimeformat::H:i:s::
 -----------------------------------------
                        
 
