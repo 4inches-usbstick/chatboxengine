@@ -2,8 +2,8 @@
 
 //error_reporting(1);
 include 'mainlookup.php';
-error_reporting(0);
-echo('' . '<br>');
+error_reporting(E_ALL);
+echo('S: ' . '<br>');
 clearstatcache();
 
 if (file_exists($_GET['write']) != true) {
@@ -236,8 +236,9 @@ if ($URL == "norefer") {
 }
 
 $name = $_GET['namer'];
-$timestamp1 = date("H:i:s");
-$timestamp2 = date("d.m.y");
+$timestamp1 = date(plsk(105));
+$timestamp2 = date(plsk(103));
+
 
 if ($timestamps != "" && !empty($name) && $name != 'PHR-NUL') {
 $txt = plsk(79);
