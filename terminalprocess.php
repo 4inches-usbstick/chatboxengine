@@ -85,7 +85,7 @@ if (true) {
 $groupsin = explode('//', uid($_GET['uid'], $_GET['ukey'], 4));
 
 foreach($groupsin as $ugroup) {
-	if(substr_count(group_db(), "$ugroup cantrun $_GET[cmd]") > 0) {
+	if(substr_count(group_db(), "$ugroup cantrun $_GET[cmd]") > 0 && $useduid) {
 		die('[err:33] Stop: this user group cannot run cmd: ' . $_GET['cmd']);
 	}
 }
