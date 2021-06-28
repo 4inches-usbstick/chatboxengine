@@ -189,29 +189,7 @@ if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
 
 
 if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
-
-if (plsk(15) == 'YES' && !$useduid) {
-	$contents = file_get_contents("loader.py");
-	$newcontents = str_replace("%%replace01", $_GET["params"], $contents);
-	unlink("loader-tmp.py");
-	$f = fopen("loader-tmp.py", "w");
-	fwrite($f, $newcontents);
-	fclose($f);
-	echo("<b>Script loaded.</b><br>");
-	
-	$f = fopen(".htaremotedesktop", "w");
-	fwrite($f, "shell;cd $rdir/sitechats/");
-	fclose($f);
-	echo("<b>CD command sent.</b><br>");
-	sleep(7);
-	$f = fopen(".htaremotedesktop", "w");
-	fwrite($f, "shell;start $rdir/sitechats/loader-tmp.py");
-	fclose($f);
-	echo("<b>START command sent.</b><br>");
-	//print_r($output);
-} else {
-die('[err:32] Stop: loadexe disabled by .htamainpolicy OR no masterkey');
-}
+die('[err:42069] Stop: This command was removed permanently for a number of reasons.')'
 }
 
 //version
