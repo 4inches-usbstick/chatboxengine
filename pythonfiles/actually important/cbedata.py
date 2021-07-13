@@ -5,13 +5,15 @@
 #offline interpreter, get-info
 def get_offline(st, path, ty):
     pathlist = path.split('-')
-    contents = st
-
+    
     st = st.replace('^>', '{special}1')
     st = st.replace('^;', '{special}2')
     st = st.replace('^==', '{special}3')
     st = st.replace('^[', '{special}4')
     st = st.replace('^]', '{special}5')
+    
+    contents = st
+
     
     offset = 0
     c = 0
