@@ -1,5 +1,5 @@
 
-ip = "71.255.240.10:8080" #
+ip = "" #
 print("Chatbox Engine Python")
 print("Close this window specifically to instantly close the program")
 print("-----------------------------------------")
@@ -246,6 +246,7 @@ while(True):
         else:
             statt.config(text='Status: HTTP Failure on sending message ('+str(send.status_code)+')')
         #print(send.text)
+        my_mainloop()
         return None
     def endsession():
         window.destroy()
