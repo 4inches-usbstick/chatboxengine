@@ -43,7 +43,7 @@ while(True):
     L2 = tk.Label(text="Name:")
     E2 = tk.Entry()
     
-    L3 = tk.Label(text="Server IP")
+    L3 = tk.Label(text="Server IP:")
     E3 = tk.Entry()
     
     L4 = tk.Label(text="Refresh rate <ms>:")
