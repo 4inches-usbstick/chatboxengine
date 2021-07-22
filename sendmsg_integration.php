@@ -1,10 +1,11 @@
 <?php
-
+echo $_GET['write'];
 //error_reporting(1);
 include 'mainlookup.php';
 error_reporting(E_ALL);
 echo('S: ' . '<br>');
 clearstatcache();
+$sc = plsk(107);
 
 if (file_exists($_GET['write']) != true) {
 	die('[err:5] Stop: This chatbox does not actually exist');
@@ -210,8 +211,8 @@ sendcmd('event@Mid');
 }
 //ts on?
 if ($dots == 'YES') {
-$contents = file_GET_contents("$rdir/sitechats/$_GET[write]");
-//echo("$contents, C:/wamp64/www/textengine/sitechats/$_GET[write]");
+$contents = file_GET_contents("$rdir/$sc/$_GET[write]");
+//echo("$contents, C:/wamp64/www/textengine/$sc/$_GET[write]");
 $needle = "rule.Timestamps(1)";
 $timestamps = strpos("$contents", "rule.Timestamps(1)");
 echo("<br><br>timestamps at $timestamps<br>");

@@ -3,6 +3,7 @@
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
+$sc = plsk(107);
 
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
@@ -30,7 +31,7 @@ if (file_exists($filename)) {
     echo("<p>[1] Complete </p> <p></p>");
 }
 
-$haystaq = file_get_contents("$rdir/sitechats/.htabannednumbers");
+$haystaq = file_get_contents("$rdir/$sc/.htabannednumbers");
 $findme = $filename;
 $pos = stristr($findme, ".");
 
@@ -50,7 +51,7 @@ if (substr_count($_GET['newname'], $i) > 0) {
 }
 
 
-$haystaq = file_get_contents("$rdir/sitechats/.htabannednumbers");
+$haystaq = file_get_contents("$rdir/$sc/.htabannednumbers");
 $findme = $filename;
 $pos = strpos($haystaq, $findme);
 
@@ -76,9 +77,9 @@ if ($ok == "1" and $_GET["option"] == 'h') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	if ($_GET["allowmed"] == "allowmed") {
-	mkdir("$rdir/sitechats/media/$newmediadir", 0700);
-	//chdir("$rdir/sitechats/media/$_GET[newname]", 0700);
-	mkdir("$rdir/sitechats/media/$newmediadir/uploaded", 0700);
+	mkdir("$rdir/$sc/media/$newmediadir", 0700);
+	//chdir("$rdir/$sc/media/$_GET[newname]", 0700);
+	mkdir("$rdir/$sc/media/$newmediadir/uploaded", 0700);
 	}
 	echo("<b>New Chatbox created with number $new.");
 	$txt = "This is chatbox with number $filename <p></p>.";
@@ -89,9 +90,9 @@ if ($ok == "1" and $_GET["option"] == 'l') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	if ($_GET["allowmed"] == "allowmed") {
-	mkdir("$rdir/sitechats/media/$newmediadir", 0700);
-	//chdir("$rdir/sitechats/media/$_GET[newname]", 0700);
-	mkdir("$rdir/sitechats/media/$newmediadir/uploaded", 0700);
+	mkdir("$rdir/$sc/media/$newmediadir", 0700);
+	//chdir("$rdir/$sc/media/$_GET[newname]", 0700);
+	mkdir("$rdir/$sc/media/$newmediadir/uploaded", 0700);
 	}
 	echo("<b>New Chatbox created with number $new. ");
 	$txt = "This is chatbox with number $filename <p></p>.";

@@ -1,5 +1,6 @@
 <?php
 $regpath = ".htamainpolicy";
+$sc = plsk(107);
 const br = '<br>';
 //get the value of a policy
 function plsk($pid) {
@@ -204,7 +205,7 @@ if ($alias == 0 && $ts_yes == 0) {
 }
 echo($text);
 if ($ts_LCL == 1) {
-$change = file_get_contents("$pcl://$ip/textengine/sitechats/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
+$change = file_get_contents("$pcl://$ip/textengine/$sc/sendmsg_integration.php?write=$write&msg=$text&encode=UTF-8&referer=norefer&namer=");
 } else {
 $f = fopen($write, 'a');	
 fwrite($f, $retuls);

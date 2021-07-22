@@ -15,6 +15,7 @@ $rdir = plsk(3);
 $dots = plsk(23);
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
+$sc = plsk(107);
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
@@ -204,8 +205,8 @@ sendcmd('event@Mid');
 }
 //ts on?
 if ($dots == 'YES') {
-$contents = file_get_contents("$rdir/sitechats/$_POST[write]");
-//echo("$contents, C:/wamp64/www/textengine/sitechats/$_POST[write]");
+$contents = file_get_contents("$rdir/$sc/$_POST[write]");
+//echo("$contents, C:/wamp64/www/textengine/$sc/$_POST[write]");
 $needle = "rule.Timestamps(1)";
 $timestamps = strpos("$contents", "rule.Timestamps(1)");
 echo("<br><br>timestamps at $timestamps<br>");

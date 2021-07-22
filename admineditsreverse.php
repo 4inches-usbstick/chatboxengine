@@ -1,12 +1,14 @@
 <title>engine page</title>
 
 <?php
+
 $pass = file_get_contents('.htapassword');
 include 'mainlookup.php';
 $rdir = plsk(3);
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
 }
+$sc = plsk(107);
 
 function str_replace_index( $search , $replace , $st , $index ) {
 	$stillon = True;
@@ -101,7 +103,7 @@ if ($_GET["key"] == $pass) {
 $thecb = $_GET["cb"];
 $getridof = str_replace("%nl","\n", $_GET["gro"]);
 $replacewith = str_replace("%nl","\n", $_GET["rw"]);
-$path = "$rdir/sitechats/$thecb";
+$path = "$rdir/$sc/$thecb";
 echo("abs path in: $path<br>");
 echo("rel path in: $thecb<br>");
 echo("str to edit: $getridof<br>");

@@ -2,6 +2,7 @@
 
 <?php
 $pass = file_get_contents('.htapassword');
+$sc = plsk(107);
 include 'mainlookup.php';
 $rdir = plsk(3);
 if (plsk(21) != 'YES') {
@@ -60,7 +61,7 @@ $getridof = $_GET["gro"];
 $replacewith = $_GET["rw"];
 $getridof = str_replace("%nl","\n", $_GET["gro"]);
 $replacewith = str_replace("%nl","\n", $_GET["rw"]);
-$path = "$rdir/sitechats/$thecb";
+$path = "$rdir/$sc/$thecb";
 echo("abs path in: $path<br>");
 echo("rel path in: $thecb<br>");
 echo("str to edit: $getridof<br>");

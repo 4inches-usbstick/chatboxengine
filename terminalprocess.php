@@ -3,6 +3,7 @@
 
 <?php
 include 'mainlookup.php';
+$sc = plsk(107);
 $rdir = plsk(3);
 $ip = plsk(1);
 $mcc = plsk(7);
@@ -14,9 +15,9 @@ header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
 error_reporting(plsk(37));
-chdir("$rdir/sitechats");
+chdir("$rdir/$sc");
 
-$pass = file_get_contents("$rdir/sitechats/.htapassword");
+$pass = file_get_contents("$rdir/$sc/.htapassword");
 $useduid = false;
 
 
@@ -138,8 +139,8 @@ function delete_directory($dirname) {
 //also because i want to do things without being at pc
 
 //update the credits up here now
-$version = file_get_contents("$pcl://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-version&type=attr");
-$date = file_get_contents("$pcl://$ip/textengine/sitechats/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr");
+$version = file_get_contents("$pcl://$ip/textengine/$sc/data/datacall.php?src=credits.cbedata&path=main-credits-version&type=attr");
+$date = file_get_contents("$pcl://$ip/textengine/$sc/data/datacall.php?src=credits.cbedata&path=main-credits-date&type=attr");
 $credits = "We are on Chatbox Engine version $version, revised $date, created 28.OCT.2020.";
 
 $params = $_GET["params"];
@@ -148,7 +149,7 @@ $params = $_GET["params"];
 //wipe
 //change
 if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == false) {
-	$f1 = fopen("$rdir/sitechats/.htapassword", "w");
+	$f1 = fopen("$rdir/$sc/.htapassword", "w");
 	fwrite($f1, "$_GET[params]");
 	fclose($f1);
 	echo("Password changed: $_GET[params]");
@@ -165,7 +166,7 @@ if ($_GET["cmd"] == "change" and $_GET["pass"] == $pass and $useduid == true) {
 
 //policy
 if ($_POST["cmd"] == "inicfg" and $_POST["pass"] == $pass) {
-	$f1 = fopen("$rdir/sitechats/.htamainpolicy", "w");
+	$f1 = fopen("$rdir/$sc/.htamainpolicy", "w");
 	fwrite($f1, "$_POST[params]");
 	fclose($f1);
 	echo("Written to file: $_POST[params]");
@@ -189,7 +190,7 @@ if ($_GET['cmd'] == 'ecfg' and $_GET["pass"] == $pass and $useduid == true) {
 
 
 if ($_GET["cmd"] == "loadexe" and $_GET["pass"] == $pass) { 
-die('[err:42069] Stop: This command was removed permanently for a number of reasons.')'
+die('[err:42069] Stop: This command was removed permanently for a number of reasons.');
 }
 
 //version
@@ -253,7 +254,7 @@ vers: shows the CBE version, no required parameters. use 'showall::YES' to bring
 *cbroadcast: broadcast message with contents (parameter) to all legacy and HTML chatboxes. Use DRYRUN to show which files will be written to without actually writing.<br>
 *^_copen: open a Chatbox. parameters slot syntax: FILENAME.FILE-EXT --MEDIAOPTION<br>
 clist: list all Chatboxes and whether or not they are protected<br>
-*cload: copy Chatbox from designated dir to main sitechats dir<br>
+*cload: copy Chatbox from designated dir to main $sc dir<br>
 *csend: write a message to a Chatbox bypassing nogo phrases and UID/UKEY checking. Use csend --nobreak to not use a newline char when writing to the Chatbox. Can be disabled by PID 77. Use chatbox;message in the params box.<br>
 
 *loadexe: sideloads an extension. requires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
@@ -309,8 +310,8 @@ foreach($keys as $i) {
 	}
 }
 clearstatcache();
-if (file_exists("$rdir/sitechats/terminal/" . $_GET['cmd'] . '.php') && !$done) {
-	include "$rdir/sitechats/terminal/$_GET[cmd].php";
+if (file_exists("$rdir/$sc/terminal/" . $_GET['cmd'] . '.php') && !$done) {
+	include "$rdir/$sc/terminal/$_GET[cmd].php";
 }
 
 
@@ -329,7 +330,7 @@ if ($_GET["horns"] == "on") {
 
 
 
-//$boi = file_get_contents("$rdir/sitechats/0000");
+//$boi = file_get_contents("$rdir/$sc/0000");
 //echo("<textarea>$boi</textarea>");
 ?>
 	

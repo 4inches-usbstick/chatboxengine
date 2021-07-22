@@ -11,13 +11,15 @@ input[type=text]:focus{
 </style>
 
 <?php
+
 include 'mainlookup.php';
+$sc = plsk(107);
 $rdir = plsk(3);
 $ip = plsk(1);
 $pcl = plsk(59);
 speakout($_GET['namer'], $_GET['chatnum']);
 
-$formact = "$pcl://$ip/textengine/sitechats/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
+$formact = "$pcl://$ip/textengine/$sc/media/uploadform.php?chatnum1=$_GET[chatnum]&rr=$_GET[refreshrate]";
 error_reporting(0);
 $mediaoptions = 0;
 
@@ -54,7 +56,7 @@ if (plsk(61) == 'NO') {
 
 
 if (plsk(39) == 'CHECK') {
-$gethttd = file_get_contents("$pcl://$ip/textengine/sitechats/media/$_GET[chatnum]");
+$gethttd = file_get_contents("$pcl://$ip/textengine/$sc/media/$_GET[chatnum]");
 }
 if (plsk(39) == 'YES') {
 $gethttd = true;
@@ -67,8 +69,8 @@ if ($gethttd === false) {
 	$mediaoptions = "<code style=\"background: black; color: white\">Media uploads have been disabled for this Chatbox.</code><br>";
 } else {
 	$mediaoptions = "<a href=$formact>Upload Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Find / Post Media, </a>
-<a href=\"$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Close Media Finder, </a><br>";
+<a href=\"$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=1&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Find / Post Media, </a>
+<a href=\"$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]&namer=$_GET[namer]&namer=$_GET[namer]&uid=$_GET[uid]&ukey=$_GET[ukey]\">Close Media Finder, </a><br>";
 }
 	
 
@@ -103,17 +105,17 @@ if (empty($width)) {
 $explorer = $_GET["explorer"];
 if ($explorer == "0")
 {
-echo("<iframe id=\"iframe1\" src='display.php?chatbox=$_GET[chatnum]&divecho=true' width=\"$width\" height=\"400\"></iframe>");
+echo("<iframe id=\"iframe1\" src='display.php?chatbox=$_GET[chatnum]&divecho=true&encode=$_GET[encoderm]' width=\"$width\" height=\"400\"></iframe>");
 }
 
 if ($explorer == "1")
 {
 echo("
 <div style=\"overflow:scroll; -webkit-overflow-scrolling:touch; width:700px; height:400px; white-space: pre;\">
-<iframe id=\"iframe1\" src='display.php?chatbox=$_GET[chatnum]&divecho=true' width=\"700\" height=\"400\" ></iframe></div>");
+<iframe id=\"iframe1\" src='display.php?chatbox=$_GET[chatnum]&divecho=true&encode=$_GET[encoderm]' width=\"700\" height=\"400\" ></iframe></div>");
 echo("<
 <div style=\"overflow:scroll; -webkit-overflow-scrolling:touch; width:700px; height:400px; white-space: pre;\">
-<iframe id=\"iframe2\" src=\"$pcl://$ip/textengine/sitechats/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\"></iframe></div>");
+<iframe id=\"iframe2\" src=\"$pcl://$ip/textengine/$sc/media/$_GET[chatnum]/uploaded\" width=\"610\" height=\"400\"></iframe></div>");
 //echo("<p></p>");
 }
 
@@ -121,7 +123,7 @@ echo("<
 
 echo("
 
-<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage(); reloadiframe(); return false\">
+<form action=\"sendmsg_integration.php\" method=\"GET\" autocomplete=\"off\" onsubmit=\"sendmymessage(); setTimeout( function(){reloadiframe()}, 200); return false\">
 <fieldset draggable=\"false\">
 
 <legend>Say something: </legend>
@@ -256,7 +258,7 @@ $useleg = plsk(19);
 
 if ($useleg == 'YES') {
 echo("
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change RR:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
@@ -265,7 +267,7 @@ echo("
 <input type='submit' value='Go'>
 </form>
 
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change Chatbox:</code>
 <input type='text' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
@@ -278,7 +280,7 @@ echo("
 </form>
 
 
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Authenticate with UID/UKEY:</code> <input type='text' style='width: 32px;' name='uid'><input type='text' style='width: 128px;' name='ukey'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
@@ -287,10 +289,10 @@ echo("
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
-<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>$pcl://$ip/textengine/sitechats/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
+<code>Join by URL (USE THIS URL TO LET OTHERS IN):<br></code><code><a href='$pcl://$ip/textengine/$sc/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]'>$pcl://$ip/textengine/$sc/inchat_joinpage.php?chatnum=$_GET[chatnum]&refreshrate=$_GET[refreshrate]&explorer=0&encoderm=$coder&bbg=$_GET[bbg]</a></code>  <br>");
 } else {
 echo("
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change RR:</code> <input type='text' style='width: 69px;' name='refreshrate' value='$_GET[refreshrate]'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
@@ -299,7 +301,7 @@ echo("
 <input type='submit' value='Go'>
 </form>
 
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Change Chatbox:</code>
 <input type='text' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
@@ -312,7 +314,7 @@ echo("
 </form>
 
 
-<form action='$pcl://$ip/textengine/sitechats/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
+<form action='$pcl://$ip/textengine/$sc/inchat.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
 <code>Authenticate with UID/UKEY:</code> UID <input type='text' style='width: 32px;' name='uid'> UKEY <input type='text' style='width: 128px;' name='ukey'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
@@ -321,6 +323,6 @@ NAME <input type='text' name='namer' value='$_GET[namer]'>
 <input type='hidden' name='explorer' value='$_GET[explorer]'>
 <input type='submit' value='Go'>
 </form>
-<code>Join by URL:<br></code><code><a href='$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/sitechats/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
+<code>Join by URL:<br></code><code><a href='$pcl://$ip/textengine/$sc/joinchatpublic.php?cn=$_GET[chatnum]'>$pcl://$ip/textengine/$sc/joinchatpublic.php?cn=$_GET[chatnum]</a></code>  <br>");
 }
 

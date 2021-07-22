@@ -2,6 +2,7 @@
 <?php
 include 'mainlookup.php';
 $rdir = plsk(3);
+$sc = plsk(107);
 $ip = plsk(1);
 $tz = plsk(9);
 $pcl = plsk(59);
@@ -44,7 +45,7 @@ $tolink = "<a href=\"inchatcss1m.php?chatnum=$_POST[nums]&refreshrate=$rerate&ex
 
 echo("joining: $_POST[nums]<br>");
 echo("rr: $_POST[refreshrate]<br>");
-//$link = "http://$ip/textengine/sitechats/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
+//$link = "http://$ip/textengine/$sc/connectionpolicy.php?write=$_POST[nums]&namer=$_POST[name]&opt=connect";
 //echo("<iframe src='$link' width='1' height='1'></iframe>");
 ?>
 
