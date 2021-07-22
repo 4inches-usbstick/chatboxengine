@@ -27,7 +27,7 @@ Make sure to read and understand the license before using Chatbox Engine.
 --Initial Config--
 You'll need to create a directory named textengine on the server. Remember the path to this directory, you'll need it later. Next, in that new dir, make a folder named sitechats. Extract the ZIP into sitechats.
 
-(yes you should use those dir names unless you want all the prepackaged clients to not work with your server. also yes, multiple copies of chatbox engine can run on one machine)
+(yes you should use those dir names, but if you need more than one name 'sitechats' folder, see PID 107 and PID 3 to change the name of textengine and sitechats.
 
 Next, make sure your server protects all files with .hta* as the extension. All the hidden and somewhat important files are .hta* files, so its imperative that you do this.
 
@@ -86,6 +86,10 @@ PID  Change to
 99   The time allotted to the user to enter the recovery code.
 101  Commands that can only be ran with the admin password and not UID/UKEY. Note that some commands already have no-cbauth
 policies. check PIDs 51,55,73,41.
+103  The PHP date format for use in date(), time() like functions
+105  Same as PID 103 but for time instead of date
+107  The name of the 'sitechats' dir (is now changable so you don't have to look thru hardcoded paths of 'sitechats')
+
 --CBauth--
 To add someone to the CBauth list, use this format:
 
