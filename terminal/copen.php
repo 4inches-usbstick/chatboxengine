@@ -1,4 +1,5 @@
 <?php
+$sc = plsk(107);
 if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$ps = explode(' ', $_GET['params']);
 	
@@ -22,12 +23,12 @@ if ($_GET['cmd'] == 'copen' && $_GET['pass'] == $pass) {
 	$names = explode('.', $ps[0]);
 	$name = $names[0];
 	if ($ps[1] == '--allowmed') {
-	mkdir("$rdir/sitechats/media/$ps[0]", 0700);
-	mkdir("$rdir/sitechats/media/$ps[0]/uploaded", 0700);
+	mkdir("$rdir/$sc/media/$ps[0]", 0700);
+	mkdir("$rdir/$sc/media/$ps[0]/uploaded", 0700);
 	}
 	if ($ps[1] == '--allowmedhtml') {
-	mkdir("$rdir/sitechats/media/$name-med", 0700);
-	mkdir("$rdir/sitechats/media/$name-med/uploaded", 0700);
+	mkdir("$rdir/$sc/media/$name-med", 0700);
+	mkdir("$rdir/$sc/media/$name-med/uploaded", 0700);
 	}
 	if ($ps[1] == '--forbidmed') {
 	echo('--forbidmed flag passed<br>');

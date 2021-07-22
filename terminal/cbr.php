@@ -1,4 +1,5 @@
 <?php
+$sc = plsk(107);
 if ($_GET["cmd"] == "cbroadcast" && $_GET["pass"] == $pass) {
 	$chatboxes = glob("*");
 	echo("FILE LIST:<br><br>");

@@ -1,14 +1,15 @@
 <?php
+$sc = plsk(107);
 if ($_GET["cmd"] == "delhtml" and $_GET["pass"] == $pass) {
 $params = $_GET["params"];
 $abspath = dirname($params);
-$path = "$rdir/sitechats/$params";
+$path = "$rdir/$sc/$params";
 //echo($params);
 //echo($abspath);
 //echo($path);
 	
 //echo($path);
-$haystaq = file_get_contents("$rdir/sitechats/.htaterminalaccess");
+$haystaq = file_get_contents("$rdir/$sc/.htaterminalaccess");
 $findme = $params;
 $pos = strpos($haystaq, $findme);
 
@@ -33,9 +34,9 @@ echo("
 $mediadir0<br>
 $mediadir<br>
 $path<br>");
-delete_directory("$rdir/sitechats/media/$mediadir");
-$ff1 = rmdir("$rdir/sitechats/media/$mediadir");
-//system("rm -rf ".escapeshellarg("$rdir/sitechats/media/$params"));
+delete_directory("$rdir/$sc/media/$mediadir");
+$ff1 = rmdir("$rdir/$sc/media/$mediadir");
+//system("rm -rf ".escapeshellarg("$rdir/$sc/media/$params"));
 
 
 }
