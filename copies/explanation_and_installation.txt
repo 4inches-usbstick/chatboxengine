@@ -1,3 +1,5 @@
+FIRST NOTE: whenever we use a filepath with /textengine/sitechats or sitechats, use the name you set with PID 107 and 3. it might be the default /textengine/sitechats or it could be /ttttttt/bb or any other names.
+
 DOC EXPLANATIONS:
 cbedata and cbedata.py: explaining CBEDATA
 pythonfunctions.txt: how to use chatboxengine.py
@@ -27,7 +29,7 @@ Make sure to read and understand the license before using Chatbox Engine.
 --Initial Config--
 You'll need to create a directory named textengine on the server. Remember the path to this directory, you'll need it later. Next, in that new dir, make a folder named sitechats. Extract the ZIP into sitechats.
 
-(yes you should use those dir names, but if you need more than one name 'sitechats' folder, see PID 107 and PID 3 to change the name of textengine and sitechats.
+(yes you should use those dir names, but if you need more than one name 'sitechats' folder, see PID 107 and PID 3 to change the name of textengine and sitechats.)
 
 Next, make sure your server protects all files with .hta* as the extension. All the hidden and somewhat important files are .hta* files, so its imperative that you do this.
 

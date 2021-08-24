@@ -314,6 +314,24 @@ if (file_exists("$rdir/$sc/terminal/" . $_GET['cmd'] . '.php') && !$done) {
 	include "$rdir/$sc/terminal/$_GET[cmd].php";
 }
 
+foreach($keys as $i) {
+	$things = explode("::", $i);
+	//echo(str_replace("\n", "", $things[0] . '<br>'));
+	//echo("compare: " . $_GET['cmd'] . '==' . substr($things[0],1) . '<br>');
+	//and this is the problem
+	if ($_POST['cmd'] == substr($things[0],1)) {
+		echo("filepath: " . str_replace("%rdir", $rdir, $things[1])) . "<br>\n";
+		include str_replace("%rdir", $rdir, $things[1]);
+		$done = True;
+	}
+}
+clearstatcache();
+if (file_exists("$rdir/$sc/terminal/" . $_POST['cmd'] . '.php') && !$done) {
+	include "$rdir/$sc/terminal/$_POST[cmd].php";
+}
+
+
+
 
 //pw error
 if ($_GET["pass"] != $pass)
