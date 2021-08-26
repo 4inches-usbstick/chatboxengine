@@ -34,7 +34,7 @@ foreach ($protec as $i) {
 
 
 echo('<b>info</b><br>');
-$split_datapath = explode("-", $datapath);
+$split_datapath = explode(plsk(109), $datapath);
 $layer = 0;
 $lengthofpath = count($split_datapath) - 1;
 echo("$split_datapath[$lengthofpath]<br><br>");
