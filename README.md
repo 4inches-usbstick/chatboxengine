@@ -1,11 +1,9 @@
 ![Imagealttext](https://media.discordapp.net/attachments/755174018663055483/851306563365109820/unknown.png)
 
-Student-created, open-source, extendable software designed for communication and capable of various other activities, including but not limited to:
+Student-created, open-source, extendable, buzzword-using software designed for communication and capable of various other activities, (but mostly used to get around school web filers). Examples of misuses (creative uses) of Chatbox Engine include:
 
--> Opening a pipe from which one computer can control another\
--> Handling small to medium amounts of data\
--> The World's Stupidest Voice Calling\
+-> Computer remote control
+-> Voice calling
+-> Poorly formatted config files
 
 [!]: Docs are in the COPIES directory. See explanation_and_installation.txt for a list of the doc files and their purposes.\
-[!]: Don't be fooled by the amount of Python that Github shows. Most of it me screwing around and being too lazy to open another repo.\
-This repo contains the serverside software, some Python wrappers, a built in utility to create images for distribution, and all the random stuff I've tried that involves Chatbox Engine.
