@@ -13,11 +13,6 @@ class[C****e> role==Testing Chatbox Engine and supporting it in the early days;]
 class[Multiple unknowns> role==Testing Chatbox Engine and supporting it in the early days;]
 class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and supporting it right before the early days were over;]
 
-class[softwares>
-class[PHP 7, 8> role==Serverside, API, CBEDATA;]
-class[Python 3.8> role==Clients, CBEDATA;]
-class[Python Modules> used==requests, tkinter, time, textwrap, discord; role==Clients, bots, CBEDATA;]
-
 class[places-i-borrowed-code-from>
 class[copydir-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/5707806/recursive-copy-of-directory;]
 class[recursive-del-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/385150/a-piece-of-php-code-im-not-so-sure-about/385468#385468;]
