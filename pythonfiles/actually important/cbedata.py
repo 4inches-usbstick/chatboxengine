@@ -99,7 +99,7 @@ def get_offline_obj(st, path, ty, delim = '-'):
     offset_after = subclass.find('class['+str(pathlist[c - 1])+'>')
     length = len('class['+str(pathlist[c - 1])+'>')
     new_sub = contents[int(offset + length):lineafter:1]
-    print("subclass; "+new_sub)
+    #print("subclass; "+new_sub)
 
     if ty == 'raw':
         return new_sub.replace('{special}1','>').replace('{special}2',';').replace('{special}3','==').replace('{special}4','[').replace('{special}5',']')
