@@ -2,8 +2,8 @@
 
 <?php
 $pass = file_get_contents('.htapassword');
-$sc = plsk(107);
 include 'mainlookup.php';
+$sc = plsk(107);
 $rdir = plsk(3);
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
