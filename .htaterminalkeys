@@ -1,4 +1,4 @@
- udb add::%rdir/sitechats/terminal/udbmanager.php;
+udb add::%rdir/sitechats/terminal/udbmanager.php;
 udb del::%rdir/sitechats/terminal/udbmanager.php;
 filesafe add::%rdir/sitechats/terminal/filesafemanager.php;
 filesafe del::%rdir/sitechats/terminal/filesafemanager.php;

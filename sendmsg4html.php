@@ -15,7 +15,7 @@ if (file_exists($_GET['write'])) {
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
 
-
+echo('[err:00] Stop: this endpoint is depcrecated.');
 
 //banned words checker
 foreach ($nogo as $i) {
