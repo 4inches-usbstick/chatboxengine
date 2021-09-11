@@ -3,8 +3,8 @@
 
 
 #offline interpreter, get-info
-def get_offline(st, path, ty):
-    pathlist = path.split('-')
+def get_offline(st, path, ty, delim = '-'):
+    pathlist = path.split(str(delim))
     
     st = st.replace('^>', '{special}1')
     st = st.replace('^;', '{special}2')
@@ -59,7 +59,7 @@ def get_offline(st, path, ty):
 
 
 #offline interpreter, get-info with object creation
-def get_offline_obj(st, path, ty):
+def get_offline_obj(st, path, ty, delim = '-'):
 
     st = st.replace('^>', '{special}1')
     st = st.replace('^;', '{special}2')
@@ -67,7 +67,7 @@ def get_offline_obj(st, path, ty):
     st = st.replace('^[', '{special}4')
     st = st.replace('^]', '{special}5')
     
-    pathlist = path.split('-')
+    pathlist = path.split(str(delim))
     
     contents = st
 
