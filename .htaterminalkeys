@@ -1,3 +1,5 @@
+uid add::%rdir/sitechats/terminal/udbmanager.php;
+uid del::%rdir/sitechats/terminal/udbmanager.php;
 udb add::%rdir/sitechats/terminal/udbmanager.php;
 udb del::%rdir/sitechats/terminal/udbmanager.php;
 filesafe add::%rdir/sitechats/terminal/filesafemanager.php;
@@ -17,4 +19,5 @@ csend::%rdir/sitechats/terminal/csend.php;
 csend --nobreak::%rdir/sitechats/terminal/csend.php;
 xcopy --append::%rdir/sitechats/terminal/xcopy.php;
 group add::%rdir/sitechats/terminal/usergroupmanager.php;
-group del::%rdir/sitechats/terminal/usergroupmanager.php
+group del::%rdir/sitechats/terminal/usergroupmanager.php;
+cedit::%rdir/sitechats/terminal/cedit.php
