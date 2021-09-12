@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(plsk(37));
+error_reporting(E_ALL);
 chdir("$rdir/$sc");
 
 $pass = file_get_contents("$rdir/$sc/.htapassword");
@@ -257,7 +257,6 @@ clist: list all Chatboxes and whether or not they are protected<br>
 *cload: copy Chatbox from designated dir to main $sc dir<br>
 *csend: write a message to a Chatbox bypassing nogo phrases and UID/UKEY checking. Use csend --nobreak to not use a newline char when writing to the Chatbox. Can be disabled by PID 77. Use chatbox;message in the params box.<br>
 
-*loadexe: sideloads an extension. requires an active RDC connection that is listening to .htaremotedesktop and the sideloader extension. this command can be disabled with PID 15.<br>
 help: brings up this help message, no parameters<br><br>
 
 *^ecfg: configure .htamainpolicy. this command can be disabled by PID 35<br>
@@ -265,8 +264,8 @@ help: brings up this help message, no parameters<br><br>
 
 *^cmd add: add a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^cmd del: remove a custom command in this syntax: @Event;Condition;String;Includepath<br>
-*^uid add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Groups (space char as delimiter)<br>
-*^uid del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Groups (space char as delimiter)<br><br>
+*^udb add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Groups (space char as delimiter)<br>
+*^udb del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Groups (space char as delimiter)<br><br>
 *^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
 *^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
 *^filesafe add: add a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
@@ -314,6 +313,7 @@ if (file_exists("$rdir/$sc/terminal/" . $_GET['cmd'] . '.php') && !$done) {
 	include "$rdir/$sc/terminal/$_GET[cmd].php";
 }
 
+
 foreach($keys as $i) {
 	$things = explode("::", $i);
 	//echo(str_replace("\n", "", $things[0] . '<br>'));
@@ -329,7 +329,6 @@ clearstatcache();
 if (file_exists("$rdir/$sc/terminal/" . $_POST['cmd'] . '.php') && !$done) {
 	include "$rdir/$sc/terminal/$_POST[cmd].php";
 }
-
 
 
 
