@@ -1,4 +1,5 @@
 <?php
+$sc = plsk(107);
 if ($_GET["cmd"] == "clist") {
 	$chatboxes = glob("*");
 	echo("All Chatboxes:<br><br>");
@@ -27,12 +28,13 @@ if ($_GET["cmd"] == "clist") {
 		
 	}
 	$fs = wr_db();
-	echo("\n\n\n<br><br><br>filesafe list: $fs");
+	echo("\n\n\n<br><br><br>filesafe list: $fs\n\n\n<br><br><br>complete dir list: <div style='white-space:pre;'>");
+	print_r($chatboxes);
 	
 }
 //cload
 if ($_GET["cmd"] == "cload" && $_GET["pass"] == $pass) {
-copy("$rdir/sitechats/copies/$_GET[params]", "$rdir/sitechats/$_GET[params]");
+copy("$rdir/$sc/copies/$_GET[params]", "$rdir/$sc/$_GET[params]");
 echo("Copied");
 }
 ?>
