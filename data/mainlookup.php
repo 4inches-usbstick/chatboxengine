@@ -9,6 +9,15 @@ function plsk($pid) {
 	return $fs[$pid];
 }
 
+function customreturn($section) {
+	global $regpath;
+	$f = file_get_contents("$regpath");
+	$offset0 = strpos($f, "[BEGIN $section]");
+	$offset1 = strpos($f, "[END $section]");
+	$fs = substr($f, $offset0, $offset1 - $offset0);
+	return $fs;
+
+}
 
 //verify the identity of a UID
 function uidlsk($uid, $skey) {
