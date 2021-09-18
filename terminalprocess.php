@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(E_ALL);
+error_reporting(plsk(37));
 chdir("$rdir/$sc");
 
 $pass = file_get_contents("$rdir/$sc/.htapassword");
@@ -273,6 +273,8 @@ help: brings up this help message, no parameters<br><br>
 *^group add: add a user group command, either GROUPNAME give sudo or GROUPNAME cantrun CMDNAME<br>
 *^group del: removes a user group command, in the same syntax as group add<br>
 
+*^ccfg: show entire config file to see which parts you want gone and which parts to add too
+
 inirecovery: starts the 'I FORGOT THE PASSWORD'  procedure. Opens a Chatbox then gives you time to enter the backup code from .htamainpolicy.<br><br>
 
 
@@ -291,6 +293,8 @@ If we are only free to make good decisions, we are not free at all.
 }
 
 $imfedupwiththisshit = str_replace("\n", "", file_get_contents('.htaterminalkeys'));
+$imfedupwiththisshit = str_replace("%rdir", $rdir, $imfedupwiththisshit);
+$imfedupwiththisshit = str_replace("%sc", $sc, $imfedupwiththisshit);
 $keys = explode(";", $imfedupwiththisshit);
 #print_r($keys);
 $done = False;
