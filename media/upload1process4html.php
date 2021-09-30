@@ -12,6 +12,9 @@ $canuseselfname = plsk(17);
 if (!validate("$rdir/sitechats/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_FILES['ftu']['name'])) {
 	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
 }
+if ($_FILES['ftu']['name'] == '.htafiletxpolicy') {
+	die('[err:19] Stop: Illegal file name.');
+}
 
 if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
 	$m = 'f';
