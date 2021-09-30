@@ -9,7 +9,7 @@ $enable = plsk(13);
 $canuseselfname = plsk(17);
 error_reporting(E_ALL);
 
-if (!validate("$rdir/sitechats/media/$_POST[hidden]/.htafiletxpolicy", $_FILES['ftu']['name'])) {
+if (!validate("$rdir/sitechats/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_FILES['ftu']['name'])) {
 	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
 }
 

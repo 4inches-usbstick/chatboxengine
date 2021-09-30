@@ -9,7 +9,7 @@ $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
 
-if (!validate("$rdir/sitechats/media/$_POST[hidden]/.htafiletxpolicy", $_FILES['ftu']['name'])) {
+if (!validate("$rdir/sitechats/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_FILES['ftu']['name'])) {
 	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
 }
 
