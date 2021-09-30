@@ -31,11 +31,7 @@ if ($enable != 'YES') {
 die('[err:26] Stop: Uploads stopped by .htamainpolicy');
 }
 
-ini_set('upload_max_filesize', '12M');
-ini_set('post_max_size', '14M');
-ini_set('max_input_time', 300);
-ini_set('max_execution_time', 300);
-ini_set('memory_limit', '128M');
+
 		$phpFileUploadErrors = array(
     0 => 'OK',
     1 => 'Stop: PAYLOAD TOO BIG (PHP.INI)',
