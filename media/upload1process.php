@@ -1,11 +1,17 @@
 <title>engine page</title>
 <?php
 include 'mainlookup.php';
+include 'validator.php';
 $rdir = plsk(3);
 date_default_timezone_set(plsk(9));
 $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
+error_reporting(E_ALL);
+
+if (!validate("$rdir/sitechats/media/$_POST[hidden]/.htafiletxpolicy", $_FILES['ftu']['name'])) {
+	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
+}
 
 if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
 	$m = 'f';
@@ -71,6 +77,7 @@ $target_dir = ("$rdir/sitechats/media/$chatboxdir/uploaded/$file_name");
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
 echo('Path: ' . $target_dir . "<br>");
+echo("\n<br>URL : <a href='/textengine/sitechats/media/$_POST[hidden]/uploaded/$file_name'>/textengine/sitechats/media/$_POST[hidden]/uploaded/$file_name</a>");
 
 $URL = $_SERVER['HTTP_REFERER'];
 //header("Location: $URL");

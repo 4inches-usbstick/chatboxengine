@@ -1,11 +1,17 @@
 <title>engine page</title>
 <?php
 include 'mainlookup.php';
+include 'validator.php';
+
 $rdir = plsk(3);
 date_default_timezone_set(plsk(9));
 $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
+
+if (!validate("$rdir/sitechats/media/$_POST[hidden]/.htafiletxpolicy", $_FILES['ftu']['name'])) {
+	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
+}
 
 if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
 	$m = 'f';
