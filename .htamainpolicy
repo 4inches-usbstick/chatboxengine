@@ -103,6 +103,12 @@ C#::RESTRICT-TO::
 terminal-logger::sudo::
 [END FILESAFE] 
 
+[BEGIN READSAFE]
+C#::RESTRICT-TO::
+0000::g:notsudousers//sudousers::
+[END READSAFE] 
+
+
 **Use g: to declare that this chatbox is open to only certain groups;
 then list the groups with // as delimiter, i.e. g:GROUP1//GROUP2//GROUP3
 
