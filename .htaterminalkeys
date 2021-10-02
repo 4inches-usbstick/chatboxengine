@@ -20,4 +20,6 @@ csend --nobreak::%rdir/sitechats/terminal/csend.php;
 xcopy --append::%rdir/sitechats/terminal/xcopy.php;
 group add::%rdir/sitechats/terminal/usergroupmanager.php;
 group del::%rdir/sitechats/terminal/usergroupmanager.php;
-cedit::%rdir/sitechats/terminal/cedit.php
+cedit::%rdir/sitechats/terminal/cedit.php;
+readsafe add::%rdir/%sc/terminal/readsafemanager.php;
+readsafe del::%rdir/%sc/terminal/readsafemanager.php
