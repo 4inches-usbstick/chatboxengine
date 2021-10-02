@@ -268,8 +268,10 @@ help: brings up this help message, no parameters<br><br>
 *^udb del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Groups (space char as delimiter)<br><br>
 *^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
 *^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
-*^filesafe add: add a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
-*^filesafe del: remove a file to be protected. syntax: chatbox::who to restrict to (sudo, login or local)::<br>
+*^filesafe add: add a file to be write protected. syntax: chatbox::who to restrict to (sudo, login or local):: OR g:group1//group2<br>
+*^filesafe del: remove a file to be write protected. syntax: chatbox::who to restrict to (sudo, login or local):: OR g:group1//group2<br>
+*^readsafe add: add a file to be read protected. syntax: chatbox::who to restrict to (sudo, login or local):: OR g:group1//group2<br>
+*^readsafe del: remove a file to be read protected. syntax: chatbox::who to restrict to (sudo, login or local):: OR g:group1//group2<br>
 *^group add: add a user group command, either GROUPNAME give sudo or GROUPNAME cantrun CMDNAME<br>
 *^group del: removes a user group command, in the same syntax as group add<br>
 
