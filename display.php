@@ -5,8 +5,13 @@
 include 'mainlookup.php';
 $sc = plsk(107);
 $rdir = plsk(3);
-error_reporting(E_ALL);
+error_reporting(0);
 clearstatcache();
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, GET, PATCH, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
+
 
 function r_bycb($cb, $attrno) {
 	global $regpath;
@@ -59,7 +64,7 @@ if (substr_count(customreturn('READSAFE'), $_GET['chatbox']) != 0) {
 			$allowed = explode('//', $thing[1]);
 			$count = 0;
 			$yes = False;
-			print_r($allowed);
+			//print_r($allowed);
 			while ($count < count($allowed)) {
 				//if the allowed group appears in the user's groups
 				$s = uid($_GET['uid'], $_GET['ukey'], 4);
