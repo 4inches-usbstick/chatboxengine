@@ -114,43 +114,17 @@ class Chatbox:
             
 class HS_Chatbox:
     def __init__(self, server, chatbox, password='', encoder='UTF-8', timeout=15):
-        self.server = server
-        self.chatbox = chatbox
-        self.pas = password
-        self.encoder = encoder
-        self.timeout = timeout
+        raise RuntimeError('High Security Chatboxes + servers are deprecated and any support for them has been dropped.')
         
     def get(self):
-        try:
-            f = request.get('http://'+self.server+self.url+'/high-security/display.php?path=.hta'+str(self.chatbox)+'&pass='+str(self.pas), timeout=int(self.timeout))
-            return f.text
-        except:
-            return str(2)
+        raise RuntimeError('High Security Chatboxes + servers are deprecated and any support for them has been dropped.')
         
     def make(self):
-        if len(str(self.pas)) != 16:
-            return str(2)
-        try:
-            theuri = 'http://'+self.server+self.url+'/high-security/newchat_integration.php?newname='+str(self.chatbox)+'&newpass='+str(self.pas)+'&rurl=norefer'
-            output = request.get(theuri, timeout=int(self.timeout))
-            return str(output.status_code)
-        except:
-            return str(2)
+        raise RuntimeError('High Security Chatboxes + servers are deprecated and any support for them has been dropped.')
             
     def write(self, contents, newline=1):
-        if newline == 1:
-            try:
-                base_send_get = 'http://' +self.server+ self.url+'/high-security/sendmsg_integration.php?'
-                send = request.get(base_send_get + 'msg=' + str(contents) + '&write=.hta' + str(self.chatbox) + '&rurl=norefer&pass=' + str(self.pas)+ '&encode=' + self.encoder, timeout=int(self.timeout))
-                #print(base_send_get + "msg=" + msg + "&write=" + writeto + "&rurl=norefer&namer=" + name + "&encode=" + encoder)
-                return str(send.status_code)
-            except:
-                return str(2)
+        raise RuntimeError('High Security Chatboxes + servers are deprecated and any support for them has been dropped.')
     
     def delete(self):
-        try:
-            wiper = request.get('http://'+self.server+self.url+'/high-security/eraser.php?cmd=del&params='+str(self.chatbox)+'&param='+str(self.chatbox)+'&pass='+str(self.pas)+'&key='+str(self.pas), timeout=int(self.timeout))
-            return str(wiper.status_code)
-        except:
-            return str(2)
+        raise RuntimeError('High Security Chatboxes + servers are deprecated and any support for them has been dropped.')
             
