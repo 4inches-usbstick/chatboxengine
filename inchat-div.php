@@ -379,7 +379,7 @@ document.getelementbyid('iframe1').contentwindow.location.reload();
 <input type='submit' value='Go'>
 </form>
 <form action='$pcl://$ip/textengine/$sc/inchat-div.php?chatnum=$_GET[chatnum]&encoderm=$_GET[encoderm]&namer=$_GET[namer]' method='get'>
-<code>Authenticate with UID/UKEY:</code> UID <input type='text' style='width: 32px;' name='uid'> KEY <input type='text' style='width: 128px;' name='ukey'>
+<code>Authenticate with UID/UKEY:</code> UID <input type='text' style='width: 128px;' name='uid'> KEY <input type='text' style='width: 128px;' name='ukey'>
 <input type='hidden' name='chatnum' value='$_GET[chatnum]'>
 <input type='hidden' name='refreshrate' value='$_GET[refreshrate]'>
 <input type='hidden' name='encoderm' value='$_GET[encoderm]'>
