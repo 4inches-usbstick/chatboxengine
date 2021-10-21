@@ -27,6 +27,8 @@ Chatbox number: <input type="text" name="nums" size="100" height="10" value='<?=
 Refresh rate: <input type="text" name="refreshrate" size="100" height="10" value='<?=$_GET["rr"]; ?>'> <br>
 Encoder: <input type="text" name="enc" size="100" height="10" value="UTF-8"> <br>
 Name: <input type="text" name="name" size="100" height="10"> <br>
+UID: <input type="text" name="uid" size="100" height="10"> <br>
+UKEY: <input type="text" name="ukey" size="100" height="10"> <br>
 <br>
 <input type="submit" value="Join" style="color:black">
 </fieldset>
