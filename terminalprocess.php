@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(plsk(37));
+error_reporting(E_ALL);
 chdir("$rdir/$sc");
 
 $pass = file_get_contents("$rdir/$sc/.htapassword");
@@ -274,6 +274,7 @@ help: brings up this help message, no parameters<br><br>
 *^readsafe del: remove a file to be read protected. syntax: chatbox::who to restrict to (sudo, login or local):: OR g:group1//group2<br>
 *^group add: add a user group command, either GROUPNAME give sudo or GROUPNAME cantrun CMDNAME<br>
 *^group del: removes a user group command, in the same syntax as group add<br>
+*validatormgr: adds a validator command to a media dir (the media dir must exist before hand). param syntax: [chatbox]/[command].<br>
 
 *^ccfg: show entire config file to see which parts you want gone and which parts to add too
 
