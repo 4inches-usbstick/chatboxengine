@@ -8,20 +8,21 @@ date_default_timezone_set(plsk(9));
 $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
+$sc = plsk(107);
 
-if (!validate("$rdir/sitechats/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_FILES['ftu']['name'])) {
+if (!validate("$rdir/$sc/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_FILES['ftu']['name'])) {
 	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
 }
 if ($_FILES['ftu']['name'] == '.htafiletxpolicy') {
 	die('[err:19] Stop: Illegal file name.');
 }
 
-if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
+if (file_exists("$rdir/$sc/$_POST[hidden]")) {
 	$m = 'f';
 } else {
 	die('[err:28] Stop: This chatbox does not actually exist');
 }
-if (is_dir("$rdir/sitechats/media/$_POST[hidden]/uploaded")) {
+if (is_dir("$rdir/$sc/media/$_POST[hidden]/uploaded")) {
 	$m = 'f';
 } else {
 	die('[err:28] Stop: This chatbox has a missing or damaged media dir');
@@ -75,7 +76,7 @@ $file_name = $_FILES['ftu']['name'];
 $file_tmp = $_FILES['ftu']['tmp_name'];
 $stripped = substr($_POST['hidden'], 0, -5);
 $chatboxdir = "$stripped-med";
-$target_dir = ("$rdir/sitechats/media/$chatboxdir/uploaded/$file_name");
+$target_dir = ("$rdir/$sc/media/$chatboxdir/uploaded/$file_name");
 
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
@@ -92,12 +93,12 @@ $chatboxdir = "$stripped-med";
 $timestamp1 = date("H:i:s");
 $timestamp2 = date("d.m.y");
 $txt = "$timestamp1-$timestamp2-$file_name";
-$target_dir = ("$rdir/sitechats/media/$chatboxdir/uploaded/$txt");
+$target_dir = ("$rdir/$sc/media/$chatboxdir/uploaded/$txt");
 
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
 echo('Path: ' . $target_dir . "<br>\n");
-echo("\n<br>URL : <a href='/textengine/sitechats/media/$_POST[hidden]/uploaded/$txt'>/textengine/sitechats/media/$_POST[hidden]/uploaded/$txt</a>");
+echo("\n<br>URL : <a href='/textengine/$sc/media/$_POST[hidden]/uploaded/$txt'>/textengine/$sc/media/$_POST[hidden]/uploaded/$txt</a>");
 
 $URL = $_SERVER['HTTP_REFERER'];
 }
