@@ -265,6 +265,8 @@ help: brings up this help message, no parameters<br><br>
 *^cmd add: add a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^cmd del: remove a custom command in this syntax: @Event;Condition;String;Includepath<br>
 *^udb add: add a user and give them a permission. the parameter should be in this syntax: UID Name Password Groups (space char as delimiter)<br>
+*^udb sdel: delete a user with UID as parameters. works when you only have a UID and no other details<br>
+*^udbgrab: grab user info. without sudo you'll get their groups and perm level and name, with sudo powers you get all details. takes UID as params<br>
 *^udb del: delete a user. you'll need to provide their information in the parameter slot with this syntax: UID Name Password Groups (space char as delimiter)<br><br>
 *^lock add: lock a UID out from a Chatbox in this syntax: [chatbox no.] deny from [UID]<br>
 *^lock del: unlock a UID from a Chatbox with the same syntax as LOCK ADD<br>
