@@ -52,7 +52,7 @@ PID   PNAME   PVAL
 95 recovery-password::110525::
 97 recover-enable::YES::
 99 recover-time::60::
-101 need-master-cmd::udb add//udb del//filesafe add//filesafe del//ecfg//inicfg//group add//group del//ccfg//readsafe add//readsafe del::
+101 need-master-cmd::udb add//udb del//udb sdel//filesafe add//filesafe del//ecfg//inicfg//group add//group del//ccfg//readsafe add//readsafe del::
 103 phpdateformat::d.m.y::
 105 phptimeformat::H:i:s::
 107 sitechats-name::sitechats::
