@@ -14,7 +14,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control");
 
-error_reporting(E_ALL);
+error_reporting(plsk(37));
 chdir("$rdir/$sc");
 
 $pass = file_get_contents("$rdir/$sc/.htapassword");

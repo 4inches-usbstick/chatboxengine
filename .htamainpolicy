@@ -83,7 +83,7 @@ sudousers give sudo
 [END GROUPS]
 
 [BEGIN CBAUTH]
-0::1::2::3;
+00::11::22::33;
 D1::RootOfficial::root1234::sudousers;
 D2::UserOfficial::root5678::notsudousers;
 0::1::2::3;
