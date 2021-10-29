@@ -86,13 +86,17 @@ if (true) {
 $groupsin = explode('//', uid($_GET['uid'], $_GET['ukey'], 4));
 
 foreach($groupsin as $ugroup) {
-	if(substr_count(group_db(), "$ugroup cantrun $_GET[cmd]") > 0 && $useduid) {
-		die('[err:33] Stop: this user group cannot run cmd: ' . $_GET['cmd']);
-	}
+	if(substr_count(group_db(), "$ugroup cantrun $_GET[cmd]") > 0 && $useduid) { die('[err:33] Stop: this user group cannot run cmd: ' . $_GET['cmd']); }
+	
+	if(substr_count(group_db(), "$ugroup canrun $_GET[cmd]") > 0 && $useduid) { goto bypasschecker1; }
+	
+	if(substr_count(group_db(), "$ugroup cantrun *") > 0 && $useduid) { die('[err:33] Stop: this user group cannot run *[global]'); }
+	if(substr_count(group_db(), "$ugroup cantrun WILDCARD-ALL") > 0 && $useduid) { die('[err:33] Stop: this user group cannot run WILDCARD-ALL[global]'); }
 }
 }
 
 //log
+bypasschecker1:
 logger();
 
 function ccp($src, $dst) {  
