@@ -3,15 +3,15 @@ begin CBEDATA
 
 
 class[main>
-class[credits> version==1.4.4; date==11.JUN.2021 to PRESENT;]
+class[credits> version==1.4.5; date==28.OCT.2021 to PRESENT;]
 
 class[contributors> 
-class[Charles> role==All code, Github repo. extensions;]
-class[Arjun> role==Testing Chatbox Engine, and supporting me and CBE while CBE was in development;]
-class[E***k> role==Testing Chatbox Engine and supporting it in the early days;]
-class[C****e> role==Testing Chatbox Engine and supporting it in the early days;]
-class[Multiple unknowns> role==Testing Chatbox Engine and supporting it in the early days;]
-class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine and supporting it right before the early days were over;]
+class[Charles> role==All code, Github repo, docs;]
+class[Arjun> role==Testing Chatbox Engine and supporting me personally;]
+class[E***k> role==Having faith and being the first person to touch Chatbox Engine;]
+class[C****e> role==Trusting that I wouldn't give them a virus;]
+class[Multiple unknowns> role==Testing Chatbox Engine;]
+class[Multiple Members of the Joint MCPS Discord Server> role==Testing Chatbox Engine as it grew larger and more powerful;]
 
 class[places-i-borrowed-code-from>
 class[copydir-function> used-in==terminalprocess.php; src==https://stackoverflow.com/questions/5707806/recursive-copy-of-directory;]
