@@ -3,7 +3,7 @@ begin CBEDATA
 
 
 class[main>
-class[credits> version==1.4.5; date==28.OCT.2021 to PRESENT;]
+class[credits> version==1.4.5; date==15.JUN.2021 to 28.OCT.2021;]
 
 class[contributors> 
 class[Charles> role==All code, Github repo, docs;]
