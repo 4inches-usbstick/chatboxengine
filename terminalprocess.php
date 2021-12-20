@@ -20,6 +20,7 @@ chdir("$rdir/$sc");
 $pass = file_get_contents("$rdir/$sc/.htapassword");
 $useduid = false;
 
+if (empty($_GET['uid']) == false && empty($_GET['ukey']) == false) {$useduid = true;}
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
