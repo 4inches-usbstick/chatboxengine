@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 echo('S: ' . '<br>');
 clearstatcache();
 $sc = plsk(107);
+error_reporting(0);
 
 if (file_exists($_GET['write']) != true) {
 	die('[err:5] Stop: This chatbox does not actually exist');

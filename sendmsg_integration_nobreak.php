@@ -317,7 +317,7 @@ if ($count > plsk(87)) {
 }
 
 $txt = str_replace("%nl","\n",$txt);
-fwrite($myfile, "$txt");
+fwrite($myfile, "$txt\n");
 fclose($myfile);
 echo("submitted<br>");
 

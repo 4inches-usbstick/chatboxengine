@@ -1,6 +1,6 @@
 Diags<br>
 <?php
-//error_reporting(0);
+error_reporting(0);
 include 'mainlookup.php';
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
@@ -15,7 +15,7 @@ if (file_exists($_GET['write'])) {
 $nogo = explode('//', plsk(29));
 $protec = explode('//', plsk(31));
 
-echo('[err:00] Stop: this endpoint is depcrecated.');
+
 
 //banned words checker
 foreach ($nogo as $i) {
