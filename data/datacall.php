@@ -5,10 +5,10 @@ $protec = explode('//', plsk(31));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
-
+$sc = plsk(107);
 
 $rdir = plsk(3);
-$data = file_get_contents("$rdir/sitechats/$_GET[src]");
+$data = file_get_contents("$rdir/$sc/$_GET[src]");
 
 $data = str_replace('^[', '{special}1',$data);
 $data = str_replace('^]', '{special}2',$data);
@@ -18,7 +18,7 @@ $data = str_replace('^;', '{special}5',$data);
 
 
 //error_reporting(0);
-//$data = file_get_contents("C:/wamp64/www/textengine/sitechats/$_GET[src]");
+//$data = file_get_contents("C:/wamp64/www/textengine/$sc/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
 

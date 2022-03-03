@@ -8,21 +8,22 @@ date_default_timezone_set(plsk(9));
 $maxfilesize = plsk(11);
 $enable = plsk(13);
 $canuseselfname = plsk(17);
+$sc = plsk(107);
 
-if (!validate("$rdir/sitechats/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_POST['name'])) {
+if (!validate("$rdir/$sc/media/$_POST[hidden]/uploaded/.htafiletxpolicy", $_POST['name'])) {
 	die('[err:19] Stop: VALIDATOR.php deems file to be illegal.');
 }
 if ($_POST['name'] == '.htafiletxpolicy') {
 	die('[err:19] Stop: Illegal file name.');
 }
 
-if (file_exists("$rdir/sitechats/$_POST[hidden]")) {
+if (file_exists("$rdir/$sc/$_POST[hidden]")) {
 	$m = 'f';
 } else {
 	die('[err:28] Stop: This chatbox does not actually exist');
 }
 
-if (is_dir("$rdir/sitechats/media/$_POST[hidden]/uploaded")) {
+if (is_dir("$rdir/$sc/media/$_POST[hidden]/uploaded")) {
 	$m = 'f';
 } else {
 	die('[err:28] Stop: This chatbox has a missing or damaged media dir');
@@ -52,7 +53,7 @@ if (strlen($_POST['content']) > $maxfilesize) {
 }
 
 if ($canuseselfname == 'YES') {
-$f = fopen("$rdir/sitechats/media/$_POST[hidden]/uploaded/$_POST[name]", 'w');
+$f = fopen("$rdir/$sc/media/$_POST[hidden]/uploaded/$_POST[name]", 'w');
 $str = base64_decode($_POST['content']);
 fwrite($f, $str);
 fclose($f);	
@@ -61,15 +62,15 @@ fclose($f);
 	$timestamp2 = date("d.m.y");
 	$n = "$timestamp1-$timestamp2-$_POST[name]";
 	
-	$f = fopen("$rdir/sitechats/media/$_POST[hidden]/uploaded/$n", 'w');
+	$f = fopen("$rdir/$sc/media/$_POST[hidden]/uploaded/$n", 'w');
 	$str = base64_decode($_POST['content']);
 	fwrite($f, $str);
 	fclose($f);	
 }
            
             
-echo("\n<br>Path : $rdir/sitechats/media/$_POST[hidden]/uploaded/$n<br>\n");
-echo("\n<br>URL : <a href='/textengine/sitechats/media/$_POST[hidden]/uploaded/$n'>/textengine/sitechats/media/$_POST[hidden]/uploaded/$n</a>");
+echo("\n<br>Path : $rdir/$sc/media/$_POST[hidden]/uploaded/$n<br>\n");
+echo("\n<br>URL : <a href='$_POST[hidden]/uploaded/$n'>media/$_POST[hidden]/uploaded/$n</a>");
 		
 		
 		?>

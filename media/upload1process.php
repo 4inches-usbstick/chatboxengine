@@ -99,7 +99,7 @@ $target_dir = ("$rdir/$sc/media/$chatboxdir/uploaded/$txt");
 move_uploaded_file($file_tmp, $target_dir); 
 //rename($target_dir/$file_name, $target_dir/$file_name/$chatboxdir);
 echo("\n<br>Path : $rdir/$sc/media/$_POST[hidden]/uploaded/$txt<br>\n");
-echo("\n<br>URL : <a href='/textengine/$sc/media/$_POST[hidden]/uploaded/$txt'>/textengine/$sc/media/$_POST[hidden]/uploaded/$txt</a>");
+echo("\n<br>URL : <a href='$_POST[hidden]/uploaded/$txt'>$_POST[hidden]/uploaded/$txt</a>");
 
 $URL = $_SERVER['HTTP_REFERER'];
 }

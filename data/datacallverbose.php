@@ -8,13 +8,13 @@ $protec = explode('//', plsk(31));
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Cache-Control');
-
+$sc = plsk(107);
 
 if (plsk(21) != 'YES') {
 	die('[err:4] Stop: API is locked down.');
 }
 
-$data = file_get_contents("$rdir/sitechats/$_GET[src]");
+$data = file_get_contents("$rdir/$sc/$_GET[src]");
 $datapath = $_GET['path'];
 $startfrom = "00";
 
