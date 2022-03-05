@@ -103,8 +103,8 @@ if ($ok == '1' and $_GET['option'] == 'd') {
 	echo("[3] Complete <p></p>");
 	$myfile = fopen($new, "w");
 	echo("<b>Chatbox $new created. This is a CBEDATA chatbox, meaning that people should not join as an ordinary user.</b>");
-	fwrite($myfile, "begin CBEDATA\n\n");
-	fwrite($myfile, "class[main>\n");
+	//fwrite($myfile, "begin CBEDATA\n\n");
+	//fwrite($myfile, "class[main>\n");
 	fclose($myfile);
 }
 
