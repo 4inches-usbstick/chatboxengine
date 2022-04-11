@@ -6,6 +6,10 @@ error_reporting(0);
 clearstatcache();
 $sc = plsk(107);
 
+if (substr_count($_GET['write'], '/') > 0) {
+	die('[err:19] Escaping the current working directory is illegal');
+}
+
 if (file_exists($_GET['write']) != true) {
 	die('[err:5] Stop: This chatbox does not actually exist');
 }

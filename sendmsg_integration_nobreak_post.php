@@ -5,6 +5,10 @@ include 'mainlookup.php';
 error_reporting(0);
 clearstatcache();
 
+if (substr_count($_POST['write'], '/') > 0) {
+	die('[err:19] Escaping the current working directory is illegal');
+}
+
 if (file_exists($_POST['write'])) {
 	$myfile = fopen("$_POST[write]", "a");
 } else {
