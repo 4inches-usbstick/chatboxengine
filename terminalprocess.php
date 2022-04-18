@@ -20,20 +20,31 @@ chdir("$rdir/$sc");
 $pass = file_get_contents("$rdir/$sc/.htapassword");
 $useduid = false;
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if (empty($_GET['uid']) == false && empty($_GET['ukey']) == false) {$useduid = true;}
 
 if (empty($_GET['uid']) || empty($_GET['ukey'])) {
 	goto skipverify;
 }
 
-if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) == 'sudo') {
+if (uidlsk($_GET['uid'], $_GET['ukey'])) {
 	$_GET['pass'] = $pass;
+	$_POST['pass'] = $pass;
 	//echo('<hr>You are a sudo user. You are able to run most commands, except for the CHANGE and INICFG commands.<hr>');
-	$useduid = true;
+}
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (empty($_POST['uid']) == false && empty($_POST['ukey']) == false) {$useduid = true;}
+
+if (empty($_POST['uid']) || empty($_POST['ukey'])) {
+	goto skipverify;
 }
 
-if (uidlsk($_GET['uid'], $_GET['ukey']) && uid($_GET['uid'], $_GET['ukey'], 3) != 'sudo') {
-	echo('[warn:21] Auth-Warning: This user is not a sudo user<br>');
+if (uidlsk($_POST['uid'], $_POST['ukey'])) {
+	$_POST['pass'] = $pass;
+	$_GET['pass'] = $pass;
+	//echo('<hr>You are a sudo user. You are able to run most commands, except for the CHANGE and INICFG commands.<hr>');
+}
 }
 
 skipverify:
