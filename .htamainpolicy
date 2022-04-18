@@ -57,6 +57,7 @@ PID   PNAME   PVAL
 105 phptimeformat::H:i:s::
 107 sitechats-name::sitechats::
 109 cbedata-pathdelimit::-::
+111 termilogger-structure::Terminal [%time %date]: command=%cmd %params , user=%useduid:%uid , method=%verb)::
 -----------------------------------------
                        
 

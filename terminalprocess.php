@@ -49,40 +49,56 @@ if (uidlsk($_POST['uid'], $_POST['ukey'])) {
 
 skipverify:
 
-function logger() {
-	if (empty($_GET['cmd'])) {
+function logger($ins) {
+	if (empty($ins['cmd'])) {
 		return 0;
 	}
 	global $useduid, $pass;
 	//good with master
 	$addon = '';
-	//echo $_GET['pass'];
+	//echo $ins['pass'];
 	//echo $pass;
 	//echo $useduid;
 	#echo plsk(49);
-	if (substr_count(plsk(49), $_GET['cmd']) > 0) {
+	if (substr_count(plsk(49), $ins['cmd']) > 0) {
 		return 0;
 	}
-	if ($_GET['pass'] == $pass && !$useduid) {
-		$addon = ": yesauth/masterkey";
+	if ($ins['pass'] == $pass && !$useduid) {
+		$addon = "*MASTERKEY";
 	}
 	
 	//good with uidukey
-	if ($_GET['pass'] == $pass && $useduid) {
-		$addon = ": yesauth/uidukey";
+	if ($ins['pass'] == $pass && $useduid) {
+		$addon = "$ins[uid]";
 	}
 	
 	//bad
-	if ($_GET['pass'] != $pass) {
-		$addon = ": noauth/missingkey";
+	if ($ins['pass'] != $pass) {
+		$addon = "*NOKEY";
 	}
+	
+	if ($useduid) { $useduidstr = '*TRUE'; } else { $useduidstr = '*FALSE'; }
 	
 	if (plsk(47) != 'YES') {
 		return 0;
 	}
 	
+	$ret = plsk(111);
+	$ret = str_replace('%cmd',$ins['cmd'],$ret);
+	$ret = str_replace('%params',$ins['params'],$ret);
+	$ret = str_replace('%uid',$addon,$ret);
+	$ret = str_replace('%useduid',$useduidstr,$ret);
+	$ret = str_replace('%verb',$_SERVER['REQUEST_METHOD'],$ret);
+	date_default_timezone_set(plsk(9));
+	$timestamp1 = date(plsk(105));
+	$timestamp2 = date(plsk(103));
+	$ret = str_replace('%time',$timestamp1,$ret);
+	$ret = str_replace('%date',$timestamp2,$ret);
+
+
+	
 	$f = fopen(plsk(45), 'a');
-	fwrite($f, "SERVER TERMINAL - $_GET[cmd] $_GET[params] $addon \n");
+	fwrite($f, "$ret\n");
 	fclose($f);
 }
 
@@ -109,7 +125,8 @@ foreach($groupsin as $ugroup) {
 
 //log
 bypasschecker1:
-logger();
+if ($_SERVER['REQUEST_METHOD'] == 'GET') { logger($_GET); }
+if ($_SERVER['REQUEST_METHOD'] == 'POST') { logger($_POST); }
 
 function ccp($src, $dst) {  
    
