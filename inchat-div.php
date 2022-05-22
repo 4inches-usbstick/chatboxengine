@@ -163,7 +163,7 @@ echo("
 
 <!--for secutity reasons we don't allow ifrmes-->
 
-<code><b>
+<code hidden><b>
 br<input type=\"radio\" id=\"male934\" name=\"option\" value=\"break\">
 h1<input type=\"radio\" id=\"male\" name=\"option\" value=\"h1\">
 h2<input type=\"radio\" id=\"male1\" name=\"option\" value=\"h2\">
