@@ -73,8 +73,12 @@ function logger($ins) {
 	}
 	
 	//bad
-	if ($ins['pass'] != $pass) {
-		$addon = "*NOKEY";
+	if ($ins['pass'] != $pass && !$useduid) {
+		$addon = "*NOMASTERKEY";
+	}
+	
+	if ($ins['pass'] != $pass && $useduid) {
+		$addon = "*NOUKEY:$ins[uid]";
 	}
 	
 	if ($useduid) { $useduidstr = '*TRUE'; } else { $useduidstr = '*FALSE'; }
