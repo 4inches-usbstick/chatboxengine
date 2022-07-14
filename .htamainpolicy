@@ -58,6 +58,7 @@ PID   PNAME   PVAL
 107 sitechats-name::sitechats::
 109 cbedata-pathdelimit::-::
 111 termilogger-structure::Terminal [%time %date]: command=%cmd %params , user=%useduid:%uid , method=%verb)::
+113 passwordhandler-default-directory::C:/wamp64/www/textengine/sitechats/hash/::
 -----------------------------------------
                        
 
@@ -85,8 +86,8 @@ sudousers give sudo
 
 [BEGIN CBAUTH]
 00::11::22::33;
-D1::RootOfficial::root1234::sudousers;
-D2::UserOfficial::root5678::notsudousers;
+D1::RootOfficial::hash//afAGJTYpxFQOPIXwIyNUMQ07NQlBvM1FoFHZfKBP+%%password=ccae0e7e74bcf86466c097490b24b9da02e78dddd9bfb7e9fd9b024633f3efa5642a4aa3879abc68dbe4b140b6a2da86732623deb91f3e473b77768faab66e94::sudousers//cantrunhelp;
+D2::UserOfficial::hash//Z5mIPZ8F1M03ObpyNjLDJm2AQSV1niQfvGWu2oDS+%%password=d06dd9526bade7ea2f7b45f899ee447a6d2f35abfc9d04fb8e55c3d13a0730ae3cca6432dbe074ce2e660da70359817a569f185233a2ba34582fa69cccd6e248::notsudousers;
 0::1::2::3;
 [END CBAUTH]
 
